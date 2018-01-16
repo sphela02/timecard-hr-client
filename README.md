@@ -14,7 +14,11 @@ Navigate to https://nodejs.org/en/download/ and install Node.js and npm if you d
 
 Run `npm install -g @angular/cli` to install the Angular CLI globally.
 
-## Development server
+### Install the Project's Packages
+
+From the Angular Project's root directory run `npm install` to install its packages.
+
+## Run the Development server to see if all is good!
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.  There is an npm command `npm start` which will start the dev server and launch your browser (equivalent to `ng serve -o`)
 
