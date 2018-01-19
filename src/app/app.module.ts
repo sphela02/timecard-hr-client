@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { TimecardModule } from "./timecard/timecard.module";
-import { HomeModule } from "./home/home.module";
-import { VacationRequestModule } from "./vacation-request/vacation-request.module";
+import { TimecardModule } from './timecard/timecard.module';
+import { HomeModule } from './home/home.module';
+import { VacationRequestModule } from './vacation-request/vacation-request.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
     TimecardModule,
     HomeModule,
     VacationRequestModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

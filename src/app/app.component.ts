@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserInfoService } from './userinfo/user-info.service';
 
 @Component({
   selector: 'tc-root',
@@ -19,7 +20,8 @@ import { Component } from '@angular/core';
         </div>
      </div>
     `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [UserInfoService]
 })
 export class AppComponent {
   title = 'Timecard and VRS';
