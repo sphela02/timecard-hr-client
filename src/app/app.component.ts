@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInfoService } from './userinfo/user-info.service';
+
 
 @Component({
   selector: 'tc-root',
@@ -64,6 +66,7 @@ import { Component, OnInit } from '@angular/core';
      </div>
     `,*/
   styleUrls: ['./app.component.css', './app.component.css.navbar.css']
+  providers: [UserInfoService]
 })
 export class AppComponent implements OnInit {
   
