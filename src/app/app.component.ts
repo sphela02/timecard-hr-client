@@ -65,7 +65,7 @@ import { UserInfoService } from './userinfo/user-info.service';
         </div>
      </div>
     `,*/
-  styleUrls: ['./app.component.css', './app.component.css.navbar.css']
+  styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
   providers: [UserInfoService]
 })
 export class AppComponent implements OnInit {
