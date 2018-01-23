@@ -6,7 +6,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import { IUserInfo } from './user-info';
+import { EmployeeProfileDTO } from './user-info';
 
 @Injectable()
 export class UserInfoService {
@@ -14,11 +14,12 @@ export class UserInfoService {
   private _userObject;
 
   constructor(private _http: HttpClient) {
-    this._userInfoUrl = environment.apiServiceURL + '/CurrentInfo';
+    this._userInfoUrl = environment.apiServiceURL + 'Employee/getMyProfile';
   }
 
-  getUserInfo(): Observable<IUserInfo[]> {
-    return this._http.get<IUserInfo[]>(this._userInfoUrl)
+  getUserInfo(): Observable<EmployeeProfileDTO> {
+    return this._http.get<EmployeeProfileDTO>(this._userInfoUrl , { withCredentials: true })
+      .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError)
       ;
   }

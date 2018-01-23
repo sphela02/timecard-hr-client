@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiServiceURL: 'http://localhost/TimeCardApprovalService'
+  apiServiceURL: 'http://localhost:9572/api/v1/'
 };
