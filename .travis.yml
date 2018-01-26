@@ -24,5 +24,6 @@ before_script:
 - npm install
 - ng build
 
-script: ng test --single-run
-# trivail
+script:
+- ng lint 
+- ng test --single-run

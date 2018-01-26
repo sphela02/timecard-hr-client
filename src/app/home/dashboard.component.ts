@@ -4,7 +4,7 @@ import { UserInfoService } from '../userinfo/user-info.service';
 import { EmployeeProfileDTO } from '../userinfo/user-info';
 
 @Component({
-  selector: 'dashboard',
+  selector: 'tc-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this._userInfoService.getUserInfo()
           .subscribe(userInfo => {
-            this.userInfo = userInfo; 
+            this.userInfo = userInfo;
           },
           error => this.errorMessage = <any>error
         );
