@@ -1,8 +1,9 @@
 sudo: required
+# group: deprecated-2017Q4
 dist: trusty
 language: node_js
 node_js:
-  - '4.2'
+  - '6.11'
 
 addons:
 apt:
@@ -23,4 +24,6 @@ before_script:
 - npm install
 - ng build
 
-# script: karma start config/karma.conf.js --single-run
+script:
+- ng lint 
+- ng test --single-run
