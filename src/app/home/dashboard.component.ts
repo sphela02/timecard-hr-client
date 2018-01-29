@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     this._timeCardService.getTimeCardByDate().subscribe (
           response => {
               this.timecardDBG = response;
-              console.log("DBG 35");
+              console.log('DBG 35');
               console.log(this.timecardDBG); // dbg
           }
       );
