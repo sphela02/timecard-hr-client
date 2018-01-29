@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInfoService } from './userinfo/user-info.service';
-
+import { TimecardService } from './timecard/timecard.service';
+import { TimecardDTO } from './timecard/timecard';
 
 @Component({
   selector: 'tc-root',
@@ -66,15 +67,16 @@ import { UserInfoService } from './userinfo/user-info.service';
      </div>
     `,*/
   styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
-  providers: [UserInfoService]
+  providers: [UserInfoService, TimecardService]
 })
 export class AppComponent implements OnInit {
 
     title = 'Timecard and VRS';
     menuList: any;
     selected: any;
+    timecardDBG: TimecardDTO;
 
-    constructor() {
+    constructor(private _timecardService: TimecardService) {
         this.title = 'Collapsible menu - Angular 2';
         this.menuList = [
             {
@@ -128,5 +130,14 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         document.getElementById('sidebarCollapse').addEventListener('click', (e: Event) =>  this.toggleNav());
+
+        // Get a timecard for testing
+        this._timecardService.getTimeCardByDate().subscribe (
+            response => {
+                this.timecardDBG = response;
+                console.log('DBG 137');
+                console.log(this.timecardDBG); // dbg
+            }
+        );
     }
 }

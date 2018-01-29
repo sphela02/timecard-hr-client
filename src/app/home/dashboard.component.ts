@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { UserInfoService } from '../userinfo/user-info.service';
 import { EmployeeProfileDTO } from '../userinfo/user-info';
+import { TimecardDTO } from '../timecard/timecard';
+import { TimecardService } from '../timecard/timecard.service';
 
 @Component({
   selector: 'tc-dashboard',
@@ -14,8 +16,10 @@ export class DashboardComponent implements OnInit {
    errorMessage: string;
    apiEndPointURL: string = environment.apiServiceURL;
    userInfo: EmployeeProfileDTO;
+   timecardDBG: TimecardDTO;
 
-    constructor(private _userInfoService: UserInfoService) { }
+    constructor(private _userInfoService: UserInfoService,
+                private _timeCardService: TimecardService) { }
 
   ngOnInit() {
     this._userInfoService.getUserInfo()
@@ -24,6 +28,15 @@ export class DashboardComponent implements OnInit {
           },
           error => this.errorMessage = <any>error
         );
+    // Get a timecard for testing dbg
+    this._timeCardService.getTimeCardByDate().subscribe (
+          response => {
+              this.timecardDBG = response;
+              console.log("DBG 35");
+              console.log(this.timecardDBG); // dbg
+          }
+      );
+
   }
 
 }

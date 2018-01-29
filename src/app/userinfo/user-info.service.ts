@@ -11,7 +11,7 @@ import { EmployeeProfileDTO } from './user-info';
 @Injectable()
 export class UserInfoService {
   private _userInfoUrl: string;
-  private _userObject;
+  private _userObject; // dbg ... I think this is unneeded
 
   constructor(private _http: HttpClient) {
     this._userInfoUrl = environment.apiServiceURL + 'Employee/getMyProfile';
