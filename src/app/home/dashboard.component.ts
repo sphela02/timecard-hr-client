@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
    apiEndPointURL: string = environment.apiServiceURL;
    userInfo: EmployeeProfileDTO;
    timecardDBG: TimecardDTO;
+   availableTimeCardsDBG: TimecardDTO[] = [];
 
     constructor(private _userInfoService: UserInfoService,
                 private _timeCardService: TimecardService) { }
@@ -25,9 +26,17 @@ export class DashboardComponent implements OnInit {
     this._userInfoService.getUserInfo()
           .subscribe(userInfo => {
             this.userInfo = userInfo;
+
+            // Get available timecards dbg
+            this._timeCardService.getAvailableTimeCards(this.userInfo.EMPLID)
+              .subscribe( response => {
+                this.availableTimeCardsDBG = response;
+              });
+
           },
           error => this.errorMessage = <any>error
         );
+
     // Get a timecard for testing dbg
     this._timeCardService.getTimeCardByDate().subscribe (
           response => {
