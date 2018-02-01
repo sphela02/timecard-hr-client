@@ -85,15 +85,15 @@ export class AppComponent implements OnInit {
             'subMenu': []
             },
             {
-            'name': 'Timecard',
-            'path': '/timecard/search',
+            'name': 'Timecards',
+            'path': '/timecards',
             'subMenu': [
                 {
-                    'name': 'Search',
-                    'path': '/timecard/search',
+                    'name': 'Timecard Main',
+                    'path': '/timecards',
                 },
                 {
-                    'name': 'Timecard 2',
+                    'name': 'Search',
                     'path': '/timecard/search',
                 },
                 {
