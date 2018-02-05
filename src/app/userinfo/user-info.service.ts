@@ -11,17 +11,21 @@ import { EmployeeProfileDTO } from './user-info';
 @Injectable()
 export class UserInfoService {
   private _userInfoUrl: string;
-  private _userObject; // dbg ... I think this is unneeded
+  private _userInfo; // Where we store the info once retrieved
 
   constructor(private _http: HttpClient) {
     this._userInfoUrl = environment.apiServiceURL + 'Employee/getMyProfile';
   }
 
   getUserInfo(): Observable<EmployeeProfileDTO> {
-    return this._http.get<EmployeeProfileDTO>(this._userInfoUrl , { withCredentials: true })
-      .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError)
-      ;
+    if (this._userInfo == null) {
+      this._userInfo = this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
+                                            { withCredentials: true })
+                                            .catch(this.handleError)
+                                            ;
+
+    }
+    return this._userInfo;
   }
 
   private handleError(err: HttpErrorResponse) {
