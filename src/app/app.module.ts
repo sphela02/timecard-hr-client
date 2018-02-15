@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { VacationRequestModule } from './vacation-request/vacation-request.module';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HarrisHttpInterceptor } from './testing/harris-http-interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,13 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HarrisHttpInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

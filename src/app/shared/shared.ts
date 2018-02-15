@@ -15,3 +15,10 @@ export enum NavigationType {
     Detail = 2,
     Search = 3,
   }
+
+  export enum AppMode {
+    Dev = 0,
+    Prod = 1,
+    MockUse = 2,
+    MockGenerate = 3
+  }
