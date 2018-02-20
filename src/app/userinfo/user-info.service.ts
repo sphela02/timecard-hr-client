@@ -14,7 +14,7 @@ export class UserInfoService {
   private _userInfo; // Where we store the info once retrieved
 
   constructor(private _http: HttpClient) {
-    this._userInfoUrl = environment.apiServiceURL + 'Employee/getMyProfile';
+    this._userInfoUrl = 'Employee/getMyProfile';
   }
 
   getUserInfo(): Observable<EmployeeProfileDTO> {

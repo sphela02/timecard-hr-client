@@ -90,14 +90,14 @@ export class AppComponent implements OnInit {
                     'name': 'Timecard Main',
                     'path': '/timecards',
                 },
-                {
-                    'name': 'Search',
-                    'path': '/timecard/search',
-                },
-                {
-                    'name': 'Timecard 3',
-                    'path': '/timecard/search',
-                },
+                // {
+                //     'name': 'Search',
+                //     'path': '/timecard/search',
+                // },
+                // {
+                //     'name': 'Timecard 3',
+                //     'path': '/timecard/search',
+                // },
             ]
             },
             {
