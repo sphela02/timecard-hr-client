@@ -20,8 +20,7 @@ export interface ValidateShiftDTO           {}
 export interface ValidationResponseDTO      {}
 
 
-    export enum HourType {
-        Base = 0,
-        Benefit = 1,
-        Other = 2,
+    export interface IValidationResponse {
+        Status: ErrorStatus;
+        Message: string;
     }
