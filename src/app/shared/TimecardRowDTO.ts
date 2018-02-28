@@ -14,6 +14,7 @@ export interface TimecardRowDTO {
         PLCCode: string;
         WO_ID: string;
         FPH: string;
+        WCI: string;
         DailyHours: number[];
 }
 
