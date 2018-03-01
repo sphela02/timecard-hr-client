@@ -36,7 +36,7 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
             default:
                 // Default use case is to prepend the URL with the API root and pass the request along.
                 request = request.clone({
-                    url: environment.apiServiceURL + '/' + request.url
+                    url: environment.apiServiceURL + request.url
                 });
             break;
         }

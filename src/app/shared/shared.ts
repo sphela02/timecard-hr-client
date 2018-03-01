@@ -1,4 +1,6 @@
-export enum NavigationType {
+import { TimecardHeaderDTO } from './TimecardHeaderDTO';
+
+export enum ActionType {
     Right = 1,
     Left = 2,
     Up = 3,
@@ -6,7 +8,9 @@ export enum NavigationType {
     Open = 5,
     Close = 6,
     Previous = 7,
-    Next = 8
+    Next = 8,
+    Edit = 9,
+    View = 10
   }
 
   export enum TimecardViewMode {
@@ -14,6 +18,12 @@ export enum NavigationType {
     List = 1,
     Detail = 2,
     Search = 3,
+    Edit = 4
+  }
+
+  export interface TimecardHeaderAction {
+    timecardHeader: TimecardHeaderDTO;
+    timecardAction: ActionType;
   }
 
   export enum AppMode {

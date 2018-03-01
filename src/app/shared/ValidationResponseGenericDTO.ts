@@ -1,11 +1,11 @@
 ﻿
 
 
-
-
 import { ErrorStatus } from './shared.module';
 
-    export interface IValidationResponse {
+export interface ValidationResponseGenericDTO {
         Status: ErrorStatus;
         Message: string;
 }
+
+
