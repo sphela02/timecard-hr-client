@@ -135,11 +135,11 @@
 		"HoursGrouping": 1
 	}],
 	"TimecardHeader": {
-		"TimecardID": "69366811",
-		"PayEndDate": "2018-01-19T00:00:00",
-		"WeekEndDate": "2018-01-12T00:00:00",
+		"TimecardID": "69400321",
+		"PayEndDate": "2018-02-02T00:00:00",
+		"WeekEndDate": "2018-01-26T00:00:00",
 		"ScheduledHours": 40,
-		"HoursWorked": 7.3,
+		"HoursWorked": 0,
 		"OtherHours": 0,
 		"DefaultShift": "1",
 		"ScheduleID": "5/8-MON",
@@ -151,74 +151,43 @@
 		"TimecardStatus": 1,
 		"TimecardStatusLabel": "Open"
 	},
-	"TimecardRows": [{
-		"RowSequenceNumber": 1,
-		"isReadOnly": false,
-		"TRCCode": "DL",
-		"ChargeCode": "IT8065",
-		"ActivityCode": "10-BASIC",
-		"WorkCode": "",
-		"Shift": "",
-		"DepartmentOverride": "",
-		"PLCCode": "",
-		"WO_ID": "",
-		"FPH": "",
-		"WCI": "",
-		"DailyHours": [0,
-		0,
-		7.3,
-		0,
-		0,
-		0,
-		0]
-	}],
+	"TimecardRows": [],
 	"TimecardDays": [{
-		"Day": "2018-01-06T00:00:00",
+		"Day": "2018-01-20T00:00:00",
 		"DayLabel": "Sat",
 		"ScheduledHours": 0
 	},
 	{
-		"Day": "2018-01-07T00:00:00",
+		"Day": "2018-01-21T00:00:00",
 		"DayLabel": "Sun",
 		"ScheduledHours": 0
 	},
 	{
-		"Day": "2018-01-08T00:00:00",
+		"Day": "2018-01-22T00:00:00",
 		"DayLabel": "Mon",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-09T00:00:00",
+		"Day": "2018-01-23T00:00:00",
 		"DayLabel": "Tue",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-10T00:00:00",
+		"Day": "2018-01-24T00:00:00",
 		"DayLabel": "Wed",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-11T00:00:00",
+		"Day": "2018-01-25T00:00:00",
 		"DayLabel": "Thu",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-12T00:00:00",
+		"Day": "2018-01-26T00:00:00",
 		"DayLabel": "Fri",
 		"ScheduledHours": 8
 	}],
 	"TimecardNotes": [],
-	"TimecardSettings": {
-		"isAllowedFPH": false,
-		"isAllowedEditShift": true,
-		"isAllowedPLC": false,
-		"isBreakRequired": false
-	},
-	"ValidationMessages": [{
-		"Status": 0,
-		"Message": null,
-		"RowSequenceNumber": 1,
-		"ErrorCount": 0,
-		"RowValidationObjects": null
-	}]
+	"TimecardSettings": null,
+	"ValidationMessages": []
 }

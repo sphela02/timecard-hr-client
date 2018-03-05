@@ -1,1 +1,321 @@
-{"TimecardTRCCodes":[{"TRCCode":"BRV","TRCDescription":"Bereavement","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":1},{"TRCCode":"DL","TRCDescription":"Regular Pay","IsIDLCode":false,"IsDLCode":true,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":0},{"TRCCode":"ESCLS","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":0},{"TRCCode":"HOL","TRCDescription":"Holiday","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":1},{"TRCCode":"IDL","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":0},{"TRCCode":"INTER","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":0},{"TRCCode":"JURY","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":1},{"TRCCode":"MIL","TRCDescription":"Military Pay Supplement","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":false,"IsFPHAvailable":false,"HoursGrouping":1},{"TRCCode":"NPROD","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":0},{"TRCCode":"NWNP","TRCDescription":"Absent Without Pay","IsIDLCode":false,"IsDLCode":false,"IsShiftEditable":false,"IsFPHAvailable":false,"HoursGrouping":1},{"TRCCode":"ONCAL","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":true,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":2},{"TRCCode":"SICK","TRCDescription":"Sick","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":1},{"TRCCode":"TRAIN","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":0},{"TRCCode":"VACN","TRCDescription":"Vacation","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":1},{"TRCCode":"WC","TRCDescription":"Regular Pay","IsIDLCode":true,"IsDLCode":false,"IsShiftEditable":true,"IsFPHAvailable":true,"HoursGrouping":1}],"TimecardHeader":{"TimecardID":"69391423","PayEndDate":"2018-01-05T00:00:00","WeekEndDate":"2018-01-05T00:00:00","ScheduledHours":40.0,"HoursWorked":41.30,"OtherHours":0.0,"DefaultShift":"1","ScheduleID":"5/8-MON","TargetApprover":"CLORIS","EmployeeID":"266277","ApprovedDateTime":"2018-01-08T08:36:28","TLSentDateTime":"2018-01-05T15:15:05","TimecardStatus":1,"TimecardStatusLabel":"Open"},"TimecardRows":[{"RowSequenceNumber":1.0,"TRCCode":"DL","ChargeCode":"IT8065","ActivityCode":"10-BASIC","WorkCode":"WWW.HARRIS","Shift":"","DepartmentOverride":"","PLCCode":"","WO_ID":"","FPH":"","DailyHours":[0.0,0.0,0.0,4.0,1.0,0.0,0.0]},{"RowSequenceNumber":2.0,"TRCCode":"HOL","ChargeCode":"","ActivityCode":"","WorkCode":"","Shift":"","DepartmentOverride":"","PLCCode":"","WO_ID":"","FPH":"","DailyHours":[0.0,0.0,8.0,0.0,0.0,0.0,0.0]},{"RowSequenceNumber":3.0,"TRCCode":"DL","ChargeCode":"IT8065","ActivityCode":"10-BASIC","WorkCode":"TC_AND_VRS","Shift":"","DepartmentOverride":"","PLCCode":"","WO_ID":"","FPH":"","DailyHours":[0.0,0.0,0.0,0.0,2.0,0.0,0.0]},{"RowSequenceNumber":4.0,"TRCCode":"DL","ChargeCode":"IT8065","ActivityCode":"10-BASIC","WorkCode":"EWEEK","Shift":"","DepartmentOverride":"","PLCCode":"","WO_ID":"","FPH":"","DailyHours":[0.0,0.0,0.0,4.0,6.30,8.0,8.0]}],"TimecardDays":[{"Day":"2017-12-30T00:00:00","DayLabel":"Sat","ScheduledHours":0.0},{"Day":"2017-12-31T00:00:00","DayLabel":"Sun","ScheduledHours":0.0},{"Day":"2018-01-01T00:00:00","DayLabel":"Mon","ScheduledHours":8.0},{"Day":"2018-01-02T00:00:00","DayLabel":"Tue","ScheduledHours":8.0},{"Day":"2018-01-03T00:00:00","DayLabel":"Wed","ScheduledHours":8.0},{"Day":"2018-01-04T00:00:00","DayLabel":"Thu","ScheduledHours":8.0},{"Day":"2018-01-05T00:00:00","DayLabel":"Fri","ScheduledHours":8.0}],"TimecardNotes":[{"TimecardID":null,"DateEntered":"2018-01-05T18:25:42","Author":"SYSTEM","Content":"LC02 Timecard Not Approved - Week End 01/05/2018","LaborCorrectionTitle":null},{"TimecardID":null,"DateEntered":"2018-01-05T18:22:31","Author":"SYSTEM","Content":"LC02 Timecard Not Approved - Week End 01/05/2018","LaborCorrectionTitle":null}]}
+{
+	"TimecardTRCCodes": [{
+		"TRCCode": "BRV",
+		"TRCDescription": "Bereavement",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "DL",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": false,
+		"IsDLCode": true,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "ESCLS",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "HOL",
+		"TRCDescription": "Holiday",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "IDL",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "INTER",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "JURY",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "MIL",
+		"TRCDescription": "Military Pay Supplement",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": false,
+		"IsFPHAvailable": false,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "NPROD",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "NWNP",
+		"TRCDescription": "Absent Without Pay",
+		"IsIDLCode": false,
+		"IsDLCode": false,
+		"IsShiftEditable": false,
+		"IsFPHAvailable": false,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "ONCAL",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": true,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 2
+	},
+	{
+		"TRCCode": "SICK",
+		"TRCDescription": "Sick",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "TRAIN",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "VACN",
+		"TRCDescription": "Vacation",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "WC",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	}],
+	"TimecardHeader": {
+		"TimecardID": "69391423",
+		"PayEndDate": "2018-01-05T00:00:00",
+		"WeekEndDate": "2018-01-05T00:00:00",
+		"ScheduledHours": 40,
+		"HoursWorked": 68.2,
+		"OtherHours": 0,
+		"DefaultShift": "1",
+		"ScheduleID": "5/8-MON",
+		"TargetApprover": "CLORIS",
+		"EmployeeID": "266277",
+		"ApprovedDateTime": "2018-01-08T08:36:28",
+		"TLSentDateTime": "2018-01-05T15:15:05",
+		"isLaborCorrection": true,
+		"TimecardStatus": 3,
+		"TimecardStatusLabel": "Approved"
+	},
+	"TimecardRows": [{
+		"RowSequenceNumber": 1,
+		"isReadOnly": false,
+		"TRCCode": "DL",
+		"ChargeCode": "IT8065",
+		"ActivityCode": "10-BASIC",
+		"WorkCode": "WWW.HARRIS",
+		"Shift": "1",
+		"DepartmentOverride": "bob",
+		"PLCCode": "32",
+		"WO_ID": "",
+		"FPH": "",
+		"WCI": "D",
+		"DailyHours": [1,
+		2.1,
+		3,
+		4,
+		5.1,
+		6,
+		7]
+	},
+	{
+		"RowSequenceNumber": 2,
+		"isReadOnly": false,
+		"TRCCode": "HOL",
+		"ChargeCode": "",
+		"ActivityCode": "",
+		"WorkCode": "",
+		"Shift": "2",
+		"DepartmentOverride": "",
+		"PLCCode": "",
+		"WO_ID": "",
+		"FPH": "",
+		"WCI": "",
+		"DailyHours": [3,
+		2,
+		1,
+		3.4,
+		2.3,
+		0,
+		0]
+	},
+	{
+		"RowSequenceNumber": 3,
+		"isReadOnly": false,
+		"TRCCode": "DL",
+		"ChargeCode": "IT8065",
+		"ActivityCode": "10-BASIC",
+		"WorkCode": "TC_AND_VRS",
+		"Shift": "3",
+		"DepartmentOverride": "",
+		"PLCCode": "",
+		"WO_ID": "",
+		"FPH": "",
+		"WCI": "",
+		"DailyHours": [0,
+		0,
+		0,
+		0,
+		2,
+		0,
+		0]
+	},
+	{
+		"RowSequenceNumber": 4,
+		"isReadOnly": false,
+		"TRCCode": "DL",
+		"ChargeCode": "IT8065",
+		"ActivityCode": "10-BASIC",
+		"WorkCode": "EWEEK.DBG",
+		"Shift": "1",
+		"DepartmentOverride": "",
+		"PLCCode": "",
+		"WO_ID": "",
+		"FPH": "",
+		"WCI": "",
+		"DailyHours": [0,
+		0,
+		0,
+		4,
+		6.3,
+		8,
+		8]
+	}],
+	"TimecardDays": [{
+		"Day": "2017-12-30T00:00:00",
+		"DayLabel": "Sat",
+		"ScheduledHours": 0
+	},
+	{
+		"Day": "2017-12-31T00:00:00",
+		"DayLabel": "Sun",
+		"ScheduledHours": 0
+	},
+	{
+		"Day": "2018-01-01T00:00:00",
+		"DayLabel": "Mon",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-02T00:00:00",
+		"DayLabel": "Tue",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-03T00:00:00",
+		"DayLabel": "Wed",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-04T00:00:00",
+		"DayLabel": "Thu",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-05T00:00:00",
+		"DayLabel": "Fri",
+		"ScheduledHours": 8
+	}],
+	"TimecardNotes": [{
+		"TimecardID": null,
+		"DateEntered": "2018-01-05T18:25:42",
+		"Author": "SYSTEM",
+		"Content": "LC02 Timecard Not Approved - Week End 01/05/2018",
+		"LaborCorrectionTitle": null
+	},
+	{
+		"TimecardID": null,
+		"DateEntered": "2018-01-05T18:22:31",
+		"Author": "SYSTEM",
+		"Content": "LC02 Timecard Not Approved - Week End 01/05/2018",
+		"LaborCorrectionTitle": null
+	}],
+	"TimecardSettings": {
+		"isAllowedFPH": false,
+		"isAllowedEditShift": true,
+		"isAllowedPLC": false,
+		"isBreakRequired": false
+	},
+	"ValidationMessages": [{
+		"Status": 0,
+		"Message": null,
+		"RowSequenceNumber": 1,
+		"ErrorCount": 0,
+		"RowValidationObjects": null
+	},
+	{
+		"Status": 0,
+		"Message": null,
+		"RowSequenceNumber": 2,
+		"ErrorCount": 0,
+		"RowValidationObjects": null
+	},
+	{
+		"Status": 0,
+		"Message": null,
+		"RowSequenceNumber": 3,
+		"ErrorCount": 0,
+		"RowValidationObjects": null
+	},
+	{
+		"Status": 0,
+		"Message": null,
+		"RowSequenceNumber": 4,
+		"ErrorCount": 0,
+		"RowValidationObjects": null
+	}]
+}
