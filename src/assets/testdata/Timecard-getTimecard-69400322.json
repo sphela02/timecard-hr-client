@@ -1,0 +1,59 @@
+{
+	"TimecardTRCCodes": [],
+	"TimecardHeader": {
+		"TimecardID": "69400322",
+		"PayEndDate": "2018-02-02T00:00:00",
+		"WeekEndDate": "2018-02-02T00:00:00",
+		"ScheduledHours": 40,
+		"HoursWorked": 0,
+		"OtherHours": 0,
+		"DefaultShift": "1",
+		"ScheduleID": "5/8-MON",
+		"TargetApprover": "CLORIS",
+		"EmployeeID": "266277",
+		"ApprovedDateTime": null,
+		"TLSentDateTime": null,
+		"isLaborCorrection": false,
+		"TimecardStatus": 1,
+		"TimecardStatusLabel": "Open"
+	},
+	"TimecardRows": [],
+	"TimecardDays": [{
+		"Day": "2018-01-27T00:00:00",
+		"DayLabel": "Sat",
+		"ScheduledHours": 0
+	},
+	{
+		"Day": "2018-01-28T00:00:00",
+		"DayLabel": "Sun",
+		"ScheduledHours": 0
+	},
+	{
+		"Day": "2018-01-29T00:00:00",
+		"DayLabel": "Mon",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-30T00:00:00",
+		"DayLabel": "Tue",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-31T00:00:00",
+		"DayLabel": "Wed",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-02-01T00:00:00",
+		"DayLabel": "Thu",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-02-02T00:00:00",
+		"DayLabel": "Fri",
+		"ScheduledHours": 8
+	}],
+	"TimecardNotes": [],
+	"TimecardSettings": null,
+	"ValidationMessages": []
+}

@@ -135,11 +135,11 @@
 		"HoursGrouping": 1
 	}],
 	"TimecardHeader": {
-		"TimecardID": "69366811",
+		"TimecardID": "69366812",
 		"PayEndDate": "2018-01-19T00:00:00",
-		"WeekEndDate": "2018-01-12T00:00:00",
+		"WeekEndDate": "2018-01-19T00:00:00",
 		"ScheduledHours": 40,
-		"HoursWorked": 7.3,
+		"HoursWorked": 0,
 		"OtherHours": 0,
 		"DefaultShift": "1",
 		"ScheduleID": "5/8-MON",
@@ -151,59 +151,39 @@
 		"TimecardStatus": 1,
 		"TimecardStatusLabel": "Open"
 	},
-	"TimecardRows": [{
-		"RowSequenceNumber": 1,
-		"isReadOnly": false,
-		"TRCCode": "DL",
-		"ChargeCode": "IT8065",
-		"ActivityCode": "10-BASIC",
-		"WorkCode": "",
-		"Shift": "",
-		"DepartmentOverride": "",
-		"PLCCode": "",
-		"WO_ID": "",
-		"FPH": "",
-		"WCI": "",
-		"DailyHours": [0,
-		0,
-		7.3,
-		0,
-		0,
-		0,
-		0]
-	}],
+	"TimecardRows": [],
 	"TimecardDays": [{
-		"Day": "2018-01-06T00:00:00",
+		"Day": "2018-01-13T00:00:00",
 		"DayLabel": "Sat",
 		"ScheduledHours": 0
 	},
 	{
-		"Day": "2018-01-07T00:00:00",
+		"Day": "2018-01-14T00:00:00",
 		"DayLabel": "Sun",
 		"ScheduledHours": 0
 	},
 	{
-		"Day": "2018-01-08T00:00:00",
+		"Day": "2018-01-15T00:00:00",
 		"DayLabel": "Mon",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-09T00:00:00",
+		"Day": "2018-01-16T00:00:00",
 		"DayLabel": "Tue",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-10T00:00:00",
+		"Day": "2018-01-17T00:00:00",
 		"DayLabel": "Wed",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-11T00:00:00",
+		"Day": "2018-01-18T00:00:00",
 		"DayLabel": "Thu",
 		"ScheduledHours": 8
 	},
 	{
-		"Day": "2018-01-12T00:00:00",
+		"Day": "2018-01-19T00:00:00",
 		"DayLabel": "Fri",
 		"ScheduledHours": 8
 	}],
@@ -214,11 +194,5 @@
 		"isAllowedPLC": false,
 		"isBreakRequired": false
 	},
-	"ValidationMessages": [{
-		"Status": 0,
-		"Message": null,
-		"RowSequenceNumber": 1,
-		"ErrorCount": 0,
-		"RowValidationObjects": null
-	}]
+	"ValidationMessages": []
 }
