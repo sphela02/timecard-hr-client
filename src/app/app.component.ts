@@ -77,29 +77,20 @@ export class AppComponent implements OnInit {
     constructor() {
         this.title = 'Collapsible menu - Angular 2';
         this.menuList = [
-            {
-            'name': 'Dashboard',
-            'path': '/dashboard',
-            'subMenu': []
-            },
+            // {
+            // 'name': 'Dashboard',
+            // 'path': '/dashboard',
+            // 'subMenu': []
+            // },
             {
             'name': 'Timecards',
             'path': '/timecards',
-            'subMenu': [
-                {
-                    'name': 'Timecard Main',
-                    'path': '/timecards',
-                },
-                // {
-                //     'name': 'Search',
-                //     'path': '/timecard/search',
-                // },
-                // {
-                //     'name': 'Timecard 3',
-                //     'path': '/timecard/search',
-                // },
-            ]
             },
+            {
+                'name': 'Timecard Search',
+                'path': '/timecard/search',
+            },
+
             {
             'name': 'Vacation',
             'path': '/vacation/request',
