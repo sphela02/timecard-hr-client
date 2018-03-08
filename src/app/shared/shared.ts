@@ -10,7 +10,8 @@ export enum ActionType {
     Previous = 7,
     Next = 8,
     Edit = 9,
-    View = 10
+    View = 10,
+    None = 11,
   }
 
   export enum TimecardViewMode {
