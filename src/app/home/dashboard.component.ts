@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { UserInfoService } from '../userinfo/user-info.service';
-import { EmployeeProfileDTO } from '../userinfo/user-info';
+import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
 
 @Component({
   selector: 'tc-dashboard',
