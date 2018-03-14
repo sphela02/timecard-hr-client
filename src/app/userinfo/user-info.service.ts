@@ -5,8 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
-
-import { EmployeeProfileDTO } from './user-info';
+import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
 
 @Injectable()
 export class UserInfoService {

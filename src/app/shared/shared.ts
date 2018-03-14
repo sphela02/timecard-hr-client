@@ -33,3 +33,8 @@ export enum ActionType {
     MockUse = 2,
     MockGenerate = 3
   }
+
+  export enum TimecardListMode {
+    Available = 1,
+    Search = 2,
+  }
