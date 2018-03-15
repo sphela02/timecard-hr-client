@@ -113,12 +113,11 @@ export class AppComponent implements OnInit {
     }
 
     toggleNav(): void {
-        document.getElementById('sidebar').classList.toggle('active');
-        document.getElementById('sidebarCollapse').classList.toggle('active');
+        // document.getElementById('sidebar').classList.toggle('active');
+        // document.getElementById('sidebarCollapse').classList.toggle('active');
     }
 
     ngOnInit(): void {
-        document.getElementById('sidebarCollapse').addEventListener('click', (e: Event) =>  this.toggleNav());
-
+        // document.getElementById('sidebarCollapse').sideNav();
     }
 }

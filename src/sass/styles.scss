@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Colors
+$harris-red: #e21d22;
+$harris-grey: #74767b;
+
+.navbar {
+    #app-alerts {
+        position: relative;
+    
+        i {
+            font-size: 1.9rem;
+        }
+    
+        .badge {
+            font-size: .6em;
+            line-height: 1.3;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+}
+
+.side-nav {
+    ul {
+        &.collapsible {
+            li {
+                a.collapsible-header {
+                    height: auto;
+                    padding: 10px 20px;
+                    transition-property: display;
+
+                    &.active {
+                        background-color: white;
+                        border-left: 8px solid $harris-red;
+                        padding-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
