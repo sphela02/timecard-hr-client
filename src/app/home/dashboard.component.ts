@@ -12,7 +12,6 @@ export class DashboardComponent implements OnInit {
 
    pageTitle: 'My Dashboard';
    errorMessage: string;
-   apiEndPointURL: string = environment.apiServiceURL;
    userInfo: EmployeeProfileDTO;
 
     constructor(private _userInfoService: UserInfoService) { }
