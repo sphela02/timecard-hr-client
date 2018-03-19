@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TimecardModule } from './timecard/timecard.module';
@@ -25,7 +26,8 @@ import { HarrisHttpInterceptor } from './testing/harris-http-interceptor';
     VacationRequestModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     {
