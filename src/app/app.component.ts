@@ -3,6 +3,8 @@ import { UserInfoService } from './userinfo/user-info.service';
 import { TimecardService } from './timecard/timecard.service';
 import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
 
+declare var $: any;
+
 @Component({
   selector: 'tc-root',
   templateUrl: './app.component.html',
@@ -67,6 +69,14 @@ export class AppComponent implements OnInit {
             this.userInfo = userInfo;
           },
           error => this.errorMessage = <any>error
-    );
+        );
+
+        setTimeout(() => {
+            // Sidebar initialization.
+            $("#sidebarCollapse").sideNav();
+
+            // Data Picker Initialization.
+            $('.datepicker').pickadate();
+        }, 0);
 
   }}

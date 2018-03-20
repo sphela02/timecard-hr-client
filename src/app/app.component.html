@@ -4,7 +4,9 @@
             <h2 class="font-weight-bold h1">HTS</h2>
         </div>
         <ul class="list-unstyled components collapsible collapsible-accordion">
+            <!-- DBG: Select current page item, add class "active" -->
             <li *ngFor="let n of menuList" class="border-top border-light" aria-expanded="true"><a class="collapsible-header arrow-r" [routerLink]="[n.path]">{{n.name}}</a>
+                <!-- DBG: Hide child if empty. Remove parent class "collapsible-header" if empty -->
                 <div class="collapsible-body">
                     <ul class="list-unstyled">
                         <li class="py-2 border-top border-light" *ngFor="let child of n.subMenu" ngif="child.name"><a [routerLink]="[child.path]">{{child.name}}</a></li>
@@ -18,10 +20,11 @@
         <div class="float-left">
             <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
         </div>
-        <span class="navbar-brand h4 m-0 pl-3">[Page Title]</span>
+        <span class="navbar-brand h4 m-0 pl-3">[DBG: Page Title]</span>
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown">
-                <a class="nav-link waves-effect waves-light mr-3" id="app-alerts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-bell-o"></i><span class="badge badge-primary badge-pill red">1</span></a>
+                <!-- DBG: Wire up badge to notification Number -->
+                <a class="nav-link waves-effect waves-light pr-4" id="app-alerts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-bell-o"></i><span class="badge badge-primary badge-pill red">1</span></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
                     <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
                     <div class="dropdown-divider m-0"></div>
@@ -44,9 +47,7 @@
 <main class="m-0 pt-0">
     <div class="wrapper">
         <div id="content" class="container-fluid p-0">
-                <div class="container-fluid">
-                <router-outlet></router-outlet>
-            </div>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </main>
