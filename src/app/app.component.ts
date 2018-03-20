@@ -71,6 +71,7 @@ export class AppComponent implements OnInit {
           error => this.errorMessage = <any>error
         );
 
+<<<<<<< HEAD
         setTimeout(() => {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav();
@@ -79,4 +80,8 @@ export class AppComponent implements OnInit {
             $('.datepicker').pickadate();
         }, 0);
 
+=======
+        // Sidebar initialization.
+        $("#sidebarCollapse").sideNav();
+>>>>>>> TC-Search: Updated Search layout.
   }}

@@ -1,11 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 // Colors
-$harris-red: #e21d22;
 $harris-grey: #74767b;
-$warning: #F99F3C;
-$danger: #D93B42;
-$success: #6db444;
+
+$breakpoint-md: '768px';
 
 .navbar {
     #app-alerts {
@@ -38,7 +36,7 @@ $success: #6db444;
 
                     &.active {
                         background-color: white;
-                        border-left: 8px solid $harris-red;
+                        border-left: 8px solid var(--red);
                         padding-left: 12px;
                     }
                 }
@@ -55,11 +53,13 @@ $success: #6db444;
 }
 
 table.table.timecard-list {
+    width: calc(100% - 3px);
     img {
         max-height: 40px;
     }
     th {
         border: none;
+        color: $harris-grey;
         padding: 0 10px;
         vertical-align: bottom;
     }
@@ -76,13 +76,22 @@ table.table.timecard-list {
         &.status {
             border-right: 6px solid lightgrey;
             &.approved {
-                border-right: 6px solid $success;
+                border-right: 6px solid var(--success);
+            }
+            &.open {
+                border-right: 6px solid var(--warning);
             }
         }
     }
 }
 
 .utility-bar {
-    background: $harris-red;
+    background: var(primary);
     color: white;
+}
+
+.hide-for-mobile {
+    @media screen and (max-width: $breakpoint-md) {
+        display: none;       
+    }
 }
