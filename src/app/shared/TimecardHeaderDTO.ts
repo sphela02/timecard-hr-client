@@ -17,6 +17,10 @@ export interface TimecardHeaderDTO {
         ApprovedDateTime: Date;
         TLSentDateTime: Date;
         isLaborCorrection: boolean;
+        isAllowedFPH: boolean;
+        isAllowedEditShift: boolean;
+        isAllowedPLC: boolean;
+        isBreakRequired: boolean;
         TimecardStatus: TimecardStatus;
         TimecardStatusLabel: string;
 }
