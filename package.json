@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pr": "ng lint && ng build && ng test"
+    "pr": "ng lint && ng build && ng test",
+    "lintwatch": "chokidar \"**/*\" -c \"ng lint\""
   },
   "private": true,
   "dependencies": {
