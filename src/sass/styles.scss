@@ -4,6 +4,8 @@
 $harris-grey: #74767b;
 
 $breakpoint-md: '768px';
+$breakpoint-lg: '960px';
+$breakpoint-xl: '1140px';
 
 .navbar {
     #app-alerts {
@@ -85,9 +87,116 @@ table.table.timecard-list {
     }
 }
 
-.utility-bar {
-    background: var(primary);
+#utility-bar {
+    background: var(--primary);
     color: white;
+
+    .col-auto.h3 {
+        line-height: 1.8;
+    }
+}
+
+#mini-dashboard {
+    .card {
+        height: 160px;
+
+        .min-chart {
+            height: 75px;
+            width: 100%;
+
+            canvas {
+                margin: auto;
+                right: 0;
+
+                @media screen and (max-width: $breakpoint-lg) {
+                    display: none;       
+                }
+            }
+            
+        }
+
+        .fy {
+            display: block;
+            position: absolute;
+            width: calc(100% - 20px);
+        }
+
+        .hours {
+            line-height: 75px;
+        }
+
+        .holiday-calendar {
+            background: url('images/holiday-cal.png') no-repeat center center;
+            background-size: cover;
+ 
+            a {
+                display: block;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+
+                .link-text {
+                    bottom: 10px;
+                    color: white;
+                    position: absolute;
+                    right: 10px;
+
+                    i {
+                        box-shadow: 1px 1px #000;
+                    }
+                }
+            }
+        }
+
+        .card-body .col {
+            padding: 0 10px;
+        }
+    }
+}
+
+table.table.timecard-view {
+    th {
+        border: none;
+        color: $harris-grey;
+        line-height: 1.2;
+        vertical-align: bottom;
+    }
+
+    td {
+        border: 1px solid lightgrey;
+        padding: 10px;
+        position: relative;
+        vertical-align: middle;
+
+        .row-title {
+            font-weight: bold;
+        }
+
+        .row-description {
+            font-size: .7rem;
+            line-height: 1;
+        }
+
+        .remove-row {
+            float: left;
+            margin-right: 10px;
+            padding: 7px 0;
+        }
+
+        input {
+            background-color: transparent !important;
+            border: none;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    &.disabled tbody {
+        background-color: #f2f0f0;
+        color: $harris-grey;
+    }
 }
 
 .hide-for-mobile {

@@ -25,9 +25,9 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "sass/hds/dist/v1.0/js/popper.min.js",
         "sass/hds/dist/v1.0/js/bootstrap.min.js",
         "sass/hds/dist/v1.0/js/mdb.min.js",
-        "sass/hds/dist/v1.0/js/popper.min.js",
         "js/scripts.js"
       ],
       "environmentSource": "environments/environment.ts",
