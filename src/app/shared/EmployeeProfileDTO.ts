@@ -7,7 +7,6 @@ export interface EmployeeProfileDTO {
         ECAID: string;
         FullNamePrintable: string;
         BusinessUnit: string;
-        AllowedFPH: boolean;
 }
 
 
