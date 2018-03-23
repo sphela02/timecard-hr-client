@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
           },
           error => this.errorMessage = <any>error
         );
-        
+
         setTimeout(() => {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav();

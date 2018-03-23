@@ -91,12 +91,39 @@ table.table.timecard-list {
     background: var(--primary);
     color: white;
 
-    .col-auto.h3 {
+    .utility-bar-text {
+        font-size: 1.2rem;
         line-height: 1.8;
+        margin-bottom: 0;
+
+        @media screen and (min-width: $breakpoint-lg) {
+            font-size: 1.5rem
+        }
+    }
+
+    .tabs-wrapper .classic-tabs {
+        .nav-item:last-child {
+            .nav-link {
+                margin-right: 0;
+            }
+        }
+        .nav-link {
+            margin: 0 1rem 0 0;
+        } 
     }
 }
 
 #mini-dashboard {
+
+    .edit-link {
+        color: black;
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: .8rem;
+        text-align: center;
+        text-transform: uppercase;
+    }
     .card {
         height: 160px;
 
@@ -112,7 +139,6 @@ table.table.timecard-list {
                     display: none;       
                 }
             }
-            
         }
 
         .fy {
@@ -136,17 +162,6 @@ table.table.timecard-list {
                 position: absolute;
                 top: 0;
                 width: 100%;
-
-                .link-text {
-                    bottom: 10px;
-                    color: white;
-                    position: absolute;
-                    right: 10px;
-
-                    i {
-                        box-shadow: 1px 1px #000;
-                    }
-                }
             }
         }
 
@@ -157,11 +172,23 @@ table.table.timecard-list {
 }
 
 table.table.timecard-view {
+
+    @media screen and (max-width: $breakpoint-md) {
+        th, td {
+            font-size: .5rem !important;
+            padding: .5rem;
+        }
+    }
+    
     th {
         border: none;
         color: $harris-grey;
         line-height: 1.2;
         vertical-align: bottom;
+    }
+
+    tbody:nth-child(even) {
+        background-color: #f2f0f0;
     }
 
     td {
@@ -177,6 +204,10 @@ table.table.timecard-view {
         .row-description {
             font-size: .7rem;
             line-height: 1;
+
+            @media screen and (max-width: $breakpoint-md) {
+                font-size: .5rem !important;
+            }
         }
 
         .remove-row {
@@ -199,8 +230,69 @@ table.table.timecard-view {
     }
 }
 
+#timecard-footer {
+    #signature {
+        label {
+            padding-left: 25px;
+        }
+    }
+
+    @media screen and (max-width: $breakpoint-md) {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+
+        div[class^="col"] {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        label {
+            padding-bottom: 0;
+        }
+
+        .select-wrapper {
+            padding-left: 5px;
+
+            span.caret {
+                top: 8px;
+            }
+
+            input.select-dropdown {
+                font-size: .9rem;
+                height: 2rem;
+                line-height: 2rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
-        display: none;       
+        display: none !important;
+        visibility: hidden !important;       
     }
+}
+
+// dbg - Remove if angular media query is implemented
+
+.mobile-only {
+    @media screen and (min-width: $breakpoint-md) {
+        display: none !important;
+        visibility: hidden !important;       
+    }
+}
+
+.mobile-daily-only {
+    // @media screen and (min-width: $breakpoint-md) {
+        display: none !important;
+        visibility: hidden !important;       
+    // }
+}
+
+.daily-view {
+    display:none !important;
 }
