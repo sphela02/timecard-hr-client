@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 // Colors
-$harris-red: #e21d22;
 $harris-grey: #74767b;
-$warning: #F99F3C;
-$danger: #D93B42;
-$success: #6db444;
+
+$breakpoint-md: '768px';
+$breakpoint-lg: '960px';
+$breakpoint-xl: '1140px';
 
 .navbar {
     #app-alerts {
@@ -38,7 +38,7 @@ $success: #6db444;
 
                     &.active {
                         background-color: white;
-                        border-left: 8px solid $harris-red;
+                        border-left: 8px solid var(--red);
                         padding-left: 12px;
                     }
                 }
@@ -55,11 +55,13 @@ $success: #6db444;
 }
 
 table.table.timecard-list {
+    width: calc(100% - 3px);
     img {
         max-height: 40px;
     }
     th {
         border: none;
+        color: $harris-grey;
         padding: 0 10px;
         vertical-align: bottom;
     }
@@ -76,13 +78,221 @@ table.table.timecard-list {
         &.status {
             border-right: 6px solid lightgrey;
             &.approved {
-                border-right: 6px solid $success;
+                border-right: 6px solid var(--success);
+            }
+            &.open {
+                border-right: 6px solid var(--warning);
             }
         }
     }
 }
 
-.utility-bar {
-    background: $harris-red;
+#utility-bar {
+    background: var(--primary);
     color: white;
+
+    .utility-bar-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 0;
+
+        @media screen and (min-width: $breakpoint-lg) {
+            font-size: 1.5rem
+        }
+    }
+
+    .tabs-wrapper .classic-tabs {
+        .nav-item:last-child {
+            .nav-link {
+                margin-right: 0;
+            }
+        }
+        .nav-link {
+            margin: 0 1rem 0 0;
+        } 
+    }
+}
+
+#mini-dashboard {
+
+    .edit-link {
+        color: black;
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: .8rem;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .card {
+        height: 160px;
+
+        .min-chart {
+            height: 75px;
+            width: 100%;
+
+            canvas {
+                margin: auto;
+                right: 0;
+
+                @media screen and (max-width: $breakpoint-lg) {
+                    display: none;       
+                }
+            }
+        }
+
+        .fy {
+            display: block;
+            position: absolute;
+            width: calc(100% - 20px);
+        }
+
+        .hours {
+            line-height: 75px;
+        }
+
+        .holiday-calendar {
+            background: url('images/holiday-cal.png') no-repeat center center;
+            background-size: cover;
+ 
+            a {
+                display: block;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+        }
+
+        .card-body .col {
+            padding: 0 10px;
+        }
+    }
+}
+
+table.table.timecard-view {
+
+    @media screen and (max-width: $breakpoint-md) {
+        th, td {
+            font-size: .5rem !important;
+            padding: .5rem;
+        }
+    }
+    
+    th {
+        border: none;
+        color: $harris-grey;
+        line-height: 1.2;
+        vertical-align: bottom;
+    }
+
+    tbody:nth-child(even) {
+        background-color: #f2f0f0;
+    }
+
+    td {
+        border: 1px solid lightgrey;
+        padding: 10px;
+        position: relative;
+        vertical-align: middle;
+
+        .row-title {
+            font-weight: bold;
+        }
+
+        .row-description {
+            font-size: .7rem;
+            line-height: 1;
+
+            @media screen and (max-width: $breakpoint-md) {
+                font-size: .5rem !important;
+            }
+        }
+
+        .remove-row {
+            float: left;
+            margin-right: 10px;
+            padding: 7px 0;
+        }
+
+        input {
+            background-color: transparent !important;
+            border: none;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    &.disabled tbody {
+        background-color: #f2f0f0;
+        color: $harris-grey;
+    }
+}
+
+#timecard-footer {
+    #signature {
+        label {
+            padding-left: 25px;
+        }
+    }
+
+    @media screen and (max-width: $breakpoint-md) {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+
+        div[class^="col"] {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        label {
+            padding-bottom: 0;
+        }
+
+        .select-wrapper {
+            padding-left: 5px;
+
+            span.caret {
+                top: 8px;
+            }
+
+            input.select-dropdown {
+                font-size: .9rem;
+                height: 2rem;
+                line-height: 2rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.hide-for-mobile {
+    @media screen and (max-width: $breakpoint-md) {
+        display: none !important;
+        visibility: hidden !important;       
+    }
+}
+
+// dbg - Remove if angular media query is implemented
+
+.mobile-only {
+    @media screen and (min-width: $breakpoint-md) {
+        display: none !important;
+        visibility: hidden !important;       
+    }
+}
+
+.mobile-daily-only {
+    // @media screen and (min-width: $breakpoint-md) {
+        display: none !important;
+        visibility: hidden !important;       
+    // }
+}
+
+.daily-view {
+    display:none !important;
 }

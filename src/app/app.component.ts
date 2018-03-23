@@ -78,5 +78,4 @@ export class AppComponent implements OnInit {
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
-
   }}
