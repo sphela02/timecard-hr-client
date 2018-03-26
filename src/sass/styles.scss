@@ -308,6 +308,23 @@ table.table.timecard-list {
     }
 }
 
+// Match MDB Select with other inputs.
+#add-charge-code {
+    .mdb-select {
+        .caret {
+            top: 8px;
+        }
+
+        .select-dropdown {
+            color: #495057;
+            font-size: 14px;
+            height: auto;
+            line-height: 1.5;
+            padding: .375rem 0 .5rem;
+        }
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
