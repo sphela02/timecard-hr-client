@@ -14,12 +14,30 @@ export enum ActionType {
     None = 11,
   }
 
+  export enum AlertMessageType {
+    Ok = 1,
+    Warning = 2,
+    Error = 3,
+  }
+
   export enum TimecardViewMode {
     None = 0,
     List = 1,
     View = 2,
     Search = 3,
     Edit = 4
+  }
+
+  export interface RowMessage {
+    RowSequenceNumber: Number;
+    messageText: String;
+  }
+
+  export interface AlertMessage {
+    messageText: String;
+    messageIcon: String;
+    messageType: AlertMessageType;
+    rowMessages: RowMessage[];
   }
 
   export interface TimecardHeaderAction {

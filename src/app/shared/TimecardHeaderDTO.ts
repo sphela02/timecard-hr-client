@@ -13,10 +13,13 @@ export interface TimecardHeaderDTO {
         DefaultShift: string;
         ScheduleID: string;
         TargetApprover: string;
+        ApprovedBy: string;
         EmployeeID: string;
+        BusinessUnit: string;
         ApprovedDateTime: Date;
         TLSentDateTime: Date;
         isLaborCorrection: boolean;
+        isEmployeeSigned: boolean;
         isAllowedFPH: boolean;
         isAllowedEditShift: boolean;
         isAllowedPLC: boolean;
