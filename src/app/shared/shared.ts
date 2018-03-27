@@ -56,3 +56,13 @@ export enum ActionType {
     Available = 1,
     Search = 2,
   }
+
+  export enum TimecardDisplayMode {
+    Daily = 1,
+    Weekly = 2,
+  }
+
+  export enum AppViewPort {
+    Mobile = '(max-width: 768px)',
+    Desktop = '(min-width: 768px)',
+  }
