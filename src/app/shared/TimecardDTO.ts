@@ -9,6 +9,7 @@ import { NoteDTO } from './shared.module';
 import { IValidationResponse } from './shared.module';
 
 export interface TimecardDTO {
+        OvertimeAuthorization: string;
         TimecardTRCCodes: TRCCodesDTO[];
         TimecardHeader: TimecardHeaderDTO;
         TimecardRows: TimecardRowDTO[];
