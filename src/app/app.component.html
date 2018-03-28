@@ -1,8 +1,16 @@
 <header>
     <div id='sidebar' class="side-nav fixed" >
-        <div class="sidebar-header pt-4 px-4 black-text">
-            <h2 class="font-weight-bold h1">HTS</h2>
+        <div class="py-3 user-menu">
+            <a class="dropdown-toggle waves-effect waves-light" id="user-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="http://my.harris.com/PeopleFinder/employeePics/{{userInfo?.EMPLID}}.jpg" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-account">
+                <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+            </div>
         </div>
+        
         <ul class="list-unstyled components collapsible collapsible-accordion">
             <!-- DBG: Select current page item, add class "active" -->
             <li *ngFor="let n of menuList" class="border-top border-light" aria-expanded="true"><a class="collapsible-header arrow-r" [routerLink]="[n.path]">{{n.name}}</a>
@@ -24,20 +32,12 @@
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown">
                 <!-- DBG: Wire up badge to notification Number -->
-                <a class="nav-link waves-effect waves-light pr-4" id="app-alerts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-bell-o"></i><span class="badge badge-primary badge-pill red">1</span></a>
+                <a class="nav-link waves-effect waves-light" id="app-alerts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-bell-o"></i><span class="badge badge-primary badge-pill red">1</span></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
                     <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
                     <div class="dropdown-divider m-0"></div>
                     <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
                     <div class="dropdown-divider m-0"></div>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item avatar dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="user-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="http://my.harris.com/PeopleFinder/employeePics/{{userInfo?.EMPLID}}.jpg" class="img-fluid rounded-circle z-depth-0"> {{userInfo?.FullNamePrintable}}</a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-account">
-                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
                     <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
                 </div>
             </li>
