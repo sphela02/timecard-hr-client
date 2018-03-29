@@ -23,6 +23,7 @@ export interface TimecardHeaderDTO {
         isAllowedFPH: boolean;
         isAllowedEditShift: boolean;
         isAllowedPLC: boolean;
+        isAllowedAltDepartment: boolean;
         isBreakRequired: boolean;
         TimecardStatus: TimecardStatus;
         TimecardStatusLabel: string;
