@@ -182,51 +182,187 @@ table.table.timecard-list {
                 padding: .5rem;
             }
         }
-        
-        th {
-            border: none;
-            color: $harris-grey;
-            line-height: 1.2;
-            vertical-align: bottom;
-        }
-    
-        tbody:nth-child(even) {
-            background-color: #f2f0f0;
-        }
-    
-        td {
-            border: 1px solid lightgrey;
-            padding: 10px;
-            position: relative;
-            vertical-align: middle;
-    
-            .row-title {
-                font-weight: bold;
+
+        col {
+            &[class*="tc-error"] {
+                border: 2px solid;
+                position: relative;
+                z-index: 9999;
             }
-    
-            .row-description {
-                font-size: .7rem;
-                line-height: 1;
-    
-                @media screen and (max-width: $breakpoint-md) {
-                    font-size: .5rem !important;
+
+            &.tc-error {
+                &-danger {
+                    border-color: var(--danger) !important;
+                }
+
+                &-warning {
+                    border-color: var(--warning) !important;
+                }
+
+                &-info {
+                    border-color: var(--info) !important;
                 }
             }
-    
-            .remove-row {
-                float: left;
-                margin-right: 10px;
-                padding: 7px 0;
-            }
-    
-            input {
-                background-color: transparent !important;
-                border: none;
-                font-weight: bold;
-                text-align: center;
-                width: 100%;
-            }
+
         }
+
+        tr {
+
+            &[class*="tc-error"] {
+                border: 2px solid;
+                position: relative;
+                
+                td:first-child:before {
+                    background: white;
+                    font-family: FontAwesome;
+                    font-size: 1.2rem;
+                    height: 1.2rem;
+                    left: -.6rem;
+                    line-height: 1;
+                    position: absolute;
+                    top: -.6rem;
+                    width: 1.2rem;
+                }
+            }
+
+            &.tc-error {
+                &-danger {
+                    border-color: var(--danger) !important;
+
+                    td,
+                    td input {
+                        color: var(--danger) !important;
+                    }
+
+                    td:first-child:before {
+                        color: var(--danger);
+                        content: '\f06a';
+                    }
+                }
+
+                &-warning {
+                    border-color: var(--warning) !important;
+
+                    td,
+                    td input {
+                        color: var(--warning) !important;
+                    }
+
+                    td:first-child:before {
+                        color: var(--warning);
+                        content: '\f06a';
+                    }
+                }
+
+                &-info {
+                    border-color: var(--info) !important;
+
+                    td,
+                    td input {
+                        color: var(--info) !important;
+                    }
+
+                    td:first-child:before {
+                        color: var(--info);
+                        content: '\f05a';
+                    }
+                }
+            }
+
+            th {
+                border: none;
+                color: $harris-grey;
+                line-height: 1.2;
+                position: relative;
+                vertical-align: bottom;
+
+                &[class*="tc-error"] {
+                    &:before {
+                        background: white;
+                        font-family: FontAwesome;
+                        font-size: 1.2rem;
+                        height: 1.2rem;
+                        left: 43%;
+                        line-height: 1;
+                        position: absolute;
+                        top: -.6rem;
+                        width: 1.2rem;
+                    }
+                }
+
+                &.tc-error {
+                    &-danger {
+                        outline-color: var(--danger) !important;
+                        color: var(--danger) !important;
+    
+                        &:before {
+                            color: var(--danger);
+                            content: '\f06a';
+                        }
+                    }
+    
+                    &-warning {
+                        outline-color: var(--warning) !important;
+                        color: var(--warning) !important;
+    
+                        &:before {
+                            color: var(--warning);
+                            content: '\f06a';
+                        }
+                    }
+    
+                    &-info {
+                        outline-color: var(--info) !important;
+                        color: var(--info) !important;
+    
+                        &:before {
+                            color: var(--info);
+                            content: '\f05a';
+                        }
+                    }
+                }
+            }
+        
+            tbody:nth-child(even) {
+                background-color: #f2f0f0;
+            }
+        
+            td {
+                border: 1px solid lightgrey;
+                padding: 10px;
+                position: relative;
+                vertical-align: middle;
+        
+                .row-title {
+                    font-weight: bold;
+                }
+        
+                .row-description {
+                    font-size: .7rem;
+                    line-height: 1;
+        
+                    @media screen and (max-width: $breakpoint-md) {
+                        font-size: .5rem !important;
+                    }
+                }
+        
+                .remove-row {
+                    float: left;
+                    margin-right: 10px;
+                    padding: 7px 0;
+                }
+        
+                input {
+                    background-color: transparent !important;
+                    border: none;
+                    font-weight: bold;
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+
+        }
+        
     
         &.disabled tbody {
             background-color: #f2f0f0;
