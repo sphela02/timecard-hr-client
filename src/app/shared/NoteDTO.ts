@@ -8,6 +8,7 @@ export interface NoteDTO {
         Author: string;
         Content: string;
         Editable: boolean;
+        EmployeeID: string;
 }
 
 
