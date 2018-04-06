@@ -29,33 +29,84 @@ $breakpoint-xl: '1140px';
 }
 
 .side-nav {
-    .user-menu {
-        a {
-            color: black !important;
-            display: block;
-            width: 100%;
+    .nav-container {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 120px);
+        overflow: auto;
 
-            img {
-                max-height: 40px;
+        a {
+            height: auto;
+            line-height: inherit;
+        }
+    
+        .user-menu {
+            a {
+                color: black !important;
+                display: inline-block;
+                height: auto;
+                line-height: .8;
+    
+                img {
+                    max-height: 40px;
+                }
+            }
+    
+            .user-menu-dropdown {
+                font-size: .8rem;
+    
+                .dropdown-item {
+                    font-size: .9rem;
+    
+                    i {
+                        margin-right: 1rem;
+                    }
+                }
+    
+                .list-group-item {
+                    padding: 5px 10px;
+                }
+            }
+        }
+        .nav {
+            .nav-item {
+                .nav-link {
+                   color: black;
+                   font-weight: 700;
+                   padding: .8rem 1rem;
+    
+                   .fa.left-icon {
+                       color: var(--harris-grey);
+                       float: none;
+                   }
+    
+                }
+    
+                &.active {
+                    .nav-link {
+                        color: var(--harris-red);
+                    }
+                }
+    
+                .nav .nav-item .nav-link {
+                    color: var(--harris-grey);
+                    font-weight: 400;
+                    margin-left: 3rem;
+                }
             }
         }
     }
-    ul {
-        &.collapsible {
-            li {
-                a,
-                a.collapsible-header {
-                    height: auto;
-                    padding: 10px 20px;
-                    transition-property: display;
 
-                    &.active {
-                        background-color: white;
-                        border-left: 8px solid var(--red);
-                        padding-left: 12px;
-                    }
-                }
-            }
+    .harris-logo-wrapper {
+        bottom: 10px;
+        height: 100px;
+        left: 0;
+        padding: 0 3rem;
+        position: absolute;
+        width: 100%;
+
+        img {
+            height: auto;
         }
     }
 }

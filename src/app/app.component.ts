@@ -13,14 +13,13 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
 
-    title = 'Timecard and VRS';
+    public pageTitle = 'Timecard';
     menuList: any;
     selected: any;
     errorMessage: string;
     userInfo: EmployeeProfileDTO;
 
     constructor(private _userInfoService: UserInfoService) {
-        this.title = 'Collapsible menu - Angular 2';
         this.menuList = [
             // {
             // 'name': 'Dashboard',
@@ -28,17 +27,31 @@ export class AppComponent implements OnInit {
             // 'subMenu': []
             // },
             {
-            'name': 'Timecards',
-            'path': '/timecards',
+                'name': 'Timecards',
+                'path': '/timecards',
+                'icon': 'fa-clock-o',
+                'subMenu': [
+                    {
+                        'name': 'Change Approver',
+                        'path': '/timecards',
+                    },
+                ]
             },
             {
                 'name': 'Timecard Search',
                 'path': '/timecard/search',
+                'icon': 'fa-search',
+            },
+            {
+                'name': 'Approvals',
+                'path': '/vacation/request',
+                'icon': 'fa-calendar-check-o',
             },
 
             {
             'name': 'Vacation',
             'path': '/vacation/request',
+            'icon': 'fa-sun-o',
             'subMenu': [
                 {
                     'name': 'Request',
