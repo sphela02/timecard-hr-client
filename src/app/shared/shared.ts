@@ -12,6 +12,8 @@ export enum ActionType {
     Edit = 9,
     View = 10,
     None = 11,
+    Save = 12,
+    Delete = 13,
   }
 
   export enum AlertMessageType {
