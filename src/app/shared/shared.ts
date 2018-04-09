@@ -15,6 +15,7 @@ export enum ActionType {
     None = 11,
     Save = 12,
     Delete = 13,
+    Reopen = 14,
   }
 
   export enum AlertMessageType {
