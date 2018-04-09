@@ -1,4 +1,5 @@
 import { TimecardHeaderDTO } from './TimecardHeaderDTO';
+import { UpdateTimecardDTO } from './UpdateTimecardDTO';
 
 export enum ActionType {
     Right = 1,
@@ -42,8 +43,9 @@ export enum ActionType {
     rowMessages: RowMessage[];
   }
 
-  export interface TimecardHeaderAction {
+  export interface TimecardAction {
     timecardHeader: TimecardHeaderDTO;
+    timecardUpdate: UpdateTimecardDTO;
     timecardAction: ActionType;
   }
 
