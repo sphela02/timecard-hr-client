@@ -273,6 +273,11 @@ table.table.timecard-list {
         }
 
         tr {
+
+            &.daily-totals {
+                background: var(--harris-grey);
+            }
+
             &[class*="tc-error"] {
                 border: 2px solid;
                 position: relative;
@@ -470,6 +475,12 @@ table.table.timecard-list {
         }
     }
 
+}
+
+.project-list.dropdown-menu input[type=text]:focus {
+    border-bottom: 1px solid !important;
+    border-color: var(--info) !important;
+    box-shadow: none !important;
 }
 
 #timecard-footer {

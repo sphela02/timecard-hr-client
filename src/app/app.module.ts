@@ -27,7 +27,7 @@ import { HarrisHttpInterceptor } from './testing/harris-http-interceptor';
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
-    NgbModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [
     {
