@@ -18,7 +18,9 @@ export interface TimecardHeaderDTO {
         BusinessUnit: string;
         ApprovedDateTime: Date;
         TLSentDateTime: Date;
+        canLaborCorrect: boolean;
         isLaborCorrection: boolean;
+        isReadOnly: boolean;
         isEmployeeSigned: boolean;
         isAllowedFPH: boolean;
         isAllowedEditShift: boolean;
