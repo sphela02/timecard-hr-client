@@ -3,12 +3,55 @@
 
 
 // Colors
+$harris-red: #e21d22;
+$harris-grey: #74767b;
+
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
 $breakpoint-xl: '1140px';
 
 .click-element {
     cursor: pointer;
+}
+
+.loading {
+    position: relative;
+    
+    &:before {
+        background: rgba(white, .9);
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 599;
+    }
+
+    &:after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        margin-top: -30px;
+        margin-left: -25px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        border-top-color: $harris-red;
+        animation: spinner .6s linear infinite;
+        z-index: 600;
+    }
+}
+
+body.loading {
+    height: 100vh;
+}
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
 }
 
 .navbar {
@@ -78,7 +121,7 @@ $breakpoint-xl: '1140px';
                    padding: .8rem 1rem;
     
                    .fa.left-icon {
-                       color: var(--harris-grey);
+                       color: $harris-grey;
                        float: none;
                    }
     
@@ -86,12 +129,12 @@ $breakpoint-xl: '1140px';
     
                 &.active {
                     .nav-link {
-                        color: var(--harris-red);
+                        color: $harris-red;
                     }
                 }
     
                 .nav .nav-item .nav-link {
-                    color: var(--harris-grey);
+                    color: $harris-grey;
                     font-weight: 400;
                     margin-left: 3rem;
                 }
@@ -144,17 +187,17 @@ table.table.timecard-list {
         &.status {
             border-right: 6px solid lightgrey;
             &.approved {
-                border-right: 6px solid var(--success);
+                border-right: 6px solid #6db444;
             }
             &.open {
-                border-right: 6px solid var(--warning);
+                border-right: 6px solid #F99F3C;
             }
         }
     }
 }
 
 #utility-bar {
-    background: var(--primary);
+    background: $harris-red;
     color: white;
 
     .utility-bar-text {
@@ -180,7 +223,7 @@ table.table.timecard-list {
 
     .notes-link {
         .badge {
-            color: var(--harris-red) !important;
+            color: $harris-red !important;
             float: right;
             margin-top: 2px;
             padding-left: .4em;
@@ -286,7 +329,7 @@ table.table.timecard-list {
         tr {
 
             &.daily-totals {
-                background: var(--harris-grey);
+                background: $harris-grey;
             }
 
             &[class*="tc-error"] {
