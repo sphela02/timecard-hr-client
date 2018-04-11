@@ -3,15 +3,17 @@
 
 
 // Colors
-$harris-grey: #74767b;
-
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
 $breakpoint-xl: '1140px';
 
+.click-element {
+    cursor: pointer;
+}
+
 .navbar {
     #app-alerts {
-        color: $harris-grey;
+        color: var(--harris-grey);
         position: relative;
     
         i {
@@ -125,7 +127,7 @@ table.table.timecard-list {
     }
     th {
         border: none;
-        color: $harris-grey;
+        color: var(--harris-grey);
         padding: 0 10px;
         vertical-align: bottom;
     }
@@ -174,6 +176,15 @@ table.table.timecard-list {
         .nav-link {
             margin: 0 1rem 0 0;
         } 
+    }
+
+    .notes-link {
+        .badge {
+            color: var(--harris-red) !important;
+            float: right;
+            margin-top: 2px;
+            padding-left: .4em;
+        }
     }
 }
 
@@ -341,7 +352,7 @@ table.table.timecard-list {
 
             th {
                 border: none;
-                color: $harris-grey;
+                color: var(--harris-grey);
                 line-height: 1.2;
                 vertical-align: bottom;
     
@@ -448,7 +459,7 @@ table.table.timecard-list {
     
         &.disabled tbody {
             background-color: #f2f0f0;
-            color: $harris-grey;
+            color: var(--harris-grey);
         }
     }
     
@@ -481,6 +492,11 @@ table.table.timecard-list {
     border-bottom: 1px solid !important;
     border-color: var(--info) !important;
     box-shadow: none !important;
+}
+
+.note-container {
+    height: 250px;
+    overflow-y: auto;
 }
 
 #timecard-footer {
