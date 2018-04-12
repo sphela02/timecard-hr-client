@@ -16,6 +16,7 @@ export enum ActionType {
     Save = 12,
     Delete = 13,
     Reopen = 14,
+    CreateLaborCorrection = 15,
   }
 
   export enum AlertMessageType {
