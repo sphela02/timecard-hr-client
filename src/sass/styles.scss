@@ -241,6 +241,11 @@ table.table.timecard-list {
         padding: .8rem;
         text-align: center;
         text-transform: uppercase;
+
+        @media screen and (max-width: $breakpoint-md) {
+            font-size: 1rem;
+            padding: .8rem 0;
+        }
     }
     .card {
         height: 160px;
@@ -531,10 +536,25 @@ table.table.timecard-list {
 
 }
 
-.project-list.dropdown-menu input[type=text]:focus {
-    border-bottom: 1px solid !important;
-    border-color: var(--info) !important;
-    box-shadow: none !important;
+.project-list.dropdown-menu {
+    max-width: 80%;
+    width: 300px;
+
+    input[type=text]:focus {
+        border-bottom: 1px solid !important;
+        border-color: var(--info) !important;
+        box-shadow: none !important;
+    }
+
+    label {
+        height: auto;
+    }
+
+    .recent-projects {
+        max-height: 180px;
+        overflow-y: auto;
+        padding: 10px 0;
+    }
 }
 
 .note-container {
@@ -563,6 +583,7 @@ table.table.timecard-list {
     }
 
     @media screen and (max-width: $breakpoint-md) {
+        font-size: 80%;
         padding-left: 15px;
 
         div[class^="col"] {
