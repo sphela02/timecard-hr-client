@@ -10,6 +10,7 @@ export interface ChargeCodeDTO {
         Status: ChargeCodeStatus;
         ActivityCode: string;
         ActivityCodeDescription: string;
+        isSelected: boolean;
 }
 
 
