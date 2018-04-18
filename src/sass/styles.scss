@@ -93,7 +93,7 @@ body.loading {
                 line-height: .8;
     
                 img {
-                    max-height: 40px;
+                    max-height: 32px;
                 }
             }
     
@@ -232,6 +232,7 @@ table.table.timecard-list {
 }
 
 #mini-dashboard {
+    background: #f2f0f0;
 
     .edit-link {
         color: black;
@@ -401,7 +402,7 @@ table.table.timecard-list {
             th {
                 border: none;
                 color: var(--harris-grey);
-                line-height: 1.2;
+                line-height: 1;
                 vertical-align: bottom;
     
                 @media screen and (max-width: $breakpoint-md) {
@@ -582,7 +583,7 @@ table.table.timecard-list {
         }
     }
 
-    @media screen and (max-width: $breakpoint-md) {
+    @media screen and (max-width: 1200px) {
         font-size: 80%;
         padding-left: 15px;
 
@@ -631,7 +632,12 @@ table.table.timecard-list {
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
-        visibility: hidden !important;       
+        visibility: hidden !important; 
+        
+        .ignore-mobile-hide & {
+            display: initial !important;
+            visibility: visible !important;
+        }
     }
 }
 
