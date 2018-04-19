@@ -5,6 +5,9 @@
 // Colors
 $harris-red: #e21d22;
 $harris-grey: #74767b;
+$danger: #D93B42;
+$warning: #F99F3C;
+$info: #009cde;
 
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
@@ -56,7 +59,7 @@ body.loading {
 
 .navbar {
     #app-alerts {
-        color: var(--harris-grey);
+        color: $harris-grey;
         position: relative;
     
         i {
@@ -170,7 +173,7 @@ table.table.timecard-list {
     }
     th {
         border: none;
-        color: var(--harris-grey);
+        color: $harris-grey;
         padding: 0 10px;
         vertical-align: bottom;
     }
@@ -259,7 +262,7 @@ table.table.timecard-list {
                 margin: auto;
                 right: 0;
 
-                @media screen and (max-width: $breakpoint-lg) {
+                @media screen and (max-width: $breakpoint-md) {
                     display: none;       
                 }
             }
@@ -314,15 +317,15 @@ table.table.timecard-list {
 
             &.tc-error {
                 &-danger {
-                    border-color: var(--danger) !important;
+                    border-color: $danger !important;
                 }
 
                 &-warning {
-                    border-color: var(--warning) !important;
+                    border-color: $warning !important;
                 }
 
                 &-info {
-                    border-color: var(--info) !important;
+                    border-color: $info !important;
                 }
             }
 
@@ -339,69 +342,73 @@ table.table.timecard-list {
             }
 
             &[class*="tc-error"] {
-                border: 2px solid;
+                border: 1px solid;
                 position: relative;
-                
-                td:first-child:before {
-                    background: white;
-                    font-family: FontAwesome;
-                    font-size: 1.2rem;
-                    height: 1.2rem;
-                    left: -.6rem;
-                    line-height: 1;
-                    position: absolute;
-                    top: -.6rem;
-                    width: 1.2rem;
-                }
             }
 
             &.tc-error {
                 &-danger {
-                    border-color: var(--danger) !important;
+                    border-color: $danger !important;
 
                     td,
                     td input {
-                        color: var(--danger) !important;
+                        color: $danger !important;
                     }
 
-                    td:first-child:before {
-                        color: var(--danger);
-                        content: '\f06a';
+                    &-message {
+                        background: $danger;
+                        border-color: $danger !important;
                     }
                 }
 
                 &-warning {
-                    border-color: var(--warning) !important;
+                    border-color: $warning !important;
 
                     td,
                     td input {
-                        color: var(--warning) !important;
+                        color: $warning !important;
                     }
 
-                    td:first-child:before {
-                        color: var(--warning);
-                        content: '\f06a';
+                    &-message {
+                        background: $warning;
+                        border-color: $warning !important;
                     }
                 }
 
                 &-info {
-                    border-color: var(--info) !important;
+                    border-color: $info !important;
 
                     td,
                     td input {
-                        color: var(--info) !important;
+                        color: $info !important;
                     }
 
-                    td:first-child:before {
-                        color: var(--info);
-                        content: '\f05a';
+                    &-message {
+                        background: $info;
+                        border-color: $info !important;
+                    }
+                }
+
+                &-danger,
+                &-info,
+                &-warning {
+                    &-message {
+                        td {
+                            color: white;
+                            font-size: 70%;
+                            padding: 5px 5px 5px 1.5rem;
+
+                            i {
+                                margin-left: -1.1rem;
+                            }
+                        }
                     }
                 }
             }
 
             th {
                 border: none;
-                color: var(--harris-grey);
+                color: $harris-grey;
                 line-height: 1;
                 vertical-align: bottom;
     
@@ -426,31 +433,31 @@ table.table.timecard-list {
 
                 &.tc-error {
                     &-danger {
-                        outline-color: var(--danger) !important;
-                        color: var(--danger) !important;
+                        outline-color: $danger !important;
+                        color: $danger !important;
     
                         &:before {
-                            color: var(--danger);
+                            color: $danger;
                             content: '\f06a';
                         }
                     }
     
                     &-warning {
-                        outline-color: var(--warning) !important;
-                        color: var(--warning) !important;
+                        outline-color: $warning !important;
+                        color: $warning !important;
     
                         &:before {
-                            color: var(--warning);
+                            color: $warning;
                             content: '\f06a';
                         }
                     }
     
                     &-info {
-                        outline-color: var(--info) !important;
-                        color: var(--info) !important;
+                        outline-color: $info !important;
+                        color: $info !important;
     
                         &:before {
-                            color: var(--info);
+                            color: $info;
                             content: '\f05a';
                         }
                     }
@@ -508,7 +515,7 @@ table.table.timecard-list {
     
         &.disabled tbody {
             background-color: #f2f0f0;
-            color: var(--harris-grey);
+            color: $harris-grey;
         }
     }
     
@@ -533,6 +540,69 @@ table.table.timecard-list {
                 width: 100%;
             }
         }
+
+        .tc-error {
+            &-danger {
+                border-color: $danger !important;
+
+                div.col-auto,
+                label,
+                input {
+                    color: $danger !important;
+                }
+
+                &-message {
+                    background: $danger;
+                    border-color: $danger !important;
+                }
+            }
+
+            &-warning {
+                border-color: $warning !important;
+
+                div.col-auto,
+                label,
+                input {
+                    color: $warning !important;
+                }
+
+                &-message {
+                    background: $warning;
+                    border-color: $warning !important;
+                }
+            }
+
+            &-info {
+                border-color: $info !important;
+
+                div.col-auto,
+                label,
+                input {
+                    color: $info !important;
+                }
+
+                &-message {
+                    background: $info;
+                    border-color: $info !important;
+                }
+            }
+
+            &-danger,
+            &-info,
+            &-warning {
+                &-message {
+                    color: white;
+                    font-size: 70%;
+                    margin: 10px -15px -15px;
+                    padding: 5px 5px 5px 1.5rem;
+                    width: calc(100% + 30px);
+
+                    i {
+                        margin-left: -1.1rem;
+                    }
+                }
+            }
+        }
     }
 
 }
@@ -543,7 +613,7 @@ table.table.timecard-list {
 
     input[type=text]:focus {
         border-bottom: 1px solid !important;
-        border-color: var(--info) !important;
+        border-color: $info !important;
         box-shadow: none !important;
     }
 

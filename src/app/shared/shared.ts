@@ -22,8 +22,11 @@ export enum ActionType {
 
   export enum AlertMessageType {
     Ok = 1,
-    Warning = 2,
-    Error = 3,
+    OkMin = 2,
+    Warning = 3,
+    WarningMin = 4,
+    Error = 5,
+    ErrorMin = 6,
   }
 
   export enum TimecardViewMode {
