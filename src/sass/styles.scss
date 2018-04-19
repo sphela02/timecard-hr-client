@@ -262,7 +262,7 @@ table.table.timecard-list {
                 margin: auto;
                 right: 0;
 
-                @media screen and (max-width: $breakpoint-lg) {
+                @media screen and (max-width: $breakpoint-md) {
                     display: none;       
                 }
             }
