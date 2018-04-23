@@ -15,9 +15,14 @@ export interface TimecardHeaderDTO {
         TargetApprover: string;
         ApprovedBy: string;
         EmployeeID: string;
+        EmployeeName: string;
         BusinessUnit: string;
         ApprovedDateTime: Date;
         TLSentDateTime: Date;
+        isExempt: boolean;
+        isEmployee: boolean;
+        isContractor: boolean;
+        WorkGroup: string;
         canLaborCorrect: boolean;
         isLaborCorrection: boolean;
         isReadOnly: boolean;
@@ -29,6 +34,8 @@ export interface TimecardHeaderDTO {
         isBreakRequired: boolean;
         TimecardStatus: TimecardStatus;
         TimecardStatusLabel: string;
-}
+    }
+
+
 
 
