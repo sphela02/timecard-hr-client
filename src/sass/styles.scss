@@ -699,6 +699,24 @@ table.table.timecard-list {
     }
 }
 
+.toast-center {
+    top: 40%;
+    right: 0;
+    width: 100%;
+
+    > div.toast {
+        margin: 0 auto !important;
+    }
+}
+
+.toast {
+    line-height: 1.5rem;  
+
+    .toast-close-button {
+        top: -.2rem;
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
