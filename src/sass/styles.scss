@@ -706,6 +706,18 @@ table.table.timecard-list {
 
     > div.toast {
         margin: 0 auto !important;
+
+        &.toast-success {
+            background-image: none !important;
+
+            &:before {
+                content: '\f058';
+                font-family: fontAwesome;
+                font-size: 1.5rem;
+                left: 1rem;
+                position: absolute;
+            }
+        }
     }
 }
 
