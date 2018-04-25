@@ -37,11 +37,12 @@ export class AppComponent implements OnInit {
                 'name': 'Timecards',
                 'path': '/timecards',
                 'icon': 'fa-clock-o',
-                'subMenu': [
-                    {
-                        'name': 'Change Approver',
-                    },
-                ]
+                // Hide change approver until ready.
+                // 'subMenu': [
+                //     {
+                //         'name': 'Change Approver',
+                //     },
+                // ]
             },
             {
                 'name': 'Timecard Search',
