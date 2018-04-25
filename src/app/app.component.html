@@ -25,9 +25,14 @@
             <ul class="nav flex-column">
                 <!-- DBG: Select current page item, add class "active" -->
                 <li *ngFor="let n of menuList" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}</a>
-                        <ul class="nav flex-column">
-                            <li class="nav-item border-top border-light" *ngFor="let child of n.subMenu" ngif="child.name"><a class="nav-link" [routerLink]="[child.path]">{{child.name}}</a></li>
-                        </ul>
+                    <ul class="nav flex-column">
+                        <ng-container *ngFor="let child of n.subMenu">
+                            <li class="nav-item border-top border-light" *ngIf="(child.name)">
+                                <a class="nav-link" *ngIf="child.path" [routerLink]="[child.path]">{{child.name}}</a>
+                                <a class="nav-link" *ngIf="child.name === 'Change Approver'" (click)="_userInfoService.popupChangeApprovers()">{{child.name}}</a>
+                            </li>
+                        </ng-container>
+                    </ul>
                 </li>
             </ul>
         </div>
