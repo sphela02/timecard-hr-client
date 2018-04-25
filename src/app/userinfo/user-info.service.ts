@@ -55,6 +55,13 @@ export class UserInfoService {
     // Subscribe to cancelClicked, in case we need it.
     popupModalRef.componentInstance.cancelClicked.subscribe(event => {
       // Cancel was clicked ... do anything necessary here.
+
+    });
+
+    // Subscribe to saveClicked, in case we need it.
+    popupModalRef.componentInstance.saveClicked.subscribe(event => {
+      // Save was clicked ... do anything necessary here.
+
     });
 
   } // end popupChangeApprovers
