@@ -17,6 +17,10 @@ $breakpoint-xl: '1140px';
     cursor: pointer;
 }
 
+.form-control.invalid~.invalid-feedback {
+    display: block;
+}
+
 .loading {
     position: relative;
     
