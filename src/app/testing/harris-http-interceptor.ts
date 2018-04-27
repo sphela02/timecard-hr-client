@@ -1,15 +1,38 @@
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { AppMode } from '../shared/shared';
 import { saveAs } from 'file-saver/FileSaver';
 import * as CryptoJS from 'crypto-js';
+import { CommonDataService } from '../shared/common-data/common-data.service';
 
 // HARRIS HTTP INTERCEPTOR
 // Used to intercept all http requests and make manipulations, like:
 // - Prepend the API server hostname
 // - Replace an http url with a static JSON file to return - for offline dev mode
+// - Allow user impersonations for testing
+@Injectable()
+export class HarrisHttpInterceptorImpersonate implements HttpInterceptor {
+
+    constructor(private _commonDataService: CommonDataService,
+                ) {}
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        // If we're impersonating, inject the header here
+        if (this._commonDataService.impersonateUserID) {
+            const headers: HttpHeaders = new HttpHeaders({
+                'HarrisImpersonateUser': this._commonDataService.impersonateUserID
+            });
+            request = request.clone({
+                headers,
+            });
+
+        }
+        return next.handle(request);
+    }
+}
 @Injectable()
 export class HarrisHttpInterceptor implements HttpInterceptor {
 
@@ -21,8 +44,6 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
         } else {
         }
         mockName  = mockName + '.json';
-        console.log("DBG 24");
-        console.log(mockName); // dbg 
 
         return mockName;
     } // end mockFileName
@@ -38,8 +59,6 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
                 let mockURL: string;
                 mockURL = 'assets/testdata/' + this.mockFileName(request);
 
-                console.log("DBG 38");
-                console.log(mockURL); // dbg 
                 let mockMethod: string;
                 mockMethod = request.method;
                 if (mockMethod === 'POST') {
@@ -74,3 +93,7 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
         });
     }
 }
+
+// dbg ... Separate out mock gen and mock use into a separate interceptor, so it can be removed for production.
+
+
