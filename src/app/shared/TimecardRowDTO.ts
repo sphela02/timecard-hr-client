@@ -15,6 +15,7 @@ export interface TimecardRowDTO {
         WO_ID: string;
         FPH: string;
         WCI: string;
+        LastUpdatedByOPRID: string;
         DailyHours: number[];
 }
 

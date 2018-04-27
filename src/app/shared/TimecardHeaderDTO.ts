@@ -6,6 +6,7 @@ import { TimecardStatus } from './shared.module';
 export interface TimecardHeaderDTO {
         TimecardID: string;
         PayEndDate: Date;
+        PeriodEndDate: Date;
         WeekEndDate: Date;
         ScheduledHours: number;
         HoursWorked: number;
@@ -19,6 +20,7 @@ export interface TimecardHeaderDTO {
         BusinessUnit: string;
         ApprovedDateTime: Date;
         TLSentDateTime: Date;
+        LastUpdatedDateTime: Date;
         isExempt: boolean;
         isEmployee: boolean;
         isContractor: boolean;
@@ -34,8 +36,6 @@ export interface TimecardHeaderDTO {
         isBreakRequired: boolean;
         TimecardStatus: TimecardStatus;
         TimecardStatusLabel: string;
-    }
-
-
+}
 
 
