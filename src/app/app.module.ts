@@ -12,7 +12,9 @@ import { HomeModule } from './home/home.module';
 import { VacationRequestModule } from './vacation-request/vacation-request.module';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HarrisHttpInterceptor } from './testing/harris-http-interceptor';
+import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate } from './testing/harris-http-interceptor';
+import { UserInfoService } from './userinfo/user-info.service';
+import { CommonDataService } from './shared/common-data/common-data.service';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,18 @@ import { HarrisHttpInterceptor } from './testing/harris-http-interceptor';
     NgbModule.forRoot()
   ],
   providers: [
+    UserInfoService,
+    CommonDataService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HarrisHttpInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HarrisHttpInterceptorImpersonate,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

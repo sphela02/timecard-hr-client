@@ -40,4 +40,8 @@ export class UserInfoService {
     return Observable.throw(err.message);
   }
 
+  resetAllData() {
+    // Wipe out all stored data, like going back to an app start
+    this._userInfo = null;
+  } // end resetAllData
 }

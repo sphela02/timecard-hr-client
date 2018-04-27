@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserInfoService } from './userinfo/user-info.service';
 import { TimecardService } from './timecard/timecard.service';
 import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
+import { Router } from '@angular/router';
+import { CommonDataService } from './shared/common-data/common-data.service';
 
 declare var $: any;
 
@@ -18,8 +20,13 @@ export class AppComponent implements OnInit {
     selected: any;
     errorMessage: string;
     userInfo: EmployeeProfileDTO;
+    userToImpersonate: string;
 
-    constructor(private _userInfoService: UserInfoService) {
+    constructor(private _userInfoService: UserInfoService,
+                private _commonDataService: CommonDataService,
+                private _timecardService: TimecardService,
+                private _router: Router,
+            ) {
         this.menuList = [
             // {
             // 'name': 'Dashboard',
@@ -70,13 +77,10 @@ export class AppComponent implements OnInit {
         ];
     }
 
-    toggleNav(): void {
-        // document.getElementById('sidebar').classList.toggle('active');
-        // document.getElementById('sidebarCollapse').classList.toggle('active');
-    }
+    retrieveCurrentUser() {
 
-    ngOnInit() {
-        // dbg ... we can probably remove the user info from the dashboard maybe?
+        this.userInfo = null;
+
         this._userInfoService.getUserInfo()
           .subscribe(userInfo => {
             this.userInfo = userInfo;
@@ -84,11 +88,39 @@ export class AppComponent implements OnInit {
           error => this.errorMessage = <any>error
         );
 
-        setTimeout(() => {
-            // Sidebar initialization.
-            $('#sidebarCollapse').sideNav();
+    } // end retrieveCurrentUser
 
-            // Data Picker Initialization.
-            $('.datepicker').pickadate();
-        }, 0);
-  }}
+
+    impersonateUser() {
+        // Store the new impersonation
+        this._commonDataService.impersonateUserID = this.userToImpersonate;
+        // Tell the services to reset their data
+        this._userInfoService.resetAllData();
+        this._timecardService.resetAllData();
+        // Re-retrieve the current user (which wipes out the user/components) and start the components back up
+        // this._router.navigate(['/']);
+
+        this.retrieveCurrentUser();
+
+    } // end impersonateUser
+
+    toggleNav(): void {
+        // document.getElementById('sidebar').classList.toggle('active');
+        // document.getElementById('sidebarCollapse').classList.toggle('active');
+    }
+
+ngOnInit() {
+    // dbg ... we can probably remove the user info from the dashboard maybe?
+
+    this.retrieveCurrentUser();
+
+    setTimeout(() => {
+        // Sidebar initialization.
+        $('#sidebarCollapse').sideNav();
+
+        // Data Picker Initialization.
+        $('.datepicker').pickadate();
+    }, 0);
+  }
+
+} // end AppComponent

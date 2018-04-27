@@ -8,6 +8,9 @@ import { AppMode } from '../app/shared/shared';
 // Map T:\ to \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
 // Run the following ...
 // ng build --prod --output-path=T:\TimecardClient --base-href=/TimecardClient/
+// STEPS FOR MOCKGEN:
+// ng serve -o --environment=local --live-reload=false
+// Set your browser's default download folder to be where the JSON files are stored.
 
 export const environment = {
   production: false,

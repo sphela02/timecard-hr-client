@@ -1,3 +1,9 @@
+<HR><input [(ngModel)]="userToImpersonate">
+    <button
+        (click)="impersonateUser()">
+        Impersonate
+    </button><HR>
+
 <header>
     <div id='sidebar' class="side-nav fixed" >
         <div class="nav-container">
@@ -55,7 +61,7 @@
 <main class="m-0 pt-0">
     <div class="wrapper">
         <div id="content" class="container-fluid p-0">
-            <router-outlet></router-outlet>
+            <router-outlet *ngIf="this.userInfo"></router-outlet>
         </div>
     </div>
 </main>
