@@ -29,8 +29,6 @@ export class MqIfDirective implements OnDestroy {
 
       /* Register for future events */
       this.mqlListener = (mq) => {
-        console.log('DBG 32 ... media change');
-        console.log(mq); // dbg
         this.onMediaMatchChange(mq.matches);
       };
       this.mql.addListener(this.mqlListener);
