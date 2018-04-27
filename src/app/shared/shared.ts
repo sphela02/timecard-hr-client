@@ -57,6 +57,19 @@ export enum ActionType {
     timecardAction: ActionType;
   }
 
+  export interface FlexModalContent {
+    modalTitle: String;
+    modalSubTitle: String;
+    messageText: String;
+    inputId: String;
+    inputLabel: String;
+    textareaId: String;
+    textareaLabel: String;
+    cancelBtnText: String;
+    altBtnText: String;
+    confirmBtnText: String;
+  }
+
   export enum AppMode {
     Dev = 0,
     Prod = 1,
