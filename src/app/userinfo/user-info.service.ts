@@ -10,12 +10,14 @@ import { BenefitHoursDTO } from '../shared/BenefitHoursDTO';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { TimecardChangeApproverMainComponent } from '../timecard/timecard-change-approver-main/timecard-change-approver-main.component';
 
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UserInfoService {
   private _userInfoUrl: string;
   private _userBenefitHoursUrl: string;
-  private _userInfo; // Where we store the info once retrieved
+  private _userInfo$: Subject<EmployeeProfileDTO> = new Subject<EmployeeProfileDTO>();
+  private _userInfo: EmployeeProfileDTO;
 
   constructor(
     private _http: HttpClient,
@@ -26,13 +28,26 @@ export class UserInfoService {
   }
 
   getUserInfo(): Observable<EmployeeProfileDTO> {
-    if (this._userInfo == null) {
-      this._userInfo = this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
-                                            { withCredentials: true })
-                                            .catch(this.handleError)
-                                            ;
+
+    // Have we already retrieved the user info?
+    if (this._userInfo) {
+      // Send the user info back to the requester, after we return the observable.
+      setTimeout(() => {
+        this._userInfo$.next(this._userInfo);
+      }, 0);
+    } else {
+      // We don't have the user info yet, retrieve it now and store it.
+      this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
+                                          { withCredentials: true })
+              .subscribe(response => {
+                // Store the object for next time, and send it back to the caller
+                this._userInfo = response;
+                this._userInfo$.next(this._userInfo);
+              });
     }
-    return this._userInfo;
+
+    // Return the observable to the caller ... we'll send back the object momentarily
+    return this._userInfo$;
   }
 
   getUserBenefitHours(emplID: string): Observable<BenefitHoursDTO[]> {
@@ -74,5 +89,6 @@ export class UserInfoService {
   resetAllData() {
     // Wipe out all stored data, like going back to an app start
     this._userInfo = null;
+    this._userInfo$.next(null);
   } // end resetAllData
 }

@@ -7,7 +7,7 @@
 <header>
     <div id='sidebar' class="side-nav fixed" >
         <div class="nav-container">
-            <div class="py-3 user-menu">
+            <div *ngIf="userInfo" class="py-3 user-menu">
                 <a class="dropdown-toggle waves-effect waves-light" id="user-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="http://my.harris.com/PeopleFinder/employeePics/{{userInfo?.EMPLID}}.jpg" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
                 </a>

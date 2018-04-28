@@ -95,8 +95,8 @@ export class AppComponent implements OnInit {
         // Store the new impersonation
         this._commonDataService.impersonateUserID = this.userToImpersonate;
         // Tell the services to reset their data
-        this._userInfoService.resetAllData();
         this._timecardService.resetAllData();
+        this._userInfoService.resetAllData();
         // Re-retrieve the current user (which wipes out the user/components) and start the components back up
         // this._router.navigate(['/']);
 
@@ -118,8 +118,14 @@ export class AppComponent implements OnInit {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav();
 
+<<<<<<< HEAD
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
     }
 }
+=======
+} // end AppComponent
+
+// dbg - From timecard edit, if you open the side menu, click Timecards, the menu doesn't collapse after the list loads.
+>>>>>>> 20180428 ... Changed user info service to actually cache the employee profile and use an observable ... reworked app component and timecard service to accommodate this properly.
