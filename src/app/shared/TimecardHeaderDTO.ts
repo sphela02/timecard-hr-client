@@ -26,6 +26,7 @@ export interface TimecardHeaderDTO {
         isContractor: boolean;
         WorkGroup: string;
         canLaborCorrect: boolean;
+        canApprove: boolean; // dbg ... this needs to be added to the .NET DTO ... if timecard is current/LC and approve/unapprove allowed
         isLaborCorrection: boolean;
         isReadOnly: boolean;
         isEmployeeSigned: boolean;

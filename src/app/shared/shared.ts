@@ -19,6 +19,8 @@ export enum ActionType {
     CreateLaborCorrection = 15,
     DeleteLaborCorrection = 16,
     Display = 17,
+    Approve = 18,
+    UndoApproval = 19,
   }
 
   export enum AlertMessageType {
