@@ -3,7 +3,7 @@
 
 
 export interface ValidateShiftDTO {
-        EMPLID: string;
+        TimecardID: string;
         Shift: string;
 }
 

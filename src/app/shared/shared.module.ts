@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // export { ErrorStatus }    from './ErrorStatus';
-export { HourType }       from './HourType';
-export { TimecardStatus } from './TimecardStatus';
 
+export { ApproveInfoDTO } from './ApproveInfoDTO';
 export { BenefitHourType } from './BenefitHourType';
 export { ChargeCodeStatus } from './ChargeCodeStatus';
 export { EmployeeProfileDTO } from './EmployeeProfileDTO';
 export { ErrorStatus } from './ErrorStatus';
 export { FPHCodesDTO } from './FPHCodesDTO';
+export { HourType }       from './HourType';
 export { IValidationResponse } from './IValidationResponse';
 export { NoteDTO } from './NoteDTO';
+export { SearchType } from './SearchType';
 export { TRCCodesDTO } from './TRCCodesDTO';
 export { TimecardApproverSearchResultDTO } from './TimecardApproverSearchResultDTO';
 export { TimecardApproverSearchDTO } from './TimecardApproverSearchDTO';
@@ -21,6 +22,7 @@ export { TimecardDaysDTO } from './TimecardDaysDTO';
 export { TimecardHeaderDTO } from './TimecardHeaderDTO';
 export { TimecardRowDTO } from './TimecardRowDTO';
 export { TimecardSearchDTO } from './TimecardSearchDTO';
+export { TimecardStatus } from './TimecardStatus';
 export { TimecardSettingsDTO } from './TimecardSettingsDTO';
 export { UpdateTimecardDTO } from './UpdateTimecardDTO';
 export { ValidateFPHDTO } from './ValidateFPHDTO';
