@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlexModalContent } from '../shared';
+import { Subject } from 'rxjs/Subject';
 
 declare var $: any;
 
@@ -14,6 +15,9 @@ export class FlexModalComponent implements OnInit {
   @Output() cancelModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
   @Output() altModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
   @Output() confirmModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
+
+  // For canDeactivate modals that prevent navigation.
+  navigateAwaySelection$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -68,6 +72,7 @@ export class FlexModalComponent implements OnInit {
         this.activeModal.close('Confirm Clicked');
       }
     } else {
+      this.confirmModalBtnClicked.emit(true);
       this.activeModal.close('Confirm Clicked');
     }
   }
