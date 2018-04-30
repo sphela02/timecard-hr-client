@@ -118,14 +118,10 @@ export class AppComponent implements OnInit {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav();
 
-<<<<<<< HEAD
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
     }
-}
-=======
 } // end AppComponent
 
 // dbg - From timecard edit, if you open the side menu, click Timecards, the menu doesn't collapse after the list loads.
->>>>>>> 20180428 ... Changed user info service to actually cache the employee profile and use an observable ... reworked app component and timecard service to accommodate this properly.
