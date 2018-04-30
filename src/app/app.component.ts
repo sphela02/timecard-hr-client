@@ -37,12 +37,12 @@ export class AppComponent implements OnInit {
                 'name': 'Timecards',
                 'path': '/timecards',
                 'icon': 'fa-clock-o',
-                'subMenu': [
-                    {
-                        'name': 'Change Approver',
-                        'path': '/timecards',
-                    },
-                ]
+                // Hide change approver until ready.
+                // 'subMenu': [
+                //     {
+                //         'name': 'Change Approver',
+                //     },
+                // ]
             },
             {
                 'name': 'Timecard Search',
@@ -109,18 +109,17 @@ export class AppComponent implements OnInit {
         // document.getElementById('sidebarCollapse').classList.toggle('active');
     }
 
-ngOnInit() {
-    // dbg ... we can probably remove the user info from the dashboard maybe?
+    ngOnInit() {
+        // dbg ... we can probably remove the user info from the dashboard maybe?
 
-    this.retrieveCurrentUser();
+        this.retrieveCurrentUser();
 
-    setTimeout(() => {
-        // Sidebar initialization.
-        $('#sidebarCollapse').sideNav();
+        setTimeout(() => {
+            // Sidebar initialization.
+            $('#sidebarCollapse').sideNav();
 
-        // Data Picker Initialization.
-        $('.datepicker').pickadate();
-    }, 0);
-  }
-
-} // end AppComponent
+            // Data Picker Initialization.
+            $('.datepicker').pickadate();
+        }, 0);
+    }
+}

@@ -8,6 +8,7 @@ $harris-grey: #74767b;
 $danger: #D93B42;
 $warning: #F99F3C;
 $info: #009cde;
+$success: #6db444;
 
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
@@ -637,6 +638,28 @@ table.table.timecard-list {
     overflow-y: auto;
 }
 
+#approver-search-results-wrapper {
+    max-height: 250px;
+    overflow-y: auto;
+
+    #approver-search-results {
+        tr {
+            cursor: pointer;
+    
+            td,
+            th {
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+            }
+    
+            &.active {
+                background-color: lighten($success, 30%);
+            }
+        }
+    }
+
+}
+
 #timecard-footer {
     bottom: 0;
     left: 0;
@@ -651,10 +674,12 @@ table.table.timecard-list {
         }
     }
 
-    .select-wrapper {
-        input.select-dropdown {
-            margin-bottom: 0;
-        }
+    #timecardApprover {
+        cursor: pointer;
+    }
+
+    #approver-dropdown {
+        margin-left: -2.5rem;
     }
 
     @media screen and (max-width: 1200px) {

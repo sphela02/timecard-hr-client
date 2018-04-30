@@ -7,6 +7,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
 import { BenefitHoursDTO } from '../shared/BenefitHoursDTO';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { TimecardChangeApproverMainComponent } from '../timecard/timecard-change-approver-main/timecard-change-approver-main.component';
+
 
 @Injectable()
 export class UserInfoService {
@@ -14,7 +17,10 @@ export class UserInfoService {
   private _userBenefitHoursUrl: string;
   private _userInfo; // Where we store the info once retrieved
 
-  constructor(private _http: HttpClient) {
+  constructor(
+    private _http: HttpClient,
+    private modal: NgbModal,
+  ) {
     this._userInfoUrl = 'Employee/getMyProfile';
     this._userBenefitHoursUrl = 'Employee/getBenefitHours';
   }
@@ -34,6 +40,31 @@ export class UserInfoService {
                                           { withCredentials: true })
                                           .catch(this.handleError);
   }
+
+  popupChangeApprovers() {
+    // changed on the popup? Easier for user to get out if they didn't mean to get here.
+    const modalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false,
+      centered: true
+    };
+
+    // Open the modal popup for project summary info, pass in the row
+    const popupModalRef = this.modal.open(TimecardChangeApproverMainComponent, modalOptions);
+
+    // Subscribe to cancelClicked, in case we need it.
+    popupModalRef.componentInstance.cancelClicked.subscribe(event => {
+      // Cancel was clicked ... do anything necessary here.
+
+    });
+
+    // Subscribe to saveClicked, in case we need it.
+    popupModalRef.componentInstance.saveClicked.subscribe(event => {
+      // Save was clicked ... do anything necessary here.
+
+    });
+
+  } // end popupChangeApprovers
 
   private handleError(err: HttpErrorResponse) {
     console.error(err.message);  // dbg
