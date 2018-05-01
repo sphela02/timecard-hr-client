@@ -101,3 +101,8 @@ export enum ActionType {
     Mobile = '(max-width: 768px)',
     Desktop = '(min-width: 768px)',
   }
+
+  export enum isLoadingDisplay {
+    Timecard = 'body',
+    Notes = '.modal-content',
+  }
