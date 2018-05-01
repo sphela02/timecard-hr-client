@@ -125,3 +125,4 @@ export class AppComponent implements OnInit {
 } // end AppComponent
 
 // dbg - From timecard edit, if you open the side menu, click Timecards, the menu doesn't collapse after the list loads.
+// dbg - Better employee image URL http://m-my.harris.com/peoplefinder/piclookup.aspx?ECAID=JHALL27
