@@ -37,8 +37,11 @@ export enum ActionType {
   export enum TimecardViewMode {
     None = 0,
     List = 1,
-    Search = 2,
-    Display = 3
+    Display = 2,
+    Search = 3,
+    Edit = 4,
+    ApproverList = 5,
+    ApproverSearch = 6
   }
 
   export interface RowMessage {
