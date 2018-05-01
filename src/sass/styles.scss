@@ -22,6 +22,11 @@ $breakpoint-xl: '1140px';
     display: block;
 }
 
+input.disabled-input {
+    border-bottom: none !important;
+    color: rgba(black, .38);
+}
+
 .input-group .calendar-picker-icon {
     font-size: 1.3rem;
     padding-top: 7px;
@@ -420,10 +425,11 @@ table.table.timecard-list {
                 border: none;
                 color: $harris-grey;
                 line-height: 1;
-                vertical-align: bottom;
+                vertical-align: middle;
     
                 @media screen and (max-width: $breakpoint-md) {
-                    font-size: .6rem !important;
+                    font-size: .58rem !important;
+                    min-width: 1.55rem;
                     padding: 2px;
                 }
 
@@ -515,17 +521,24 @@ table.table.timecard-list {
                 input {
                     background-color: transparent !important;
                     border: none;
+                    font-size: .6rem;
                     font-weight: bold;
                     text-align: center;
                     width: 100%;
+
+                    @media screen and (min-width: $breakpoint-md) {
+                        font-size: 1rem;
+                    }
                 }
             }
         }
         
     
-        &.disabled tbody {
+        &.disabled tbody,
+        &.disabled tbody input {
             background-color: #f2f0f0;
-            color: $harris-grey;
+            color: rgba(black, .38);
+            
         }
     }
     
