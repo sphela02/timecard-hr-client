@@ -25,9 +25,9 @@ export interface TimecardHeaderDTO {
         isEmployee: boolean;
         isContractor: boolean;
         WorkGroup: string;
-        canLaborCorrect: boolean;
+        CreatedBySource: string;
+        ApprovedBySource: string;
         isLaborCorrection: boolean;
-        isReadOnly: boolean;
         isEmployeeSigned: boolean;
         isAllowedFPH: boolean;
         isAllowedEditShift: boolean;

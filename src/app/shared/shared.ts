@@ -18,6 +18,9 @@ export enum ActionType {
     Reopen = 14,
     CreateLaborCorrection = 15,
     DeleteLaborCorrection = 16,
+    Display = 17,
+    Approve = 18,
+    UndoApproval = 19,
   }
 
   export enum AlertMessageType {
@@ -34,9 +37,8 @@ export enum ActionType {
   export enum TimecardViewMode {
     None = 0,
     List = 1,
-    View = 2,
-    Search = 3,
-    Edit = 4
+    Search = 2,
+    Display = 3
   }
 
   export interface RowMessage {
