@@ -10,6 +10,12 @@ import { IValidationResponse } from './shared.module';
 
 export interface TimecardDTO {
         OvertimeAuthorization: string;
+        isReadOnly: boolean;
+        CanApproveUnapprove: boolean;
+        CanDeleteLC: boolean;
+        CanSubmitReopen: boolean;
+        CanChangeApprover: boolean;
+        CanLaborCorrect: boolean;
         TimecardTRCCodes: TRCCodesDTO[];
         TimecardHeader: TimecardHeaderDTO;
         TimecardRows: TimecardRowDTO[];
