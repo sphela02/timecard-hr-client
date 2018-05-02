@@ -8,6 +8,9 @@ import { AppMode } from '../app/shared/shared';
 // Map T:\ to \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
 // Run the following ...
 // ng build --prod --output-path=T:\TimecardClient --base-href=/TimecardClient/
+// BUILD COMMAND FOR GENERATING THE TEST CLIENT (for the .net API service project)
+// (Assuming that the service root is ..\TimecardService\)
+// ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
 export const environment = {
   production: false,
