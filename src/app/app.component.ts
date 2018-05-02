@@ -55,25 +55,25 @@ export class AppComponent implements OnInit {
                 'icon': 'fa-calendar-check-o',
             },
 
-            {
-            'name': 'Vacation',
-            'path': '/vacation/request',
-            'icon': 'fa-sun-o',
-            'subMenu': [
-                {
-                    'name': 'Request',
-                    'path': '/vacation/request',
-                },
-                {
-                    'name': 'Vacation 2',
-                    'path': '/vacation/request',
-                },
-                {
-                    'name': 'Vacation 3',
-                    'path': '/vacation/request',
-                },
-            ]
-            }
+            // {
+            // 'name': 'Vacation',
+            // 'path': '/vacation/request',
+            // 'icon': 'fa-sun-o',
+            // 'subMenu': [
+            //     {
+            //         'name': 'Request',
+            //         'path': '/vacation/request',
+            //     },
+            //     {
+            //         'name': 'Vacation 2',
+            //         'path': '/vacation/request',
+            //     },
+            //     {
+            //         'name': 'Vacation 3',
+            //         'path': '/vacation/request',
+            //     },
+            // ]
+            // }
         ];
     }
 
