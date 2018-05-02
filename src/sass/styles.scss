@@ -352,6 +352,11 @@ table.table.timecard-list {
 
         tr {
 
+            &.row-is-read-only,
+            &.row-is-read-only input {
+                color: rgba(black, .38);
+            }
+
             &.daily-totals {
                 background: $harris-grey;
             }
