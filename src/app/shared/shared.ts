@@ -44,9 +44,15 @@ export enum ActionType {
     ApproverSearch = 6
   }
 
+  export enum rowChangeStatus {
+    Unchanged = 1,
+    Changed = 2,
+    Added = 3,
+    Removed = 4
+  }
   export interface LaborCorrectionDiffSummary {
     columnsChanged: boolean[];
-    rowsChanged: boolean[];
+    rowsChanged: rowChangeStatus[];
   }
 
   export interface RowMessage {
