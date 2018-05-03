@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
             },
             {
                 'name': 'Approver Search',
-                'path': '/timecard/search/approvals',
+                'path': '/timecard/approver-search',
                 'icon': 'fa-search',
             },
 
