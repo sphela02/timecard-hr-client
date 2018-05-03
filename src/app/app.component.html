@@ -6,10 +6,13 @@
                     <img src="//my.harris.com/PeopleFinder/employeePics/{{userInfo?.EMPLID}}.jpg" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown" aria-labelledby="user-account">
-                    <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a>
+                    <!-- dbg - Add back in when profile page is available. -->
+                    <!-- <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a> -->
                     <ul class="list-group">
                         <li class="list-group-item">Employee ID: {{userInfo?.EMPLID}}</li>
-                        <li class="list-group-item">Department: {{userInfo?.CurrentBusinessUnit}}</li>
+                        <li class="list-group-item">Department: {{userInfo?.Department}}</li>
+                        <li class="list-group-item">Workgroup: {{userInfo?.Workgroup}}</li>
+                        <li class="list-group-item">Schedule:{{userInfo?.Schedule}}</li>
                     </ul>                
                 </div>
             </div>
