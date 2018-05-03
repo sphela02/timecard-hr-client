@@ -7,9 +7,9 @@ export interface EmployeeProfileDTO {
         ECAID: string;
         FullNamePrintable: string;
         CurrentBusinessUnit: string;
-        Department: string;
-        Workgroup: string;
-        Schedule: string;
+        CurrentDepartment: string;
+        CurrentWorkgroup: string;
+        CurrentSchedule: string;
 }
 
 
