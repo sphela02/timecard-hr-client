@@ -8,7 +8,7 @@ export interface UpdateTimecardDTO {
         TimecardID: string;
         TargetApprover: string;
         EmployeeSignature: boolean;
-        ClientTimecardLastUpdateTimestamp: Date;
+        ClientTimecardLastUpdateTimestamp: Date; // dbg ... We need to set this on save
         TimecardRows: TimecardRowDTO[];
 }
 
