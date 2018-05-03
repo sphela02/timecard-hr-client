@@ -44,6 +44,11 @@ export enum ActionType {
     ApproverSearch = 6
   }
 
+  export interface LaborCorrectionDiffSummary {
+    columnsChanged: boolean[];
+    rowsChanged: boolean[];
+  }
+
   export interface RowMessage {
     RowSequenceNumber: Number;
     messageText: String;
