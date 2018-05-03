@@ -51,8 +51,13 @@ export class AppComponent implements OnInit {
             },
             {
                 'name': 'Approvals',
-                'path': '/vacation/request',
+                'path': '/timecard/approvals',
                 'icon': 'fa-calendar-check-o',
+            },
+            {
+                'name': 'Approver Search',
+                'path': '/timecard/approver-search',
+                'icon': 'fa-search',
             },
 
             // {

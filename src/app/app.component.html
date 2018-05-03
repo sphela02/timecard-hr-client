@@ -3,7 +3,7 @@
         <div class="nav-container">
             <div *ngIf="userInfo" class="py-3 user-menu">
                 <a class="dropdown-toggle waves-effect waves-light" id="user-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="//my.harris.com/PeopleFinder/employeePics/{{userInfo?.EMPLID}}.jpg" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
+                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown" aria-labelledby="user-account">
                     <!-- dbg - Add back in when profile page is available. -->
