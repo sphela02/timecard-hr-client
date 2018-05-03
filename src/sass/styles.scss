@@ -343,7 +343,6 @@ table.table.timecard-list {
                     border-color: $info !important;
                 }
             }
-
         }
 
         tbody:nth-child(even) {
@@ -536,6 +535,11 @@ table.table.timecard-list {
                     }
                 }
             }
+        }
+
+        .lc-changed {
+            background-color: #00eaff;
+            color: black;
         }
         
     
