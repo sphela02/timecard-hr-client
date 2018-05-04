@@ -53,6 +53,7 @@ export enum ActionType {
   export interface LaborCorrectionDiffSummary {
     columnsChanged: boolean[];
     rowsChanged: rowChangeStatus[];
+    rowsRemoved: boolean[]; // string-indexed array of booleans
   }
 
   export interface RowMessage {
