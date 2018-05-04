@@ -58,9 +58,15 @@ export enum ActionType {
     messageText: String;
     messageIcon: String;
     messageType: AlertMessageType;
+    overallMessages: OverallMessage[];
     rowMessages: RowMessage[];
   }
 
+  export interface OverallMessage {
+    messageText: String;
+    messageIcon: String;
+    messageType: AlertMessageType;
+  }
   export interface TimecardAction {
     timecardHeader: TimecardHeaderDTO;
     timecardUpdate: UpdateTimecardDTO;
