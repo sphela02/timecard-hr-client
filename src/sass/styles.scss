@@ -437,51 +437,10 @@ table.table.timecard-list {
                     padding: 2px;
                 }
 
-                &[class*="tc-error"] {
-                    &:before {
-                        background: white;
-                        font-family: FontAwesome;
-                        font-size: 1.2rem;
-                        height: 1.2rem;
-                        left: 43%;
-                        line-height: 1;
-                        position: absolute;
-                        top: -.6rem;
-                        width: 1.2rem;
-                    }
+                &.display-error {
+                    position: relative;
                 }
 
-                &.tc-error {
-                    &-danger {
-                        outline-color: $danger !important;
-                        color: $danger !important;
-    
-                        &:before {
-                            color: $danger;
-                            content: '\f06a';
-                        }
-                    }
-    
-                    &-warning {
-                        outline-color: $warning !important;
-                        color: $warning !important;
-    
-                        &:before {
-                            color: $warning;
-                            content: '\f06a';
-                        }
-                    }
-    
-                    &-info {
-                        outline-color: $info !important;
-                        color: $info !important;
-    
-                        &:before {
-                            color: $info;
-                            content: '\f05a';
-                        }
-                    }
-                }
             }
         
             td {
@@ -535,6 +494,15 @@ table.table.timecard-list {
                     }
                 }
             }
+        }
+
+        .display-column-error {
+            background-color: white;
+            color: $danger;
+            font-size: 1rem;
+            position: absolute;
+            top: -9px;
+            left: 44%;
         }
 
         .lc-changed {
@@ -696,6 +664,10 @@ table.table.timecard-list {
     position: fixed;
     width: 100%;
     z-index: 500;
+
+    #messages {
+        background-color: #f2f0f0;
+    }
 
     #signature {
         label {

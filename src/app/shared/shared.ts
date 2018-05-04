@@ -61,10 +61,16 @@ export enum ActionType {
     messageText: String;
   }
 
+  export interface ColumnMessage {
+    ColumnSequenceNumber: Number;
+    messageText: String;
+  }
+
   export interface AlertMessage {
     messageText: String;
     messageIcon: String;
     messageType: AlertMessageType;
+    columnMessages: ColumnMessage[];
     overallMessages: OverallMessage[];
     rowMessages: RowMessage[];
   }
@@ -74,6 +80,7 @@ export enum ActionType {
     messageIcon: String;
     messageType: AlertMessageType;
   }
+
   export interface TimecardAction {
     timecardHeader: TimecardHeaderDTO;
     timecardUpdate: UpdateTimecardDTO;
