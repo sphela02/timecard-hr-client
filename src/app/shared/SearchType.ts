@@ -1,4 +1,8 @@
-﻿export enum SearchType {
+﻿
+
+
+
+export enum SearchType {
     Employee = 1,
     Manager = 2,
 }

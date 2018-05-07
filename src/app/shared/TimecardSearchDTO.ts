@@ -1,4 +1,7 @@
-﻿import { SearchType } from './shared.module';
+﻿
+
+
+import { SearchType } from './shared.module';
 
 export interface TimecardSearchDTO {
         EMPLID: string;
