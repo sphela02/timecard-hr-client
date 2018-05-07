@@ -509,7 +509,19 @@ table.table.timecard-list {
             background-color: #00eaff;
             color: black;
         }
-        
+
+        .lc-row-status {
+            color: white;
+            font-size: .5rem;
+            min-width: 16px;
+            padding: 3px;
+            position: absolute;
+            opacity: .7;
+            right: 0;
+            text-align: center;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
     
         &.disabled tbody,
         &.disabled tbody input {
