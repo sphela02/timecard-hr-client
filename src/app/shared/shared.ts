@@ -50,10 +50,14 @@ export enum ActionType {
     Added = 3,
     Removed = 4
   }
+  export interface OriginalLCDailyCountArray {
+    dailyCounts: number[];
+  }
   export interface LaborCorrectionDiffSummary {
     columnsChanged: boolean[];
     rowsChanged: rowChangeStatus[];
     rowsRemoved: boolean[]; // string-indexed array of booleans
+    originalDailyCounts: OriginalLCDailyCountArray[]; // sequence-indexed array of number arrays
   }
 
   export interface RowMessage {
