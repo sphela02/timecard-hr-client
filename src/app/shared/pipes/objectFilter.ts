@@ -2,10 +2,12 @@
 
 @Pipe({
     name: 'ObjectFilter',
+    pure: false,
 })
 export class ObjectFilter implements PipeTransform {
-    transform(value: any, input: string, searchableList: any) {
-        if (input) {
+    transform(value: any, input: any, searchableList: any) {
+        // If input is an string filter list on string value.
+        if (typeof input === 'string' && input) {
             input = input.toLowerCase();
             return value.filter(function (el: any) {
                 let isTrue = false;
@@ -15,6 +17,26 @@ export class ObjectFilter implements PipeTransform {
                     }
                     if (isTrue) {
                         return el;
+                    }
+                }
+            });
+        } else if (input instanceof Array) {
+            // If input is an array filter list on array values
+            return value.filter(function (el: any) {
+                let isTrue = false;
+                for ( const k of Object.keys(searchableList) ) {
+                    if (input.length) {
+                        input.forEach(inputVal => {
+                            if (inputVal) {
+                                inputVal = inputVal.toLowerCase();
+                                if (el[searchableList[k]].toLowerCase().indexOf(inputVal) > -1) {
+                                    isTrue = true;
+                                }
+                            }
+                        });
+                        if (isTrue) {
+                            return el;
+                        }
                     }
                 }
             });
