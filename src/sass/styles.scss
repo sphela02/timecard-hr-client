@@ -321,6 +321,15 @@ table.table.timecard-list {
         background: none;
     }
 
+    #tc-settings {
+        color: $harris-grey;
+        position: relative;
+    
+        i {
+            font-size: 1.5rem;
+        }
+    }
+
     table.table.timecard-view {
 
         col {
