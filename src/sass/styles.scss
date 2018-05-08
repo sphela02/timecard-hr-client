@@ -519,9 +519,29 @@ table.table.timecard-list {
             color: black;
         }
 
+        .lc-row-added {
+            background-color: rgba($success, .5);
+
+            td:first-child {
+                padding-right: 15px;
+            }
+        }
+
+        .lc-row-deleted {
+            background-color: rgba($danger, .5);
+
+            td {
+                text-decoration: line-through;
+                &:first-child {
+                    padding-right: 15px;
+                }
+            }
+        }
+
         .lc-row-status {
             color: white;
             font-size: .5rem;
+            height: 100%;
             min-width: 16px;
             padding: 3px;
             position: absolute;
@@ -530,6 +550,13 @@ table.table.timecard-list {
             text-align: center;
             top: 50%;
             transform: translate(0, -50%);
+
+            i {
+                left: 5px;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+            }
         }
     
         &.disabled tbody,
