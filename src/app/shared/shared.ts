@@ -1,5 +1,6 @@
 import { TimecardHeaderDTO } from './TimecardHeaderDTO';
 import { UpdateTimecardDTO } from './UpdateTimecardDTO';
+import { NoteDTO } from './NoteDTO';
 
 export enum ActionType {
     Right = 1,
@@ -89,19 +90,24 @@ export enum ActionType {
     timecardHeader: TimecardHeaderDTO;
     timecardUpdate: UpdateTimecardDTO;
     timecardAction: ActionType;
+    modalReturnData: FlexModalReturnData;
   }
 
+  export interface FlexModalReturnData {
+    inputValue: string;
+    textareaValue: string;
+  }
   export interface FlexModalContent {
-    modalTitle: String;
-    modalSubTitle: String;
-    messageText: String;
-    inputId: String;
-    inputLabel: String;
-    textareaId: String;
-    textareaLabel: String;
-    cancelBtnText: String;
-    altBtnText: String;
-    confirmBtnText: String;
+    modalTitle: string;
+    modalSubTitle: string;
+    messageText: string;
+    inputId: string;
+    inputLabel: string;
+    textareaId: string;
+    textareaLabel: string;
+    cancelBtnText: string;
+    altBtnText: string;
+    confirmBtnText: string;
   }
 
   export enum AppMode {

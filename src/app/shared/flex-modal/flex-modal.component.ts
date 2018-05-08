@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FlexModalContent } from '../shared';
+import { FlexModalContent, FlexModalReturnData } from '../shared';
 import { Subject } from 'rxjs/Subject';
 
 declare var $: any;
@@ -12,8 +12,8 @@ declare var $: any;
 })
 export class FlexModalComponent implements OnInit {
   @Input() modalContent: FlexModalContent;
-  @Output() cancelModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
-  @Output() altModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() cancelModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Output() altModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Output() confirmModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
 
   // For canDeactivate modals that prevent navigation.
@@ -44,7 +44,7 @@ export class FlexModalComponent implements OnInit {
   }
 
   confirmModal() {
-    let formValues = null;
+    let formValues: FlexModalReturnData = null;
     if (this.modalContent.inputId || this.modalContent.textareaId) {
       let isFormValid: boolean = true;
       formValues = {
