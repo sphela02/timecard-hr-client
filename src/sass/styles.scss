@@ -305,6 +305,10 @@ table.table.timecard-list {
                 top: 0;
                 width: 100%;
             }
+
+            h2 {
+                white-space: nowrap;
+            }
         }
 
         .card-body .col {
