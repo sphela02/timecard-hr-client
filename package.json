@@ -12,7 +12,7 @@
     "e2e": "ng e2e",
     "pr": "ng lint && ng build && ng test",
     "lintwatch": "chokidar \"**/*\" -c \"ng lint\"",
-    "deploy-dev": "ng build --prod --output-path=T:\\TimecardClient --base-href=/TimecardClient/",
+    "deploy-dev": "ng build --prod --output-path=T:\\TimecardClient --base-href=/TimecardClient/ --environment=dev",
     "deploy-test": "ng build --prod --output-path=T:\\Test\\Timecard --base-href=/Test/Timecard/ --environment=test"
   },
   "private": true,

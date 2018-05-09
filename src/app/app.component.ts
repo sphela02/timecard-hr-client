@@ -49,17 +49,6 @@ export class AppComponent implements OnInit {
                 'path': '/timecard/search',
                 'icon': 'fa-search',
             },
-            {
-                'name': 'Approvals',
-                'path': '/timecard/approvals',
-                'icon': 'fa-calendar-check-o',
-            },
-            {
-                'name': 'Approver Search',
-                'path': '/timecard/approver-search',
-                'icon': 'fa-search',
-            },
-
             // {
             // 'name': 'Vacation',
             // 'path': '/vacation/request',
@@ -80,6 +69,24 @@ export class AppComponent implements OnInit {
             // ]
             // }
         ];
+
+        // add approver menus
+        if (this._userInfoService.getIsApprover()) {
+            this.menuList.push(
+                {
+                    'name': 'Approvals',
+                    'path': '/timecard/approvals',
+                    'icon': 'fa-calendar-check-o',
+                },
+            );
+            this.menuList.push(
+                {
+                    'name': 'Approver Search',
+                    'path': '/timecard/approver-search',
+                    'icon': 'fa-search',
+                },
+            );
+        }
     }
 
     retrieveCurrentUser() {
