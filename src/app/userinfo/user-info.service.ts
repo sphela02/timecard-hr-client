@@ -16,8 +16,11 @@ import { Subject } from 'rxjs/Subject';
 export class UserInfoService {
   private _userInfoUrl: string;
   private _userBenefitHoursUrl: string;
+  private _isApproverUrl: string;
   private _userInfo$: Subject<EmployeeProfileDTO> = new Subject<EmployeeProfileDTO>();
   private _userInfo: EmployeeProfileDTO;
+  private _isApprover: boolean = null;
+  private _isApprover$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private _http: HttpClient,
@@ -25,6 +28,7 @@ export class UserInfoService {
   ) {
     this._userInfoUrl = 'Employee/getMyProfile';
     this._userBenefitHoursUrl = 'Employee/getBenefitHours';
+    this._isApproverUrl = 'Employee/HasApproverRole/';
   }
 
   getUserInfo(): Observable<EmployeeProfileDTO> {
@@ -48,6 +52,29 @@ export class UserInfoService {
 
     // Return the observable to the caller ... we'll send back the object momentarily
     return this._userInfo$;
+  }
+
+  getIsApprover(): Observable<boolean> {
+
+    // Have we already retrieved the user info?
+    if (this._isApprover != null) {
+      // Send the user info back to the requester, after we return the observable.
+      setTimeout(() => {
+        this._isApprover$.next(this._isApprover);
+      }, 0);
+    } else {
+      // We don't have the user info yet, retrieve it now and store it.
+      this._http.get<boolean>(this._isApproverUrl,
+                                          { withCredentials: true })
+              .subscribe(response => {
+                // Store the object for next time, and send it back to the caller
+                this._isApprover = response;
+                this._isApprover$.next(this._isApprover);
+              });
+    }
+
+    // Return the observable to the caller ... we'll send back the object momentarily
+    return this._isApprover$;
   }
 
   getUserBenefitHours(emplID: string): Observable<BenefitHoursDTO[]> {

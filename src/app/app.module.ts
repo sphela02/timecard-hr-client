@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
+import { IsApproverGuard } from './app-isapprover-guard';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CommonDataService } from './shared/common-data/common-data.service';
       useClass: HarrisHttpInterceptorImpersonate,
       multi: true
     },
+    IsApproverGuard,
   ],
   bootstrap: [AppComponent]
 })
