@@ -14,6 +14,10 @@ $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
 $breakpoint-xl: '1140px';
 
+body {
+    background-color: white;
+}
+
 .click-element {
     cursor: pointer;
 }
@@ -179,6 +183,10 @@ body.loading {
     input {
         color: white;
     }
+}
+
+#filter-wrapper {
+    background-color: #f2f0f0;
 }
 
 table.table.timecard-list {
@@ -511,7 +519,8 @@ table.table.timecard-list {
             font-size: 1rem;
             position: absolute;
             top: -9px;
-            left: 44%;
+            left: 50%;
+            transform: translate(-50%, 0);
         }
 
         .lc-changed {
