@@ -13,7 +13,7 @@ import { AppMode } from '../app/shared/shared';
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
 export const environment = {
-  production: false,
+  production: true,
   apiServiceURL: 'https://mi-dev.harris.com/test/timecardapi/api/v1/',
   AppMode: AppMode.Dev
 };

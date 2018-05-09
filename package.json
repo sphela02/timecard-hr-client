@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o --extract-css",
+    "start": "ng serve -o --extract-css  --environment=dev",
     "local": "ng serve -o --extract-css --environment=local",
     "build": "ng build --prod",
     "test": "ng test",
