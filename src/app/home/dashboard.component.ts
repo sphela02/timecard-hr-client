@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
     constructor(private _userInfoService: UserInfoService) { }
 
   ngOnInit() {
-    // dbg ... we can probably remove the user info from the dashboard maybe?
     this._userInfoService.getUserInfo()
           .subscribe(userInfo => {
             this.userInfo = userInfo;
