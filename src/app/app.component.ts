@@ -119,6 +119,9 @@ export class AppComponent implements OnInit {
 
         this.retrieveCurrentUser();
 
+        // watch for page title changes.
+        this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
+
         setTimeout(() => {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav();
@@ -127,6 +130,7 @@ export class AppComponent implements OnInit {
             $('.datepicker').pickadate();
         }, 0);
     }
+
 } // end AppComponent
 
 // dbg - From timecard edit, if you open the side menu, click Timecards, the menu doesn't collapse after the list loads.
