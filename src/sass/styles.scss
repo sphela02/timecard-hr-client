@@ -330,6 +330,22 @@ table.table.timecard-list {
         }
     }
 
+    .tc-status {
+        font-size: .8rem;
+        line-height: 1.5;
+        min-width: 100px;
+    
+        &.pending {
+            background-color: $info;
+        }
+        &.approved {
+            background-color: #6db444;
+        }
+        &.open {
+            background-color: #F99F3C;
+        }
+    }
+
     table.table.timecard-view {
 
         col {
