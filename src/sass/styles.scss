@@ -274,8 +274,10 @@ table.table.timecard-list {
             padding: .8rem 0;
         }
     }
+
     .card {
         height: 160px;
+        min-width: 100px;
 
         .min-chart {
             height: 75px;
@@ -296,9 +298,12 @@ table.table.timecard-list {
             position: absolute;
             width: calc(100% - 20px);
         }
+        
 
         .hours {
+            display: inline-block;
             line-height: 75px;
+            min-width: 75px;
         }
 
         .holiday-calendar {
