@@ -199,6 +199,20 @@ table.table.timecard-list {
         color: $harris-grey;
         padding: 0 10px;
         vertical-align: bottom;
+
+        .col-sort-direction {
+            display: none
+        }
+
+        &.sorted {
+            .col-sort-direction {
+                display: inline;
+            }
+        }
+
+        &.not-sortable {
+            cursor: default;
+        }
     }
 
     tr {
