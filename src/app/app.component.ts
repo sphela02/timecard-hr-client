@@ -144,9 +144,7 @@ export class AppComponent implements OnInit {
 
 // SHORT-TERM:
 // - Project Charging info ... if fields have data but get disabled/hidden (based on other changes), make sure we clear them before save.
-// - Project Charge Popup ... When editing TRC and other dropdowns, we need an empty selection to get started.  Probably done, just verify.
 // - Project Charge Popup ... get confirmation before user hits cancel and discards changes? Not as easy as checking form row dirty, because the underlying row is likely already dirty.
-// - Project Charge Popup ... Wire up Add/Edit button text based on if it's a new row or note ... is this done?
 // - Labor Corrections ... Make sure labor correction create/delete returns correct error codes, line 228 of tc-main-comp has an override
 // - Labor Corrections ... When collecting the note before create/delete, make sure button text/mode is correct for both actions
 // - Labor Corrections ... For Diff, Test the hours changes rigorously, comparing 0 to empty and vice versa.
