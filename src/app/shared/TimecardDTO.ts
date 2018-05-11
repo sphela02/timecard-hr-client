@@ -1,17 +1,16 @@
 ﻿
 
 
+import { OvertimeAuthDTO } from './shared.module';
 import { TRCCodesDTO } from './shared.module';
 import { TimecardHeaderDTO } from './shared.module';
 import { TimecardRowDTO } from './shared.module';
 import { TimecardDaysDTO } from './shared.module';
 import { NoteDTO } from './shared.module';
 import { IValidationResponse } from './shared.module';
-import { OvertimeAuthDTO } from './OvertimeAuthDTO';
 
 export interface TimecardDTO {
-        OvertimeAuthData: OvertimeAuthDTO; // dbg ... temp placeholder
-        OvertimeAuthorization: string;
+        OvertimeAuthorization: OvertimeAuthDTO;
         isReadOnly: boolean;
         CanApproveUnapprove: boolean;
         CanDeleteLC: boolean;
