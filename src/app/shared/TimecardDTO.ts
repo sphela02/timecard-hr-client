@@ -7,8 +7,10 @@ import { TimecardRowDTO } from './shared.module';
 import { TimecardDaysDTO } from './shared.module';
 import { NoteDTO } from './shared.module';
 import { IValidationResponse } from './shared.module';
+import { OvertimeAuthDTO } from './OvertimeAuthDTO';
 
 export interface TimecardDTO {
+        OvertimeAuthData: OvertimeAuthDTO; // dbg ... temp placeholder
         OvertimeAuthorization: string;
         isReadOnly: boolean;
         CanApproveUnapprove: boolean;
