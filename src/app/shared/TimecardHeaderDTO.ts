@@ -5,6 +5,7 @@ import { TimecardStatus } from './shared.module';
 
 export interface TimecardHeaderDTO {
         TimecardID: string;
+        TimecardTitle: string; // dbg ... what do we do with this?
         PayEndDate: Date;
         PeriodEndDate: Date;
         WeekEndDate: Date;
