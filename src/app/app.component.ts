@@ -154,6 +154,7 @@ export class AppComponent implements OnInit {
 // - Notes ... We should put a confirm on a note deletion
 // - Notes ... Edit/Delete permissions are sometimes distinct, so we may need to wire in separate booleans on the Note DTO for whether we can edit or delete.
 // - Timecard save/validate ... Revisit the validation/save Response messages and make sure that error, warning and info messages are all handled correctly.
+// SP - Once API goes up with new OT auth data for timecard, remove dbg code from timecard service (line 463)
 
 // TESTING CONCERNS:
 // - Timecard Edit ... Make sure the timecard edit route guard handles unsuccessful/invalid saves properly.
