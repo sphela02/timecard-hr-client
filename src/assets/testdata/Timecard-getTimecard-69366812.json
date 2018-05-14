@@ -1,0 +1,198 @@
+{
+	"TimecardTRCCodes": [{
+		"TRCCode": "BRV",
+		"TRCDescription": "Bereavement",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "DL",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": false,
+		"IsDLCode": true,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "ESCLS",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "HOL",
+		"TRCDescription": "Holiday",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "IDL",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "INTER",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "JURY",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "MIL",
+		"TRCDescription": "Military Pay Supplement",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": false,
+		"IsFPHAvailable": false,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "NPROD",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "NWNP",
+		"TRCDescription": "Absent Without Pay",
+		"IsIDLCode": false,
+		"IsDLCode": false,
+		"IsShiftEditable": false,
+		"IsFPHAvailable": false,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "ONCAL",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": true,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 2
+	},
+	{
+		"TRCCode": "SICK",
+		"TRCDescription": "Sick",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "TRAIN",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 0
+	},
+	{
+		"TRCCode": "VACN",
+		"TRCDescription": "Vacation",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	},
+	{
+		"TRCCode": "WC",
+		"TRCDescription": "Regular Pay",
+		"IsIDLCode": true,
+		"IsDLCode": false,
+		"IsShiftEditable": true,
+		"IsFPHAvailable": true,
+		"HoursGrouping": 1
+	}],
+	"TimecardHeader": {
+		"TimecardID": "69366812",
+		"PayEndDate": "2018-01-19T00:00:00",
+		"WeekEndDate": "2018-01-19T00:00:00",
+		"ScheduledHours": 40,
+		"HoursWorked": 0,
+		"OtherHours": 0,
+		"DefaultShift": "1",
+		"ScheduleID": "5/8-MON",
+		"TargetApprover": "CLORIS",
+		"EmployeeID": "266277",
+		"ApprovedDateTime": null,
+		"TLSentDateTime": null,
+		"isLaborCorrection": false,
+		"TimecardStatus": 1,
+		"TimecardStatusLabel": "Open"
+	},
+	"TimecardRows": [],
+	"TimecardDays": [{
+		"Day": "2018-01-13T00:00:00",
+		"DayLabel": "Sat",
+		"ScheduledHours": 0
+	},
+	{
+		"Day": "2018-01-14T00:00:00",
+		"DayLabel": "Sun",
+		"ScheduledHours": 0
+	},
+	{
+		"Day": "2018-01-15T00:00:00",
+		"DayLabel": "Mon",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-16T00:00:00",
+		"DayLabel": "Tue",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-17T00:00:00",
+		"DayLabel": "Wed",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-18T00:00:00",
+		"DayLabel": "Thu",
+		"ScheduledHours": 8
+	},
+	{
+		"Day": "2018-01-19T00:00:00",
+		"DayLabel": "Fri",
+		"ScheduledHours": 8
+	}],
+	"TimecardNotes": [],
+	"TimecardSettings": {
+		"isAllowedFPH": false,
+		"isAllowedEditShift": true,
+		"isAllowedPLC": false,
+		"isBreakRequired": false
+	},
+	"ValidationMessages": []
+}

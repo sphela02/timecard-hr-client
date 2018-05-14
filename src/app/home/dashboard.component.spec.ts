@@ -4,8 +4,8 @@ import { DashboardComponent } from './dashboard.component';
 
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+  // let component: DashboardComponent;
+  // let fixture: ComponentFixture<DashboardComponent>;
   /*
   beforeEach(async(() => {
     TestBed.configureTestingModule({
