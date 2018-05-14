@@ -145,7 +145,6 @@ export class AppComponent implements OnInit {
 // SHORT-TERM:
 // SP - Labor Corrections ... Make sure labor correction create/delete returns correct error codes, line 228 of tc-main-comp has an override
 // SP - Labor Corrections ... When collecting the note before create/delete, make sure button text/mode is correct for both actions
-// JC - Timecard Edit ... If target approver is changed, and dirty timecard is then abandoned, the change persists in the timecard object, because it was done direct via ngModal.  We'll need to do an object reset in this case, or bind the approver field to the reactive form instead.
 // MM - Timecard Edit ... make sure approve button is only available on a pristine timecard ... any edits should hide/disable the approve button and show/enable the save button, and the save should show a reminder message to still approve it (similar mechanism to how the sign/submit reminder works).
 // SP - Timecard Edit ... we should think about a "reload" button of some sort ... a way to discard changes and load clean, without needing to use the browser refresh and kill the app. Maybe wire up the route guard to make sure it's what they want?
 // MM - Timecard Edit ... Revisit status messages after actions like reopening, labor corrections, approve/unapprove, etc ... Similar approach to timecard save successful
