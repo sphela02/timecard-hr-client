@@ -830,9 +830,20 @@ table.table.timecard-list {
             font-size: 14px;
             height: auto;
             line-height: 1.5;
+            overflow-x: hidden;
+            overflow-y: scroll;
             max-height: 200px;
             padding: .375rem 0 .5rem;
+            -ms-overflow-style: scrollbar;
         }
+    }
+
+    .browser-default {
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        display: inline-block;
+        margin-top: .1rem;
+        padding: .45rem 0;
     }
 }
 
