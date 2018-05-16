@@ -4,6 +4,7 @@ import { TimecardService } from './timecard/timecard.service';
 import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
 import { Router } from '@angular/router';
 import { CommonDataService } from './shared/common-data/common-data.service';
+import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 
 declare var $: any;
 
@@ -23,9 +24,10 @@ export class AppComponent implements OnInit {
     userToImpersonate: string;
 
     constructor(private _userInfoService: UserInfoService,
-                private _commonDataService: CommonDataService,
+                public _commonDataService: CommonDataService,
                 private _timecardService: TimecardService,
                 private _router: Router,
+                public errorHandlerService: GlobalErrorHandlerService,
             ) {
         this.menuList = [
             // {
@@ -154,6 +156,7 @@ export class AppComponent implements OnInit {
 // - Notes ... Edit/Delete permissions are sometimes distinct, so we may need to wire in separate booleans on the Note DTO for whether we can edit or delete.
 // - Timecard save/validate ... Revisit the validation/save Response messages and make sure that error, warning and info messages are all handled correctly.
 // SP - Once API goes up with new OT auth data for timecard, remove dbg code from timecard service (line 463)
+// - Read-only rows, on save/update, aren't getting sent to service and triggering unwanted row deletions.
 
 // TESTING CONCERNS:
 // - Timecard Edit ... Make sure the timecard edit route guard handles unsuccessful/invalid saves properly.

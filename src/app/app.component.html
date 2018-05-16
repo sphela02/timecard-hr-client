@@ -71,6 +71,15 @@
             </div>
         </div>
     </nav>
+    <div class="col-12"
+        *ngIf="_commonDataService.currentErrorMessages.length"
+        >
+        <div class="alert alert-dismissible alert-danger mt-2 mb-1"
+                    *ngFor="let errorMessage of _commonDataService.currentErrorMessages">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <p style="margin:0px;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{errorMessage}}</p>
+            </div>
+        </div>
 </header>
 <main class="m-0 pt-0">
     <div class="wrapper">
