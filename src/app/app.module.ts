@@ -17,6 +17,7 @@ import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { IsApproverGuard } from './app-isapprover-guard';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
+import { ProgressTrackerService } from './shared/progress-tracker/progress-tracker.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { GlobalErrorHandlerService } from './shared/global-error-handler/global-
   providers: [
     UserInfoService,
     CommonDataService,
+    ProgressTrackerService,
     GlobalErrorHandlerService,
     {
       provide: ErrorHandler,
