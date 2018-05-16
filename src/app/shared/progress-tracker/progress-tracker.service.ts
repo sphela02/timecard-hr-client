@@ -33,4 +33,11 @@ export class ProgressTrackerService {
     return this.appLoadingStatuses$[appArea];
   } // end getAppLoadingStatus
 
+  // Turn off all app loading statuses ... useful for error handling
+  clearAllAppLoadingStatuses() {
+    this.appLoadingStatuses$.forEach((loadingStatus$: BehaviorSubject<boolean>) => {
+      loadingStatus$.next(false);
+    });
+  } // end clearAllAppLoadingStatuses
+
 } // end ProgressTrackerService
