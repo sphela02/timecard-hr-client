@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class CommonDataService {
 
   public impersonateUserID: string = '';
+  public currentErrorMessages: string[] = [];
 
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();

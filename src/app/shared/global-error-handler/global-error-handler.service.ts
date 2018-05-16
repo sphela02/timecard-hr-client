@@ -1,16 +1,17 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 import * as toastr from 'toastr';
 import { ProgressTrackerService } from '../progress-tracker/progress-tracker.service';
+import { CommonDataService } from '../common-data/common-data.service';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
 
   constructor(
     private _progressTrackerService: ProgressTrackerService,
+    private _commonDataService: CommonDataService,
   ) { }
 
   handleError(error) {
-    console.log(error); // dbg
 
     // Set toastr alert.
     toastr.options = {
@@ -24,10 +25,14 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     // Turn off any loading indicators
     this._progressTrackerService.clearAllAppLoadingStatuses();
+    // Push this error message to the list for the App to display it as needed.
+    if (this._commonDataService.currentErrorMessages[this._commonDataService.currentErrorMessages.length - 1] !== error.message) {
+      this._commonDataService.currentErrorMessages.push(error.message);
+    }
+
     // Pop up the error message and the body
     // toastr.error(JSON.stringify(error.error)); // dbg
-    toastr.error(error.message); // dbg
-
+    // toastr.error(error.message); // dbg
     // IMPORTANT: Rethrow the error otherwise it gets swallowed
     // throw error; // dbg ... I don't think this works
  } // end handleError
