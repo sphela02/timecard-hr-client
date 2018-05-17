@@ -564,6 +564,10 @@ table.table.timecard-list {
                     @media screen and (min-width: $breakpoint-md) {
                         font-size: 1rem;
                     }
+
+                    &:focus {
+                        box-shadow: 0px 0px 3px $harris-grey;
+                    }
                 }
             }
         }
