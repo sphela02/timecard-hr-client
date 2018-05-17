@@ -848,7 +848,15 @@ table.table.timecard-list {
         border-bottom: 1px solid #ced4da;
         display: inline-block;
         margin-top: .1rem;
+        min-width: 40px;
+        max-width: 100%;
         padding: .45rem 0;
+    }
+
+    .dropdown-item.active {
+        color: #16181b;
+        text-decoration: none;
+        background-color: #d6d6d7;
     }
 }
 
