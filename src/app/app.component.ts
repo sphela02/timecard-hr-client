@@ -98,7 +98,6 @@ export class AppComponent implements OnInit {
         this._userInfoService.getUserInfo()
           .subscribe(userInfo => {
             this.userInfo = userInfo;
-            this._router.navigateByUrl('/timecards');
           },
           error => this.errorMessage = <any>error
         );
@@ -116,6 +115,7 @@ export class AppComponent implements OnInit {
         // this._router.navigate(['/']);
 
         this.retrieveCurrentUser();
+        this._router.navigateByUrl('/timecards');
 
     } // end impersonateUser
 
