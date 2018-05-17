@@ -5,6 +5,7 @@ import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
 import { Router } from '@angular/router';
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
+import { environment } from '../environments/environment.local';
 
 declare var $: any;
 
@@ -12,7 +13,7 @@ declare var $: any;
   selector: 'tc-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
-  providers: [UserInfoService, TimecardService]
+  providers: [UserInfoService]
 })
 export class AppComponent implements OnInit {
 
@@ -22,6 +23,8 @@ export class AppComponent implements OnInit {
     errorMessage: string;
     userInfo: EmployeeProfileDTO;
     userToImpersonate: string;
+    diagnosticsMode: boolean;
+    environment: any = environment;
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
@@ -139,6 +142,16 @@ export class AppComponent implements OnInit {
             $('.datepicker').pickadate();
         }, 0);
     }
+
+    startDiagnostics() {
+        this._timecardService.startSubscriberDiagnostics();
+        this.diagnosticsMode = true;
+    } // end startDiagnostics
+
+    endDiagnostics() {
+        this._timecardService.endSubscriberDiagnostics();
+        this.diagnosticsMode = false;
+    } // end endDiagnostics
 
 } // end AppComponent
 

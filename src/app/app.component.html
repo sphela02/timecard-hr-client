@@ -55,6 +55,22 @@
                 </div>
             </li>
         </ul> -->
+        <div *ngIf="environment.allowDiagnostics">
+            <button *ngIf="!diagnosticsMode"
+                    (click)="startDiagnostics()">
+                Start Diagnostics
+            </button>
+            <ng-container *ngIf="diagnosticsMode">
+                <button (click)="endDiagnostics()">
+                    End Diagnostics
+                </button>
+                <ul>
+                    <li *ngFor="let observableCountMessage of _commonDataService.observableDiagnosticMessages">
+                        {{observableCountMessage}}
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
         <div class="ml-auto navbar-nav mt-0">
             <div class="input-group py-2">
                 <input type="text" 
