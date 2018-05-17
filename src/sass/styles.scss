@@ -95,6 +95,22 @@ body.loading {
     }
 }
 
+#alert-container {
+    padding: 0 .7rem 0 .7rem;
+
+    .alert {
+        margin: .5rem 0 0 0;
+
+        &:last-child {
+            margin-bottom: .5rem;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding-left: 255px;
+    }
+}
+
 .side-nav {
     .nav-container {
         position: absolute;

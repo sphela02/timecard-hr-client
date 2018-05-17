@@ -28,6 +28,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     // Push this error message to the list for the App to display it as needed.
     if (this._commonDataService.currentErrorMessages[this._commonDataService.currentErrorMessages.length - 1] !== error.message) {
       this._commonDataService.currentErrorMessages.push(error.message);
+      this._commonDataService.currentErrorMessages.push(JSON.stringify(error.error));
     }
 
     // Pop up the error message and the body
