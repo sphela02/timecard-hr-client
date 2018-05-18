@@ -16,5 +16,6 @@ export const environment = {
   production: false,
   // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
   apiServiceURL: 'http://localhost:9572/api/v1/',
-  AppMode: AppMode.Dev
+  AppMode: AppMode.Dev,
+  allowDiagnostics: true,
 };
