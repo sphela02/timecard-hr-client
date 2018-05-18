@@ -19,7 +19,7 @@
             
             <ul class="nav flex-column">
                 <li *ngFor="let n of menuList" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}
-                <span *ngIf="n.name == 'Approvals' && _timecardService.countTimecardPendingApprovals.getValue() > 0" class="badge badge-small badge-info badge-pill">{{_timecardService.countTimecardPendingApprovals.getValue()}}</span></a>
+                <span *ngIf="n.name == 'Approvals' && _timecardService.countTimecardPendingApprovals.getValue() > 0" class="badge badge-small badge-primary badge-pill">{{_timecardService.countTimecardPendingApprovals.getValue()}}</span></a>
                     <ul class="nav flex-column">
                         <ng-container *ngFor="let child of n.subMenu">
                             <li class="nav-item border-top border-light" *ngIf="(child.name)">
