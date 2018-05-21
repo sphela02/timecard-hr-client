@@ -13,7 +13,8 @@
     "pr": "ng lint && ng build && ng test",
     "lintwatch": "chokidar \"**/*\" -c \"ng lint\"",
     "deploy-dev": "ng build --prod --output-path=T:\\TimecardClient --base-href=/TimecardClient/ --environment=dev && move T:\\TimecardClient\\assets\\web.config_dev T:\\TimecardClient\\web.config",
-    "deploy-test": "ng build --prod --output-path=T:\\Test\\Timecard --base-href=/Test/Timecard/ --environment=test && move T:\\Test\\Timecard\\assets\\web.config_test T:\\Test\\Timecard\\web.config"
+    "deploy-test": "ng build --prod --output-path=T:\\Test\\Timecard --base-href=/Test/Timecard/ --environment=test && move T:\\Test\\Timecard\\assets\\web.config_test T:\\Test\\Timecard\\web.config",
+    "deploy-vpn": "ng build --prod --output-path=T:\\VPNTest\\Timecard --base-href=/VPNTest/Timecard/ --environment=vpn && move T:\\VPNTest\\Timecard\\assets\\web.config_vpn T:\\VPNTest\\Timecard\\web.config"
   },
   "private": true,
   "dependencies": {
