@@ -5,7 +5,7 @@ import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
 import { Router } from '@angular/router';
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
-import { environment } from '../environments/environment.local';
+import { environment } from '../environments/environment';
 
 declare var $: any;
 
