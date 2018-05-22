@@ -55,23 +55,23 @@
                 </div>
             </li>
         </ul> -->
-        <div *ngIf="environment.allowDiagnostics">
-            <button *ngIf="!diagnosticsMode"
-                    (click)="startDiagnostics()">
-                Start Diagnostics
-            </button>
+        <div class="ml-auto mr-3 diagnostics-column" *ngIf="environment.allowDiagnostics">
+            <i class="fa fa-sliders fa-4 click-element" aria-hidden="true"
+                *ngIf="!diagnosticsMode"
+                (click)="startDiagnostics()"
+                title="Start Diagnostics"></i>
             <ng-container *ngIf="diagnosticsMode">
-                <button (click)="endDiagnostics()">
-                    End Diagnostics
-                </button>
-                <ul>
-                    <li *ngFor="let observableCountMessage of _commonDataService.observableDiagnosticMessages">
-                        {{observableCountMessage}}
-                    </li>
-                </ul>
+                <i class="fa fa-sliders fa-4 click-element text-success" aria-hidden="true"
+                    (click)="endDiagnostics()"
+                    title="Start Diagnostics"></i>
             </ng-container>
+            <div class="diagnostics-panel" *ngIf="diagnosticsMode">
+                <div class="py-1 border-bottom" *ngFor="let observableCountMessage of _commonDataService.observableDiagnosticMessages">
+                    <span class="text-nowrap">{{observableCountMessage}}</span>
+                </div>
+            </div>
         </div>
-        <div class="ml-auto navbar-nav mt-0">
+        <div class="navbar-nav mt-0 mx-2" *ngIf="!environment.production">
             <div class="input-group py-2">
                 <input type="text" 
                 class="form-control py-0" 

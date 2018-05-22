@@ -910,6 +910,19 @@ table.table.timecard-list {
     }
 }
 
+.diagnostics-column {
+    position: relative;
+
+    .diagnostics-panel {
+        background: rgba(white, .9);
+        padding: 10px;
+        position: absolute;
+        right: 0%;
+        top: 100%;
+        z-index: 99;
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
