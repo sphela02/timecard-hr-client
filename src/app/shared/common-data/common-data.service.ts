@@ -7,6 +7,7 @@ export class CommonDataService {
   public impersonateUserID: string = '';
   public currentErrorMessages: string[] = [];
   public observableDiagnosticMessages: string[] = [];
+  public defaultBatchWarningTimeInMinutes = 240;
 
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();
