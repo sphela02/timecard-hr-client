@@ -14,6 +14,10 @@ export class CommonDataService {
 
   constructor() { }
 
+  deleteErrorMessageByIndex(errorIndex: number) {
+    this.currentErrorMessages.splice(errorIndex, 1);
+  }
+
   changePageTitle(title: string) {
     this.pageTitleSource.next(title);
   }

@@ -92,8 +92,10 @@
     <div id="alert-container" 
         *ngIf="_commonDataService.currentErrorMessages.length">
             <div class="alert alert-dismissible alert-danger"
-                    *ngFor="let errorMessage of _commonDataService.currentErrorMessages">
-                <button type="button" class="close" data-dismiss="alert">×</button>
+                    *ngFor="let errorMessage of _commonDataService.currentErrorMessages; let errorIndex = index">
+                <button type="button" class="close" 
+                    (click)="_commonDataService.deleteErrorMessageByIndex(errorIndex)"
+                >×</button>
                 <p style="margin:0px;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{errorMessage}}</p>
             </div>
     </div>
