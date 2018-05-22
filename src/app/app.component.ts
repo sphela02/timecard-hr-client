@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserInfoService } from './userinfo/user-info.service';
 import { TimecardService } from './timecard/timecard.service';
 import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
+import { TimecardViewMode } from './shared/shared';
 
 declare var $: any;
+
+// Variables for Hopscotch tour arrays.
+declare var hopscotch: any;
+declare var tour: any;
 
 @Component({
   selector: 'tc-root',
@@ -15,7 +20,6 @@ declare var $: any;
   styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
 })
 export class AppComponent implements OnInit {
-
     public pageTitle = 'Timecard';
     menuList: any;
     selected: any;
@@ -24,6 +28,8 @@ export class AppComponent implements OnInit {
     userToImpersonate: string;
     diagnosticsMode: boolean;
     environment: any = environment;
+    currentViewMode: any = null;
+    tourActive: boolean = false;
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
@@ -91,6 +97,34 @@ export class AppComponent implements OnInit {
                 },
             );
         }
+
+        // Subscribe to router events.
+        _router.events.subscribe(routerEvent => {
+            if (routerEvent instanceof NavigationStart) {
+                if (hopscotch.getCurrTour()) {
+                    console.log('has current tour', hopscotch.getCurrTour());
+                    hopscotch.endTour();
+                    this.tourActive = true;
+                }
+            }
+            if (routerEvent instanceof NavigationEnd) {
+                if (this.tourActive) {
+                    setTimeout(wait => {
+                        hopscotch.startTour(tour[this.currentViewMode]);
+
+                        hopscotch.listen('end', () => {
+                            this.tourActive = false;
+                            hopscotch.removeCallbacks();
+                        });
+
+                        hopscotch.listen('close', () => {
+                            this.tourActive = false;
+                            hopscotch.removeCallbacks();
+                        });
+                    }, 500);
+                }
+            }
+        });
     }
 
     retrieveCurrentUser() {
@@ -132,6 +166,16 @@ export class AppComponent implements OnInit {
         // watch for page title changes.
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
 
+        this._commonDataService.currentViewMode.subscribe(viewMode => {
+            if (viewMode === TimecardViewMode.None ||
+                viewMode === TimecardViewMode.Display ||
+                viewMode === TimecardViewMode.Edit) {
+                    this.currentViewMode = 'tcDisplay';
+            } else {
+                this.currentViewMode = TimecardViewMode[viewMode];
+            }
+    });
+
         setTimeout(() => {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav();
@@ -161,6 +205,23 @@ export class AppComponent implements OnInit {
         this.diagnosticsMode = false;
     } // end endDiagnostics
 
+    startTour() {
+        this.tourActive = true;
+        // Hopscotch tour. Start the tour.
+        hopscotch.startTour(tour[this.currentViewMode]);
+
+        hopscotch.listen('end', () => {
+            console.log('end');
+            this.tourActive = false;
+            hopscotch.removeCallbacks();
+        });
+
+        hopscotch.listen('close', () => {
+            console.log('close');
+            this.tourActive = false;
+            hopscotch.removeCallbacks();
+        });
+    }
 } // end AppComponent
 
 // DBG ... Tasks/Considerations/Issues:
