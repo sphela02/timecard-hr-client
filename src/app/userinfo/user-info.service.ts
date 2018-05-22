@@ -12,6 +12,7 @@ import { TimecardChangeApproverMainComponent } from '../timecard/timecard-change
 
 import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
 
 @Injectable()
 export class UserInfoService {
@@ -26,6 +27,7 @@ export class UserInfoService {
   constructor(
     private _http: HttpClient,
     private modal: NgbModal,
+    private _errorHandlerService: GlobalErrorHandlerService,
   ) {
     this._userInfoUrl = 'Employee/getMyProfile';
     this._userBenefitHoursUrl = 'Employee/getBenefitHours';
@@ -47,6 +49,10 @@ export class UserInfoService {
                 // Store the object for next time, and send it back to the caller
                 this._userInfo = response;
                 this._userInfo$.next(this._userInfo);
+              },
+              error => {
+                console.log(error);
+                this._errorHandlerService.reportErrorMessage('Unable To Retrieve the current logged on User');
               });
     }
 
