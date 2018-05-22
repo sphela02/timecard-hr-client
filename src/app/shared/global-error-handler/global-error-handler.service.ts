@@ -2,6 +2,7 @@ import { Injectable, ErrorHandler } from '@angular/core';
 import * as toastr from 'toastr';
 import { ProgressTrackerService } from '../progress-tracker/progress-tracker.service';
 import { CommonDataService } from '../common-data/common-data.service';
+import { ApplicationErrorDTO } from '../ApplicationErrorDTO';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
@@ -11,7 +12,8 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     private _commonDataService: CommonDataService,
   ) { }
 
-  _pushErrorMessage(errorMessage: string) {
+
+  private _pushErrorMessage(errorMessage: string) {
 
     // Don't show the same message twice in a row
     if (this._commonDataService.currentErrorMessages[this._commonDataService.currentErrorMessages.length - 1] !== errorMessage) {
@@ -20,6 +22,18 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     }
 
   }
+
+  reportApplicationError(applicationError: ApplicationErrorDTO, prefixMessage: string = null) {
+
+    let errorMessage: string = '';
+    if (prefixMessage) {
+      errorMessage += prefixMessage + ' - ';
+    }
+    errorMessage += applicationError.ErrorText;
+    errorMessage += ' ( Error #' + applicationError.CorrelationID + ')';
+
+    this._pushErrorMessage(errorMessage);
+  } // end reportApplicationError
 
   reportErrorMessage(errorMessage) {
     // Push a simple error message to the error list

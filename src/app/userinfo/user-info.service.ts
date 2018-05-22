@@ -13,6 +13,7 @@ import { TimecardChangeApproverMainComponent } from '../timecard/timecard-change
 import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
+import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
 
 @Injectable()
 export class UserInfoService {
@@ -50,9 +51,16 @@ export class UserInfoService {
                 this._userInfo = response;
                 this._userInfo$.next(this._userInfo);
               },
-              error => {
-                console.log(error);
-                this._errorHandlerService.reportErrorMessage('Unable To Retrieve the current logged on User');
+              (error: HttpErrorResponse) => {
+                if (error.status === 403) {
+                  const applicationError: ApplicationErrorDTO = error.error;
+                  this._errorHandlerService.reportApplicationError(applicationError, 'Access Denied');
+                } else {
+                  // Other error besides 403
+                  // dbg .. we should check for 500 as well
+                  console.log(error);
+                  this._errorHandlerService.reportErrorMessage('Unable To Retrieve the current logged on User');
+                } // end if error status is 403/500/etc
               });
     }
 
