@@ -6,6 +6,7 @@ import { ApplicationErrorDTO } from '../ApplicationErrorDTO';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
+  errorMessageDisplay: any;
 
   constructor(
     private _progressTrackerService: ProgressTrackerService,
@@ -13,7 +14,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   ) { }
 
 
-  private _pushErrorMessage(errorMessage: string) {
+  private _pushErrorMessage(errorMessage: any) {
 
     // Don't show the same message twice in a row
     if (this._commonDataService.currentErrorMessages[this._commonDataService.currentErrorMessages.length - 1] !== errorMessage) {
@@ -26,18 +27,28 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   reportApplicationError(applicationError: ApplicationErrorDTO, prefixMessage: string = null) {
 
     let errorMessage: string = '';
-    if (prefixMessage) {
-      errorMessage += prefixMessage + ' - ';
-    }
     errorMessage += applicationError.ErrorText;
     errorMessage += ' ( Error #' + applicationError.CorrelationID + ')';
 
-    this._pushErrorMessage(errorMessage);
+    // Set message display array.
+    this.errorMessageDisplay = {
+      'prefix': prefixMessage,
+      'message': errorMessage
+    };
+
+    this._pushErrorMessage(this.errorMessageDisplay);
   } // end reportApplicationError
 
   reportErrorMessage(errorMessage) {
+
+    // Set message display array.
+    this.errorMessageDisplay = {
+      'prefix': '',
+      'message': errorMessage
+    };
+
     // Push a simple error message to the error list
-    this._pushErrorMessage(errorMessage);
+    this._pushErrorMessage(this.errorMessageDisplay);
   } // end reportErrorMessage
 
   handleError(error) {
@@ -55,9 +66,21 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     // Turn off any loading indicators
     this._progressTrackerService.clearAllAppLoadingStatuses();
+
     // Push this error message to the list for the App to display it as needed.
-    this._pushErrorMessage(error.message);
-    this._pushErrorMessage(JSON.stringify(error.error));
+    // Set message display array.
+    this.errorMessageDisplay = {
+      'prefix': 'An unexpected error has occurred. Please refresh the browser. If the problem persists contact Service Desk.',
+      'message': error.message
+    };
+
+    // If details exist add it to the message.
+    error.error ? this.errorMessageDisplay['message'] += JSON.stringify(error.error) : this.errorMessageDisplay['message'] += '';
+
+    this._pushErrorMessage(this.errorMessageDisplay);
+
+    // Show error in console.
+    console.error(error);
 
     // Pop up the error message and the body
     // toastr.error(JSON.stringify(error.error)); // dbg

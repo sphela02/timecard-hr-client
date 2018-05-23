@@ -128,7 +128,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.retrieveCurrentUser();
 
         // watch for page title changes.
@@ -141,6 +140,16 @@ export class AppComponent implements OnInit {
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
+    }
+
+    // Show error details when clicked.
+    showErrorDetails(target) {
+        // Change link label.
+        $(target).parent().find('.hide').toggle();
+        $(target).parent().find('.show').toggle();
+
+        // Toggle error-details.
+        $(target).siblings('.error-details').toggle();
     }
 
     startDiagnostics() {
