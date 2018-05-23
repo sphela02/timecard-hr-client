@@ -93,10 +93,28 @@
         *ngIf="_commonDataService.currentErrorMessages.length">
             <div class="alert alert-dismissible alert-danger"
                     *ngFor="let errorMessage of _commonDataService.currentErrorMessages; let errorIndex = index">
-                <button type="button" class="close" 
-                    (click)="_commonDataService.deleteErrorMessageByIndex(errorIndex)"
-                >×</button>
-                <p style="margin:0px;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{errorMessage}}</p>
+                <div class="row">
+                        <button type="button" class="close" 
+                        (click)="_commonDataService.deleteErrorMessageByIndex(errorIndex)"
+                    >×</button>
+                    <div class="col-auto">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="col">
+                        <span *ngIf="errorMessage.prefix">{{errorMessage.prefix}}</span>
+                        <span *ngIf="!errorMessage.prefix">{{errorMessage.message}}</span>
+                        <a class="float-right show" 
+                            (click)="showErrorDetails($event.target)" 
+                            *ngIf="errorMessage.prefix && errorMessage.message">
+                            Show Details</a>
+                        <a class="float-right hide" style="display: none"
+                            (click)="showErrorDetails($event.target)" 
+                            *ngIf="errorMessage.prefix && errorMessage.message">
+                            Hide Details
+                        </a>
+                        <div class="border-top p-2 mt-2 error-details" style="display: none;">{{errorMessage.message}}</div>
+                    </div>
+                </div>                
             </div>
     </div>
 </header>
