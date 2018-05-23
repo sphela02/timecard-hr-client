@@ -3,6 +3,7 @@ import * as toastr from 'toastr';
 import { ProgressTrackerService } from '../progress-tracker/progress-tracker.service';
 import { CommonDataService } from '../common-data/common-data.service';
 import { ApplicationErrorDTO } from '../ApplicationErrorDTO';
+import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
@@ -23,6 +24,22 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     }
 
   }
+
+  handleHttpErrorResponse(error: HttpErrorResponse, ActionDescription: string) {
+
+    if (error.status === 403) {
+      const applicationError: ApplicationErrorDTO = error.error;
+      this.reportApplicationError(applicationError, 'Access Denied');
+    } else if (error.status === 500) {
+      const applicationError: ApplicationErrorDTO = error.error;
+      this.reportApplicationError(applicationError, 'System Error');
+    } else {
+      // Other error besides 403/500
+      console.log(error);
+      this.reportErrorMessage('Unable To ' + ActionDescription);
+    } // end if error status is 403/500/etc
+
+  } // end handleHttpErrorResponse
 
   reportApplicationError(applicationError: ApplicationErrorDTO, prefixMessage: string = null) {
 
