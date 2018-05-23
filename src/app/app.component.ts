@@ -179,6 +179,7 @@ export class AppComponent implements OnInit {
 // SP - Once API goes up with new OT auth data for timecard, remove dbg code from timecard service (line 463)
 // - Read-only rows, on save/update, aren't getting sent to service and triggering unwanted row deletions.
 // - Timecard List ... for status filters, should we reconsider a toggle button approach instead of radio?
+// - Timecard Edit ... make sure that impersonating/reloading a new user on a timecard edit screen, after a failed initial user load, doesn't break the guard
 
 // TESTING CONCERNS:
 // - Timecard Edit ... Make sure the timecard edit route guard handles unsuccessful/invalid saves properly.
