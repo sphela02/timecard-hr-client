@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="navbar-nav mt-0 mx-2" *ngIf="!environment.production">
+        <div class="navbar-nav mt-0 mx-2" [class.ml-auto]="!environment.allowDiagnostics" *ngIf="!environment.production">
             <div class="input-group py-2">
                 <input type="text" 
                 class="form-control py-0" 
