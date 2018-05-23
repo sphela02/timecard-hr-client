@@ -22,6 +22,7 @@ export class UserInfoService {
   private _isApproverUrl: string;
   private _userInfo$: BehaviorSubject<EmployeeProfileDTO> = new BehaviorSubject<EmployeeProfileDTO>(null);
   private _userInfo: EmployeeProfileDTO;
+  private _userInfoIsRetrieving: boolean = false;
   private _isApprover: boolean = null;
   private _isApprover$: Subject<boolean> = new Subject<boolean>(); // dbg replace with behavior subject
 
@@ -34,34 +35,37 @@ export class UserInfoService {
     this._userBenefitHoursUrl = 'Employee/getBenefitHours';
     this._isApproverUrl = 'Employee/HasApproverRole/';
 
-    // Retrieve the user info immediately
+    // Retrieve the user info at startup
     this.getUserInfo();
 
   }
 
   getUserInfo(): Observable<EmployeeProfileDTO> {
 
-    // Have we already retrieved the user info?
-    if (!this._userInfo) {
+    // Have we already retrieved the user info, or is already being retrieved?
+    if ((!this._userInfo) && (!this._userInfoIsRetrieving)) {
       // We don't have the user info yet, retrieve it now, store it and send it.
+      this._userInfoIsRetrieving = true;
+
       this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
                                           { withCredentials: true })
               .subscribe(response => {
+                // Finished retrieving (success)
+                this._userInfoIsRetrieving = false;
+
                 // Store the object for next time, and send it back to the caller
                 this._userInfo = response;
                 this._userInfo$.next(this._userInfo);
+
               },
               (error: HttpErrorResponse) => {
-                if (error.status === 403) {
-                  const applicationError: ApplicationErrorDTO = error.error;
-                  this._errorHandlerService.reportApplicationError(applicationError, 'Access Denied');
-                } else {
-                  // Other error besides 403
-                  // dbg .. we should check for 500 as well
-                  console.log(error);
-                  this._errorHandlerService.reportErrorMessage('Unable To Retrieve the current logged on User');
-                } // end if error status is 403/500/etc
-              });
+                // Finished retrieving (error, but still done)
+                this._userInfoIsRetrieving = false;
+                // Handle the Error response
+                this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve the current user.');
+
+              }
+            ); // end subscribe
     }
 
     // Return the observable to the caller ... we'll send back the object momentarily
@@ -84,7 +88,10 @@ export class UserInfoService {
                 // Store the object for next time, and send it back to the caller
                 this._isApprover = response;
                 this._isApprover$.next(this._isApprover);
-              });
+              },
+              (error: HttpErrorResponse) =>
+                this._errorHandlerService.handleHttpErrorResponse(error, 'determine if current user is an approver.')
+            );
     }
 
     // Return the observable to the caller ... we'll send back the object momentarily
