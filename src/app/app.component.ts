@@ -13,7 +13,6 @@ declare var $: any;
   selector: 'tc-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
-  providers: [UserInfoService]
 })
 export class AppComponent implements OnInit {
 
