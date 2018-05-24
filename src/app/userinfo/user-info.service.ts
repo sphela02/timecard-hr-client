@@ -72,16 +72,12 @@ export class UserInfoService {
     return this._userInfo$;
   }
 
-  getIsApprover(): Observable<boolean> {
+  getIsApprover(forceRefresh: boolean = false): Observable<boolean> {
+    // Is the user an approver?
 
-    // Have we already retrieved the user info?
-    if (this._isApprover != null) {
-      // Send the user info back to the requester, after we return the observable.
-      setTimeout(() => {
-        this._isApprover$.next(this._isApprover);
-      }, 0);
-    } else {
-      // We don't have the user info yet, retrieve it now and store it.
+    // If we don't have the answer yet, or if we need to refresh, get it now.
+    if ((this._isApprover === null) || forceRefresh) {
+      // Retrieve the answer now and store it.
       this._http.get<boolean>(this._isApproverUrl,
                                           { withCredentials: true })
               .subscribe(response => {
@@ -92,7 +88,7 @@ export class UserInfoService {
               (error: HttpErrorResponse) =>
                 this._errorHandlerService.handleHttpErrorResponse(error, 'determine if current user is an approver.')
             );
-    }
+    } // end if
 
     // Return the observable to the caller ... we'll send back the object momentarily
     return this._isApprover$;
@@ -138,5 +134,6 @@ export class UserInfoService {
     // Wipe out all stored data, like going back to an app start
     this._userInfo = null;
     this._userInfo$.next(null);
+    this.getIsApprover(true);
   } // end resetAllData
 }

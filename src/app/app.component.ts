@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
     tourActive: boolean = false;
     private _isApprover: boolean = false;
     private ngUnsubscribe$: Subject<void> = new Subject<void>();
+    isApprover: boolean = false;
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit {
         _userInfoService.getIsApprover()
             .takeUntil(this.ngUnsubscribe$)
             .subscribe(
-            x => this._isApprover = x
+            x => this.isApprover = x
         );
 
         this.menuList = [
