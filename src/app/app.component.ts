@@ -7,6 +7,7 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
 import { TimecardViewMode } from './shared/shared';
+import { Subject } from 'rxjs/Subject';
 
 declare var $: any;
 
@@ -30,6 +31,8 @@ export class AppComponent implements OnInit {
     environment: any = environment;
     currentViewMode: any = null;
     tourActive: boolean = false;
+    private _isApprover: boolean = false;
+    private ngUnsubscribe$: Subject<void> = new Subject<void>();
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
@@ -37,6 +40,12 @@ export class AppComponent implements OnInit {
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
             ) {
+        _userInfoService.getIsApprover()
+            .takeUntil(this.ngUnsubscribe$)
+            .subscribe(
+            x => this._isApprover = x
+        );
+
         this.menuList = [
             // {
             // 'name': 'Dashboard',
@@ -47,6 +56,7 @@ export class AppComponent implements OnInit {
                 'name': 'Timecards',
                 'path': '/timecards',
                 'icon': 'fa-clock-o',
+                'role': '',
                 // Hide change approver until ready.
                 // 'subMenu': [
                 //     {
@@ -58,8 +68,21 @@ export class AppComponent implements OnInit {
                 'name': 'Timecard Search',
                 'path': '/timecard/search',
                 'icon': 'fa-search',
+                'role': '',
             },
-            // {
+            {
+                'name': 'Approver Search',
+                'path': '/timecard/approver-search',
+                'icon': 'fa-search',
+                'role': 'approver',
+            },
+            {
+                'name': 'Approvals',
+                'path': '/timecard/approvals',
+                'icon': 'fa-calendar-check-o',
+                'role': 'approver',
+            },
+    // {
             // 'name': 'Vacation',
             // 'path': '/vacation/request',
             // 'icon': 'fa-sun-o',
@@ -124,6 +147,10 @@ export class AppComponent implements OnInit {
                 }
             }
         });
+    }
+
+    onDestroy() {
+        this.ngUnsubscribe$.next();
     }
 
     retrieveCurrentUser() {
