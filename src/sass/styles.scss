@@ -203,6 +203,15 @@ body.loading {
 
 #filter-wrapper {
     background-color: #f2f0f0;
+
+    .filter-button {
+        padding: .5rem 1rem;
+
+        .badge {
+            padding: 3px 5px;
+            line-height: 1.2;
+        }
+    }
 }
 
 table.table.timecard-list {
