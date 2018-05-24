@@ -177,7 +177,9 @@ export class AppComponent implements OnInit {
 
         setTimeout(() => {
             // Sidebar initialization.
-            $('#sidebarCollapse').sideNav();
+            $('#sidebarCollapse').sideNav({
+                closeOnClick: true
+            });
 
             // Data Picker Initialization.
             $('.datepicker').pickadate();
