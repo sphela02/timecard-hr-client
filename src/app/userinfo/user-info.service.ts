@@ -24,7 +24,7 @@ export class UserInfoService {
   private _userInfo: EmployeeProfileDTO;
   private _userInfoIsRetrieving: boolean = false;
   private _isApprover: boolean = null;
-  private _isApprover$: Subject<boolean> = new Subject<boolean>(); // dbg replace with behavior subject
+  private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private _http: HttpClient,
