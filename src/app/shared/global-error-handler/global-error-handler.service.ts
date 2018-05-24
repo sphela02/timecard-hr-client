@@ -27,6 +27,9 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
   handleHttpErrorResponse(error: HttpErrorResponse, ActionDescription: string) {
 
+    // Turn off any loading indicators if an error occurs
+    this._progressTrackerService.clearAllAppLoadingStatuses();
+
     if (error.status === 403) {
       const applicationError: ApplicationErrorDTO = error.error;
       this.reportApplicationError(applicationError, 'Access Denied');
