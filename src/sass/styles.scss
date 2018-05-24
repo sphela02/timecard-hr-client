@@ -287,6 +287,16 @@ table.table.timecard-list {
     }
 }
 
+#refresh-list {
+    position: absolute;
+    right: 1rem;
+}
+
+.status-filter-list, .name-filter-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 #mini-dashboard {
     background: #f2f0f0;
 
