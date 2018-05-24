@@ -17,7 +17,7 @@
                 </div>
             </div>
             
-            <ul class="nav flex-column">
+            <ul class="nav flex-column" id="timecard-menu">
                 <li *ngFor="let n of menuList" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}
                 <span *ngIf="n.name == 'Approvals' && _timecardService.countTimecardPendingApprovals.getValue() > 0" class="badge badge-small badge-primary badge-pill">{{_timecardService.countTimecardPendingApprovals.getValue()}}</span></a>
                     <ul class="nav flex-column">
@@ -41,7 +41,7 @@
         <div class="float-left">
             <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
         </div>
-        <span class="h5 m-0 pl-3">{{pageTitle}}</span>
+        <span class="h5 m-0 pl-3" id="page-title">{{pageTitle}}</span>
         <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown">
                 <!-- <DBG: Wire up badge to notification Number >
@@ -90,7 +90,7 @@
         </div>
         <div class="navbar-nav mt-0" [class.ml-auto]="!environment.allowDiagnostics">
             <a (click)="startTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</a>
-            <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>            
+            <!-- <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>             -->
         </div>
     </nav>
     <div id="alert-container" 

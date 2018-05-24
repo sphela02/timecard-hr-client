@@ -102,7 +102,6 @@ export class AppComponent implements OnInit {
         _router.events.subscribe(routerEvent => {
             if (routerEvent instanceof NavigationStart) {
                 if (hopscotch.getCurrTour()) {
-                    console.log('has current tour', hopscotch.getCurrTour());
                     hopscotch.endTour();
                     this.tourActive = true;
                 }
@@ -211,13 +210,11 @@ export class AppComponent implements OnInit {
         hopscotch.startTour(tour[this.currentViewMode]);
 
         hopscotch.listen('end', () => {
-            console.log('end');
             this.tourActive = false;
             hopscotch.removeCallbacks();
         });
 
         hopscotch.listen('close', () => {
-            console.log('close');
             this.tourActive = false;
             hopscotch.removeCallbacks();
         });
