@@ -290,21 +290,6 @@ table.table.timecard-list {
 #mini-dashboard {
     background: #f2f0f0;
 
-    .edit-link {
-        color: black;
-        display: block;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: .8rem;
-        text-align: center;
-        text-transform: uppercase;
-
-        @media screen and (max-width: $breakpoint-md) {
-            font-size: 1rem;
-            padding: .8rem 0;
-        }
-    }
-
     .card {
         height: 160px;
         min-width: 100px;
