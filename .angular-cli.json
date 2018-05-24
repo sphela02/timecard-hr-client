@@ -19,14 +19,17 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "tc",
       "styles": [
-        "sass/styles.scss"
+        "sass/styles.scss",
+        "../node_modules/hopscotch/dist/css/hopscotch.min.css"            
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/jquery-touchswipe/jquery.touchSwipe.min.js",
         "../node_modules/mdbootstrap/js/popper.min.js",
         "../node_modules/mdbootstrap/js/bootstrap.min.js",
-        "js/mdb.min.js"
+        "js/mdb.min.js",
+        "../node_modules/hopscotch/dist/js/hopscotch.min.js",
+        "js/walkthrough.js"        
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TimecardViewMode } from '../shared';
+
 
 @Injectable()
 export class CommonDataService {
@@ -12,6 +14,9 @@ export class CommonDataService {
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();
 
+  private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
+  currentViewMode = this.viewModeSource.asObservable();
+
   constructor() { }
 
   deleteErrorMessageByIndex(errorIndex: number) {
@@ -20,5 +25,9 @@ export class CommonDataService {
 
   changePageTitle(title: string) {
     this.pageTitleSource.next(title);
+  }
+
+  changeViewMode(viewMode: TimecardViewMode) {
+    this.viewModeSource.next(viewMode);
   }
 }
