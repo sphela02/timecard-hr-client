@@ -95,6 +95,22 @@ body.loading {
     }
 }
 
+#alert-container {
+    padding: 0 .7rem 0 .7rem;
+
+    .alert {
+        margin: .5rem 0 0 0;
+
+        &:last-child {
+            margin-bottom: .5rem;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding-left: 255px;
+    }
+}
+
 .side-nav {
     .nav-container {
         position: absolute;
@@ -274,21 +290,6 @@ table.table.timecard-list {
 #mini-dashboard {
     background: #f2f0f0;
 
-    .edit-link {
-        color: black;
-        display: block;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: .8rem;
-        text-align: center;
-        text-transform: uppercase;
-
-        @media screen and (max-width: $breakpoint-md) {
-            font-size: 1rem;
-            padding: .8rem 0;
-        }
-    }
-
     .card {
         height: 160px;
         min-width: 100px;
@@ -349,7 +350,7 @@ table.table.timecard-list {
     overflow-y: auto;
 
     &.mobile-daily {
-        background: none;
+        background: #f2f0f0;
     }
 
     #tc-settings {
@@ -547,6 +548,10 @@ table.table.timecard-list {
 
                     @media screen and (min-width: $breakpoint-md) {
                         font-size: 1rem;
+                    }
+
+                    &:focus {
+                        box-shadow: 0px 0px 3px $harris-grey;
                     }
                 }
             }
@@ -822,7 +827,12 @@ table.table.timecard-list {
 #add-charge-code {
     .mdb-select {
         .caret {
+            background: white;
+            height: 1rem;
             top: 8px;
+            display: block;
+            z-index: 10;
+            pointer-events: none;
         }
 
         .select-dropdown {
@@ -830,9 +840,28 @@ table.table.timecard-list {
             font-size: 14px;
             height: auto;
             line-height: 1.5;
+            overflow-x: hidden;
+            overflow-y: scroll;
             max-height: 200px;
             padding: .375rem 0 .5rem;
+            -ms-overflow-style: scrollbar;
         }
+    }
+
+    .browser-default {
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        display: inline-block;
+        margin-top: .1rem;
+        min-width: 40px;
+        max-width: 100%;
+        padding: .45rem 0;
+    }
+
+    .dropdown-item.active {
+        color: #16181b;
+        text-decoration: none;
+        background-color: #d6d6d7;
     }
 }
 
@@ -863,6 +892,19 @@ table.table.timecard-list {
 
     .toast-close-button {
         top: -.2rem;
+    }
+}
+
+.diagnostics-column {
+    position: relative;
+
+    .diagnostics-panel {
+        background: rgba(white, .9);
+        padding: 10px;
+        position: absolute;
+        right: 0%;
+        top: 100%;
+        z-index: 99;
     }
 }
 

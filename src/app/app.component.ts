@@ -1,32 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserInfoService } from './userinfo/user-info.service';
 import { TimecardService } from './timecard/timecard.service';
 import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { CommonDataService } from './shared/common-data/common-data.service';
+import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
+import { environment } from '../environments/environment';
+import { TimecardViewMode } from './shared/shared';
+import { Subject } from 'rxjs/Subject';
 
 declare var $: any;
+
+// Variables for Hopscotch tour arrays.
+declare var hopscotch: any;
+declare var tour: any;
 
 @Component({
   selector: 'tc-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
-  providers: [UserInfoService, TimecardService]
 })
 export class AppComponent implements OnInit {
-
     public pageTitle = 'Timecard';
     menuList: any;
     selected: any;
     errorMessage: string;
     userInfo: EmployeeProfileDTO;
     userToImpersonate: string;
+    diagnosticsMode: boolean;
+    environment: any = environment;
+    currentViewMode: any = null;
+    tourActive: boolean = false;
+    private _isApprover: boolean = false;
+    private ngUnsubscribe$: Subject<void> = new Subject<void>();
+    isApprover: boolean = false;
 
     constructor(private _userInfoService: UserInfoService,
-                private _commonDataService: CommonDataService,
+                public _commonDataService: CommonDataService,
                 private _timecardService: TimecardService,
                 private _router: Router,
+                public errorHandlerService: GlobalErrorHandlerService,
             ) {
+        _userInfoService.getIsApprover()
+            .takeUntil(this.ngUnsubscribe$)
+            .subscribe(
+            x => this.isApprover = x
+        );
+
         this.menuList = [
             // {
             // 'name': 'Dashboard',
@@ -37,6 +57,7 @@ export class AppComponent implements OnInit {
                 'name': 'Timecards',
                 'path': '/timecards',
                 'icon': 'fa-clock-o',
+                'role': '',
                 // Hide change approver until ready.
                 // 'subMenu': [
                 //     {
@@ -48,8 +69,21 @@ export class AppComponent implements OnInit {
                 'name': 'Timecard Search',
                 'path': '/timecard/search',
                 'icon': 'fa-search',
+                'role': '',
             },
-            // {
+            {
+                'name': 'Approver Search',
+                'path': '/timecard/approver-search',
+                'icon': 'fa-search',
+                'role': 'approver',
+            },
+            {
+                'name': 'Approvals',
+                'path': '/timecard/approvals',
+                'icon': 'fa-calendar-check-o',
+                'role': 'approver',
+            },
+    // {
             // 'name': 'Vacation',
             // 'path': '/vacation/request',
             // 'icon': 'fa-sun-o',
@@ -70,23 +104,37 @@ export class AppComponent implements OnInit {
             // }
         ];
 
-        // add approver menus
-        if (this._userInfoService.getIsApprover()) {
-            this.menuList.push(
-                {
-                    'name': 'Approvals',
-                    'path': '/timecard/approvals',
-                    'icon': 'fa-calendar-check-o',
-                },
-            );
-            this.menuList.push(
-                {
-                    'name': 'Approver Search',
-                    'path': '/timecard/approver-search',
-                    'icon': 'fa-search',
-                },
-            );
-        }
+
+        // Subscribe to router events.
+        _router.events.subscribe(routerEvent => {
+            if (routerEvent instanceof NavigationStart) {
+                if (hopscotch.getCurrTour()) {
+                    hopscotch.endTour();
+                    this.tourActive = true;
+                }
+            }
+            if (routerEvent instanceof NavigationEnd) {
+                if (this.tourActive) {
+                    setTimeout(wait => {
+                        hopscotch.startTour(tour[this.currentViewMode]);
+
+                        hopscotch.listen('end', () => {
+                            this.tourActive = false;
+                            hopscotch.removeCallbacks();
+                        });
+
+                        hopscotch.listen('close', () => {
+                            this.tourActive = false;
+                            hopscotch.removeCallbacks();
+                        });
+                    }, 500);
+                }
+            }
+        });
+    }
+
+    onDestroy() {
+        this.ngUnsubscribe$.next();
     }
 
     retrieveCurrentUser() {
@@ -113,6 +161,7 @@ export class AppComponent implements OnInit {
         // this._router.navigate(['/']);
 
         this.retrieveCurrentUser();
+        this._router.navigateByUrl('/timecards');
 
     } // end impersonateUser
 
@@ -122,21 +171,67 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.retrieveCurrentUser();
 
         // watch for page title changes.
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
 
+        this._commonDataService.currentViewMode.subscribe(viewMode => {
+            if (viewMode === TimecardViewMode.None ||
+                viewMode === TimecardViewMode.Display ||
+                viewMode === TimecardViewMode.Edit) {
+                    this.currentViewMode = 'tcDisplay';
+            } else {
+                this.currentViewMode = TimecardViewMode[viewMode];
+            }
+    });
+
         setTimeout(() => {
             // Sidebar initialization.
-            $('#sidebarCollapse').sideNav();
+            $('#sidebarCollapse').sideNav({
+                // closeOnClick: true
+            });
 
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
     }
 
+    // Show error details when clicked.
+    showErrorDetails(target) {
+        // Change link label.
+        $(target).parent().find('.hide').toggle();
+        $(target).parent().find('.show').toggle();
+
+        // Toggle error-details.
+        $(target).siblings('.error-details').toggle();
+    }
+
+    startDiagnostics() {
+        this._timecardService.startSubscriberDiagnostics();
+        this.diagnosticsMode = true;
+    } // end startDiagnostics
+
+    endDiagnostics() {
+        this._timecardService.endSubscriberDiagnostics();
+        this.diagnosticsMode = false;
+    } // end endDiagnostics
+
+    startTour() {
+        this.tourActive = true;
+        // Hopscotch tour. Start the tour.
+        hopscotch.startTour(tour[this.currentViewMode]);
+
+        hopscotch.listen('end', () => {
+            this.tourActive = false;
+            hopscotch.removeCallbacks();
+        });
+
+        hopscotch.listen('close', () => {
+            this.tourActive = false;
+            hopscotch.removeCallbacks();
+        });
+    }
 } // end AppComponent
 
 // DBG ... Tasks/Considerations/Issues:
@@ -153,6 +248,9 @@ export class AppComponent implements OnInit {
 // - Notes ... Edit/Delete permissions are sometimes distinct, so we may need to wire in separate booleans on the Note DTO for whether we can edit or delete.
 // - Timecard save/validate ... Revisit the validation/save Response messages and make sure that error, warning and info messages are all handled correctly.
 // SP - Once API goes up with new OT auth data for timecard, remove dbg code from timecard service (line 463)
+// - Read-only rows, on save/update, aren't getting sent to service and triggering unwanted row deletions.
+// - Timecard List ... for status filters, should we reconsider a toggle button approach instead of radio?
+// - Timecard Edit ... make sure that impersonating/reloading a new user on a timecard edit screen, after a failed initial user load, doesn't break the guard
 
 // TESTING CONCERNS:
 // - Timecard Edit ... Make sure the timecard edit route guard handles unsuccessful/invalid saves properly.

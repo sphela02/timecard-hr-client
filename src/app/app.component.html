@@ -17,17 +17,21 @@
                 </div>
             </div>
             
-            <ul class="nav flex-column">
-                <li *ngFor="let n of menuList" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}</a>
-                    <ul class="nav flex-column">
-                        <ng-container *ngFor="let child of n.subMenu">
-                            <li class="nav-item border-top border-light" *ngIf="(child.name)">
-                                <a class="nav-link" *ngIf="child.path" [routerLink]="[child.path]">{{child.name}}</a>
-                                <a class="nav-link" *ngIf="child.name === 'Change Approver'" (click)="_userInfoService.popupChangeApprovers()">{{child.name}}</a>
-                            </li>
-                        </ng-container>
-                    </ul>
-                </li>
+            <ul class="nav flex-column" id="timecard-menu">
+                <ng-container *ngFor="let n of menuList">
+                    <li *ngIf="n.role == '' || (n.role == 'approver' && isApprover)" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}
+                    <span *ngIf="n.name == 'Approvals' && _timecardService.countTimecardPendingApprovals.getValue() > 0" class="badge badge-small badge-primary badge-pill">{{_timecardService.countTimecardPendingApprovals.getValue()}}</span></a>
+                        <ul class="nav flex-column">
+                            <ng-container *ngFor="let child of n.subMenu">
+                                <li class="nav-item border-top border-light" *ngIf="(child.name)">
+                                    <a class="nav-link" *ngIf="child.path" [routerLink]="[child.path]">{{child.name}}</a>
+                                    <a class="nav-link" *ngIf="child.name === 'Change Approver'" (click)="_userInfoService.popupChangeApprovers()">{{child.name}}</a>
+                                    
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </li>
+                </ng-container>
             </ul>
         </div>
         <div class="harris-logo-wrapper">
@@ -39,7 +43,7 @@
         <div class="float-left">
             <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
         </div>
-        <span class="h5 m-0 pl-3">{{pageTitle}}</span>
+        <span class="h5 m-0 pl-3" id="page-title">{{pageTitle}}</span>
         <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown">
                 <!-- <DBG: Wire up badge to notification Number >
@@ -53,7 +57,23 @@
                 </div>
             </li>
         </ul> -->
-        <div class="ml-auto navbar-nav mt-0">
+        <div class="ml-auto mr-3 diagnostics-column" *ngIf="environment.allowDiagnostics">
+            <i class="fa fa-sliders fa-4 click-element" aria-hidden="true"
+                *ngIf="!diagnosticsMode"
+                (click)="startDiagnostics()"
+                title="Start Diagnostics"></i>
+            <ng-container *ngIf="diagnosticsMode">
+                <i class="fa fa-sliders fa-4 click-element text-success" aria-hidden="true"
+                    (click)="endDiagnostics()"
+                    title="Start Diagnostics"></i>
+            </ng-container>
+            <div class="diagnostics-panel" *ngIf="diagnosticsMode">
+                <div class="py-1 border-bottom" *ngFor="let observableCountMessage of _commonDataService.observableDiagnosticMessages">
+                    <span class="text-nowrap">{{observableCountMessage}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-nav mt-0 mx-2" [class.ml-auto]="!environment.allowDiagnostics" *ngIf="!environment.production">
             <div class="input-group py-2">
                 <input type="text" 
                 class="form-control py-0" 
@@ -70,7 +90,39 @@
                 </div>
             </div>
         </div>
+        <div class="navbar-nav mt-0" [class.ml-auto]="!environment.allowDiagnostics">
+            <a (click)="startTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</a>
+            <!-- <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>             -->
+        </div>
     </nav>
+    <div id="alert-container" 
+        *ngIf="_commonDataService.currentErrorMessages.length">
+            <div class="alert alert-dismissible alert-danger"
+                    *ngFor="let errorMessage of _commonDataService.currentErrorMessages; let errorIndex = index">
+                <div class="row">
+                        <button type="button" class="close" 
+                        (click)="_commonDataService.deleteErrorMessageByIndex(errorIndex)"
+                    >×</button>
+                    <div class="col-auto">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="col">
+                        <span *ngIf="errorMessage.prefix">{{errorMessage.prefix}}</span>
+                        <span *ngIf="!errorMessage.prefix">{{errorMessage.message}}</span>
+                        <a class="float-right show" 
+                            (click)="showErrorDetails($event.target)" 
+                            *ngIf="errorMessage.prefix && errorMessage.message">
+                            Show Details</a>
+                        <a class="float-right hide" style="display: none"
+                            (click)="showErrorDetails($event.target)" 
+                            *ngIf="errorMessage.prefix && errorMessage.message">
+                            Hide Details
+                        </a>
+                        <div class="border-top p-2 mt-2 error-details" style="display: none;">{{errorMessage.message}}</div>
+                    </div>
+                </div>                
+            </div>
+    </div>
 </header>
 <main class="m-0 pt-0">
     <div class="wrapper">

@@ -132,7 +132,7 @@ export enum ActionType {
     Desktop = '(min-width: 768px)',
   }
 
-  export enum isLoadingDisplay {
-    Timecard = 'body',
-    Notes = '.modal-content',
+  export enum ApplicationArea {
+    Timecard = 1,
+    Notes = 2,
   }

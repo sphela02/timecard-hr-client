@@ -12,6 +12,8 @@ import { TimecardChangeApproverMainComponent } from '../timecard/timecard-change
 
 import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
+import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
 
 @Injectable()
 export class UserInfoService {
@@ -20,58 +22,73 @@ export class UserInfoService {
   private _isApproverUrl: string;
   private _userInfo$: BehaviorSubject<EmployeeProfileDTO> = new BehaviorSubject<EmployeeProfileDTO>(null);
   private _userInfo: EmployeeProfileDTO;
+  private _userInfoIsRetrieving: boolean = false;
   private _isApprover: boolean = null;
-  private _isApprover$: Subject<boolean> = new Subject<boolean>(); // dbg replace with behavior subject
+  private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private _http: HttpClient,
     private modal: NgbModal,
+    private _errorHandlerService: GlobalErrorHandlerService,
   ) {
     this._userInfoUrl = 'Employee/getMyProfile';
     this._userBenefitHoursUrl = 'Employee/getBenefitHours';
     this._isApproverUrl = 'Employee/HasApproverRole/';
 
-    // Retrieve the user info immediately
+    // Retrieve the user info at startup
     this.getUserInfo();
 
   }
 
   getUserInfo(): Observable<EmployeeProfileDTO> {
 
-    // Have we already retrieved the user info?
-    if (!this._userInfo) {
+    // Have we already retrieved the user info, or is already being retrieved?
+    if ((!this._userInfo) && (!this._userInfoIsRetrieving)) {
       // We don't have the user info yet, retrieve it now, store it and send it.
+      this._userInfoIsRetrieving = true;
+
       this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
                                           { withCredentials: true })
               .subscribe(response => {
+                // Finished retrieving (success)
+                this._userInfoIsRetrieving = false;
+
                 // Store the object for next time, and send it back to the caller
                 this._userInfo = response;
                 this._userInfo$.next(this._userInfo);
-              });
+
+              },
+              (error: HttpErrorResponse) => {
+                // Finished retrieving (error, but still done)
+                this._userInfoIsRetrieving = false;
+                // Handle the Error response
+                this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve the current user.');
+
+              }
+            ); // end subscribe
     }
 
     // Return the observable to the caller ... we'll send back the object momentarily
     return this._userInfo$;
   }
 
-  getIsApprover(): Observable<boolean> {
+  getIsApprover(forceRefresh: boolean = false): Observable<boolean> {
+    // Is the user an approver?
 
-    // Have we already retrieved the user info?
-    if (this._isApprover != null) {
-      // Send the user info back to the requester, after we return the observable.
-      setTimeout(() => {
-        this._isApprover$.next(this._isApprover);
-      }, 0);
-    } else {
-      // We don't have the user info yet, retrieve it now and store it.
+    // If we don't have the answer yet, or if we need to refresh, get it now.
+    if ((this._isApprover === null) || forceRefresh) {
+      // Retrieve the answer now and store it.
       this._http.get<boolean>(this._isApproverUrl,
                                           { withCredentials: true })
               .subscribe(response => {
                 // Store the object for next time, and send it back to the caller
                 this._isApprover = response;
                 this._isApprover$.next(this._isApprover);
-              });
-    }
+              },
+              (error: HttpErrorResponse) =>
+                this._errorHandlerService.handleHttpErrorResponse(error, 'determine if current user is an approver.')
+            );
+    } // end if
 
     // Return the observable to the caller ... we'll send back the object momentarily
     return this._isApprover$;
@@ -117,5 +134,6 @@ export class UserInfoService {
     // Wipe out all stored data, like going back to an app start
     this._userInfo = null;
     this._userInfo$.next(null);
+    this.getIsApprover(true);
   } // end resetAllData
 }

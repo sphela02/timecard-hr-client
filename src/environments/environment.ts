@@ -12,9 +12,13 @@ import { AppMode } from '../app/shared/shared';
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
+export const dbgApiServiceURL = 'https://mi-dev.harris.com/timecard/api/v1/'; // dbg
+export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/timecard/api/v1/'; // dbg
+
 export const environment = {
   production: false,
   apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
   // apiServiceURL: 'http://localhost:9572/api/v1/',
-  AppMode: AppMode.Dev
+  AppMode: AppMode.Dev,
+  allowDiagnostics: true,
 };

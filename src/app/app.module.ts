@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,8 @@ import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate } from './testi
 import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { IsApproverGuard } from './app-isapprover-guard';
+import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
+import { ProgressTrackerService } from './shared/progress-tracker/progress-tracker.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,12 @@ import { IsApproverGuard } from './app-isapprover-guard';
   providers: [
     UserInfoService,
     CommonDataService,
+    ProgressTrackerService,
+    GlobalErrorHandlerService,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HarrisHttpInterceptor,

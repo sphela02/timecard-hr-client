@@ -1,17 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TimecardViewMode } from '../shared';
+
 
 @Injectable()
 export class CommonDataService {
 
   public impersonateUserID: string = '';
+  public currentErrorMessages: string[] = [];
+  public observableDiagnosticMessages: string[] = [];
+  public defaultBatchWarningTimeInMinutes = 240;
 
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();
 
+  private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
+  currentViewMode = this.viewModeSource.asObservable();
+
   constructor() { }
+
+  deleteErrorMessageByIndex(errorIndex: number) {
+    this.currentErrorMessages.splice(errorIndex, 1);
+  }
 
   changePageTitle(title: string) {
     this.pageTitleSource.next(title);
+  }
+
+  changeViewMode(viewMode: TimecardViewMode) {
+    this.viewModeSource.next(viewMode);
   }
 }
