@@ -104,23 +104,6 @@ export class AppComponent implements OnInit {
             // }
         ];
 
-        // add approver menus
-        if (this._userInfoService.getIsApprover()) {
-            this.menuList.push(
-                {
-                    'name': 'Approvals',
-                    'path': '/timecard/approvals',
-                    'icon': 'fa-calendar-check-o',
-                },
-            );
-            this.menuList.push(
-                {
-                    'name': 'Approver Search',
-                    'path': '/timecard/approver-search',
-                    'icon': 'fa-search',
-                },
-            );
-        }
 
         // Subscribe to router events.
         _router.events.subscribe(routerEvent => {
@@ -206,7 +189,7 @@ export class AppComponent implements OnInit {
         setTimeout(() => {
             // Sidebar initialization.
             $('#sidebarCollapse').sideNav({
-                closeOnClick: true
+                // closeOnClick: true
             });
 
             // Data Picker Initialization.
