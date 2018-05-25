@@ -6,8 +6,8 @@ import { Router, NavigationStart, ActivatedRoute, NavigationEnd } from '@angular
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
-import { TimecardViewMode } from './shared/shared';
 import { Subject } from 'rxjs/Subject';
+import { TimecardViewMode, AppViewPort } from './shared/shared';
 
 declare var $: any;
 
@@ -187,9 +187,21 @@ export class AppComponent implements OnInit {
     });
 
         setTimeout(() => {
-            // Sidebar initialization.
-            $('#sidebarCollapse').sideNav({
-                // closeOnClick: true
+            // Sidebar initialization
+            $('#sidebarCollapse').sideNav();
+
+            // Close-on-click for smaller screens
+            $('#sidebar a.nav-link').on('click', function() {
+                if ( !window.matchMedia( AppViewPort.Large ).matches) {
+                    $('#sidebar').velocity({
+                        translateX: ['-100%', 0]
+                    }, {
+                        duration: 300,
+                        queue: false,
+                        easing: 'easeOutQuad'
+                    });
+                    $('#sidenav-overlay').remove();
+                }
             });
 
             // Data Picker Initialization.
