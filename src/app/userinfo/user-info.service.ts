@@ -96,8 +96,15 @@ export class UserInfoService {
 
   getUserBenefitHours(emplID: string): Observable<BenefitHoursDTO[]> {
     return this._http.get<BenefitHoursDTO[]>(this._userBenefitHoursUrl + '/' + emplID,
-                                          { withCredentials: true })
-                                          .catch(this.handleError);
+                                  { withCredentials: true })
+                                  .catch((error: HttpErrorResponse) =>
+                                  Observable.throw(
+                                    this._errorHandlerService.handleHttpErrorResponse(
+                                      error,
+                                      'retrieve benefit hours for user (' + emplID + ').'
+                                    )
+                                  ) // end throw
+                                ); // end catch
   }
 
   popupChangeApprovers() {
@@ -124,11 +131,6 @@ export class UserInfoService {
     });
 
   } // end popupChangeApprovers
-
-  private handleError(err: HttpErrorResponse) {
-    console.error(err.message);  // dbg
-    return Observable.throw(err.message);
-  }
 
   resetAllData() {
     // Wipe out all stored data, like going back to an app start
