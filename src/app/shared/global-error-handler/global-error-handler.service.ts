@@ -32,10 +32,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     if (error.status === 403) {
       const applicationError: ApplicationErrorDTO = error.error;
-      this.reportApplicationError(applicationError, 'Access Denied');
+      this.reportApplicationError(applicationError, 'Not allowed to ' + ActionDescription);
     } else if (error.status === 500) {
       const applicationError: ApplicationErrorDTO = error.error;
-      this.reportApplicationError(applicationError, 'System Error');
+      this.reportApplicationError(applicationError, 'Unable to ' + ActionDescription);
     } else {
       // Other error besides 403/500
       console.log(error);
