@@ -593,10 +593,18 @@ table.table.timecard-list {
                 padding: 2px;
                 position: relative;
                 vertical-align: middle;
+
+                &:first-child {
+                    max-width: 100px;
+                }
     
                 @media screen and (min-width: $breakpoint-lg) {
                     font-size: 1rem;
                     padding: 10px;
+
+                    &:first-child {
+                        max-width: none;
+                    }
                 }
     
                 .row-action {
@@ -628,7 +636,7 @@ table.table.timecard-list {
                 input {
                     background-color: transparent !important;
                     border: none;
-                    font-size: .6rem;
+                    font-size: .7rem;
                     font-weight: bold;
                     text-align: center;
                     width: 100%;
