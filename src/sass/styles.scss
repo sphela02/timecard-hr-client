@@ -420,6 +420,10 @@ table.table.timecard-list {
 
     &.mobile-daily {
         background: #f2f0f0;
+
+        .timecard-list-view input {
+            font-size: 1rem;
+        }
     }
 
     #tc-settings {
@@ -967,25 +971,29 @@ table.table.row-delete-pending-summary {
 
 // Match MDB Select with other inputs.
 #add-charge-code {
+    input[type=text] {
+        font-size: 1rem;
+    } 
     .mdb-select {
         .caret {
             background: white;
             height: 1rem;
             top: 8px;
             display: block;
+            margin-right: -15px;
             z-index: 10;
             pointer-events: none;
         }
 
         .select-dropdown {
             color: #495057;
-            font-size: 14px;
+            font-size: 1rem;
             height: auto;
             line-height: 1.5;
             overflow-x: hidden;
             overflow-y: scroll;
             max-height: 200px;
-            padding: .375rem 0 .5rem;
+            padding: .375rem 15px .5rem 0;
             -ms-overflow-style: scrollbar;
         }
     }
