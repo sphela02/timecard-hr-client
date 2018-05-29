@@ -363,9 +363,9 @@ table.table.timecard-list {
     }
 
     .tc-status {
-        font-size: .8rem;
-        line-height: 1.5;
-        min-width: 100px;
+        line-height: 1;
+        padding-top: 5px;
+        text-transform: uppercase;
     
         &.pending {
             background-color: $info;
