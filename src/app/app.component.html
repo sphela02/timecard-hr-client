@@ -44,19 +44,32 @@
             <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
         </div>
         <span class="h5 m-0 pl-3" id="page-title">{{pageTitle}}</span>
-        <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
+        <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown">
-                <!-- <DBG: Wire up badge to notification Number >
-                <a class="nav-link waves-effect waves-light" id="app-alerts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-bell-o mx-0"></i><span class="badge badge-primary badge-pill red">1</span></a>
+                <a class="nav-link waves-effect waves-light"
+                        id="app-alerts"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        [class.disabled]="(_commonDataService.alertNotificationCount == 0)"
+                        aria-expanded="false">
+                    <i class="fa fa-lg fa-bell-o mx-0"></i>
+                    <span class="badge badge-primary badge-pill red"
+                            *ngIf="_commonDataService.alertNotificationCount">
+                        {{_commonDataService.alertNotificationCount}}
+                    </span>
+                </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
-                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                    <div class="dropdown-divider m-0"></div>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                    <div class="dropdown-divider m-0"></div>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                    <ng-container *ngFor="let alertNotificationGroup of _commonDataService.alertNotificationGroups">
+                            <ng-container *ngFor="let notification of alertNotificationGroup">
+                                <a class="dropdown-item waves-effect waves-light"
+                                    [routerLink]="notification.actionURL"
+                                    >{{notification.alertMessage}}</a>
+                                <div class="dropdown-divider m-0"></div>
+                                </ng-container>
+                        </ng-container>
                 </div>
             </li>
-        </ul> -->
+        </ul>
         <div class="ml-auto mr-3 diagnostics-column" *ngIf="environment.allowDiagnostics">
             <i class="fa fa-sliders fa-4 click-element" aria-hidden="true"
                 *ngIf="!diagnosticsMode"
