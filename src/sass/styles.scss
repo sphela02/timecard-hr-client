@@ -766,15 +766,43 @@ table.table.timecard-list {
 }
 
 #approver-search-results-wrapper {
-    height: 250px;
+    min-height: 255px;
     overflow-y: auto;
 
     #approver-search-results {
+        width: 100%;
+    
+        thead,tbody,tr,td,th {
+            display:block;
+        }
+        
+        tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+        
+        tbody {
+            height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+
+            tr:first-child {
+                td {
+                    border-top: none;
+                }
+            }
+        }
+        
+
         tr {
             cursor: pointer;
     
             td,
             th {
+                float:left;
                 font-size: .8rem;
                 padding-top: .5rem;
                 padding-bottom: .5rem;
