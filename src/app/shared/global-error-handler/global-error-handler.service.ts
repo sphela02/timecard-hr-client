@@ -4,6 +4,7 @@ import { ProgressTrackerService } from '../progress-tracker/progress-tracker.ser
 import { CommonDataService } from '../common-data/common-data.service';
 import { ApplicationErrorDTO } from '../ApplicationErrorDTO';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
+import { AlertMessageType } from '../shared';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
@@ -58,6 +59,31 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     this._pushErrorMessage(this.errorMessageDisplay);
   } // end reportApplicationError
+
+  // Popup a simple normal/error/warning alert message
+  popupAlertMessage(messageString: string, messageType: AlertMessageType) {
+
+    // Simple popup message, not an error
+    toastr.options = {
+      'closeButton': true,
+      'tapToDismiss': false,
+      'showDuration': '10000',
+      'timeOut': '10000',
+      'positionClass': 'toast-center',
+      'preventDuplicates': true
+    };
+
+    if (messageType === AlertMessageType.Ok || messageType === AlertMessageType.OkMin) {
+      toastr.success(messageString);
+    } else if (messageType === AlertMessageType.Error || messageType === AlertMessageType.ErrorMin) {
+      toastr.error(messageString);
+    } else if (messageType === AlertMessageType.WarningMin || messageType === AlertMessageType.Warning) {
+      toastr.warning(messageString);
+    } else if (messageType === AlertMessageType.Info || messageType === AlertMessageType.InfoMin)  {
+      toastr.info(messageString);
+    } // end if messageType
+
+  } // end popupAlertMessage
 
   reportErrorMessage(errorMessage) {
 
