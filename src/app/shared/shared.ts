@@ -22,6 +22,7 @@ export enum ActionType {
     Display = 17,
     Approve = 18,
     UndoApproval = 19,
+    UpdateApprovers = 20,
   }
 
   export enum AlertMessageType {
