@@ -141,3 +141,10 @@ export enum ActionType {
     Timecard = 1,
     Notes = 2,
   }
+
+  export interface AlertNotification {
+    alertMessage: string;
+    alertType: AlertMessageType;
+    itemsAffectedCount: number;
+    actionURL: string;
+  }
