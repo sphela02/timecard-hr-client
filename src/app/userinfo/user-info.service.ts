@@ -7,9 +7,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
 import { BenefitHoursDTO } from '../shared/BenefitHoursDTO';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { TimecardChangeApproverMainComponent } from '../timecard/timecard-change-approver-main/timecard-change-approver-main.component';
-
+import { ActionType } from '../shared/shared';
+import { ErrorStatus } from '../shared/ErrorStatus';
 import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
@@ -28,7 +27,6 @@ export class UserInfoService {
 
   constructor(
     private _http: HttpClient,
-    private modal: NgbModal,
     private _errorHandlerService: GlobalErrorHandlerService,
   ) {
     this._userInfoUrl = 'Employee/getMyProfile';
@@ -107,30 +105,10 @@ export class UserInfoService {
                                 ); // end catch
   }
 
-  popupChangeApprovers() {
-    // changed on the popup? Easier for user to get out if they didn't mean to get here.
-    const modalOptions: NgbModalOptions = {
-      backdrop : 'static',
-      keyboard : false,
-      centered: true
-    };
-
-    // Open the modal popup for project summary info, pass in the row
-    const popupModalRef = this.modal.open(TimecardChangeApproverMainComponent, modalOptions);
-
-    // Subscribe to cancelClicked, in case we need it.
-    popupModalRef.componentInstance.cancelClicked.subscribe(event => {
-      // Cancel was clicked ... do anything necessary here.
-
-    });
-
-    // Subscribe to saveClicked, in case we need it.
-    popupModalRef.componentInstance.saveClicked.subscribe(event => {
-      // Save was clicked ... do anything necessary here.
-
-    });
-
-  } // end popupChangeApprovers
+  private handleError(err: HttpErrorResponse) {
+    console.error(err.message);  // dbg
+    return Observable.throw(err.message);
+  }
 
   resetAllData() {
     // Wipe out all stored data, like going back to an app start
