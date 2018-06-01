@@ -400,6 +400,9 @@ table.table.timecard-list {
     table.table.timecard-view {
 
         col {
+            &.current-day {
+                border: 2px solid $info;
+            }
             &[class*="tc-error"] {
                 border: 2px solid;
                 position: relative;
