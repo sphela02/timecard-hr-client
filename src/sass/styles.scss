@@ -381,10 +381,17 @@ table.table.timecard-list {
         }
     }
 
+    .tc-status-label {
+        color: #616264; 
+        font-weight: bold;
+    }
+
     .tc-status {
-        line-height: 1;
-        padding-top: 5px;
+        line-height: .3;
+        padding: 8px 5px 8px 5px;
         text-transform: uppercase;
+        height: 19px;
+        vertical-align: middle;
     
         &.pending {
             background-color: $info;
