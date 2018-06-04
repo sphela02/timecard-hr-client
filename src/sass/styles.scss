@@ -22,6 +22,10 @@ body {
     cursor: pointer;
 }
 
+.reset-line-height {
+    line-height: 1 !important;
+}
+
 .form-control.invalid~.invalid-feedback {
     display: block;
 }
