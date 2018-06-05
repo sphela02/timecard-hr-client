@@ -446,6 +446,14 @@ table.table.timecard-list {
                 color: rgba(black, .38);
             }
 
+            &.row-delete-pending {
+                td,
+                td input {
+                    text-decoration: line-through;
+                    color: red;
+                }
+            }
+
             &.daily-totals {
                 background: $harris-grey;
             }
@@ -777,6 +785,19 @@ table.table.timecard-list {
 .note-container {
     height: 250px;
     overflow-y: auto;
+}
+
+table.table.row-delete-pending-summary {
+    th {
+        background: #f2f0f0;
+        font-size: .8rem;
+        padding-top: .1rem;
+        padding-bottom: .1rem;
+    }
+    td {
+        padding-top: .6rem;
+        padding-bottom: .6rem;
+    }
 }
 
 #approver-search-results-wrapper {
