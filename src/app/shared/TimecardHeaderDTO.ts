@@ -9,6 +9,8 @@ export interface TimecardHeaderDTO {
         PayEndDate: Date;
         PeriodEndDate: Date;
         WeekEndDate: Date;
+        isFutureWeek: boolean;
+        isCurrentWeek: boolean;
         ScheduledHours: number;
         HoursWorked: number;
         OtherHours: number;
