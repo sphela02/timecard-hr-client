@@ -83,7 +83,7 @@
             <!-- <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>             -->
         </div>
         <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" id="alert-notifications">
                 <a class="nav-link waves-effect waves-light"
                         id="app-alerts"
                         data-toggle="dropdown"
@@ -98,13 +98,18 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
                     <ng-container *ngFor="let alertNotificationGroup of _commonDataService.alertNotificationGroups">
-                            <ng-container *ngFor="let notification of alertNotificationGroup">
-                                <a class="dropdown-item waves-effect waves-light"
-                                    [routerLink]="notification.actionURL"
-                                    >{{notification.alertMessage}}</a>
-                                <div class="dropdown-divider m-0"></div>
-                                </ng-container>
+                        <ng-container *ngFor="let notification of alertNotificationGroup">
+                            <a class="dropdown-item waves-effect waves-light p-3"
+                                [routerLink]="notification.actionURL"
+                                >
+                                <i class="fa fa-clock-o text-info fa-5 mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Info"></i>
+                                <i class="fa fa-exclamation-circle fa-5 text-danger mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Warning"></i>
+                                <strong *ngIf="notification.alertType === AlertMessageType.Warning">{{notification.alertMessage}}</strong>
+                                <ng-container *ngIf="notification.alertType !== AlertMessageType.Warning">{{notification.alertMessage}}</ng-container>
+                            </a>
+                            <div class="dropdown-divider m-0"></div>
                         </ng-container>
+                    </ng-container>
                 </div>
             </li>
         </ul>

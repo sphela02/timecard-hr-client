@@ -7,7 +7,7 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
 import { Subject } from 'rxjs/Subject';
-import { TimecardViewMode, AppViewPort } from './shared/shared';
+import { TimecardViewMode, AppViewPort, AlertMessageType } from './shared/shared';
 
 declare var $: any;
 
@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     private _isApprover: boolean = false;
     private ngUnsubscribe$: Subject<void> = new Subject<void>();
     isApprover: boolean = false;
+    AlertMessageType: typeof AlertMessageType = AlertMessageType;
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
