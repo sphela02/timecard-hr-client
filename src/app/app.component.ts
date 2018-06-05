@@ -250,26 +250,16 @@ export class AppComponent implements OnInit {
 // tslint:disable:max-line-length
 
 // SHORT-TERM:
-// SP - Labor Corrections ... When collecting the note before create/delete, make sure button text/mode is correct for both actions
-// MM - Timecard Edit ... make sure approve button is only available on a pristine timecard ... any edits should hide/disable the approve button and show/enable the save button, and the save should show a reminder message to still approve it (similar mechanism to how the sign/submit reminder works).
 // SP - Timecard Edit ... we should think about a "reload" button of some sort ... a way to discard changes and load clean, without needing to use the browser refresh and kill the app. Maybe wire up the route guard to make sure it's what they want?
-// MM - Timecard Edit ... Revisit status messages after actions like reopening, labor corrections, approve/unapprove, etc ... Similar approach to timecard save successful
-// - App/Navigation ... Shrink your browser a bit in desktop mode, Edit a timecard, open the side menu, click Timecards to go back to the list ... the menu doesn't collapse after you click list and load the page.
 // - Data services ... We should look into switching our "Subject" observables to "BehaviorSubject" observables, if that can solve future race conditions and remove the need for many of our setTimeout calls.
 // - Notes ... We should put a confirm on a note deletion
-// - Notes ... Edit/Delete permissions are sometimes distinct, so we may need to wire in separate booleans on the Note DTO for whether we can edit or delete.
+// - Notes ... We should put some loading indicators in place so the user knows something is happening (note delete takes a while, and it's not obvious what's happening)
 // - Timecard save/validate ... Revisit the validation/save Response messages and make sure that error, warning and info messages are all handled correctly.
-// SP - Once API goes up with new OT auth data for timecard, remove dbg code from timecard service (line 463)
-// - Read-only rows, on save/update, aren't getting sent to service and triggering unwanted row deletions.
-// - Timecard List ... for status filters, should we reconsider a toggle button approach instead of radio?
 // - Timecard Edit ... make sure that impersonating/reloading a new user on a timecard edit screen, after a failed initial user load, doesn't break the guard
 
 // TESTING CONCERNS:
 // - Timecard Edit ... Make sure the timecard edit route guard handles unsuccessful/invalid saves properly.
-// - Notes ... Are we happy with when to allow new notes and note edits? On timecard status or should we use the timecard editable field?  Let's compare against Peoplesoft ... suspicion is that We shouldn't be able to edit/add timecard notes on an approved timecard, let's make sure that lines up. Also, when can we add them? Open/Pending/LC?  If it's complicated, should we bring in a 3rd boolean for adding notes on the TC Header?
 // - Labor Corrections ... For Diff, Test the hours changes rigorously, comparing 0 to empty and vice versa.
-// - Labor Corrections ... From a testing POV, we don't really have a way to test what the note/title looks like after an LC deletion (because it's only in an archive.)
-// - Notes ... 4/6/2018 ... after next pSoft refresh, verify that the sphela02->sphelan name change doesn't break editability for notes.
 // - JS testing cycle ... Go through Timecard reloads, Timecard next/previous logic, approve/unapprove, create/delete LC, look at anything with jquery and/or viewchild.
 // - HTTP ... Do slow DB interactions audit
 // - HTTP ... Test all API calls for HTTP error and "200" failures ... make sure error handling looks good
@@ -278,7 +268,6 @@ export class AppComponent implements OnInit {
 // - Project Charge Popup ... for multiple new rows, would a "skip/discard" be possible? UX considerations too
 // - Project Charge Popup ... for field limits, we should think long-term about how to know the right numbers for field lengths ... IE, coordinate with server code, rather than hard-code in HTML. My thought is an enum that gets generated from the API code and we use the same numbers.
 // - Project Charge Popup ... think about "undo" capabilities? IE, undo the changes you started making without cancelling out of the popup ... This may tie back with the discard concept.
-// - Timecard Edit ... Revisit when the next/previous buttons for the timecard edit screen, to advance through the list. Hide the buttons if there is no list? When we bring this back, we need to handle when we're at the beginning/end of the list. Also, make sure the edit guard kicks in, even through we may not be leaving the component.
 
 // HOUSEKEEPING:
 // - Can we remove the dashboard component at this point?
