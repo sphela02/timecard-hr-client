@@ -22,6 +22,7 @@ body {
     cursor: pointer;
 }
 
+
 .reset-line-height {
     line-height: 1 !important;
 }
@@ -38,6 +39,11 @@ input.disabled-input {
 .input-group .calendar-picker-icon {
     font-size: 1.3rem;
     padding-top: 7px;
+}
+
+[type="checkbox"][class*="filled-in"]:not(:checked)+label:after ,
+[type="checkbox"][class*="filled-in"]:checked+label:after {
+   top: 2px 
 }
 
 .loading {
@@ -225,12 +231,19 @@ body.loading {
 
     .filter-button {
         padding: .5rem 1rem;
+        height: 30px;
+        line-height: 1.4;
 
         .badge {
             padding: 3px 5px;
             line-height: 1.2;
         }
     }
+
+    #show-future+label {
+        padding-left: 25px; 
+     }
+    
 }
 
 table.table.timecard-list {

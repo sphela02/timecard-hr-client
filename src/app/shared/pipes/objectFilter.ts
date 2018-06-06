@@ -13,12 +13,12 @@ export class ObjectFilter implements PipeTransform {
                 let isTrue = false;
                 if (searchableList) {
                     for ( const k of Object.keys(searchableList) ) {
-                        if (el[searchableList[k]].toLowerCase().indexOf(input) > -1) {
+                        if (el[searchableList[k]].toString().toLowerCase().indexOf(input) > -1) {
                             isTrue = true;
                         }
                     }
                 } else {
-                    if (el.toLowerCase().indexOf(input) > -1) {
+                    if (el.toString().toLowerCase().indexOf(input) > -1) {
                         isTrue = true;
                     }
                 }
@@ -27,7 +27,6 @@ export class ObjectFilter implements PipeTransform {
                 }
             });
         } else if ((input instanceof Array) && (input.length > 0)) {
-            // If input is an array filter list on array values
             return value.filter(function (el: any) {
                 let isTrue = false;
                 for ( const k of Object.keys(searchableList) ) {
@@ -35,7 +34,7 @@ export class ObjectFilter implements PipeTransform {
                         input.forEach(inputVal => {
                             if (inputVal) {
                                 inputVal = inputVal.toLowerCase();
-                                if (el[searchableList[k]].toLowerCase().indexOf(inputVal) > -1) {
+                                if (el[searchableList[k]].toString().toLowerCase().indexOf(inputVal) > -1) {
                                     isTrue = true;
                                 }
                             }
