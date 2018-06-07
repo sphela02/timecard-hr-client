@@ -320,6 +320,11 @@ table.table.timecard-list {
         }
     }
 
+    #approvals-tabs {
+        bottom: -.5rem;
+        position: absolute;
+    }
+
     .tabs-wrapper .classic-tabs {
         .nav-item:last-child {
             .nav-link {
@@ -839,6 +844,11 @@ table.table.row-delete-pending-summary {
         padding-top: .6rem;
         padding-bottom: .6rem;
     }
+}
+
+#email-emp-list {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 #approver-search-results-wrapper {
