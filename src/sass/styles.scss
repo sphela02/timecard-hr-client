@@ -149,6 +149,8 @@ body.loading {
         }
     
         .user-menu {
+            padding: 1rem 20px;
+
             a {
                 color: black !important;
                 display: inline-block;
@@ -296,6 +298,17 @@ table.table.timecard-list {
 #utility-bar {
     background: $harris-red;
     color: white;
+
+    #emplid-search-wrapper {
+        flex: 1 1 auto;
+        position: relative;
+        width: 1%;
+    }
+
+    .available-employees {
+        max-height: 250px;
+        overflow-y: auto;
+    }
 
     .utility-bar-text {
         font-size: 1rem;
