@@ -29,9 +29,9 @@ export class UserInfoService {
     private _http: HttpClient,
     private _errorHandlerService: GlobalErrorHandlerService,
   ) {
-    this._userInfoUrl = 'Employee/getMyProfile';
-    this._userBenefitHoursUrl = 'Employee/getBenefitHours';
-    this._isApproverUrl = 'Employee/HasApproverRole/';
+    this._userInfoUrl = '|EMPLOYEE|getMyProfile';
+    this._userBenefitHoursUrl = '|EMPLOYEE|getBenefitHours';
+    this._isApproverUrl = '|EMPLOYEE|HasApproverRole/';
 
     // Retrieve the user info at startup
     this.getUserInfo();

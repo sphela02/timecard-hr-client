@@ -14,7 +14,10 @@ import { AppMode } from '../app/shared/shared';
 
 export const environment = {
   production: false,
-  apiServiceURL: 'https://mi-dev.harris.com/test/timecardapi/api/v1/',
+  apiServiceURLs: {
+    'TIMECARD': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/',
+    'EMPLOYEE': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/',
+  },
   AppMode: AppMode.Dev,
   allowDiagnostics: false,
 };

@@ -7,10 +7,9 @@ import { saveAs } from 'file-saver/FileSaver';
 import * as CryptoJS from 'crypto-js';
 import { CommonDataService } from '../shared/common-data/common-data.service';
 
-// HARRIS HTTP INTERCEPTOR
-// Used to intercept all http requests and make manipulations, like:
-// - Prepend the API server hostname
-// - Replace an http url with a static JSON file to return - for offline dev mode
+// HARRIS HTTP INTERCEPTORS
+// Used to intercept all http requests and make manipulations.
+
 // - Allow user impersonations for testing
 @Injectable()
 export class HarrisHttpInterceptorImpersonate implements HttpInterceptor {
@@ -33,8 +32,33 @@ export class HarrisHttpInterceptorImpersonate implements HttpInterceptor {
         return next.handle(request);
     }
 }
+
+// - Prepend the API server hostname
 @Injectable()
 export class HarrisHttpInterceptor implements HttpInterceptor {
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const originalRequest: HttpRequest<any> = request;
+
+        // If the URL starts with |key|, we use the key to find the right API URL prefix.
+        if (request.url.startsWith('|')) {
+
+            // STARTS WITH |key|, prepend with the API URL for that key
+            const apiKey = request.url.substring(1, request.url.indexOf('|', 1));
+            const newURL = environment.apiServiceURLs[apiKey] + request.url.substring(request.url.indexOf('|', 1) + 1);
+            request = request.clone({
+                url: newURL
+            });
+
+        } // end if url starts with |key|
+
+        return next.handle(request);
+    }
+}
+
+// - Replace an http url with a static JSON file to return - for offline dev mode or testing
+@Injectable()
+export class HarrisHttpInterceptorMockJSON implements HttpInterceptor {
 
     mockFileName(originalRequest: HttpRequest<any>): string {
         let mockName = originalRequest.url.replace(/(:|\/)+/gi, '-');
@@ -51,6 +75,7 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const originalRequest: HttpRequest<any> = request;
 
+        // If we're running in MockUse mode, execute the JSON replacement
         switch (environment.AppMode) {
             case AppMode.MockUse:
                 // Use mock data instead of the real request
@@ -70,15 +95,10 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
                     method: mockMethod
                 });
             break;
-            default:
-                // Default use case is to prepend the URL with the API root and pass the request along.
-                request = request.clone({
-                    url: environment.apiServiceURL + request.url
-                });
-            break;
         }
 
         return next.handle(request).do(response => {
+            // If we're in MockGen, save the JSON responses for later use.
             if (environment.AppMode === AppMode.MockGenerate) {
                 const myresponse: HttpResponse<any> = <HttpResponse<any>>response;
                 if (myresponse.status === 200) {
@@ -93,5 +113,4 @@ export class HarrisHttpInterceptor implements HttpInterceptor {
         });
     }
 }
-
 
