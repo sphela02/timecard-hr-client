@@ -319,6 +319,10 @@ table.table.timecard-list {
         @media screen and (min-width: $breakpoint-lg) {
             font-size: 1.25rem;
         }
+
+        @media screen and (max-width: $breakpoint-md) {
+            line-height: 1.2;
+        }
     }
 
     #approvals-tabs {
@@ -456,6 +460,10 @@ table.table.timecard-list {
 
     &.mobile-daily {
         background: #f2f0f0;
+
+        .timecard-list-view input {
+            font-size: 1rem;
+        }
     }
 
     #tc-settings {
@@ -629,10 +637,18 @@ table.table.timecard-list {
                 padding: 2px;
                 position: relative;
                 vertical-align: middle;
+
+                &:first-child {
+                    max-width: 100px;
+                }
     
                 @media screen and (min-width: $breakpoint-lg) {
                     font-size: 1rem;
                     padding: 10px;
+
+                    &:first-child {
+                        max-width: none;
+                    }
                 }
     
                 .row-action {
@@ -664,7 +680,7 @@ table.table.timecard-list {
                 input {
                     background-color: transparent !important;
                     border: none;
-                    font-size: .6rem;
+                    font-size: .7rem;
                     font-weight: bold;
                     text-align: center;
                     width: 100%;
@@ -961,6 +977,8 @@ table.table.row-delete-pending-summary {
     }
 
     #approver-dropdown {
+        background-color: #FFF;
+        margin-bottom: 2px;
         margin-left: -2.5rem;
     }
 
@@ -995,25 +1013,29 @@ table.table.row-delete-pending-summary {
 
 // Match MDB Select with other inputs.
 #add-charge-code {
+    input[type=text] {
+        font-size: 1rem;
+    } 
     .mdb-select {
         .caret {
             background: white;
             height: 1rem;
             top: 8px;
             display: block;
+            margin-right: -15px;
             z-index: 10;
             pointer-events: none;
         }
 
         .select-dropdown {
             color: #495057;
-            font-size: 14px;
+            font-size: 1rem;
             height: auto;
             line-height: 1.5;
             overflow-x: hidden;
             overflow-y: scroll;
             max-height: 200px;
-            padding: .375rem 0 .5rem;
+            padding: .375rem 15px .5rem 0;
             -ms-overflow-style: scrollbar;
         }
     }
