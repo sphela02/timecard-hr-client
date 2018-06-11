@@ -44,9 +44,12 @@ export class AppComponent implements OnInit {
             ) {
         _userInfoService.getIsApprover()
             .takeUntil(this.ngUnsubscribe$)
-            .subscribe(
-            x => this.isApprover = x
-        );
+            .subscribe(x => {
+                this.isApprover = x;
+
+                // Set common data service variable.
+                this._commonDataService.isApprover = this.isApprover;
+            });
 
         this.menuList = [
             // {
@@ -55,7 +58,7 @@ export class AppComponent implements OnInit {
             // 'subMenu': []
             // },
             {
-                'name': 'Timecards',
+                'name': 'My Timecards',
                 'path': '/timecards',
                 'icon': 'fa-clock-o',
                 'role': '',
@@ -72,12 +75,12 @@ export class AppComponent implements OnInit {
                 'icon': 'fa-search',
                 'role': '',
             },
-            {
-                'name': 'Approver Search',
-                'path': '/timecard/approver-search',
-                'icon': 'fa-search',
-                'role': 'approver',
-            },
+            // {
+            //     'name': 'Approver Search',
+            //     'path': '/timecard/approver-search',
+            //     'icon': 'fa-search',
+            //     'role': 'approver',
+            // },
             {
                 'name': 'Approvals',
                 'path': '/timecard/approvals',
