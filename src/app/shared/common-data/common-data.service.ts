@@ -12,6 +12,7 @@ export class CommonDataService {
   public defaultBatchWarningTimeInMinutes = 240;
   public alertNotificationGroups: AlertNotification[][] = [];
   public alertNotificationCount: number = 0;
+  public isApprover: boolean;
 
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();

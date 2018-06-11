@@ -10,6 +10,7 @@ $warning: #F99F3C;
 $info: #009cde;
 $success: #6db444;
 
+$breakpoint-xs: '575px';
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
 $breakpoint-xl: '1140px';
@@ -342,6 +343,41 @@ table.table.timecard-list {
             float: right;
             margin-top: 2px;
             padding-left: .4em;
+        }
+    }
+
+    .approver-search {
+        #manager-mode-wrapper {
+            .md-form {
+                margin-top: .5rem;
+                text-align: center;
+
+                .lever {
+                    margin-bottom: .5rem;
+                }
+            }
+        }
+
+        @media screen and (max-width: $breakpoint-xs) {
+            #manager-mode-wrapper {
+                .md-form {
+                    margin-top: 0;
+                }
+            }
+
+            #search-btn-wrapper {
+                button {
+                    margin-top: 0 !important;
+                }
+            }
+        }
+
+        @media screen and (min-width: 1440px) {
+            #manager-mode-wrapper {
+                .md-form {
+                    margin-top: 1.5rem;
+                }
+            }
         }
     }
 }
