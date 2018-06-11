@@ -318,6 +318,10 @@ table.table.timecard-list {
         @media screen and (min-width: $breakpoint-lg) {
             font-size: 1.25rem;
         }
+
+        @media screen and (max-width: $breakpoint-md) {
+            line-height: 1.2;
+        }
     }
 
     #approvals-tabs {
@@ -937,6 +941,8 @@ table.table.row-delete-pending-summary {
     }
 
     #approver-dropdown {
+        background-color: #FFF;
+        margin-bottom: 2px;
         margin-left: -2.5rem;
     }
 
