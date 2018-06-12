@@ -650,6 +650,12 @@ table.table.timecard-list {
                         max-width: none;
                     }
                 }
+
+                input[type=number]::-webkit-inner-spin-button, 
+                input[type=number]::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
+                }
     
                 .row-action {
                     position: absolute;
