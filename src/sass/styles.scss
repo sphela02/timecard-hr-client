@@ -630,7 +630,7 @@ table.table.timecard-list {
             td {
                 border: 1px solid lightgrey;
                 font-size: .7rem;
-                padding: 2px;
+                padding: 2px 0;
                 position: relative;
                 vertical-align: middle;
 
@@ -640,7 +640,7 @@ table.table.timecard-list {
     
                 @media screen and (min-width: $breakpoint-lg) {
                     font-size: 1rem;
-                    padding: 10px;
+                    padding: 10px 0;
 
                     &:first-child {
                         max-width: none;
@@ -684,6 +684,7 @@ table.table.timecard-list {
                     border: none;
                     font-size: .7rem;
                     font-weight: bold;
+                    padding: 0 !important;
                     text-align: center;
                     width: 100%;
 
@@ -885,6 +886,10 @@ table.table.timecard-list {
 .note-container {
     height: 250px;
     overflow-y: auto;
+
+    textarea, input {
+        font-size: 1rem;
+    }
 }
 
 table.table.row-delete-pending-summary {
