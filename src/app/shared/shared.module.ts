@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 export { ApproveInfoDTO } from './ApproveInfoDTO';
 export { BenefitHourType } from './BenefitHourType';
+export { ChargeCodeDTO } from './ChargeCodeDTO';
 export { ChargeCodeStatus } from './ChargeCodeStatus';
 export { EmployeeProfileDTO } from './EmployeeProfileDTO';
 export { ErrorStatus } from './ErrorStatus';

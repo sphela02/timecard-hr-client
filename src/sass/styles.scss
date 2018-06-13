@@ -10,6 +10,7 @@ $warning: #F99F3C;
 $info: #009cde;
 $success: #6db444;
 
+$breakpoint-xs: '575px';
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
 $breakpoint-xl: '1140px';
@@ -20,6 +21,11 @@ body {
 
 .click-element {
     cursor: pointer;
+}
+
+
+.reset-line-height {
+    line-height: 1 !important;
 }
 
 .form-control.invalid~.invalid-feedback {
@@ -34,6 +40,11 @@ input.disabled-input {
 .input-group .calendar-picker-icon {
     font-size: 1.3rem;
     padding-top: 7px;
+}
+
+[type="checkbox"][class*="filled-in"]:not(:checked)+label:after ,
+[type="checkbox"][class*="filled-in"]:checked+label:after {
+   top: 2px 
 }
 
 .loading {
@@ -77,21 +88,36 @@ body.loading {
 }
 
 .navbar {
-    #app-alerts {
-        color: $harris-grey;
-        position: relative;
-    
-        i {
-            font-size: 1.9rem;
+    #alert-notifications {
+        #app-alerts {
+            color: $harris-grey;
+            position: relative;
+        
+            i {
+                font-size: 1.9rem;
+            }
+        
+            .badge {
+                font-size: .6em;
+                line-height: 1.3;
+                position: absolute;
+                right: .5rem;
+                top: 0;
+            }
         }
-    
-        .badge {
-            font-size: .6em;
-            line-height: 1.3;
-            position: absolute;
-            right: .5rem;
-            top: 0;
+
+        &.dropdown .dropdown-menu .dropdown-item {
+            &:hover {
+                background-color: #f8f9fa !important;
+                color: #16181b !important;
+                text-decoration: none;
+            }
+
+            i {
+                font-size: 1.2rem;
+            }
         }
+
     }
 }
 
@@ -124,6 +150,8 @@ body.loading {
         }
     
         .user-menu {
+            padding: 1rem 20px;
+
             a {
                 color: black !important;
                 display: inline-block;
@@ -203,6 +231,22 @@ body.loading {
 
 #filter-wrapper {
     background-color: #f2f0f0;
+
+    .filter-button {
+        padding: .5rem 1rem;
+        height: 30px;
+        line-height: 1.4;
+
+        .badge {
+            padding: 3px 5px;
+            line-height: 1.2;
+        }
+    }
+
+    #show-future+label {
+        padding-left: 25px; 
+     }
+    
 }
 
 table.table.timecard-list {
@@ -256,6 +300,17 @@ table.table.timecard-list {
     background: $harris-red;
     color: white;
 
+    #emplid-search-wrapper {
+        flex: 1 1 auto;
+        position: relative;
+        width: 1%;
+    }
+
+    .available-employees {
+        max-height: 250px;
+        overflow-y: auto;
+    }
+
     .utility-bar-text {
         font-size: 1rem;
         line-height: 1.8;
@@ -264,6 +319,15 @@ table.table.timecard-list {
         @media screen and (min-width: $breakpoint-lg) {
             font-size: 1.25rem;
         }
+
+        @media screen and (max-width: $breakpoint-md) {
+            line-height: 1.2;
+        }
+    }
+
+    #approvals-tabs {
+        bottom: -.5rem;
+        position: absolute;
     }
 
     .tabs-wrapper .classic-tabs {
@@ -285,6 +349,51 @@ table.table.timecard-list {
             padding-left: .4em;
         }
     }
+
+    .approver-search {
+        #manager-mode-wrapper {
+            .md-form {
+                margin-top: .5rem;
+                text-align: center;
+
+                .lever {
+                    margin-bottom: .5rem;
+                }
+            }
+        }
+
+        @media screen and (max-width: $breakpoint-xs) {
+            #manager-mode-wrapper {
+                .md-form {
+                    margin-top: 0;
+                }
+            }
+
+            #search-btn-wrapper {
+                button {
+                    margin-top: 0 !important;
+                }
+            }
+        }
+
+        @media screen and (min-width: 1440px) {
+            #manager-mode-wrapper {
+                .md-form {
+                    margin-top: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+#refresh-list {
+    position: absolute;
+    right: 1rem;
+}
+
+.status-filter-list, .name-filter-list {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 #mini-dashboard {
@@ -351,6 +460,10 @@ table.table.timecard-list {
 
     &.mobile-daily {
         background: #f2f0f0;
+
+        .timecard-list-view input {
+            font-size: 1rem;
+        }
     }
 
     #tc-settings {
@@ -362,10 +475,17 @@ table.table.timecard-list {
         }
     }
 
+    .tc-status-label {
+        color: #616264; 
+        font-weight: bold;
+    }
+
     .tc-status {
-        font-size: .8rem;
-        line-height: 1.5;
-        min-width: 100px;
+        line-height: .3;
+        padding: 8px 5px 8px 5px;
+        text-transform: uppercase;
+        height: 19px;
+        vertical-align: middle;
     
         &.pending {
             background-color: $info;
@@ -381,6 +501,9 @@ table.table.timecard-list {
     table.table.timecard-view {
 
         col {
+            &.current-day {
+                border: 2px solid $info;
+            }
             &[class*="tc-error"] {
                 border: 2px solid;
                 position: relative;
@@ -411,6 +534,14 @@ table.table.timecard-list {
             &.row-is-read-only,
             &.row-is-read-only input {
                 color: rgba(black, .38);
+            }
+
+            &.row-delete-pending {
+                td,
+                td input {
+                    text-decoration: line-through;
+                    color: red;
+                }
             }
 
             &.daily-totals {
@@ -506,10 +637,24 @@ table.table.timecard-list {
                 padding: 2px;
                 position: relative;
                 vertical-align: middle;
+
+                &:first-child {
+                    max-width: 100px;
+                }
     
                 @media screen and (min-width: $breakpoint-lg) {
                     font-size: 1rem;
                     padding: 10px;
+
+                    &:first-child {
+                        max-width: none;
+                    }
+                }
+
+                input[type=number]::-webkit-inner-spin-button, 
+                input[type=number]::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
                 }
     
                 .row-action {
@@ -541,7 +686,7 @@ table.table.timecard-list {
                 input {
                     background-color: transparent !important;
                     border: none;
-                    font-size: .6rem;
+                    font-size: .7rem;
                     font-weight: bold;
                     text-align: center;
                     width: 100%;
@@ -568,7 +713,7 @@ table.table.timecard-list {
         }
 
         .lc-changed {
-            background-color: #00eaff;
+            background-color: #FFFFE0;
             color: black;
         }
 
@@ -746,16 +891,63 @@ table.table.timecard-list {
     overflow-y: auto;
 }
 
+table.table.row-delete-pending-summary {
+    th {
+        background: #f2f0f0;
+        font-size: .8rem;
+        padding-top: .1rem;
+        padding-bottom: .1rem;
+    }
+    td {
+        padding-top: .6rem;
+        padding-bottom: .6rem;
+    }
+}
+
+#email-emp-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 #approver-search-results-wrapper {
-    max-height: 250px;
+    min-height: 255px;
     overflow-y: auto;
 
     #approver-search-results {
+        width: 100%;
+    
+        thead,tbody,tr,td,th {
+            display:block;
+        }
+        
+        tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+        
+        tbody {
+            height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+
+            tr:first-child {
+                td {
+                    border-top: none;
+                }
+            }
+        }
+        
+
         tr {
             cursor: pointer;
     
             td,
             th {
+                float:left;
+                font-size: .8rem;
                 padding-top: .5rem;
                 padding-bottom: .5rem;
             }
@@ -791,6 +983,8 @@ table.table.timecard-list {
     }
 
     #approver-dropdown {
+        background-color: #FFF;
+        margin-bottom: 2px;
         margin-left: -2.5rem;
     }
 
@@ -825,25 +1019,29 @@ table.table.timecard-list {
 
 // Match MDB Select with other inputs.
 #add-charge-code {
+    input[type=text] {
+        font-size: 1rem;
+    } 
     .mdb-select {
         .caret {
             background: white;
             height: 1rem;
             top: 8px;
             display: block;
+            margin-right: -15px;
             z-index: 10;
             pointer-events: none;
         }
 
         .select-dropdown {
             color: #495057;
-            font-size: 14px;
+            font-size: 1rem;
             height: auto;
             line-height: 1.5;
             overflow-x: hidden;
             overflow-y: scroll;
             max-height: 200px;
-            padding: .375rem 0 .5rem;
+            padding: .375rem 15px .5rem 0;
             -ms-overflow-style: scrollbar;
         }
     }

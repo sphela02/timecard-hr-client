@@ -8,6 +8,7 @@
                 <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown" aria-labelledby="user-account">
                     <!-- dbg - Add back in when profile page is available. -->
                     <!-- <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a> -->
+                    <a class="dropdown-item py-2" (click)="_timecardService.popupChangeApprovers()"><i class="fa fa-users" aria-hidden="true"></i> Change Approvers</a>
                     <ul class="list-group">
                         <li class="list-group-item">Employee ID: {{userInfo?.EMPLID}}</li>
                         <li class="list-group-item">Department: {{userInfo?.CurrentDepartment}}</li>
@@ -44,19 +45,6 @@
             <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
         </div>
         <span class="h5 m-0 pl-3" id="page-title">{{pageTitle}}</span>
-        <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item dropdown">
-                <!-- <DBG: Wire up badge to notification Number >
-                <a class="nav-link waves-effect waves-light" id="app-alerts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lg fa-bell-o mx-0"></i><span class="badge badge-primary badge-pill red">1</span></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
-                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                    <div class="dropdown-divider m-0"></div>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                    <div class="dropdown-divider m-0"></div>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul> -->
         <div class="ml-auto mr-3 diagnostics-column" *ngIf="environment.allowDiagnostics">
             <i class="fa fa-sliders fa-4 click-element" aria-hidden="true"
                 *ngIf="!diagnosticsMode"
@@ -79,7 +67,7 @@
                 class="form-control py-0" 
                 [(ngModel)]="userToImpersonate" 
                 placeholder="Enter Username" 
-                style="color: #6db444 !important;"
+                style="color: #6db444 !important;width:140px;"
                 novalidate>
                 <div class="input-group-ammend">
                     <button
@@ -94,6 +82,37 @@
             <a (click)="startTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</a>
             <!-- <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>             -->
         </div>
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item dropdown" id="alert-notifications">
+                <a class="nav-link waves-effect waves-light"
+                        id="app-alerts"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        [class.disabled]="(_commonDataService.alertNotificationCount == 0)"
+                        aria-expanded="false">
+                    <i class="fa fa-lg fa-bell-o mx-0"></i>
+                    <span class="badge badge-primary badge-pill red"
+                            *ngIf="_commonDataService.alertNotificationCount">
+                        {{_commonDataService.alertNotificationCount}}
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
+                    <ng-container *ngFor="let alertNotificationGroup of _commonDataService.alertNotificationGroups">
+                        <ng-container *ngFor="let notification of alertNotificationGroup">
+                            <a class="dropdown-item waves-effect waves-light p-3"
+                                [routerLink]="notification.actionURL"
+                                >
+                                <i class="fa fa-clock-o text-info fa-5 mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Info"></i>
+                                <i class="fa fa-exclamation-circle fa-5 text-danger mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Warning"></i>
+                                <strong *ngIf="notification.alertType === AlertMessageType.Warning">{{notification.alertMessage}}</strong>
+                                <ng-container *ngIf="notification.alertType !== AlertMessageType.Warning">{{notification.alertMessage}}</ng-container>
+                            </a>
+                            <div class="dropdown-divider m-0"></div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </li>
+        </ul>
     </nav>
     <div id="alert-container" 
         *ngIf="_commonDataService.currentErrorMessages.length">
