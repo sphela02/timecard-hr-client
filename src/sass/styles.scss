@@ -319,10 +319,6 @@ table.table.timecard-list {
         @media screen and (min-width: $breakpoint-lg) {
             font-size: 1.25rem;
         }
-
-        @media screen and (max-width: $breakpoint-md) {
-            line-height: 1.2;
-        }
     }
 
     #approvals-tabs {
@@ -337,7 +333,7 @@ table.table.timecard-list {
             }
         }
         .nav-link {
-            margin: 0 1rem 0 0;
+            margin: 0 .8rem 0 0;
         } 
     }
 
