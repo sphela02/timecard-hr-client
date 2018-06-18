@@ -12,7 +12,7 @@ import { HomeModule } from './home/home.module';
 import { VacationRequestModule } from './vacation-request/vacation-request.module';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate } from './testing/harris-http-interceptor';
+import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
 import { IsApproverGuard } from './app-isapprover-guard';
@@ -53,6 +53,11 @@ import { ProgressTrackerService } from './shared/progress-tracker/progress-track
       useClass: HarrisHttpInterceptorImpersonate,
       multi: true
     },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HarrisHttpInterceptorMockJSON,
+    //   multi: true
+    // },
     IsApproverGuard,
   ],
   bootstrap: [AppComponent]
