@@ -104,6 +104,7 @@ export enum ActionType {
     messageText: string;
     inputId: string;
     inputLabel: string;
+    inputMaxLength: number;
     textareaId: string;
     textareaLabel: string;
     cancelBtnText: string;
