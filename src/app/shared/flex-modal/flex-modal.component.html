@@ -17,7 +17,7 @@
             <div class="row" id="modal-input" *ngIf="modalContent.inputId">
               <div class="col-12">
                 <div class="md-form">
-                  <input type="text" class="form-control" id="{{modalContent.inputId}}" maxlength="60" />
+                  <input type="text" class="form-control" id="{{modalContent.inputId}}" [attr.maxlength]="modalContent.inputMaxLength" />
                   <label for="{{modalContent.inputId}}">{{modalContent.inputLabel}}</label>
                   <div class="invalid-feedback">
                     Required
