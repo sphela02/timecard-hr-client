@@ -190,12 +190,6 @@ export class AppComponent implements OnInit {
             }
         });
 
-        // Reset Zoom for iOS devices after input focus.
-        $('input, select, textarea').on('focus blur', function(event) {
-            $('meta[name=viewport]')
-            .attr('content', 'width=device-width,initial-scale=1,maximum-scale=' + (event.type === 'blur' ? 10 : 1));
-        });
-
         setTimeout(() => {
             // Sidebar initialization
             $('#sidebarCollapse').sideNav();
