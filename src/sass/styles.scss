@@ -690,14 +690,18 @@ table.table.timecard-list {
                 input {
                     background-color: transparent !important;
                     border: none;
-                    font-size: .7rem;
+                    font-size: 1rem;
                     font-weight: bold;
+                    margin-left: -2px;
                     padding: 0 !important;
                     text-align: center;
-                    width: 100%;
+                    transform: scale(.79);
+                    width: 110%;
 
                     @media screen and (min-width: $breakpoint-md) {
-                        font-size: 1rem;
+                        margin-left: 0px;
+                        transform: scale(1);
+                        width: 100%;
                     }
 
                     &:focus {
