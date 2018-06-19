@@ -1,4 +1,5 @@
 import { AppMode } from '../app/shared/shared';
+import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -22,4 +23,7 @@ export const environment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  importModules: [
+    // VacationRequestModule, // dbg
+  ],
 };

@@ -9,7 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { TimecardModule } from './timecard/timecard.module';
 import { HomeModule } from './home/home.module';
-// import { VacationRequestModule } from './vacation-request/vacation-request.module'; // dbg
 
 import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
@@ -18,21 +17,22 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { IsApproverGuard } from './app-isapprover-guard';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { ProgressTrackerService } from './shared/progress-tracker/progress-tracker.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    ...environment.importModules, // Specific modules to import for the current environment.
     BrowserModule,
     FormsModule,
     TimecardModule,
     HomeModule,
-    // VacationRequestModule, // dbg
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
   ],
   providers: [
     UserInfoService,

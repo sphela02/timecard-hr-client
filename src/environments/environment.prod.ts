@@ -8,4 +8,5 @@ export const environment = {
   },
   AppMode: AppMode.Prod,
   allowDiagnostics: false,
+  importModules: [],
 };

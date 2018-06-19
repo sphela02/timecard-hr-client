@@ -24,4 +24,5 @@ export const environment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  importModules: [],
 };
