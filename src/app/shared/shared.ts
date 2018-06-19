@@ -136,7 +136,7 @@ export enum ActionType {
     Small = '(min-width: 768px)',
     Medium = '(min-width: 992px)',
     Large = '(min-width: 1200px)',
-    heightSmall = '(min-height: 500px)',
+    heightSmall = '(min-height: 600px)',
   }
 
   export enum ApplicationArea {
