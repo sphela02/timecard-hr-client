@@ -20,7 +20,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     // Don't show the same message twice in a row
     if (this._commonDataService.currentErrorMessages[this._commonDataService.currentErrorMessages.length - 1] !== errorMessage) {
-      this._commonDataService.currentErrorMessages.push(errorMessage);
+      // Wait one cycle before pushing the message on the queue, to avoid timing problems
+      setTimeout(() => {
+        this._commonDataService.currentErrorMessages.push(errorMessage);
+      }, 0);
       // dbg ... the handleError() sends 2 messages at a time, so this duplicate suppression never works there.
     }
 
