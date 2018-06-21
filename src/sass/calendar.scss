@@ -1,0 +1,160 @@
+$base: 1rem;
+$cloud: #EFEFEF;
+$concrete: #CCC;
+$dayBase: 30px;
+
+.calendar {
+  display: block;
+//   width: $dayBase * 7;
+  width: 100%;
+  margin: 0 auto;
+
+
+  .calendar-navs {
+    background-color: white;
+    border-top: 1px solid $harris-grey;
+    border-bottom: 1px solid $harris-grey;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: .875rem;
+    }
+  }
+
+  .month-nav {
+    padding:  0 .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .year-nav {
+    padding: $base;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Montserrat';
+  }
+
+    .month-grid {
+        .day-names {
+            background: white;
+            font-size: 1rem;
+
+            .day-name {
+                padding: 0;
+
+                @media screen and (max-width: $breakpoint-md) {
+                    font-size: .875rem;
+                }
+            }
+        }
+
+        .week-date,
+        .day-name {
+          text-align: center;
+          display: block;
+          align-items: center;
+        }
+
+        .week-date {
+            background-color: white;
+            box-shadow: 0 0 0 1px #CCC;
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: 100%;
+            min-height: 40px;
+
+            .date-text-wrapper {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &::after {
+                    content: '';
+                    height: $dayBase * 0.9;
+                    width: $dayBase * 0.9;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 50%;
+                    transition: background-color 150ms linear, color 150ms linear;
+                }
+
+                .date-text {
+                    z-index: 2;
+
+                    @media screen and (max-width: $breakpoint-md) {
+                        font-size: .7rem;
+                    }
+                }
+            }
+
+            &:after {
+                content: "";
+                float:left;
+                display: block;
+                padding-top: 100%;
+            }
+
+            &.enabled {
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba($info, .10);
+                }
+            }
+
+            &.selected {
+                .date-text-wrapper {
+                    &:after {
+                        background-color: $harris-red;
+                    }
+                    .date-text {
+                        color: white;
+                    }
+                }
+            }
+
+            &.disabled {
+                background: #EFEFEF;
+                color: #999;
+
+                &.requested {
+                    background: lighten($warning, 35%);
+
+                    .requested-hours {
+                        background: $warning;
+                        top: 3px;
+                        color: white;
+                        font-size: .7rem;
+                        position: absolute;
+                        right: 3px;
+                        text-align: center;
+
+                        @media screen and (max-width: $breakpoint-md) {
+                            font-size: .5rem;
+                        }
+                    }
+                }
+            }
+
+            &.today {
+                background: lighten($info, 50%);
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+#calendar-key {
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: .7rem;
+    }
+}
