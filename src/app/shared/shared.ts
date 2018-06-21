@@ -136,6 +136,7 @@ export enum ActionType {
     Small = '(min-width: 768px)',
     Medium = '(min-width: 992px)',
     Large = '(min-width: 1200px)',
+    maxLarge = '(max-width: 1199px)',
     heightSmall = '(min-height: 600px)',
   }
 

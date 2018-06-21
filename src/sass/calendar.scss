@@ -151,9 +151,169 @@ $dayBase: 30px;
             }
         }
     }
+
+    &.status-calendar {
+        .calendar-navs {
+            background-color: white;
+            border: none;
+            font-size: 1.25rem;
+            font-weight: normal;
+        
+            @media screen and (max-width: $breakpoint-md) {
+                font-size: .875rem;
+            }
+        }
+    
+        .month-nav {
+            padding:  0 .5rem;
+            display: flex;
+            flex-direction: row;
+            line-height: 1;
+            justify-content: left;
+
+            .btn {
+                color: #616264 !important;
+            }
+        }
+        
+        .month-grid {
+            .week-date {
+                min-height: 45px;
+                @media screen and (min-width: $breakpoint-lg) {
+                    min-height: 125px;
+                }
+
+                &.enabled {
+                    cursor: default;
+
+                    &:hover {
+                        background-color: white;
+                    }
+
+                    &.click-element {
+                        cursor: pointer;
+                        &:hover {
+                            background-color: rgba($info, .10);
+                        }
+                    }
+                }
+
+                .date-text-wrapper {
+                    bottom: auto;
+                    left: 5px;
+                    right: auto;
+                    top: 5px;
+                }
+
+                .requests {
+                    bottom: 0;
+                    left: 0;
+                    margin: 0 2%;
+                    position: absolute;
+                    width: 96%;
+
+                    & [class*="requests-"] {
+                        line-height: 1.5;
+                        margin-bottom: 5px;
+                        padding: 5px 5px 5px 1.5rem;
+                        text-transform: uppercase;
+                        text-align: left;
+                        position: relative;
+                        width: 100%;
+
+                        .badge {
+                            left: 5px;
+                            line-height: 1.5;
+                            position: absolute;
+                            top: 5px;
+                        }
+                    }
+
+                    .requests {
+                        &-pending {
+                            background: $harris-grey;
+
+                            .badge {
+                                color: $harris-grey !important;
+                            }
+                        }
+                        &-in-process {
+                            background: $info;
+
+                            .badge {
+                                color: $info !important;
+                            }
+                        }
+                        &-approved {
+                            background: $success;
+
+                            .badge {
+                                color: $success !important;
+                            }
+                        }
+                    }
+                }
+
+                .requests-mobile {
+                    bottom: 0;
+                    left: 5px;
+                    margin-bottom: 5px;
+                    position: absolute;
+                    text-align: left;
+                    width: 96%;
+
+                    & [class*="requests-"] {
+                        line-height: 0;
+                        padding: .35em;
+                        text-indent: -9999rem;
+                    }
+
+                    .requests {
+                        &-pending {
+                            background: $harris-grey;
+                        }
+                        &-in-process {
+                            background: $info;
+                        }
+                        &-approved {
+                            background: $success;
+                        }
+                    }
+
+                    @media screen and (min-width: $breakpoint-md) {
+                        & [class*="requests-"] {
+                            line-height: .1;
+                            padding: .5em;
+                            text-indent: -9999rem;
+                        }
+                    }
+
+                    @media screen and (min-width: $breakpoint-xs) {
+                        & [class*="requests-"] {
+                            line-height: .5;
+                            padding: .5em;
+                            text-indent: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 #calendar-key {
+    .requests {
+        &-pending {
+            background: $harris-grey;
+        }
+        &-in-process {
+            background: $info;
+        }
+        &-approved {
+            background: $success;
+        }
+    }
+
     @media screen and (max-width: $breakpoint-md) {
         font-size: .7rem;
     }

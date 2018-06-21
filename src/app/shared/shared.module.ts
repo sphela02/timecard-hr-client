@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MqIfDirective } from '../shared/mq-if/mq-if.directive';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
@@ -41,7 +42,8 @@ export { ValidationResponseTimecardRowDTO } from './ValidationResponseTimecardRo
   imports: [
     CommonModule
   ],
-  declarations: []
+  declarations: [MqIfDirective],
+  exports: [MqIfDirective]
 })
 export class SharedModule {}
 
