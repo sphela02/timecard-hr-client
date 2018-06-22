@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { TimecardModule } from './timecard/timecard.module';
 import { HomeModule } from './home/home.module';
-import { VacationRequestModule } from './vacation-request/vacation-request.module';
+// import { VacationRequestModule } from './vacation-request/vacation-request.module'; // dbg
 
 import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
@@ -28,7 +28,7 @@ import { ProgressTrackerService } from './shared/progress-tracker/progress-track
     FormsModule,
     TimecardModule,
     HomeModule,
-    VacationRequestModule,
+    // VacationRequestModule, // dbg
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,

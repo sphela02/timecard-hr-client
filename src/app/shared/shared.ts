@@ -142,6 +142,7 @@ export enum ActionType {
   export enum ApplicationArea {
     Timecard = 1,
     Notes = 2,
+    VacationRequest = 3,
   }
 
   export interface AlertNotification {
