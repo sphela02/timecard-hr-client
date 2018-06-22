@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://design.harris.com/dist/v1.0/css/default/default.min.css');
 
-
 // Colors
 $harris-red: #e21d22;
 $harris-grey: #74767b;
@@ -1137,3 +1136,6 @@ table.table.row-delete-pending-summary {
         visibility: hidden !important;       
     }
 }
+
+// Additional sass files.
+@import 'calendar';
