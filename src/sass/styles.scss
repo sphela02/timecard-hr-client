@@ -403,7 +403,6 @@ table.table.timecard-list {
     background: #f2f0f0;
 
     .card {
-        height: 160px;
         min-width: 100px;
 
         .min-chart {
@@ -429,8 +428,6 @@ table.table.timecard-list {
 
         .hours {
             display: inline-block;
-            line-height: 75px;
-            min-width: 75px;
         }
 
         .holiday-calendar {
@@ -1118,6 +1115,19 @@ table.table.row-delete-pending-summary {
     }
 }
 
+#timecard-main {
+    #mini-dashboard {    
+        .card {
+            height: 160px;
+        }
+
+        .hours {
+            line-height: 75px;
+            min-width: 75px;
+        }
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
@@ -1139,3 +1149,4 @@ table.table.row-delete-pending-summary {
 
 // Additional sass files.
 @import 'calendar';
+@import 'vacation-request'
