@@ -328,20 +328,8 @@ table.table.timecard-list {
         }
     }
 
-    #approvals-tabs {
-        bottom: -.5rem;
-        position: absolute;
-    }
-
     .tabs-wrapper .classic-tabs {
-        .nav-item:last-child {
-            .nav-link {
-                margin-right: 0;
-            }
-        }
-        .nav-link {
-            margin: 0 .8rem 0 0;
-        } 
+            margin-bottom: -.5rem;
     }
 
     .notes-link {
