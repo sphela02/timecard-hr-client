@@ -2,6 +2,12 @@
     #utility-bar {
         .tabs-wrapper {
             min-height: 50px;
+
+            .classic-tabs {
+                bottom: 0;
+                position: absolute;
+                width: 100%;
+            }
         }
     }
     #mini-dashboard {    
