@@ -46,4 +46,23 @@
             }
         }
     }
+
+    #vacation-request-body {
+        padding-bottom: 100px;
+
+        #total-requested-hours {
+            background: black;
+        }
+
+        #request-edit {
+            td {
+                font-weight: 400;
+                input[type=number]::-webkit-inner-spin-button, 
+                input[type=number]::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
+                }
+            }
+        }
+    }
 }

@@ -16,6 +16,10 @@ $breakpoint-xl: '1140px';
 
 body {
     background-color: white;
+
+    .fa.fa-lg {
+        font-size: 1.33333em;
+    }
 }
 
 .click-element {
@@ -231,7 +235,8 @@ body.loading {
 
 .form-dark .md-form {
     label,
-    input {
+    input,
+    .dropdown-toggle:after {
         color: white;
     }
 }
@@ -957,7 +962,8 @@ table.table.row-delete-pending-summary {
 
 }
 
-#timecard-footer {
+#timecard-footer,
+#vacation-footer {
     bottom: 0;
     left: 0;
     padding-left: 255px;
