@@ -19,7 +19,7 @@ export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/tim
 export const environment = {
   production: false,
   apiServiceURLs: {
-    'VRS': 'http://localhost/VRS.API/api/v1/Vacation/',
+    'VRS': 'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
     'TIMECARD': 'https://mi-dev.harris.com/timecard/api/v1/Timecard/',
     'EMPLOYEE': 'https://mi-dev.harris.com/timecard/api/v1/Employee/',
   },

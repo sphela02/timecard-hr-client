@@ -1,0 +1,49 @@
+#vacation-request-main {
+    #utility-bar {
+        .tabs-wrapper {
+            min-height: 50px;
+        }
+    }
+    #mini-dashboard {    
+        .card {
+            height: auto;
+        }
+
+        .hours {
+            line-height: 50px;
+            min-width: 50px;
+        }
+    }
+
+    #vacation-request-list {
+        th {
+            border: none;
+            color: $harris-grey;
+            padding: 0 10px;
+            vertical-align: bottom;
+        }
+    
+        tr {
+            cursor: pointer;
+        }
+    
+        td {
+            border: 1px solid lightgrey;
+            padding: 10px;
+            vertical-align: middle;
+    
+            &.status {
+                border-right: 6px solid lightgrey;
+                &.approved {
+                    border-right: 6px solid #6db444;
+                }
+                &.pendingapproval {
+                    border-right: 6px solid $info;
+                }
+                &.submitted {
+                    border-right: 6px solid #F99F3C;
+                }
+            }
+        }
+    }
+}

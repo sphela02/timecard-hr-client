@@ -173,6 +173,10 @@ $dayBase: 30px;
 
             .btn {
                 color: #616264 !important;
+                @media screen and (max-width: $breakpoint-xs) {
+                    padding-left: .5rem;
+                    padding-right: .5rem;
+                }
             }
         }
         
