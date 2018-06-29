@@ -64,5 +64,34 @@
                 }
             }
         }
+
+        .vrs-status-label {
+            color: #616264; 
+            font-weight: bold;
+        }
+    
+        .vrs-status {
+            line-height: .3;
+            padding: 8px 5px 8px 5px;
+            text-transform: uppercase;
+            height: 19px;
+            vertical-align: middle;
+        
+            &.cancelled {
+                background-color: #616264;
+            }
+            &.denied {
+                background-color: $danger;
+            }
+            &.submitted {
+                background-color: $warning;
+            }
+            &.approvalinprocess {
+                background-color: $info;
+            }
+            &.approved {
+                background-color: #6db444;
+            }
+        }
     }
 }
