@@ -235,10 +235,10 @@ $dayBase: 30px;
 
                     .requests {
                         &-pending {
-                            background: $harris-grey;
+                            background: $warning;
 
                             .badge {
-                                color: $harris-grey !important;
+                                color: $warning !important;
                             }
                         }
                         &-in-process {
