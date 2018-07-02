@@ -20,9 +20,9 @@ export class HarrisHttpInterceptorImpersonate implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         // If we're impersonating, inject the header here
-        if (this._commonDataService.impersonateUserID) {
+        if (this._commonDataService.impersonateUserID$.value) {
             const headers: HttpHeaders = new HttpHeaders({
-                'HarrisImpersonateUser': this._commonDataService.impersonateUserID
+                'HarrisImpersonateUser': this._commonDataService.impersonateUserID$.value
             });
             request = request.clone({
                 headers,
