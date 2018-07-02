@@ -275,7 +275,7 @@ $dayBase: 30px;
 
                     .requests {
                         &-pending {
-                            background: $harris-grey;
+                            background: $warning;
                         }
                         &-in-process {
                             background: $info;
@@ -323,7 +323,7 @@ $dayBase: 30px;
 #calendar-key {
     .requests {
         &-pending {
-            background: $harris-grey;
+            background: $warning;
         }
         &-in-process {
             background: $info;
