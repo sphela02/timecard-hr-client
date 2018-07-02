@@ -156,16 +156,14 @@ export class AppComponent implements OnInit {
 
 
     impersonateUser() {
-        // Store the new impersonation
-        this._commonDataService.impersonateUserID = this.userToImpersonate;
-        // Tell the services to reset their data
-        this._timecardService.resetAllData();
-        this._userInfoService.resetAllData();
-        // Re-retrieve the current user (which wipes out the user/components) and start the components back up
-        // this._router.navigate(['/']);
+        // Set the new impersonation ... services will reset their data when this happens.
+        this._commonDataService.impersonateUser(this.userToImpersonate);
 
-        this.retrieveCurrentUser();
-        this._router.navigateByUrl('/timecards');
+        // Give the services a chance to reset, then re-retrieve the current user and route back to default.
+        setTimeout(() => {
+            this.retrieveCurrentUser();
+            this._router.navigateByUrl('/');
+        }, 0);
 
     } // end impersonateUser
 

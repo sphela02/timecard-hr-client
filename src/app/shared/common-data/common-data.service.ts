@@ -6,7 +6,8 @@ import { TimecardViewMode, AlertNotification, ApplicationArea } from '../shared'
 @Injectable()
 export class CommonDataService {
 
-  public impersonateUserID: string = '';
+  public impersonateUserID$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   public currentErrorMessages: string[] = [];
   public observableDiagnosticMessages: string[] = [];
   public defaultBatchWarningTimeInMinutes = 240;
@@ -44,4 +45,10 @@ export class CommonDataService {
       });
     });
   } // end updateAlertNotifications
-}
+
+  impersonateUser(userToImpersonate: string) {
+    // Store/broadcast the new userID to impersonate with
+    this.impersonateUserID$.next(userToImpersonate);
+  } // end impersonateUser
+
+} // end CommonDataService
