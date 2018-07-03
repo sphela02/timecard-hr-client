@@ -125,22 +125,22 @@ $dayBase: 30px;
             &.disabled {
                 background: #EFEFEF;
                 color: #999;
+            }
 
-                &.requested {
-                    background: lighten($warning, 35%);
+            &.requested {
+                background: lighten($warning, 35%);
 
-                    .requested-hours {
-                        background: $warning;
-                        top: 3px;
-                        color: white;
-                        font-size: .7rem;
-                        position: absolute;
-                        right: 3px;
-                        text-align: center;
+                .requested-hours {
+                    background: $warning;
+                    top: 3px;
+                    color: white;
+                    font-size: .7rem;
+                    position: absolute;
+                    right: 3px;
+                    text-align: center;
 
-                        @media screen and (max-width: $breakpoint-md) {
-                            font-size: .5rem;
-                        }
+                    @media screen and (max-width: $breakpoint-md) {
+                        font-size: .5rem;
                     }
                 }
             }
@@ -149,6 +149,7 @@ $dayBase: 30px;
                 background: lighten($info, 50%);
                 font-weight: bold;
             }
+            
         }
     }
 
@@ -303,6 +304,20 @@ $dayBase: 30px;
             }
         }
     }
+
+    &.form-disabled {
+        .month-grid {
+            .week-date {
+                &.enabled {
+                    cursor: default;
+                    &:hover {
+                        background-color: white;
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 #calendar-key {
