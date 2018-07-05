@@ -152,3 +152,12 @@ export enum ActionType {
     itemsAffectedCount: number;
     actionURL: string;
   }
+
+  export interface ApplicationMenuItem {
+    name: string;
+    path: string;
+    icon: string;
+    role: string;
+    applicationArea: ApplicationArea;
+    sortOrder: number;
+  }
