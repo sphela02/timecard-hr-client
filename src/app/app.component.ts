@@ -7,7 +7,7 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
 import { Subject } from 'rxjs/Subject';
-import { TimecardViewMode, AppViewPort, AlertMessageType } from './shared/shared';
+import { TimecardViewMode, AppViewPort, AlertMessageType, ApplicationMenuItem } from './shared/shared';
 
 declare var $: any;
 
@@ -22,7 +22,7 @@ declare var tour: any;
 })
 export class AppComponent implements OnInit {
     public pageTitle = 'Timecard';
-    menuList: any;
+    menuList: ApplicationMenuItem[];
     selected: any;
     errorMessage: string;
     userInfo: EmployeeProfileDTO;
@@ -50,64 +50,6 @@ export class AppComponent implements OnInit {
                 // Set common data service variable.
                 this._commonDataService.isApprover = this.isApprover;
             });
-
-        this.menuList = [
-            // {
-            // 'name': 'Dashboard',
-            // 'path': '/dashboard',
-            // 'subMenu': []
-            // },
-            {
-                'name': 'My Timecards',
-                'path': '/timecards',
-                'icon': 'fa-clock-o',
-                'role': '',
-                // Hide change approver until ready.
-                // 'subMenu': [
-                //     {
-                //         'name': 'Change Approver',
-                //     },
-                // ]
-            },
-            {
-                'name': 'Timecard Search',
-                'path': '/timecard/search',
-                'icon': 'fa-search',
-                'role': '',
-            },
-            // {
-            //     'name': 'Approver Search',
-            //     'path': '/timecard/approver-search',
-            //     'icon': 'fa-search',
-            //     'role': 'approver',
-            // },
-            {
-                'name': 'Approvals',
-                'path': '/timecard/approvals',
-                'icon': 'fa-calendar-check-o',
-                'role': 'approver',
-            },
-    // {
-            // 'name': 'Vacation',
-            // 'path': '/vacation/request',
-            // 'icon': 'fa-sun-o',
-            // 'subMenu': [
-            //     {
-            //         'name': 'Request',
-            //         'path': '/vacation/request',
-            //     },
-            //     {
-            //         'name': 'Vacation 2',
-            //         'path': '/vacation/request',
-            //     },
-            //     {
-            //         'name': 'Vacation 3',
-            //         'path': '/vacation/request',
-            //     },
-            // ]
-            // }
-        ];
-
 
         // Subscribe to router events.
         _router.events.subscribe(routerEvent => {
@@ -209,7 +151,10 @@ export class AppComponent implements OnInit {
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
-    }
+
+        this.menuList = this._commonDataService.menuList;
+
+    } // end ngOnInit
 
     // Show error details when clicked.
     showErrorDetails(target) {
