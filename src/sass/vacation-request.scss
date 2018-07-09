@@ -50,6 +50,16 @@
                     border-right: 6px solid #F99F3C;
                 }
             }
+
+            img {
+                max-height: 40px;
+            }
+
+            .valign {
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+            }
         }
     }
 
