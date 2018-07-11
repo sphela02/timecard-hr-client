@@ -334,7 +334,9 @@ table.table.timecard-list {
     }
 
     .tabs-wrapper .classic-tabs {
-            margin-bottom: -.5rem;
+        bottom: 0;
+        margin-bottom: -.5rem;
+        position: absolute;
     }
 
     .notes-link {
@@ -893,16 +895,33 @@ table.table.timecard-list {
     }
 }
 
-table.table.row-delete-pending-summary {
-    th {
-        background: #f2f0f0;
-        font-size: .8rem;
-        padding-top: .1rem;
-        padding-bottom: .1rem;
-    }
+table.table {
     td {
-        padding-top: .6rem;
-        padding-bottom: .6rem;
+        &.status {
+            border-right: 6px solid lightgrey;
+            &.approved {
+                border-right: 6px solid #6db444;
+            }
+            &.pendingapproval {
+                border-right: 6px solid $info;
+            }
+            &.submitted {
+                border-right: 6px solid #F99F3C;
+            }
+        }
+    }
+
+    &.row-delete-pending-summary {
+        th {
+            background: #f2f0f0;
+            font-size: .8rem;
+            padding-top: .1rem;
+            padding-bottom: .1rem;
+        }
+        td {
+            padding-top: .6rem;
+            padding-bottom: .6rem;
+        }
     }
 }
 
