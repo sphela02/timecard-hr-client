@@ -70,11 +70,14 @@
 
         .vrs-status-label {
             color: #616264; 
+            display: inline-block;
             font-weight: bold;
+            padding-top: 2px;
         }
     
         .vrs-status {
             line-height: .3;
+            margin-top: -2px;
             padding: 8px 5px 8px 5px;
             text-transform: uppercase;
             height: 19px;
@@ -85,6 +88,9 @@
             }
             &.denied {
                 background-color: $danger;
+            }
+            &.new {
+                background-color: #2C5697;
             }
             &.submitted {
                 background-color: $warning;
