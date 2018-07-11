@@ -898,15 +898,21 @@ table.table.timecard-list {
 table.table {
     td {
         &.status {
-            border-right: 6px solid lightgrey;
+            border-right: 6px solid lightgrey !important;
             &.approved {
-                border-right: 6px solid #6db444;
+                border-right: 6px solid #6db444 !important;
             }
             &.pendingapproval {
-                border-right: 6px solid $info;
+                border-right: 6px solid $info !important;
             }
             &.submitted {
-                border-right: 6px solid #F99F3C;
+                border-right: 6px solid #F99F3C !important;
+            }
+            &.cancelled {
+                border-right: 6px solid #616264 !important;
+            }
+            &.denied {
+                border-right: 6px solid $danger !important;
             }
         }
     }
