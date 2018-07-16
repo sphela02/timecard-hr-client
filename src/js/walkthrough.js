@@ -7,7 +7,7 @@ var tour = {
         steps: [
             {
                 title: 'Welcome',
-                content: 'Welcome to the Harris Timecard System. This tour will show you what\'s new in our redesigned timecard interface. <a href="https://share.harris.com/sites/ServiceDeskFront/Content%20Library/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                content: 'Welcome to the Harris Timecard System. This tour will show you what\'s new in our redesigned timecard interface. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
                 target: 'page-title',
                 placement: 'bottom'
             },
@@ -49,7 +49,7 @@ var tour = {
         steps: [
             {
                 title:'Timecard Overview',
-                content:'The timecard view allows you to view and edit a timecard. <a href="https://share.harris.com/sites/ServiceDeskFront/Content%20Library/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                content:'The timecard view allows you to view and edit a timecard. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
                 target:'page-title',
                 placement:'bottom',
             },
@@ -143,7 +143,7 @@ var tour = {
         steps: [
             {
                 title: 'Timecard Search',
-                content: 'Timecard Search is where you can search for your timecards between a specific date range.  You can also create a Labor Correction from this page. <a href="https://share.harris.com/sites/ServiceDeskFront/Content%20Library/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                content: 'Timecard Search is where you can search for your timecards between a specific date range.  You can also create a Labor Correction from this page. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
                 target: 'page-title',
                 placement: 'bottom',
                 showPrevButton:'true',
@@ -194,7 +194,7 @@ var tour = {
         steps: [
             {
                 title: 'Approvals Page',
-                content: 'The Approvals page is where you can find your teams\'s timecards to review and approve. <a href="https://share.harris.com/sites/ServiceDeskFront/Content%20Library/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                content: 'The Approvals page is where you can find your teams\'s timecards to review and approve. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
                 target: 'page-title',
                 placement: 'bottom',
                 showPrevButton:'true',
@@ -247,7 +247,7 @@ var tour = {
         steps: [
             {
                 title: 'Approvals Search',
-                content: 'This feature allows timecard approvers to search any open, pending or approved timecards in their organization.  <a href="https://share.harris.com/sites/ServiceDeskFront/Content%20Library/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                content: 'This feature allows timecard approvers to search any open, pending or approved timecards in their organization.  <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Timecard%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
                 target: 'page-title',
                 placement: 'bottom',
             },
