@@ -1,0 +1,131 @@
+#vacation-request-main {
+    #utility-bar {
+        .tabs-wrapper {
+            min-height: 35px;
+
+            .classic-tabs {
+                bottom: 0;
+                position: absolute;
+            }
+        }
+    }
+    #mini-dashboard {    
+        .card {
+            height: auto;
+        }
+
+        .hours {
+            line-height: 50px;
+            min-width: 50px;
+        }
+    }
+
+    #vacation-request-list {
+        th {
+            border: none;
+            color: $harris-grey;
+            padding: 0 10px;
+            vertical-align: bottom;
+        }
+    
+        tr {
+            cursor: pointer;
+        }
+    
+        td {
+            border: 1px solid lightgrey;
+            padding: 10px;
+            vertical-align: middle;
+
+            img {
+                max-height: 40px;
+            }
+
+            .valign {
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+            }
+        }
+    }
+
+    #vacation-request-body {
+        padding-bottom: 100px;
+
+        #total-requested-hours {
+            background: black;
+        }
+
+        #request-edit {
+            td {
+                font-weight: 400;              
+
+                input[type=number]::-webkit-inner-spin-button, 
+                input[type=number]::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
+                }
+            }
+        }
+
+        .vrs-status-label {
+            color: #616264; 
+            display: inline-block;
+            font-weight: bold;
+            padding-top: 2px;
+        }
+    
+        .vrs-status {
+            line-height: .3;
+            margin-top: -2px;
+            padding: 8px 5px 8px 5px;
+            text-transform: uppercase;
+            height: 19px;
+            vertical-align: middle;
+        
+            &.cancelled {
+                background-color: #616264;
+            }
+            &.denied {
+                background-color: $danger;
+            }
+            &.new {
+                background-color: #2C5697;
+            }
+            &.submitted {
+                background-color: $warning;
+            }
+            &.approvalinprocess {
+                background-color: $info;
+            }
+            &.approved {
+                background-color: #6db444;
+            }
+        }
+    }
+}
+
+#overlap-list {
+    tr {
+        td, th {
+            padding: .5rem .25rem;
+        }
+
+        td {
+            vertical-align: middle;
+
+            .user-icon {
+                max-height: 25px;
+            }
+
+            .valign {
+
+                @media screen and (min-width: $breakpoint-xs) {
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                }
+            }
+        }
+    } 
+}

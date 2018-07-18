@@ -1,0 +1,339 @@
+$base: 1rem;
+$cloud: #EFEFEF;
+$concrete: #CCC;
+$dayBase: 30px;
+
+.calendar {
+  display: block;
+//   width: $dayBase * 7;
+  width: 100%;
+  margin: 0 auto;
+
+
+  .calendar-navs {
+    background-color: white;
+    // border-top: 1px solid $harris-grey;
+    // border-bottom: 1px solid $harris-grey;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: .875rem;
+    }
+  }
+
+  .month-nav {
+    padding:  0 .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .year-nav {
+    padding: $base;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Montserrat';
+  }
+
+    .month-grid {
+        .day-names {
+            background: white;
+            font-size: 1rem;
+
+            .day-name {
+                padding: 0;
+
+                @media screen and (max-width: $breakpoint-md) {
+                    font-size: .875rem;
+                }
+            }
+        }
+
+        .week-date,
+        .day-name {
+          text-align: center;
+          display: block;
+          align-items: center;
+        }
+
+        .week-date {
+            background-color: white;
+            box-shadow: 0 0 0 1px #CCC;
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: 100%;
+            min-height: 40px;
+
+            .date-text-wrapper {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &::after {
+                    content: '';
+                    height: $dayBase * 0.9;
+                    width: $dayBase * 0.9;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 50%;
+                    transition: background-color 150ms linear, color 150ms linear;
+                }
+
+                .date-text {
+                    z-index: 2;
+
+                    @media screen and (max-width: $breakpoint-md) {
+                        font-size: .7rem;
+                    }
+                }
+            }
+
+            &:after {
+                content: "";
+                float:left;
+                display: block;
+                padding-top: 100%;
+            }
+
+            &.enabled {
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba($info, .10);
+                }
+            }
+
+            &.selected {
+                .date-text-wrapper {
+                    &:after {
+                        background-color: $harris-red;
+                    }
+                    .date-text {
+                        color: white;
+                    }
+                }
+            }
+
+            &.disabled {
+                background: #EFEFEF;
+                color: #999;
+            }
+
+            &.requested {
+                background: lighten($warning, 35%);
+
+                .requested-hours {
+                    background: $warning;
+                    top: 3px;
+                    color: white;
+                    font-size: .7rem;
+                    position: absolute;
+                    right: 3px;
+                    text-align: center;
+
+                    @media screen and (max-width: $breakpoint-md) {
+                        font-size: .5rem;
+                    }
+                }
+            }
+
+            &.today {
+                background: lighten($info, 50%);
+                font-weight: bold;
+            }
+            
+        }
+    }
+
+    &.status-calendar {
+        .calendar-navs {
+            background-color: white;
+            border: none;
+            font-size: 1.25rem;
+            font-weight: normal;
+        
+            @media screen and (max-width: $breakpoint-md) {
+                font-size: .875rem;
+            }
+        }
+    
+        .month-nav {
+            padding:  0 .5rem;
+            display: flex;
+            flex-direction: row;
+            line-height: 1;
+            justify-content: left;
+
+            .btn {
+                color: #616264 !important;
+                @media screen and (max-width: $breakpoint-xs) {
+                    padding-left: .5rem;
+                    padding-right: .5rem;
+                }
+            }
+        }
+        
+        .month-grid {
+            .week-date {
+                min-height: 45px;
+                @media screen and (min-width: $breakpoint-lg) {
+                    min-height: 125px;
+                }
+
+                &.enabled {
+                    cursor: default;
+
+                    &:hover {
+                        background-color: white;
+                    }
+
+                    &.click-element {
+                        cursor: pointer;
+                        &:hover {
+                            background-color: rgba($info, .10);
+                        }
+                    }
+                }
+
+                .date-text-wrapper {
+                    bottom: auto;
+                    left: 5px;
+                    right: auto;
+                    top: 5px;
+                }
+
+                .requests {
+                    bottom: 0;
+                    left: 0;
+                    margin: 0 2%;
+                    position: absolute;
+                    width: 96%;
+
+                    & [class*="requests-"] {
+                        line-height: 1.5;
+                        margin-bottom: 5px;
+                        padding: 5px 5px 5px 1.5rem;
+                        text-transform: uppercase;
+                        text-align: left;
+                        position: relative;
+                        width: 100%;
+
+                        .badge {
+                            left: 5px;
+                            line-height: 1.5;
+                            position: absolute;
+                            top: 5px;
+                        }
+                    }
+
+                    .requests {
+                        &-pending {
+                            background: $warning;
+
+                            .badge {
+                                color: $warning !important;
+                            }
+                        }
+                        &-in-process {
+                            background: $info;
+
+                            .badge {
+                                color: $info !important;
+                            }
+                        }
+                        &-approved {
+                            background: $success;
+
+                            .badge {
+                                color: $success !important;
+                            }
+                        }
+                    }
+                }
+
+                .requests-mobile {
+                    bottom: 0;
+                    left: 5px;
+                    margin-bottom: 5px;
+                    position: absolute;
+                    text-align: left;
+                    width: 96%;
+
+                    & [class*="requests-"] {
+                        line-height: 0;
+                        padding: .35em;
+                        text-indent: -9999rem;
+                    }
+
+                    .requests {
+                        &-pending {
+                            background: $warning;
+                        }
+                        &-in-process {
+                            background: $info;
+                        }
+                        &-approved {
+                            background: $success;
+                        }
+                    }
+
+                    @media screen and (min-width: $breakpoint-md) {
+                        & [class*="requests-"] {
+                            line-height: .1;
+                            padding: .5em;
+                            text-indent: -9999rem;
+                        }
+                    }
+
+                    @media screen and (min-width: $breakpoint-xs) {
+                        & [class*="requests-"] {
+                            line-height: .5;
+                            padding: .5em;
+                            text-indent: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.form-disabled {
+        .month-grid {
+            .week-date {
+                &.enabled {
+                    cursor: default;
+                    &:hover {
+                        background-color: white;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+#calendar-key {
+    .requests {
+        &-pending {
+            background: $warning;
+        }
+        &-in-process {
+            background: $info;
+        }
+        &-approved {
+            background: $success;
+        }
+    }
+
+    @media screen and (max-width: $breakpoint-md) {
+        font-size: .7rem;
+    }
+}

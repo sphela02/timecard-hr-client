@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { TimecardViewMode, AlertNotification, ApplicationArea } from '../shared';
+import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem } from '../shared';
 
 
 @Injectable()
 export class CommonDataService {
 
-  public impersonateUserID: string = '';
+  public impersonateUserID$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   public currentErrorMessages: string[] = [];
   public observableDiagnosticMessages: string[] = [];
   public defaultBatchWarningTimeInMinutes = 240;
@@ -19,6 +20,8 @@ export class CommonDataService {
 
   private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
   currentViewMode = this.viewModeSource.asObservable();
+  menuList: ApplicationMenuItem[] = [];
+
 
   constructor() { }
 
@@ -44,4 +47,29 @@ export class CommonDataService {
       });
     });
   } // end updateAlertNotifications
-}
+
+  impersonateUser(userToImpersonate: string) {
+    // Store/broadcast the new userID to impersonate with
+    this.impersonateUserID$.next(userToImpersonate);
+  } // end impersonateUser
+
+  addMenuItems(newMenuItems: ApplicationMenuItem[]) {
+    this.menuList = this.menuList.concat(newMenuItems);
+    // Sort the menu items
+    this.menuList.sort((a: ApplicationMenuItem, b: ApplicationMenuItem) => {
+      // This is kind of a hack, but we prioritize app areas based on which ones come first in the enum.
+      if (a.applicationArea === b.applicationArea) {
+        if (a.sortOrder > b.sortOrder) {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else if (ApplicationArea[a.applicationArea] > ApplicationArea[b.applicationArea]) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  } // end addMenuItems
+
+} // end CommonDataService

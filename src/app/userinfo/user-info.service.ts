@@ -13,6 +13,7 @@ import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
 import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
+import { CommonDataService } from '../shared/common-data/common-data.service';
 
 @Injectable()
 export class UserInfoService {
@@ -28,13 +29,20 @@ export class UserInfoService {
   constructor(
     private _http: HttpClient,
     private _errorHandlerService: GlobalErrorHandlerService,
+    private _commonDataService: CommonDataService,
   ) {
-    this._userInfoUrl = 'Employee/getMyProfile';
-    this._userBenefitHoursUrl = 'Employee/getBenefitHours';
-    this._isApproverUrl = 'Employee/HasApproverRole/';
+    this._userInfoUrl = '|EMPLOYEE|getMyProfile';
+    this._userBenefitHoursUrl = '|EMPLOYEE|getBenefitHours';
+    this._isApproverUrl = '|EMPLOYEE|HasApproverRole/';
 
     // Retrieve the user info at startup
     this.getUserInfo();
+
+    // Set up impersonation listeners, so we know when to reset data for a new user
+    this._commonDataService.impersonateUserID$.distinctUntilChanged().subscribe((newUserID: string) => {
+      // Reset all stored data when the user changes.
+      this.resetAllData();
+    }); // end subscribe
 
   }
 

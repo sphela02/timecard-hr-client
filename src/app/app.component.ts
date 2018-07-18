@@ -7,7 +7,7 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
 import { Subject } from 'rxjs/Subject';
-import { TimecardViewMode, AppViewPort, AlertMessageType } from './shared/shared';
+import { TimecardViewMode, AppViewPort, AlertMessageType, ApplicationMenuItem } from './shared/shared';
 
 declare var $: any;
 
@@ -22,7 +22,7 @@ declare var tour: any;
 })
 export class AppComponent implements OnInit {
     public pageTitle = 'Timecard';
-    menuList: any;
+    menuList: ApplicationMenuItem[];
     selected: any;
     errorMessage: string;
     userInfo: EmployeeProfileDTO;
@@ -50,64 +50,6 @@ export class AppComponent implements OnInit {
                 // Set common data service variable.
                 this._commonDataService.isApprover = this.isApprover;
             });
-
-        this.menuList = [
-            // {
-            // 'name': 'Dashboard',
-            // 'path': '/dashboard',
-            // 'subMenu': []
-            // },
-            {
-                'name': 'My Timecards',
-                'path': '/timecards',
-                'icon': 'fa-clock-o',
-                'role': '',
-                // Hide change approver until ready.
-                // 'subMenu': [
-                //     {
-                //         'name': 'Change Approver',
-                //     },
-                // ]
-            },
-            {
-                'name': 'Timecard Search',
-                'path': '/timecard/search',
-                'icon': 'fa-search',
-                'role': '',
-            },
-            // {
-            //     'name': 'Approver Search',
-            //     'path': '/timecard/approver-search',
-            //     'icon': 'fa-search',
-            //     'role': 'approver',
-            // },
-            {
-                'name': 'Approvals',
-                'path': '/timecard/approvals',
-                'icon': 'fa-calendar-check-o',
-                'role': 'approver',
-            },
-    // {
-            // 'name': 'Vacation',
-            // 'path': '/vacation/request',
-            // 'icon': 'fa-sun-o',
-            // 'subMenu': [
-            //     {
-            //         'name': 'Request',
-            //         'path': '/vacation/request',
-            //     },
-            //     {
-            //         'name': 'Vacation 2',
-            //         'path': '/vacation/request',
-            //     },
-            //     {
-            //         'name': 'Vacation 3',
-            //         'path': '/vacation/request',
-            //     },
-            // ]
-            // }
-        ];
-
 
         // Subscribe to router events.
         _router.events.subscribe(routerEvent => {
@@ -156,16 +98,14 @@ export class AppComponent implements OnInit {
 
 
     impersonateUser() {
-        // Store the new impersonation
-        this._commonDataService.impersonateUserID = this.userToImpersonate;
-        // Tell the services to reset their data
-        this._timecardService.resetAllData();
-        this._userInfoService.resetAllData();
-        // Re-retrieve the current user (which wipes out the user/components) and start the components back up
-        // this._router.navigate(['/']);
+        // Set the new impersonation ... services will reset their data when this happens.
+        this._commonDataService.impersonateUser(this.userToImpersonate);
 
-        this.retrieveCurrentUser();
-        this._router.navigateByUrl('/timecards');
+        // Give the services a chance to reset, then re-retrieve the current user and route back to default.
+        setTimeout(() => {
+            this.retrieveCurrentUser();
+            this._router.navigateByUrl('/');
+        }, 0);
 
     } // end impersonateUser
 
@@ -190,12 +130,6 @@ export class AppComponent implements OnInit {
             }
         });
 
-        // Reset Zoom for iOS devices after input focus.
-        $('input, select, textarea').on('focus blur', function(event) {
-            $('meta[name=viewport]')
-            .attr('content', 'width=device-width,initial-scale=1,maximum-scale=' + (event.type === 'blur' ? 10 : 1));
-        });
-
         setTimeout(() => {
             // Sidebar initialization
             $('#sidebarCollapse').sideNav();
@@ -217,7 +151,10 @@ export class AppComponent implements OnInit {
             // Data Picker Initialization.
             $('.datepicker').pickadate();
         }, 0);
-    }
+
+        this.menuList = this._commonDataService.menuList;
+
+    } // end ngOnInit
 
     // Show error details when clicked.
     showErrorDetails(target) {

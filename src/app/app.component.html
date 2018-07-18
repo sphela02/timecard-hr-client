@@ -64,10 +64,10 @@
         <div class="navbar-nav mt-0 mx-2" [class.ml-auto]="!environment.allowDiagnostics" *ngIf="!environment.production">
             <div class="input-group py-2">
                 <input type="text" 
-                class="form-control py-0" 
+                class="form-control py-0 px-2" 
                 [(ngModel)]="userToImpersonate" 
                 placeholder="Enter Username" 
-                style="color: #6db444 !important;width:140px;"
+                style="color: #6db444 !important;font-size: 1rem;width:140px;"
                 novalidate>
                 <div class="input-group-ammend">
                     <button

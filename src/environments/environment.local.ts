@@ -1,4 +1,5 @@
 import { AppMode } from '../app/shared/shared';
+import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -15,7 +16,14 @@ import { AppMode } from '../app/shared/shared';
 export const environment = {
   production: false,
   // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
-  apiServiceURL: 'http://localhost:9572/api/v1/',
+  apiServiceURLs: {
+    'VRS': 'http://localhost/VRS.API/api/v1/Vacation/',
+    'TIMECARD': 'http://localhost:9572/api/v1/Timecard/',
+    'EMPLOYEE': 'http://localhost:9572/api/v1/Employee/',
+  },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  importModules: [
+    VacationRequestModule, // dbg
+  ],
 };

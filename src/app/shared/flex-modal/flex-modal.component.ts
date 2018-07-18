@@ -31,6 +31,11 @@ export class FlexModalComponent implements OnInit {
     if (!this.modalContent.confirmBtnText) {
       this.modalContent.confirmBtnText = 'Ok';
     }
+
+    // Set default max-length for input field.
+    if (!this.modalContent.inputMaxLength) {
+      this.modalContent.inputMaxLength = 60;
+    }
   } // end ngOnInit
 
   cancelModal() {

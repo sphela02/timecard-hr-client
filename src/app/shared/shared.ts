@@ -23,6 +23,7 @@ export enum ActionType {
     Approve = 18,
     UndoApproval = 19,
     UpdateApprovers = 20,
+    Deny = 21,
   }
 
   export enum AlertMessageType {
@@ -104,6 +105,7 @@ export enum ActionType {
     messageText: string;
     inputId: string;
     inputLabel: string;
+    inputMaxLength: number;
     textareaId: string;
     textareaLabel: string;
     cancelBtnText: string;
@@ -135,11 +137,14 @@ export enum ActionType {
     Small = '(min-width: 768px)',
     Medium = '(min-width: 992px)',
     Large = '(min-width: 1200px)',
+    maxLarge = '(max-width: 1199px)',
+    heightSmall = '(min-height: 600px)',
   }
 
   export enum ApplicationArea {
     Timecard = 1,
     Notes = 2,
+    VacationRequest = 3,
   }
 
   export interface AlertNotification {
@@ -147,4 +152,14 @@ export enum ActionType {
     alertType: AlertMessageType;
     itemsAffectedCount: number;
     actionURL: string;
+  }
+
+  export interface ApplicationMenuItem {
+    name: string;
+    path: string;
+    icon: string;
+    role: string;
+    applicationArea: ApplicationArea;
+    sortOrder: number;
+    subMenu?: ApplicationMenuItem[];
   }
