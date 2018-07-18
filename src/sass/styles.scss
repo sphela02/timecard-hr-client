@@ -374,7 +374,7 @@ table.table.timecard-list {
             }
         }
 
-        @media screen and (min-width: 1440px) {
+        @media screen and (min-width: $breakpoint-xs) {
             #manager-mode-wrapper {
                 .md-form {
                     margin-top: 1.5rem;
