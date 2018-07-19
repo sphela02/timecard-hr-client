@@ -129,3 +129,78 @@
         }
     } 
 }
+
+#authorization-list {
+    tr {
+        &.ng-dirty {
+            border-left: 4px solid $warning;
+        }
+        th {
+            padding: .5rem;
+
+            &#name-column {
+                width: 35%;
+            }
+        }
+        td {
+            padding: 0 .5rem .5rem .5rem;
+        }
+    }
+}
+
+#employee-search-results-wrapper {
+    min-height: 150px;
+    overflow-y: auto;
+
+    #employee-search-results {
+        width: 100%;
+    
+        thead,tbody,tr,td,th {
+            display:block;
+        }
+        
+        tbody {
+            height: 150px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+
+            tr:first-child {
+                td {
+                    border-top: none;
+                }
+            }
+        }
+        
+
+        tr {
+            cursor: pointer;
+            clear: both;
+
+            &:after {
+                content: ' ';
+                display: block;
+                visibility: hidden;
+                clear: both;
+            }
+    
+            td,
+            th {
+                float:left;
+                font-size: .8rem;
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+            }
+
+            th {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+    
+            &.active {
+                background-color: lighten($success, 30%);
+            }
+        }
+    }
+
+}
