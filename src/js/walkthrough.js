@@ -109,7 +109,7 @@ var tour = {
             },
             {
                 title: 'Approve and sign',
-                content: 'To submit your timecard, click the sign timecard button and click Save. Click Timecard Search in menu to continue the tour.',
+                content: 'To submit your timecard, click the Sign Timecard checkbox and click Submit. Click Timecard Search in menu to continue the tour.',
                 target: 'signature',
                 placement: 'top',
                 showPrevButton:'true',
@@ -119,7 +119,7 @@ var tour = {
             },
             {
                 title: 'Labor Correction',
-                content: 'Click on Labor Correction.  You will be prompted to enter a Note Title and Text. Follow all prompts, make necessary changes, click to Sign and Save.',
+                content: 'Click on Labor Correction.  You will be prompted to enter a Note Title and Text. Follow all prompts, make necessary changes, click to Sign and Submit.  To delete a user generated labor correction, press the red button with the trashcan',
                 target: 'create-labor-correction-btn',
                 placement: 'top',
                 showPrevButton:'true',
