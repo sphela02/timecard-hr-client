@@ -145,6 +145,7 @@ export enum ActionType {
     Timecard = 1,
     Notes = 2,
     VacationRequest = 3,
+    VRSAuthorizations = 4
   }
 
   export interface AlertNotification {
