@@ -30,6 +30,12 @@
     
         tr {
             cursor: pointer;
+
+            th, td {
+                @media screen and (max-width: $breakpoint-xs) {
+                    font-size: 80%;
+                }
+            }
         }
     
         td {
@@ -37,14 +43,15 @@
             padding: 10px;
             vertical-align: middle;
 
-            img {
-                max-height: 40px;
-            }
+            .user-image {
+                @media screen and (min-width: $breakpoint-xs) {
+                    display: inline-block;
+                }
 
-            .valign {
-                position: absolute;
-                top: 50%;
-                transform: translate(0, -50%);
+                img {
+                    height: 40px;
+                    width: 35px;
+                }
             }
         }
     }
