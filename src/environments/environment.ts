@@ -13,15 +13,15 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
-export const dbgApiServiceURL = 'https://mi-dev.harris.com/timecard/api/v1/'; // dbg
-export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/timecard/api/v1/'; // dbg
+export const dbgApiServiceURL = 'https://mi-dev.harris.com/dev/timecardapi/api/v1/'; // dbg
+export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/dev/timecardapi/api/v1/'; // dbg
 
 export const environment = {
   production: false,
   apiServiceURLs: {
-    'VRS': 'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
-    'TIMECARD': 'https://mi-dev.harris.com/timecard/api/v1/Timecard/',
-    'EMPLOYEE': 'https://mi-dev.harris.com/timecard/api/v1/Employee/',
+    'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
+    'TIMECARD': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Timecard/',
+    'EMPLOYEE': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Employee/',
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,

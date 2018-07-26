@@ -241,6 +241,24 @@ body.loading {
     }
 }
 
+#profile {
+    #utility-bar {
+        img {
+            max-height: 50px;
+        }
+
+        .valign {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            width: 90%;
+        }
+    }
+    #mini-dashboard .card {
+        height: 160px;
+    }
+}
+
 #filter-wrapper {
     background-color: #f2f0f0;
 
@@ -970,6 +988,7 @@ table.table {
 
         tr {
             cursor: pointer;
+            clear: both;
     
             td,
             th {
