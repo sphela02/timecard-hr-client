@@ -10,6 +10,7 @@ export interface UpdateTimecardDTO {
         EmployeeSignature: boolean;
         ClientTimecardLastUpdateTimestamp: Date;
         TimecardRows: TimecardRowDTO[];
+        AuditNote: string;
 }
 
 
