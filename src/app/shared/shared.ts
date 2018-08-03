@@ -109,6 +109,7 @@ export enum ActionType {
     textareaId: string;
     textareaLabel: string;
     cancelBtnText: string;
+    hideCancelButton: boolean;
     altBtnText: string;
     confirmBtnText: string;
   }

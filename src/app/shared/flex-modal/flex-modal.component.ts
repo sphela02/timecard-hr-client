@@ -36,6 +36,11 @@ export class FlexModalComponent implements OnInit {
     if (!this.modalContent.inputMaxLength) {
       this.modalContent.inputMaxLength = 60;
     }
+
+    if (!this.modalContent.hideCancelButton) {
+      this.modalContent.hideCancelButton = false;
+    } // Default hide cancel to false
+
   } // end ngOnInit
 
   cancelModal() {
