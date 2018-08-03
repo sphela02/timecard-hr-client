@@ -63,14 +63,24 @@ export class FlexModalComponent implements OnInit {
       };
 
       // Validate values have been added to fields if shown.
-      if (this.modalContent.inputId && formValues.inputValue === '') {
+      if (this.modalContent.inputId
+          &&
+          formValues.inputValue === ''
+          &&
+          (!this.modalContent.inputOptional)
+        ) {
         $('#' + this.modalContent.inputId ).addClass('invalid');
         isFormValid = false;
       } else {
         $('#' + this.modalContent.inputId ).removeClass('invalid');
       }
 
-      if (this.modalContent.textareaId && formValues.textareaValue === '') {
+      if (this.modalContent.textareaId
+            &&
+            formValues.textareaValue === ''
+            &&
+            (!this.modalContent.textareaOptional)
+          ) {
         $('#' + this.modalContent.textareaId ).addClass('invalid');
         isFormValid = false;
       } else {

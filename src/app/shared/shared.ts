@@ -106,8 +106,10 @@ export enum ActionType {
     inputId: string;
     inputLabel: string;
     inputMaxLength: number;
+    inputOptional: boolean;
     textareaId: string;
     textareaLabel: string;
+    textareaOptional: boolean;
     cancelBtnText: string;
     hideCancelButton: boolean;
     altBtnText: string;
