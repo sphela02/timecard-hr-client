@@ -211,3 +211,55 @@
     }
 
 }
+
+.team-list {
+    .list-group-item .list-group {
+        margin: .5rem -1.25rem -.5rem;
+
+        li {
+            padding-left: 2rem;
+            border-left: none;
+            border-right: none;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .list-group {
+
+                margin-left: -2rem;
+
+                li {
+                    padding-left: 3rem;
+
+                    .list-group {
+
+                        margin-left: -3rem;
+        
+                        li {
+                            padding-left: 4rem;
+
+                            .list-group {
+
+                                margin-left: -4rem;
+                
+                                li {
+                                    padding-left: 5rem;
+
+                                    .list-group {
+
+                                        margin-left: -5rem;
+                        
+                                        li {
+                                            padding-left: 6rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
