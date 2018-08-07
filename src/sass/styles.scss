@@ -914,28 +914,6 @@ table.table.timecard-list {
 }
 
 table.table {
-    td {
-        &.status {
-            // border-right: 6px solid lightgrey !important; -- Messes with timecard list - let's create a more specific table class
-            // for the VRS lists.
-            &.approved {
-                border-right: 6px solid #6db444 !important;
-            }
-            &.pendingapproval {
-                border-right: 6px solid $info !important;
-            }
-            &.submitted {
-                border-right: 6px solid #F99F3C !important;
-            }
-            &.cancelled {
-                border-right: 6px solid #616264 !important;
-            }
-            &.denied {
-                border-right: 6px solid $danger !important;
-            }
-        }
-    }
-
     &.row-delete-pending-summary {
         th {
             background: #f2f0f0;
