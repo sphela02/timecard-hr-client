@@ -61,6 +61,11 @@
 
         #total-requested-hours {
             background: black;
+            color: white;
+            
+            td {
+                font-weight: bold !important;
+            }
         }
 
         #request-edit {
