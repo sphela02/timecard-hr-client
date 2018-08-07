@@ -263,3 +263,37 @@
         }
     }
 }
+
+#approver-calendar {
+    position: relative;
+
+    #team-list {
+        @media screen and (max-width: $breakpoint-md) {
+            background: rgba(white, .9);
+            display: none;
+            min-height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            z-index: 99;
+        }
+
+        #close-team-list {
+            right: 0px;
+            background: lightgray;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    #team-list-bg {
+        background: rgba(black, .6);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+    }
+}
