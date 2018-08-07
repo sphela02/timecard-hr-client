@@ -163,6 +163,12 @@ $dayBase: 30px;
             @media screen and (max-width: $breakpoint-md) {
                 font-size: .875rem;
             }
+
+            .btn {
+                .fa-lg {
+                    font-size: 1.3em;
+                }
+            }
         }
     
         .month-nav {

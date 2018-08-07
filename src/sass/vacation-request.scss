@@ -211,3 +211,89 @@
     }
 
 }
+
+.team-list {
+    .list-group-item .list-group {
+        margin: .5rem -1.25rem -.5rem;
+
+        li {
+            padding-left: 2rem;
+            border-left: none;
+            border-right: none;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .list-group {
+
+                margin-left: -2rem;
+
+                li {
+                    padding-left: 3rem;
+
+                    .list-group {
+
+                        margin-left: -3rem;
+        
+                        li {
+                            padding-left: 4rem;
+
+                            .list-group {
+
+                                margin-left: -4rem;
+                
+                                li {
+                                    padding-left: 5rem;
+
+                                    .list-group {
+
+                                        margin-left: -5rem;
+                        
+                                        li {
+                                            padding-left: 6rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#approver-calendar {
+    position: relative;
+
+    #team-list {
+        @media screen and (max-width: $breakpoint-md) {
+            background: rgba(white, .9);
+            display: none;
+            min-height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            z-index: 99;
+        }
+
+        #close-team-list {
+            right: 0px;
+            background: lightgray;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    #team-list-bg {
+        background: rgba(black, .6);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+    }
+}
