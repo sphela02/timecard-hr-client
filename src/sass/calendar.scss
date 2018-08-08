@@ -131,13 +131,23 @@ $dayBase: 30px;
                 background: lighten($warning, 35%);
 
                 .requested-hours {
-                    background: $warning;
+                    background: $harris-grey;
                     top: 3px;
                     color: white;
                     font-size: .7rem;
                     position: absolute;
                     right: 3px;
                     text-align: center;
+
+                    &.submitted {
+                        background: $warning;
+                    }
+                    &.approvalinprocess {
+                        background: $info;
+                    }
+                    &.approved {
+                        background: $success;
+                    }
 
                     @media screen and (max-width: $breakpoint-md) {
                         font-size: .5rem;
