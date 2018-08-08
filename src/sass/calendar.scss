@@ -108,14 +108,16 @@ $dayBase: 30px;
                 cursor: pointer;
                 &:hover {
                     background-color: rgba($info, .10);
+
+                    .date-text-wrapper .date-text {
+                        color: $harris-grey !important;
+                    }
                 }
             }
 
             &.selected {
+                background-color: $harris-hyperlink-blue;
                 .date-text-wrapper {
-                    &:after {
-                        background-color: $harris-red;
-                    }
                     .date-text {
                         color: white;
                     }
