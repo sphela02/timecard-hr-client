@@ -125,6 +125,11 @@ $dayBase: 30px;
             &.disabled {
                 background: #EFEFEF;
                 color: #999;
+
+                &.selectable {
+                    cursor: pointer;
+                    pointer-events: all !important;
+                }
             }
 
             &.requested {
