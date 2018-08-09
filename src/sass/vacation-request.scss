@@ -26,6 +26,21 @@
             color: $harris-grey;
             padding: 0 10px;
             vertical-align: bottom;
+
+            &#dates-col {
+                width: 25%;
+
+                @media screen and (min-width: $breakpoint-md) {
+                    width: 50%;;
+                }
+            }
+            &#status-col {
+                width: 33%;
+
+                @media screen and (min-width: $breakpoint-md) {
+                    width: 15%;
+                }
+            }
         }
     
         tr {
