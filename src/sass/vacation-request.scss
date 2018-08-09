@@ -18,6 +18,14 @@
             line-height: 50px;
             min-width: 50px;
         }
+
+        .hours-label,
+        .fy-label {
+            @media screen and (max-width: $breakpoint-lg) {
+                font-size: 80%;
+                line-height: 1.2;
+            }
+        }
     }
 
     #vacation-request-list {
