@@ -28,77 +28,91 @@
         }
     }
 
-    #vacation-request-list {
-        th {
-            border: none;
-            color: $harris-grey;
-            padding: 0 10px;
-            vertical-align: bottom;
+    .calendar-view-links {
+        .btn.btn-link-secondary {
+            border: 1px solid lightgray !important;
 
-            &#dates-col {
-                width: 25%;
-
-                @media screen and (min-width: $breakpoint-md) {
-                    width: 50%;;
-                }
-            }
-            &#status-col {
-                width: 33%;
-
-                @media screen and (min-width: $breakpoint-md) {
-                    width: 15%;
-                }
+            &.selected {
+                background: lightgray;
             }
         }
+    }
+
+    #vacation-list-body {
+
+        #vacation-request-list {
+            th {
+                border: none;
+                color: $harris-grey;
+                padding: 0 10px;
+                vertical-align: bottom;
     
-        tr {
-            cursor: pointer;
-
-            th, td {
-                @media screen and (max-width: $breakpoint-xs) {
-                    font-size: 80%;
-                }
-            }
-        }
+                &#dates-col {
+                    width: 25%;
     
-        td {
-            border: 1px solid lightgrey;
-            padding: 10px;
-            vertical-align: middle;
-
-            .user-image {
-                @media screen and (min-width: $breakpoint-xs) {
-                    display: inline-block;
+                    @media screen and (min-width: $breakpoint-md) {
+                        width: 50%;;
+                    }
                 }
-
-                img {
-                    height: 40px;
-                    width: 35px;
+                &#status-col {
+                    width: 33%;
+    
+                    @media screen and (min-width: $breakpoint-md) {
+                        width: 15%;
+                    }
                 }
             }
-
-
-            &.status {
-                border-right: 6px solid lightgrey !important;
-
-                &.approved {
-                    border-right: 6px solid #6db444 !important;
-                }
-                &.approvalinprocess {
-                    border-right: 6px solid $info !important;
-                }
-                &.submitted {
-                    border-right: 6px solid #F99F3C !important;
-                }
-                &.cancelled {
-                    border-right: 6px solid #616264 !important;
-                }
-                &.denied {
-                    border-right: 6px solid $danger !important;
+        
+            tr {
+                cursor: pointer;
+    
+                th, td {
+                    @media screen and (max-width: $breakpoint-xs) {
+                        font-size: 80%;
+                    }
                 }
             }
-
+        
+            td {
+                border: 1px solid lightgrey;
+                padding: 10px;
+                vertical-align: middle;
+    
+                .user-image {
+                    @media screen and (min-width: $breakpoint-xs) {
+                        display: inline-block;
+                    }
+    
+                    img {
+                        height: 40px;
+                        width: 35px;
+                    }
+                }
+    
+    
+                &.status {
+                    border-right: 6px solid lightgrey !important;
+    
+                    &.approved {
+                        border-right: 6px solid #6db444 !important;
+                    }
+                    &.approvalinprocess {
+                        border-right: 6px solid $info !important;
+                    }
+                    &.submitted {
+                        border-right: 6px solid #F99F3C !important;
+                    }
+                    &.cancelled {
+                        border-right: 6px solid #616264 !important;
+                    }
+                    &.denied {
+                        border-right: 6px solid $danger !important;
+                    }
+                }
+    
+            }
         }
+
     }
 
     #vacation-request-body {
