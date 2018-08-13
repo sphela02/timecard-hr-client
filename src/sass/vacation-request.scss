@@ -360,3 +360,11 @@
         z-index: 50;
     }
 }
+
+#vrs-messages {
+    .vrs-single-message {
+        &:nth-child(odd) {
+            background-color: rgba(0,0,0, .05); 
+        }
+    }
+}
