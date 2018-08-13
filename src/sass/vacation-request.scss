@@ -327,8 +327,8 @@
 
 #vrs-messages {
     .vrs-single-message {
-        &:hover {
-            background-color: rgba($info, .10); 
+        &:nth-child(odd) {
+            background-color: rgba(0,0,0, .05); 
         }
     }
 }
