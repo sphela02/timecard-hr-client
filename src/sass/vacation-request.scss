@@ -29,11 +29,14 @@
     }
 
     .calendar-view-links {
+
         .btn.btn-link-secondary {
             border: 1px solid lightgray !important;
+            font-size: 1rem;
 
             &.selected {
-                background: lightgray;
+                background: $harris-hyperlink-blue;
+                color: white !important;
             }
         }
     }
