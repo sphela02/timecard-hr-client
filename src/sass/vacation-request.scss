@@ -173,6 +173,17 @@
                 background-color: #6db444;
             }
         }
+
+        #cc-emails,
+        #approval-queue {
+            .btn {
+                line-height: 1;
+
+                .fa {
+                    font-size: 1.25rem;
+                }
+            }
+        }
     }
 }
 
