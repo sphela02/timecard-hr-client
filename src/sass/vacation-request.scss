@@ -186,6 +186,10 @@
                     font-size: 1.25rem;
                 }
             }
+
+            .badge.text-danger {
+                color: $danger !important;
+            }
         }
     }
 }
