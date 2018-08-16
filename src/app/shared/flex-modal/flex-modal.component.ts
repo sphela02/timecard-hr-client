@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlexModalContent, FlexModalReturnData } from '../shared';
 import { Subject } from 'rxjs/Subject';
@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './flex-modal.component.html',
   styleUrls: ['./flex-modal.component.scss']
 })
-export class FlexModalComponent implements OnInit {
+export class FlexModalComponent implements OnInit, AfterViewInit {
   @Input() modalContent: FlexModalContent;
   @Output() cancelModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Output() altModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -42,6 +42,18 @@ export class FlexModalComponent implements OnInit {
     } // Default hide cancel to false
 
   } // end ngOnInit
+
+  ngAfterViewInit() {
+
+    setTimeout(() => {
+      // Set focus if input is available else focus on textarea.
+      if (this.modalContent.inputId) {
+        $('input').first().focus();
+      } else if (this.modalContent.textareaId) {
+        $('textarea').first().focus();
+      }
+    }, 0);
+  }
 
   cancelModal() {
     this.cancelModalBtnClicked.emit(true);
