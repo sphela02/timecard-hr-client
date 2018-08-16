@@ -152,6 +152,7 @@ export enum ActionType {
     VacationRequest = 3,
     VRSAuthorizations = 4,
     VRSMessages = 5
+    VRSTeamDrilldown = 6,
   }
 
   export interface AlertNotification {
