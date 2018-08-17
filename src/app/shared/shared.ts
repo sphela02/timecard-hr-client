@@ -151,7 +151,7 @@ export enum ActionType {
     Notes = 2,
     VacationRequest = 3,
     VRSAuthorizations = 4,
-    VRSMessages = 5
+    VRSMessages = 5,
     VRSTeamDrilldown = 6,
   }
 
