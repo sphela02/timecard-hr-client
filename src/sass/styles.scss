@@ -4,6 +4,7 @@
 // Colors
 $harris-red: #e21d22;
 $harris-grey: #74767b;
+$harris-hyperlink-blue: #2C5697;
 $danger: #D93B42;
 $warning: #F99F3C;
 $info: #009cde;
@@ -13,6 +14,8 @@ $breakpoint-xs: '575px';
 $breakpoint-md: '768px';
 $breakpoint-lg: '960px';
 $breakpoint-xl: '1140px';
+$breakpoint-xxl: '1350px';
+
 
 body {
     background-color: white;
@@ -914,27 +917,6 @@ table.table.timecard-list {
 }
 
 table.table {
-    td {
-        &.status {
-            border-right: 6px solid lightgrey !important;
-            &.approved {
-                border-right: 6px solid #6db444 !important;
-            }
-            &.pendingapproval {
-                border-right: 6px solid $info !important;
-            }
-            &.submitted {
-                border-right: 6px solid #F99F3C !important;
-            }
-            &.cancelled {
-                border-right: 6px solid #616264 !important;
-            }
-            &.denied {
-                border-right: 6px solid $danger !important;
-            }
-        }
-    }
-
     &.row-delete-pending-summary {
         th {
             background: #f2f0f0;

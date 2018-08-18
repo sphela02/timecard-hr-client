@@ -106,9 +106,12 @@ export enum ActionType {
     inputId: string;
     inputLabel: string;
     inputMaxLength: number;
+    inputOptional: boolean;
     textareaId: string;
     textareaLabel: string;
+    textareaOptional: boolean;
     cancelBtnText: string;
+    hideCancelButton: boolean;
     altBtnText: string;
     confirmBtnText: string;
   }
@@ -138,6 +141,8 @@ export enum ActionType {
     Medium = '(min-width: 992px)',
     Large = '(min-width: 1200px)',
     maxLarge = '(max-width: 1199px)',
+    extraLarge = '(min-width: 1350px)',
+    maxExtraLarge = '(max-width: 1349px)',
     heightSmall = '(min-height: 600px)',
   }
 
@@ -145,7 +150,9 @@ export enum ActionType {
     Timecard = 1,
     Notes = 2,
     VacationRequest = 3,
-    VRSAuthorizations = 4
+    VRSAuthorizations = 4,
+    VRSMessages = 5,
+    VRSTeamDrilldown = 6,
   }
 
   export interface AlertNotification {

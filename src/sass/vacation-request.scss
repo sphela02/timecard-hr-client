@@ -18,42 +18,104 @@
             line-height: 50px;
             min-width: 50px;
         }
+
+        .hours-label,
+        .fy-label {
+            @media screen and (max-width: $breakpoint-lg) {
+                font-size: 80%;
+                line-height: 1.2;
+            }
+        }
     }
 
-    #vacation-request-list {
-        th {
-            border: none;
-            color: $harris-grey;
-            padding: 0 10px;
-            vertical-align: bottom;
-        }
-    
-        tr {
-            cursor: pointer;
+    .calendar-view-links {
 
-            th, td {
-                @media screen and (max-width: $breakpoint-xs) {
-                    font-size: 80%;
-                }
+        .btn.btn-link-secondary {
+            border: 1px solid lightgray !important;
+            font-size: 1rem;
+
+            &.selected {
+                background: $harris-hyperlink-blue;
+                color: white !important;
             }
         }
+    }
+
+    #vacation-list-body {
+
+        #vacation-request-list {
+            th {
+                border: none;
+                color: $harris-grey;
+                padding: 0 10px;
+                vertical-align: bottom;
     
-        td {
-            border: 1px solid lightgrey;
-            padding: 10px;
-            vertical-align: middle;
-
-            .user-image {
-                @media screen and (min-width: $breakpoint-xs) {
-                    display: inline-block;
+                &#dates-col {
+                    width: 25%;
+    
+                    @media screen and (min-width: $breakpoint-md) {
+                        width: 50%;;
+                    }
                 }
-
-                img {
-                    height: 40px;
-                    width: 35px;
+                &#status-col {
+                    width: 33%;
+    
+                    @media screen and (min-width: $breakpoint-md) {
+                        width: 15%;
+                    }
                 }
             }
+        
+            tr {
+                cursor: pointer;
+    
+                th, td {
+                    @media screen and (max-width: $breakpoint-xs) {
+                        font-size: 80%;
+                    }
+                }
+            }
+        
+            td {
+                border: 1px solid lightgrey;
+                padding: 10px;
+                vertical-align: middle;
+    
+                .user-image {
+                    @media screen and (min-width: $breakpoint-xs) {
+                        display: inline-block;
+                    }
+    
+                    img {
+                        height: 40px;
+                        width: 35px;
+                    }
+                }
+    
+    
+                &.status {
+                    border-right: 6px solid lightgrey !important;
+    
+                    &.approved {
+                        border-right: 6px solid #6db444 !important;
+                    }
+                    &.approvalinprocess {
+                        border-right: 6px solid $info !important;
+                    }
+                    &.submitted {
+                        border-right: 6px solid #F99F3C !important;
+                    }
+                    &.cancelled {
+                        border-right: 6px solid #616264 !important;
+                    }
+                    &.denied {
+                        border-right: 6px solid $danger !important;
+                    }
+                }
+    
+            }
         }
+
     }
 
     #vacation-request-body {
@@ -61,6 +123,11 @@
 
         #total-requested-hours {
             background: black;
+            color: white;
+            
+            td {
+                font-weight: bold !important;
+            }
         }
 
         #request-edit {
@@ -107,6 +174,21 @@
             }
             &.approved {
                 background-color: #6db444;
+            }
+        }
+
+        #cc-emails,
+        #approval-queue {
+            .btn {
+                line-height: 1;
+
+                .fa {
+                    font-size: 1.25rem;
+                }
+            }
+
+            .badge.text-danger {
+                color: $danger !important;
             }
         }
     }
@@ -200,8 +282,7 @@
             }
 
             th {
-                padding-left: 0px;
-                padding-right: 0px;
+                font-size: .7rem;
             }
     
             &.active {
@@ -210,4 +291,98 @@
         }
     }
 
+}
+
+.team-list {
+    .list-group-item .list-group {
+        margin: .5rem -1.25rem -.5rem;
+
+        li {
+            padding-left: 2rem;
+            border-left: none;
+            border-right: none;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .list-group {
+
+                margin-left: -2rem;
+
+                li {
+                    padding-left: 3rem;
+
+                    .list-group {
+
+                        margin-left: -3rem;
+        
+                        li {
+                            padding-left: 4rem;
+
+                            .list-group {
+
+                                margin-left: -4rem;
+                
+                                li {
+                                    padding-left: 5rem;
+
+                                    .list-group {
+
+                                        margin-left: -5rem;
+                        
+                                        li {
+                                            padding-left: 6rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#approver-calendar {
+    position: relative;
+
+    #team-list {
+        @media screen and (max-width: $breakpoint-md) {
+            background: rgba(white, .9);
+            display: none;
+            min-height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            z-index: 99;
+        }
+
+        #close-team-list {
+            right: 0px;
+            background: lightgray;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    #team-list-bg {
+        background: rgba(black, .6);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+    }
+}
+
+#vrs-messages {
+    .vrs-single-message {
+        &:nth-child(odd) {
+            background-color: rgba(0,0,0, .05); 
+        }
+    }
 }

@@ -64,10 +64,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   } // end reportApplicationError
 
   // Popup a simple normal/error/warning alert message
-  popupAlertMessage(messageString: string, messageType: AlertMessageType) {
+  popupAlertMessage(messageString: string, messageType: AlertMessageType, options?: any) {
 
     // Simple popup message, not an error
-    toastr.options = {
+    const defaultOptions = {
       'closeButton': true,
       'tapToDismiss': false,
       'showDuration': '10000',
@@ -75,6 +75,12 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       'positionClass': 'toast-center',
       'preventDuplicates': true
     };
+
+    if (!options) {
+      options = defaultOptions;
+    }
+
+    toastr.options = options;
 
     if (messageType === AlertMessageType.Ok || messageType === AlertMessageType.OkMin) {
       toastr.success(messageString);

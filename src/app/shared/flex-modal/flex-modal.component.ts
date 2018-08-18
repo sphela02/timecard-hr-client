@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlexModalContent, FlexModalReturnData } from '../shared';
 import { Subject } from 'rxjs/Subject';
@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './flex-modal.component.html',
   styleUrls: ['./flex-modal.component.scss']
 })
-export class FlexModalComponent implements OnInit {
+export class FlexModalComponent implements OnInit, AfterViewInit {
   @Input() modalContent: FlexModalContent;
   @Output() cancelModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Output() altModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -36,7 +36,24 @@ export class FlexModalComponent implements OnInit {
     if (!this.modalContent.inputMaxLength) {
       this.modalContent.inputMaxLength = 60;
     }
+
+    if (!this.modalContent.hideCancelButton) {
+      this.modalContent.hideCancelButton = false;
+    } // Default hide cancel to false
+
   } // end ngOnInit
+
+  ngAfterViewInit() {
+
+    setTimeout(() => {
+      // Set focus if input is available else focus on textarea.
+      if (this.modalContent.inputId) {
+        $('input').first().focus();
+      } else if (this.modalContent.textareaId) {
+        $('textarea').first().focus();
+      }
+    }, 0);
+  }
 
   cancelModal() {
     this.cancelModalBtnClicked.emit(true);
@@ -58,14 +75,24 @@ export class FlexModalComponent implements OnInit {
       };
 
       // Validate values have been added to fields if shown.
-      if (this.modalContent.inputId && formValues.inputValue === '') {
+      if (this.modalContent.inputId
+          &&
+          formValues.inputValue === ''
+          &&
+          (!this.modalContent.inputOptional)
+        ) {
         $('#' + this.modalContent.inputId ).addClass('invalid');
         isFormValid = false;
       } else {
         $('#' + this.modalContent.inputId ).removeClass('invalid');
       }
 
-      if (this.modalContent.textareaId && formValues.textareaValue === '') {
+      if (this.modalContent.textareaId
+            &&
+            formValues.textareaValue === ''
+            &&
+            (!this.modalContent.textareaOptional)
+          ) {
         $('#' + this.modalContent.textareaId ).addClass('invalid');
         isFormValid = false;
       } else {
