@@ -1,0 +1,93 @@
+<div id="profile">
+    <div id="utility-bar" class="container-fluid py-2">
+        <div class="row">
+          <div class="col">
+            <div class="row py-3">
+                <div class="col-auto">
+                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo.EMPLID}}"
+                        class="img-fluid rounded-circle z-depth-0">
+                </div> 
+                <div class="col px-0 align-middle reset-line-height">
+                    <span class="valign">
+                        <h5 class="reset-line-height m-0">{{userInfo.FullNamePrintable}}</h5>
+                        <small>{{userInfo.ECAID}}</small>
+                    </span>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="profile-body">
+        <div class="container-fluid mt-3">
+            <div class="row">
+
+                <div id="mini-dashboard" class="container-fluid border-bottom">
+                    <div class="row">
+                        <!-- Dashboard widgets, opted in by module services. -->
+                        <div class="col-12 col-sm-6 my-3">
+                            <div class="card" *ngFor="let dashboardWidget of dashboardWidgets; let i = index;">
+                                <ng-container *ngComponentOutlet="dashboardWidget.widgetComponent">
+                                </ng-container>
+                            </div>
+                        </div>
+                        <!-- Link to Holiday Calendar for everybody -->
+                        <div class="col-12 col-sm-auto my-3">
+                            <div class="card">
+                                <div class="card-body holiday-calendar">
+                                    <h2 class="h5 text-white">Holiday Calendar</h2>
+                                    <a href="//my.harris.com/benefits-connection/pdf/FY_Holiday_Schedules.pdf" target="_blank"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Employee Information, for everybody -->
+                <div class="col-12 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title m-0">Employee Info</h5>                                
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>Employee ID: {{userInfo.EMPLID}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>Department: {{userInfo.CurrentDepartment}}</p>                                    
+                                    </div>
+                                    <div class="col">
+                                        <p>WorkGroup: {{userInfo.CurrentWorkgroup}}</p>                                    
+                                    </div>
+                                    <div class="col">
+                                        <p>Schedule: {{userInfo.CurrentSchedule}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dashboard popups, opted in by module services. -->
+                <div class="col-12">
+                    <div class="row">
+                        <div *ngFor="let dashboardPopup of dashboardPopups" class="col-12 col-sm-4 mb-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title m-0">{{dashboardPopup.title}}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>{{dashboardPopup.descriptionText}}</p>
+                                        <button 
+                                            class="btn btn-primary"
+                                            (click)="dashboardPopup.openDashboardItem$.next(true)">
+                                                <i class="fa fa-edit" aria-hidden="true"></i> {{dashboardPopup.actionButtonText}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

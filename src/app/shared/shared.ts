@@ -1,6 +1,8 @@
 import { TimecardHeaderDTO } from './TimecardHeaderDTO';
 import { UpdateTimecardDTO } from './UpdateTimecardDTO';
 import { NoteDTO } from './NoteDTO';
+import { Subject } from 'rxjs/Subject';
+import { ErrorStatus } from './ErrorStatus';
 
 export enum ActionType {
     Right = 1,
@@ -170,4 +172,21 @@ export enum ActionType {
     applicationArea: ApplicationArea;
     sortOrder: number;
     subMenu?: ApplicationMenuItem[];
+  }
+
+  export interface UserProfileDashboardItem {
+    title: string;
+    descriptionText: string;
+    actionButtonText: string;
+    openDashboardItem$: Subject<boolean>;
+  }
+
+  export interface UserProfileDashboardWidget {
+    widgetComponent: any;
+  }
+
+  export class ActionResponseDTO {
+      action: ActionType;
+      status: ErrorStatus;
+      messageText: String;
   }

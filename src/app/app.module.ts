@@ -17,10 +17,13 @@ import { IsApproverGuard } from './app-isapprover-guard';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { ProgressTrackerService } from './shared/progress-tracker/progress-tracker.service';
 import { environment } from '../environments/environment';
+import { UserProfileService } from './shared/user-profile/user-profile.service';
+import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserProfileComponent,
   ],
   imports: [
     ...environment.importModules, // Specific modules to import for the current environment.
@@ -35,6 +38,7 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     UserInfoService,
+    UserProfileService,
     CommonDataService,
     ProgressTrackerService,
     GlobalErrorHandlerService,
