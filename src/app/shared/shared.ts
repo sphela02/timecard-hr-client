@@ -179,10 +179,12 @@ export enum ActionType {
     descriptionText: string;
     actionButtonText: string;
     openDashboardItem$: Subject<boolean>;
+    applicationArea: ApplicationArea;
   }
 
   export interface UserProfileDashboardWidget {
     widgetComponent: any;
+    applicationArea: ApplicationArea;
   }
 
   export class ActionResponseDTO {

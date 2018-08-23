@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem } from '../shared';
-
+import * as lodash from 'lodash';
 
 @Injectable()
 export class CommonDataService {
@@ -20,8 +20,7 @@ export class CommonDataService {
 
   private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
   currentViewMode = this.viewModeSource.asObservable();
-  menuList: ApplicationMenuItem[] = [];
-
+  menuList$: BehaviorSubject<ApplicationMenuItem[]> = new BehaviorSubject<ApplicationMenuItem[]>([]);
 
   constructor() { }
 
@@ -54,9 +53,10 @@ export class CommonDataService {
   } // end impersonateUser
 
   addMenuItems(newMenuItems: ApplicationMenuItem[]) {
-    this.menuList = this.menuList.concat(newMenuItems);
+    let menuList: ApplicationMenuItem[] = this.menuList$.value;
+    menuList = menuList.concat(newMenuItems);
     // Sort the menu items
-    this.menuList.sort((a: ApplicationMenuItem, b: ApplicationMenuItem) => {
+    menuList.sort((a: ApplicationMenuItem, b: ApplicationMenuItem) => {
       // This is kind of a hack, but we prioritize app areas based on which ones come first in the enum.
       if (a.applicationArea === b.applicationArea) {
         if (a.sortOrder > b.sortOrder) {
@@ -69,7 +69,18 @@ export class CommonDataService {
       } else {
         return -1;
       }
-    });
+    }); // end sort
+
+    // Publish the new menu item list
+    this.menuList$.next(menuList);
+
   } // end addMenuItems
+
+  removeMenuItemsByApplicationArea(appAreaToRemove: ApplicationArea) {
+    const menuList: ApplicationMenuItem[] = this.menuList$.value;
+    lodash.remove(menuList, {applicationArea: appAreaToRemove});
+    // Publish the updated menu item list
+    this.menuList$.next(menuList);
+  } // end removeMenuItemsByApplicationArea
 
 } // end CommonDataService
