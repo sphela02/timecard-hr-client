@@ -322,6 +322,9 @@ table.table.timecard-list {
             &.approved {
                 border-right: 6px solid #6db444;
             }
+            &.pending {
+                border-right: 6px solid $info;
+            }
             &.open {
                 border-right: 6px solid #F99F3C;
             }
