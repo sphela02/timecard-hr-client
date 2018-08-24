@@ -6,9 +6,7 @@
                     <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown" aria-labelledby="user-account">
-                    <!-- dbg - Add back in when profile page is available. -->
-                    <!-- <a class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a> -->
-                    <a class="dropdown-item py-2" (click)="_timecardService.popupChangeApprovers()"><i class="fa fa-users" aria-hidden="true"></i> Change Approvers</a>
+                    <a class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a>
                     <ul class="list-group">
                         <li class="list-group-item">Employee ID: {{userInfo?.EMPLID}}</li>
                         <li class="list-group-item">Department: {{userInfo?.CurrentDepartment}}</li>

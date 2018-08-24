@@ -9,7 +9,8 @@ export class UserProfileService {
   private _dashBoardPopups: UserProfileDashboardItem[] = [];
   private _dashBoardWidgets: UserProfileDashboardWidget[] = [];
 
-  constructor() { } // end constructor
+  constructor() {
+  } // end constructor
 
   addDashboardWidget(dashboardWidget: UserProfileDashboardWidget) {
     this._dashBoardWidgets.push(dashboardWidget);
@@ -24,10 +25,13 @@ export class UserProfileService {
     // dbg ... sort by application area, like we do for app menu items?
   } // end addDashboardPopups
 
-  deleteDashboardItemsByApplicationArea(appAreaToRemove: ApplicationArea) {
+  deleteDashboardPopupsByApplicationArea(appAreaToRemove: ApplicationArea) {
     lodash.remove(this._dashBoardPopups, {applicationArea: appAreaToRemove});
-    lodash.remove(this._dashBoardWidgets, {applicationArea: appAreaToRemove});
   } // end deleteDashboardPopupsByApplicationArea
+
+  deleteDashboardWidgetsByApplicationArea(appAreaToRemove: ApplicationArea) {
+    lodash.remove(this._dashBoardWidgets, {applicationArea: appAreaToRemove});
+  } // end deleteDashboardWidgetsByApplicationArea
 
   getDashBoardPopups(): UserProfileDashboardItem[] {
     return this._dashBoardPopups;
