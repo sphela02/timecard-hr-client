@@ -110,11 +110,23 @@ $dayBase: 30px;
 
             &.enabled {
                 cursor: pointer;
+
                 &:hover {
                     background-color: rgba($info, .10);
 
                     .date-text-wrapper .date-text {
                         color: $harris-grey !important;
+                    }
+                }
+
+                &.not-active {
+                    cursor: default;
+                    &:hover {
+                        background-color: white;
+    
+                        .date-text-wrapper .date-text {
+                            color: inherit !important;
+                        }
                     }
                 }
             }
