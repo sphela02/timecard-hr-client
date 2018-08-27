@@ -43,6 +43,46 @@ input.disabled-input {
     color: rgba(black, .38);
 }
 
+.error-popover {
+    background: $danger;
+
+    .arrow::after {
+        border-top-color: $danger;
+    }
+
+    .popover-body {
+        color: white;
+        padding-right: 25px;
+
+        &.single-message {
+            padding-right: .75rem;
+        }
+
+        .next-error {
+            background: rgba(0,0,0,.2);
+            display: block;
+            font-size: 1.2rem;
+            height: 100%;
+            top: 0;
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            width: 25px;
+
+            &:hover {
+                color: lightgray;
+            }
+
+            i {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
 .input-group .calendar-picker-icon {
     font-size: 1.3rem;
     padding-top: 7px;
@@ -355,7 +395,6 @@ table.table.timecard-list {
     }
 
     .tabs-wrapper .classic-tabs {
-        bottom: 0;
         margin-bottom: -.5rem;
         position: absolute;
     }
@@ -485,9 +524,9 @@ table.table.timecard-list {
     #tc-settings {
         color: $harris-grey;
         position: relative;
-    
+        
         i {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
     }
 
