@@ -104,7 +104,7 @@ export class AppComponent implements OnInit {
         // Give the services a chance to reset, then re-retrieve the current user and route back to default.
         setTimeout(() => {
             this.retrieveCurrentUser();
-            this._router.navigateByUrl('/');
+            // this._router.navigateByUrl('/'); // dbg ... with the new setup for routes and access guards, this redirect breaks something. 
         }, 0);
 
     } // end impersonateUser
