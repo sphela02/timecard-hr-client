@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { UserProfileDashboardItem, UserProfileDashboardWidget } from '../shared';
+import { UserProfileDashboardItem, UserProfileDashboardWidget, ApplicationArea } from '../shared';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as lodash from 'lodash';
 
 @Injectable()
 export class UserProfileService {
@@ -8,7 +9,8 @@ export class UserProfileService {
   private _dashBoardPopups: UserProfileDashboardItem[] = [];
   private _dashBoardWidgets: UserProfileDashboardWidget[] = [];
 
-  constructor() { } // end constructor
+  constructor() {
+  } // end constructor
 
   addDashboardWidget(dashboardWidget: UserProfileDashboardWidget) {
     this._dashBoardWidgets.push(dashboardWidget);
@@ -20,7 +22,16 @@ export class UserProfileService {
 
   addDashboardPopup(dashboardPopup: UserProfileDashboardItem) {
     this._dashBoardPopups.push(dashboardPopup);
+    // dbg ... sort by application area, like we do for app menu items?
   } // end addDashboardPopups
+
+  deleteDashboardPopupsByApplicationArea(appAreaToRemove: ApplicationArea) {
+    lodash.remove(this._dashBoardPopups, {applicationArea: appAreaToRemove});
+  } // end deleteDashboardPopupsByApplicationArea
+
+  deleteDashboardWidgetsByApplicationArea(appAreaToRemove: ApplicationArea) {
+    lodash.remove(this._dashBoardWidgets, {applicationArea: appAreaToRemove});
+  } // end deleteDashboardWidgetsByApplicationArea
 
   getDashBoardPopups(): UserProfileDashboardItem[] {
     return this._dashBoardPopups;

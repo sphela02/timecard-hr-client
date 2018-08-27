@@ -152,7 +152,9 @@ export class AppComponent implements OnInit {
             $('.datepicker').pickadate();
         }, 0);
 
-        this.menuList = this._commonDataService.menuList;
+        this._commonDataService.menuList$.subscribe((newMenuList: ApplicationMenuItem[]) => {
+            this.menuList = newMenuList;
+        });
 
     } // end ngOnInit
 
