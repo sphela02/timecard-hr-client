@@ -34,6 +34,10 @@
             border: 1px solid lightgray !important;
             font-size: 1rem;
 
+            i {
+                font-size: 1rem !important;
+            }
+
             &.selected {
                 background: $harris-hyperlink-blue;
                 color: white !important;
