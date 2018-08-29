@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MqIfDirective } from '../shared/mq-if/mq-if.directive';
 import { ObjectFilter } from '../shared/pipes/objectFilter';
+import { AppLandingComponent } from './app-landing/app-landing.component';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
@@ -45,7 +46,8 @@ export { ValidationResponseTimecardRowDTO } from './ValidationResponseTimecardRo
   ],
   declarations: [
     MqIfDirective,
-    ObjectFilter
+    ObjectFilter,
+    AppLandingComponent
   ],
   exports: [
     MqIfDirective,
