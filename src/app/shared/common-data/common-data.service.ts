@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem } from '../shared';
 import * as lodash from 'lodash';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CommonDataService {
@@ -22,7 +23,11 @@ export class CommonDataService {
   currentViewMode = this.viewModeSource.asObservable();
   menuList$: BehaviorSubject<ApplicationMenuItem[]> = new BehaviorSubject<ApplicationMenuItem[]>([]);
 
-  constructor() { }
+  // List of observables for services that want us to wait for them to be ready.
+  // We delay app initialization until all services are ready.
+  private _servicesAreReady$: Observable<boolean>[] = [];
+  private _servicesAreReady: boolean[] = [];
+  private _readyServicesCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   deleteErrorMessageByIndex(errorIndex: number) {
     this.currentErrorMessages.splice(errorIndex, 1);
@@ -82,5 +87,40 @@ export class CommonDataService {
     // Publish the updated menu item list
     this.menuList$.next(menuList);
   } // end removeMenuItemsByApplicationArea
+
+  waitForServiceToBeReady(serviceIsReady$: Observable<boolean>) {
+    const serviceIndex: number = this._servicesAreReady$.length;
+    // Default to false
+    this._servicesAreReady.push(false);
+    // Subscribe to changes
+    this._servicesAreReady$.push(serviceIsReady$);
+    setTimeout(() => {
+      serviceIsReady$.subscribe((serviceIsReady: boolean) => {
+        // Update the ready flag for this service
+        this._servicesAreReady[serviceIndex] = serviceIsReady;
+        // Update the number of ready services
+        this._readyServicesCount$.next(
+          lodash.sumBy(this._servicesAreReady, function(o) { return (o === true) ? 1 : 0; })
+        );
+
+      });
+
+    }, 0);
+
+  } // end registerLoadingService
+
+  appWaitForServicesToBeReady(): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+
+      this._readyServicesCount$.subscribe(readyCount => {
+        // Once all services are ready, resolve.
+        if (readyCount === this._servicesAreReady.length) {
+          resolve();
+        }
+      });
+
+    }); // end new promise
+  } // end appWaitForServicesToBeReady
 
 } // end CommonDataService
