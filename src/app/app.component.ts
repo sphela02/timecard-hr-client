@@ -104,7 +104,8 @@ export class AppComponent implements OnInit {
         // Give the services a chance to reset, then re-retrieve the current user and route back to default.
         setTimeout(() => {
             this.retrieveCurrentUser();
-            // this._router.navigateByUrl('/'); // dbg ... with the new setup for routes and access guards, this redirect breaks something. 
+            // Take the user to their profile page for a fresh start
+            this._router.navigate(['profile']);
         }, 0);
 
     } // end impersonateUser
@@ -154,6 +155,13 @@ export class AppComponent implements OnInit {
 
         this._commonDataService.menuList$.subscribe((newMenuList: ApplicationMenuItem[]) => {
             this.menuList = newMenuList;
+
+            if (this.menuList.length) {
+                // If we're still at root, take them to the first menu item
+                if (this._router.url === '/') {
+                    this._router.navigate([this.menuList[0].path]);
+                }
+            }
         });
 
     } // end ngOnInit
