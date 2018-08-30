@@ -342,8 +342,18 @@ $dayBase: 30px;
                     cursor: default;
                     &:hover {
                         background-color: white;
+                        color: #212529 !important;
                     }
-                }
+
+                    &.selected {
+                        background-color: $harris-hyperlink-blue;
+                        .date-text-wrapper {
+                            .date-text {
+                                color: white !important;
+                            }
+                        }
+                    }
+                }                
             }
         }
     }
