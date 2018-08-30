@@ -21,7 +21,7 @@ export class CommonDataService {
 
   private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
   currentViewMode = this.viewModeSource.asObservable();
-  menuList$: BehaviorSubject<ApplicationMenuItem[]> = new BehaviorSubject<ApplicationMenuItem[]>([]);
+  private _menuList$: BehaviorSubject<ApplicationMenuItem[]> = new BehaviorSubject<ApplicationMenuItem[]>([]);
 
   // List of observables for services that want us to wait for them to be ready.
   // We delay app initialization until all services are ready.
@@ -58,7 +58,7 @@ export class CommonDataService {
   } // end impersonateUser
 
   addMenuItems(newMenuItems: ApplicationMenuItem[]) {
-    let menuList: ApplicationMenuItem[] = this.menuList$.value;
+    let menuList: ApplicationMenuItem[] = this._menuList$.value;
     menuList = menuList.concat(newMenuItems);
     // Sort the menu items
     menuList.sort((a: ApplicationMenuItem, b: ApplicationMenuItem) => {
@@ -77,15 +77,19 @@ export class CommonDataService {
     }); // end sort
 
     // Publish the new menu item list
-    this.menuList$.next(menuList);
+    this._menuList$.next(menuList);
 
   } // end addMenuItems
 
+  getMenu(): BehaviorSubject<ApplicationMenuItem[]> {
+    return this._menuList$;
+  }
+
   removeMenuItemsByApplicationArea(appAreaToRemove: ApplicationArea) {
-    const menuList: ApplicationMenuItem[] = this.menuList$.value;
+    const menuList: ApplicationMenuItem[] = this._menuList$.value;
     lodash.remove(menuList, {applicationArea: appAreaToRemove});
     // Publish the updated menu item list
-    this.menuList$.next(menuList);
+    this._menuList$.next(menuList);
   } // end removeMenuItemsByApplicationArea
 
   waitForServiceToBeReady(serviceIsReady$: Observable<boolean>) {
