@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,10 @@ import { ProgressTrackerService } from './shared/progress-tracker/progress-track
 import { environment } from '../environments/environment';
 import { UserProfileService } from './shared/user-profile/user-profile.service';
 import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
+
+export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
+  return () => _commonDataService.appWaitForServicesToBeReady();
+}
 
 @NgModule({
   declarations: [
@@ -55,6 +59,12 @@ import { UserProfileComponent } from './shared/user-profile/user-profile/user-pr
       provide: HTTP_INTERCEPTORS,
       useClass: HarrisHttpInterceptorImpersonate,
       multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appWaitForServicesToBeReady,
+      multi: true,
+      deps: [CommonDataService]
     },
     // {
     //   provide: HTTP_INTERCEPTORS,
