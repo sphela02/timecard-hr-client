@@ -164,6 +164,11 @@ export enum ActionType {
     actionURL: string;
   }
 
+  export enum ApplicationMenuType {
+    MainAppMenu = 1,
+    ApprovalMenu = 2,
+  }
+
   export interface ApplicationMenuItem {
     name: string;
     path: string;

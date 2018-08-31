@@ -7,7 +7,7 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
 import { Subject } from 'rxjs/Subject';
-import { TimecardViewMode, AppViewPort, AlertMessageType, ApplicationMenuItem } from './shared/shared';
+import { TimecardViewMode, AppViewPort, AlertMessageType, ApplicationMenuItem, ApplicationMenuType } from './shared/shared';
 
 declare var $: any;
 
@@ -153,7 +153,7 @@ export class AppComponent implements OnInit {
             $('.datepicker').pickadate();
         }, 0);
 
-        this._commonDataService.getMenu().subscribe((newMenuList: ApplicationMenuItem[]) => {
+        this._commonDataService.getMenu(ApplicationMenuType.MainAppMenu).subscribe((newMenuList: ApplicationMenuItem[]) => {
             this.menuList = newMenuList;
 
             if (this.menuList.length) {

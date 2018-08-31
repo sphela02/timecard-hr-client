@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem } from '../shared';
+import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem, ApplicationMenuType } from '../shared';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
 
@@ -21,7 +21,7 @@ export class CommonDataService {
 
   private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
   currentViewMode = this.viewModeSource.asObservable();
-  private _menuList$: BehaviorSubject<ApplicationMenuItem[]> = new BehaviorSubject<ApplicationMenuItem[]>([]);
+  private _menuLists$: BehaviorSubject<ApplicationMenuItem[]>[] = [];
 
   // List of observables for services that want us to wait for them to be ready.
   // We delay app initialization until all services are ready.
@@ -57,8 +57,14 @@ export class CommonDataService {
     this.impersonateUserID$.next(userToImpersonate);
   } // end impersonateUser
 
-  addMenuItems(newMenuItems: ApplicationMenuItem[]) {
-    let menuList: ApplicationMenuItem[] = this._menuList$.value;
+  addMenuItems(menuType: ApplicationMenuType, newMenuItems: ApplicationMenuItem[]) {
+
+    // Create the menu if it doesn't exist yet
+    if (!this._menuLists$[menuType]) {
+      this._menuLists$[menuType] = new BehaviorSubject<ApplicationMenuItem[]>([]);
+    }
+
+    let menuList: ApplicationMenuItem[] = this._menuLists$[menuType].value;
     menuList = menuList.concat(newMenuItems);
     // Sort the menu items
     menuList.sort((a: ApplicationMenuItem, b: ApplicationMenuItem) => {
@@ -77,19 +83,31 @@ export class CommonDataService {
     }); // end sort
 
     // Publish the new menu item list
-    this._menuList$.next(menuList);
+    this._menuLists$[menuType].next(menuList);
 
   } // end addMenuItems
 
-  getMenu(): BehaviorSubject<ApplicationMenuItem[]> {
-    return this._menuList$;
-  }
+  getMenu(menuType: ApplicationMenuType): BehaviorSubject<ApplicationMenuItem[]> {
 
-  removeMenuItemsByApplicationArea(appAreaToRemove: ApplicationArea) {
-    const menuList: ApplicationMenuItem[] = this._menuList$.value;
-    lodash.remove(menuList, {applicationArea: appAreaToRemove});
-    // Publish the updated menu item list
-    this._menuList$.next(menuList);
+    // Create the menu if it doesn't exist yet
+    if (!this._menuLists$[menuType]) {
+      this._menuLists$[menuType] = new BehaviorSubject<ApplicationMenuItem[]>([]);
+    }
+
+    // Return the menu as observable so subscriber can receive updates
+    return this._menuLists$[menuType];
+  } // end getMenu
+
+  removeMenuItemsByApplicationArea(menuType: ApplicationMenuType, appAreaToRemove: ApplicationArea) {
+
+    // Remove items from the menu if the menu exists
+    if (this._menuLists$[menuType]) {
+      const menuList: ApplicationMenuItem[] = this._menuLists$[menuType].value;
+      lodash.remove(menuList, {applicationArea: appAreaToRemove});
+      // Publish the updated menu item list
+      this._menuLists$[menuType].next(menuList);
+    } // end if menu defined
+
   } // end removeMenuItemsByApplicationArea
 
   waitForServiceToBeReady(serviceIsReady$: Observable<boolean>) {
