@@ -157,12 +157,20 @@ export class AppComponent implements OnInit {
             this.menuList = newMenuList;
 
             if (this.menuList.length) {
-                // If we're still at root, take them to the first menu item
-                if (this._router.url === '/') {
-                    this._router.navigate([this.menuList[0].path]);
-                }
-            }
-        });
+                // When navigation ends, see if we're still on "/"
+                this._router.events.subscribe(routerEvent => {
+                    if (routerEvent instanceof NavigationEnd) {
+
+                        // If we're still at root, take them to the first menu item
+                        if (routerEvent.url === '/') {
+                            this._router.navigate([this.menuList[0].path]);
+                        }
+
+                    } // end if navigation end
+                }); // end subscribe router events
+
+            } // end if menu length
+        }); // end subscribe getMenu
 
     } // end ngOnInit
 
