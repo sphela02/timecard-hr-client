@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MqIfDirective } from '../shared/mq-if/mq-if.directive';
 import { ObjectFilter } from '../shared/pipes/objectFilter';
 import { AppLandingComponent } from './app-landing/app-landing.component';
+import { ApprovalMenuComponent } from './approval-menu/approval-menu.component';
+import { RouterModule } from '@angular/router';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
@@ -42,16 +44,19 @@ export { ValidationResponseTimecardRowDTO } from './ValidationResponseTimecardRo
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   declarations: [
     MqIfDirective,
     ObjectFilter,
-    AppLandingComponent
+    AppLandingComponent,
+    ApprovalMenuComponent,
   ],
   exports: [
     MqIfDirective,
-    ObjectFilter
+    ObjectFilter,
+    ApprovalMenuComponent,
   ]
 })
 export class SharedModule {}

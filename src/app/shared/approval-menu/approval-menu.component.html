@@ -1,0 +1,10 @@
+<ul id="approvals-tabs" class="nav classic-tabs" role="tablist">
+  <li class="nav-item mx-3" *ngFor="let menuItem of approvalMenuItems">
+      <a class="nav-link waves-light waves-effect waves-light px-0"
+          routerLink = {{menuItem.path}}
+          routerLinkActive = "active">
+          {{menuItem.name}}
+        </a>
+  </li>
+</ul>
+<!-- dbg 9/4/2018 ... The "active" class applies to /vacation/approvals but doesn't know about /vacation/approver/calendar -->
