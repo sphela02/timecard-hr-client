@@ -38,6 +38,12 @@ body {
     display: block;
 }
 
+.input-group.is-invalid {
+    ~ .invalid-feedback {
+        display: block;
+    }
+}
+
 input.disabled-input {
     border-bottom: none !important;
     color: rgba(black, .38);
