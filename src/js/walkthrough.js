@@ -281,5 +281,271 @@ var tour = {
                 showPrevButton:'true',
             },        
         ]
-    }
+    },
+    'vrsList': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Welcome to the VRS',
+                content: 'This tour will show you what’s new in our redesigned VRS system. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Vacation%20Request%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                target: 'page-title',
+                placement: 'bottom'
+            },
+            {
+                title: 'Employee Information',
+                content: 'Click on the dropdown and select View Profile to change your primary and secondary approvers and to see your employee information including employee ID, department, etc.',
+                target: 'user-account',
+                placement: 'right',
+                showPrevButton:'true',
+                
+            },
+            {
+                title: 'Side Navigation Pane',
+                content: 'The left navigation pane includes links to scheduled vacation, request vacation and search for upcoming vacation.  For approvers, access to review and approve vacation requests and search for their team member vacation requests.',
+                target: 'timecard-menu',
+                placement: 'right',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Request Views',
+                content: 'Switch between Request List or Calendar View.',
+                target: 'approvals-tabs',
+                placement: 'bottom',
+                showPrevButton:'true',
+            },
+            {
+                title: 'VRS Dashboard',
+                content: 'This area shows vacation pending, approved and taken for current and next year.',
+                target: 'mini-dashboard',
+                placement: 'bottom',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Filter',
+                content: 'Status allows filtering by request status (canceled, denied, submitted, in-process and approved).',
+                target: 'status-col',
+                placement: 'left',
+                showPrevButton:'true',
+            },
+            {
+                title: 'View or Edit a Request',
+                content: 'A request can be viewed or edited by selecting a request from the list.',
+                target: 'dates-col',
+                placement: 'top',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Create a New Request',
+                content: 'Click Request Vacation to start a new request.',
+                target: 'request-vaction-btn',
+                placement: 'top',
+                showPrevButton:'true',
+                showNextButton: false,
+            },
+        ]
+    },
+    'DisplaySingleRequest': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Request Vacation',
+                content: 'Request Vacation is where you can start a new request or edit an existing request.  <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Vacation%20Request%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                target: 'page-title',
+                placement: 'bottom'
+            },
+            {
+                title: 'Select Dates',
+                content: 'Choose requested dates on the calendar.  Dates with requests are color coded by status.',
+                target: 'select-calendar',
+                placement: 'top',
+                showPrevButton:'true',
+                
+            },
+            {
+                title: 'Specify Hours',
+                content: 'Specify hours for each date. Will default to scheduled hours if schedule is available.',
+                target: 'hours-col',
+                placement: 'top',
+                showPrevButton:'true',
+                arrowOffset: '230px',
+                xOffset: '-225px',
+            },
+            {
+                title: 'HR Business Rep',
+                content: 'Choose the appropriate HR Business Rep (will default after submitting your first request)',
+                target: 'HRBusinessRep',
+                placement: 'top',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Email Recipients',
+                content: '(Optional) Add additional email recipients if desired.',
+                target: 'add-email-recipients',
+                placement: 'left',
+                showPrevButton:'true',
+                yOffset: '-20px',
+            },
+            {
+                title: 'Submit Request',
+                content: 'Click to Submit your request. You will be prompted to enter an optional message with your request if desired. Then Click Save',
+                target: 'submit-request',
+                placement: 'top',
+                showPrevButton:'true',
+                showNextButton: false,
+                arrowOffset: '250px',
+                xOffset: '-225px',
+            }
+        ]
+    },
+    'vrsSearch': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Vacation Search',
+                content: 'Vacation Search is where you can search for your requests between a specific date range. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Vacation%20Request%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                target: 'page-title',
+                placement: 'bottom'
+            },
+            {
+                title: 'Search by Date',
+                content: 'Enter the date range that includes the request you are trying to find. Click the magnifying glass to display list and continue tour.',
+                target: 'utility-bar',
+                placement: 'bottom',
+                showPrevButton:'true',
+                
+            },
+            {
+                title: 'Filter',
+                content: 'Status allows filtering by request status (canceled, denied, submitted, in-process and approved).',
+                target: 'status-col',
+                placement: 'left',
+                showPrevButton:'true',
+                yOffset: '-20px',
+            },
+            {
+                title: 'View a Request',
+                content: 'Select a request to edit or review from the returned search results.',
+                target: 'dates-col',
+                placement: 'top',
+                showPrevButton:'true',
+                showNextButton: false,
+            },
+        ]
+    },
+    'ShowApproverRequests': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Approval List',
+                content: 'The approvals page is where you can find your team’s timecards to review and approve. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Vacation%20Request%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                target: 'page-title',
+                placement: 'bottom'
+            },
+            {
+                title: 'Approval View Options',
+                content: 'Switch between List or Calendar View. Note that Calendar view will display all approver’s direct reports in both calendar and list views, color coded by status.',
+                target: 'approval-views-select',
+                placement: 'bottom',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Filter',
+                content: 'Status allows filtering by request status (canceled, denied, submitted, in-process and approved).',
+                target: 'status-col',
+                placement: 'left',
+                showPrevButton:'true',
+                yOffset: '-20px',
+            },
+            {
+                title: 'View a Request',
+                content: 'Select a request to review and deny or approve.',
+                target: 'dates-col',
+                placement: 'top',
+                showPrevButton:'true',
+                showNextButton: false,
+                xOffset: '250px',
+            },
+        ]
+    },
+    'DisplayApproverCalendar': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Approval Calendar',
+                content: 'The approval calendar is where you can find your team’s timecards to review and approve by date. <a href="https://share.harris.com/sites/ITSM_KB/KB_Articles/Vacation%20Request%20User%20Guide.pdf" target="_blank">Click to find detailed instructions.</a>',
+                target: 'page-title',
+                placement: 'bottom'
+            },           
+            {
+                title: 'View a Request',
+                content: 'Select a date to show available requests.  Click a request in the display to review and deny or approve.',
+                target: 'calendar-month-grid',
+                placement: 'top',
+                showPrevButton:'true',
+                showNextButton: false,
+                xOffset: '250px',
+            },
+        ]
+    },
+    'DisplayRequestApproval': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Dashboard',
+                content: 'Dashboard shows the requester’s hours taken, approved and pending for current and next year.',
+                target: 'mini-dashboard',
+                placement: 'bottom',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Messages',
+                content: 'Requester messages can be viewed here.',
+                target: 'vrs-messages',
+                placement: 'top',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Requested Dates',
+                content: 'View requested dates on the calendar.  Dates with requests are color coded by status.',
+                target: 'select-calendar',
+                placement: 'top',
+                showPrevButton:'true',
+            },
+            {
+                title: 'Requested Hours',
+                content: 'View dates and number of hours being requested.',
+                target: 'hours-col',
+                placement: 'top',
+                showPrevButton:'true',
+                arrowOffset: '250px',
+                xOffset: '-250px',
+            },
+            {
+                title: 'Overlap',
+                content: 'Overlap will indicate any vacation overlaps for direct reports. Click to review.',
+                target: 'overlap-col',
+                placement: 'top',
+                showPrevButton:'true',
+                arrowOffset: '250px',
+                xOffset: '-250px',
+            },
+            {
+                title: 'Approve or Deny',
+                content: 'Click Approve or Deny to complete. If denied, you will be promted to enter a message.',
+                target: 'approve-deny-action',
+                placement: 'top',
+                showPrevButton:'true',
+                showNextButton: false,
+                arrowOffset: '250px',
+                xOffset: '-225px',
+                yOffset: '-20px',
+            },
+        ]
+    },
 }

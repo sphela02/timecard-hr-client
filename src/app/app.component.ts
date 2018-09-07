@@ -16,6 +16,7 @@ import {
     ApplicationMenuType
 } from './shared/shared';
 import { VacationRequestService } from './vacation-request/vacation-request.service';
+import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs';
 
 declare var $: any;
 
@@ -153,13 +154,25 @@ export class AppComponent implements OnInit {
         // watch for page title changes.
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
 
-        this._commonDataService.currentViewMode.subscribe(viewMode => {
-            if (viewMode === TimecardViewMode.None ||
-                viewMode === TimecardViewMode.Display ||
-                viewMode === TimecardViewMode.Edit) {
-                    this.currentViewMode = 'tcDisplay';
-            } else {
-                this.currentViewMode = TimecardViewMode[viewMode];
+        this._commonDataService.currentViewMode.subscribe(viewInfo => {
+            if (viewInfo.Application === ApplicationArea.Timecard) {
+                if (viewInfo.ViewMode === TimecardViewMode.None ||
+                    viewInfo.ViewMode === TimecardViewMode.Display ||
+                    viewInfo.ViewMode === TimecardViewMode.Edit) {
+                        this.currentViewMode = 'tcDisplay';
+                } else {
+                    this.currentViewMode = TimecardViewMode[viewInfo.ViewMode];
+                }
+            } else if (viewInfo.Application === ApplicationArea.VacationRequest) {
+                console.log(VRSApplicationViewMode[viewInfo.ViewMode]);
+                if (viewInfo.ViewMode === VRSApplicationViewMode.ShowMyRequests) {
+                        this.currentViewMode = 'vrsList';
+                } else if (viewInfo.ViewMode === VRSApplicationViewMode.Search ||
+                    viewInfo.ViewMode === VRSApplicationViewMode.ApproverSearch) {
+                        this.currentViewMode = 'vrsSearch';
+                } else {
+                    this.currentViewMode = VRSApplicationViewMode[viewInfo.ViewMode];
+                }
             }
         });
 
