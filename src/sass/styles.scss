@@ -38,9 +38,17 @@ body {
     display: block;
 }
 
-.input-group.is-invalid {
-    ~ .invalid-feedback {
-        display: block;
+.input-group {
+    &.is-invalid {
+        ~ .invalid-feedback {
+            display: block;
+        }
+    }
+
+    .md-form & {
+        input[type=text] {
+            width: 100px;
+        }
     }
 }
 
