@@ -7,7 +7,14 @@ import { CommonDataService } from './shared/common-data/common-data.service';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { environment } from '../environments/environment';
 import { Subject } from 'rxjs/Subject';
-import { TimecardViewMode, AppViewPort, AlertMessageType, ApplicationMenuItem, ApplicationMenuType } from './shared/shared';
+import {
+    ApplicationArea,
+    TimecardViewMode,
+    AppViewPort,
+    AlertMessageType,
+    ApplicationMenuItem,
+    ApplicationMenuType
+} from './shared/shared';
 
 declare var $: any;
 
@@ -42,6 +49,9 @@ export class AppComponent implements OnInit {
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
             ) {
+        // Set up any menu items
+        this._initializeMenuItems();
+
         _userInfoService.getIsApprover()
             .takeUntil(this.ngUnsubscribe$)
             .subscribe(x => {
@@ -113,6 +123,26 @@ export class AppComponent implements OnInit {
     toggleNav(): void {
         // document.getElementById('sidebar').classList.toggle('active');
         // document.getElementById('sidebarCollapse').classList.toggle('active');
+    }
+
+    private _initializeMenuItems() {
+        // Set up menu items for the app module
+        const appMenuItems: ApplicationMenuItem[] = [];
+
+      const approvalsMenuItem: ApplicationMenuItem = {
+        name: 'Approvals', // dbg replace with 'timecard approvals' after app-level approvals goes up
+        // dbg ... Warning ... the name 'Approvals' is hard-coded somehow with the alert badge for how many timecards to approve.
+        path: '/timecard/approvals',
+        icon: 'fa-calendar-check-o',
+        role: 'approver',
+        applicationArea: ApplicationArea.MainApp,
+        sortOrder: 1,
+      };
+
+      appMenuItems.push(approvalsMenuItem);
+
+      // Add the menu items to the main list
+      this._commonDataService.addMenuItems(ApplicationMenuType.MainAppMenu, appMenuItems);
     }
 
     ngOnInit() {

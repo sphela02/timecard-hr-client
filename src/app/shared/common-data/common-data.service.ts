@@ -82,6 +82,8 @@ export class CommonDataService {
       }
     }); // end sort
 
+    console.log(menuList);
+
     // Publish the new menu item list
     this._menuLists$[menuType].next(menuList);
 
