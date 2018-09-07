@@ -10,7 +10,7 @@ export class PreviousRouteService {
   constructor(
     private _router: Router,
   ) {
-    this.currentUrl = this._router.url;
+    this.currentUrl = '';
     _router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.previousUrl = this.currentUrl;
