@@ -66,23 +66,9 @@ export class CommonDataService {
 
     let menuList: ApplicationMenuItem[] = this._menuLists$[menuType].value;
     menuList = menuList.concat(newMenuItems);
-    // Sort the menu items
-    menuList.sort((a: ApplicationMenuItem, b: ApplicationMenuItem) => {
-      // This is kind of a hack, but we prioritize app areas based on which ones come first in the enum.
-      if (a.applicationArea === b.applicationArea) {
-        if (a.sortOrder > b.sortOrder) {
-          return 1;
-        } else {
-          return -1;
-        }
-      } else if (ApplicationArea[a.applicationArea] > ApplicationArea[b.applicationArea]) {
-        return 1;
-      } else {
-        return -1;
-      }
-    }); // end sort
 
-    console.log(menuList);
+    // Sort the menu items
+    menuList = lodash.sortBy(menuList, (m: ApplicationMenuItem) => [m.applicationArea, m.sortOrder]);
 
     // Publish the new menu item list
     this._menuLists$[menuType].next(menuList);
