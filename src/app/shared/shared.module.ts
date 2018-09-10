@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
+export { ApplicationViewInfo } from './ApplicationViewInfoDTO';
 export { ApproveInfoDTO } from './ApproveInfoDTO';
 export { BenefitHourType } from './BenefitHourType';
 export { ChargeCodeDTO } from './ChargeCodeDTO';

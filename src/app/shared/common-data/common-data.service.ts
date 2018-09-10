@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem, ApplicationMenuType } from '../shared';
+import { ApplicationViewInfo } from '../shared.module';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,7 +20,11 @@ export class CommonDataService {
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();
 
-  private viewModeSource = new BehaviorSubject<TimecardViewMode>(TimecardViewMode.List);
+  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({
+    Application: ApplicationArea.Timecard,
+    ViewMode: TimecardViewMode.List
+  });
+
   currentViewMode = this.viewModeSource.asObservable();
   private _menuLists$: BehaviorSubject<ApplicationMenuItem[]>[] = [];
 
@@ -37,7 +42,7 @@ export class CommonDataService {
     this.pageTitleSource.next(title);
   }
 
-  changeViewMode(viewMode: TimecardViewMode) {
+  changeViewMode(viewMode: ApplicationViewInfo) {
     this.viewModeSource.next(viewMode);
   }
 
