@@ -13,6 +13,7 @@ import { UserProfileService } from '../user-profile.service';
 import { UserInfoService } from '../../../userinfo/user-info.service';
 import { UserProfileDashboardItem, UserProfileDashboardWidget } from '../../shared';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { CommonDataService } from '../../common-data/common-data.service';
 
 @Component({
   selector: 'tc-user-profile',
@@ -30,9 +31,13 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private _userInfoService: UserInfoService,
     private _userProfileService: UserProfileService,
+    private _commonDataService: CommonDataService,
     private componentFactoryResolver: ComponentFactoryResolver,
     private modal: NgbModal,
-  ) { }
+  ) {
+    // Set page title.
+    this._commonDataService.changePageTitle('Profile');
+   }
 
   ngOnInit() {
 
