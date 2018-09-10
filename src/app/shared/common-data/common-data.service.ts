@@ -58,7 +58,6 @@ export class CommonDataService {
   } // end impersonateUser
 
   addMenuItems(menuType: ApplicationMenuType, newMenuItems: ApplicationMenuItem[]) {
-
     // Create the menu if it doesn't exist yet
     if (!this._menuLists$[menuType]) {
       this._menuLists$[menuType] = new BehaviorSubject<ApplicationMenuItem[]>([]);
@@ -87,11 +86,12 @@ export class CommonDataService {
   } // end getMenu
 
   removeMenuItemsByApplicationArea(menuType: ApplicationMenuType, appAreaToRemove: ApplicationArea) {
-
     // Remove items from the menu if the menu exists
     if (this._menuLists$[menuType]) {
+
       const menuList: ApplicationMenuItem[] = this._menuLists$[menuType].value;
       lodash.remove(menuList, {applicationArea: appAreaToRemove});
+
       // Publish the updated menu item list
       this._menuLists$[menuType].next(menuList);
     } // end if menu defined

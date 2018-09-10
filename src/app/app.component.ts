@@ -15,6 +15,7 @@ import {
     ApplicationMenuItem,
     ApplicationMenuType
 } from './shared/shared';
+import * as lodash from 'lodash';
 
 declare var $: any;
 
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit {
     private ngUnsubscribe$: Subject<void> = new Subject<void>();
     isApprover: boolean = false;
     AlertMessageType: typeof AlertMessageType = AlertMessageType;
+    showApprovalsMenuItem: boolean = false;
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
@@ -49,7 +51,19 @@ export class AppComponent implements OnInit {
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
             ) {
-        // Set up any menu items
+
+        this._commonDataService.getMenu(ApplicationMenuType.ApprovalMenu).subscribe(approvalsMenu => {
+            if (approvalsMenu.length) {
+                this.showApprovalsMenuItem = true;
+            } else {
+                this.showApprovalsMenuItem = false;
+            }
+
+            // Set up any menu items
+            this._initializeMenuItems();
+        });
+
+        // // Set up any menu items
         this._initializeMenuItems();
 
         _userInfoService.getIsApprover()
@@ -126,24 +140,29 @@ export class AppComponent implements OnInit {
     }
 
     private _initializeMenuItems() {
+        // Clear the main app menu items.
+       this._commonDataService.removeMenuItemsByApplicationArea(ApplicationMenuType.MainAppMenu, ApplicationArea.MainApp);
+
         // Set up menu items for the app module
         const appMenuItems: ApplicationMenuItem[] = [];
 
-      const approvalsMenuItem: ApplicationMenuItem = {
-        name: 'Approvals', // dbg replace with 'timecard approvals' after app-level approvals goes up
-        // dbg ... Warning ... the name 'Approvals' is hard-coded somehow with the alert badge for how many timecards to approve.
-        path: '/timecard/approvals',
-        icon: 'fa-calendar-check-o',
-        role: 'approver',
-        applicationArea: ApplicationArea.MainApp,
-        sortOrder: 1,
-      };
+        // Set approvalsMenuItem.
+        if (this.showApprovalsMenuItem) {
+            const approvalsMenuItem: ApplicationMenuItem = {
+                name: 'Approvals',
+                path: '/timecard/approvals',
+                icon: 'fa-calendar-check-o',
+                role: 'approver',
+                applicationArea: ApplicationArea.MainApp,
+                sortOrder: 1,
+            };
 
-      appMenuItems.push(approvalsMenuItem);
+            appMenuItems.push(approvalsMenuItem);
+        }
 
-      // Add the menu items to the main list
-      this._commonDataService.addMenuItems(ApplicationMenuType.MainAppMenu, appMenuItems);
-    }
+        // Add the menu items to the main list
+        this._commonDataService.addMenuItems(ApplicationMenuType.MainAppMenu, appMenuItems);
+    } // end _initializeMenuItems.
 
     ngOnInit() {
         this.retrieveCurrentUser();
