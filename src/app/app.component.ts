@@ -15,6 +15,7 @@ import {
     ApplicationMenuItem,
     ApplicationMenuType
 } from './shared/shared';
+import { VacationRequestService } from './vacation-request/vacation-request.service';
 
 declare var $: any;
 
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
                 private _timecardService: TimecardService,
+                private _vacationRequestService: VacationRequestService,
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
             ) {
