@@ -153,7 +153,7 @@ export class AppComponent implements OnInit {
         if (this.showApprovalsMenuItem) {
             const approvalsMenuItem: ApplicationMenuItem = {
                 name: 'Approvals',
-                path: '/timecard/approvals',
+                path: 'approvals',
                 icon: 'fa-calendar-check-o',
                 role: 'approver',
                 applicationArea: ApplicationArea.MainApp,
