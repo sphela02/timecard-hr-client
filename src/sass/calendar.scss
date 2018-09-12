@@ -187,6 +187,20 @@ $dayBase: 30px;
     }
 
     &.status-calendar {
+        &.my-requests {
+            .calendar-navs {
+                @media screen and (max-width: $breakpoint-xs) {
+                    font-size: .875rem;
+                    line-height: 1.5;
+                }
+
+                @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md) {
+                    font-size: 1.25rem;
+                    line-height: 1;
+                }
+            }
+        }
+
         .calendar-navs {
             background-color: white;
             border: none;
@@ -195,6 +209,29 @@ $dayBase: 30px;
         
             @media screen and (max-width: $breakpoint-md) {
                 font-size: .875rem;
+                line-height: 1.5;
+            }
+
+            &.drilldown-shown {
+                @media screen and (min-width: $breakpoint-md) and (max-width: 1540px) {
+                    .approval-view-mode {
+                        width: 100%;
+                    }
+                }
+
+                @media screen and (max-width: $breakpoint-xl) {
+                    font-size: .875rem;
+                }
+
+                @media screen and (min-width: 1525px) {
+                    .month-nav-wrapper {
+                        flex-basis: 0;
+                        -webkit-box-flex: 1;
+                        -ms-flex-positive: 1;
+                        flex-grow: 1;
+                        max-width: 100%;
+                    }
+                }
             }
 
             .btn {
@@ -218,6 +255,11 @@ $dayBase: 30px;
                 @media screen and (max-width: $breakpoint-xs) {
                     padding-left: .5rem;
                     padding-right: .5rem;
+                }
+
+                &.today-btn {
+                    padding-top: 9px;
+                    padding-bottom: 9px;
                 }
             }
         }
