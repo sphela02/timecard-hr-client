@@ -249,12 +249,12 @@ export class AppComponent implements OnInit {
     }
 
     startDiagnostics() {
-        this._timecardService.startSubscriberDiagnostics();
+        this._commonDataService.startDiagnostics();
         this.diagnosticsMode = true;
     } // end startDiagnostics
 
     endDiagnostics() {
-        this._timecardService.endSubscriberDiagnostics();
+        this._commonDataService.endDiagnostics();
         this.diagnosticsMode = false;
     } // end endDiagnostics
 

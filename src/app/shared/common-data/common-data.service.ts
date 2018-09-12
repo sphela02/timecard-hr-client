@@ -34,6 +34,9 @@ export class CommonDataService {
   private _servicesAreReady: boolean[] = [];
   private _readyServicesCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
+  // Diagnostics mode
+  private _diagnosticModeActive$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   deleteErrorMessageByIndex(errorIndex: number) {
     this.currentErrorMessages.splice(errorIndex, 1);
   }
@@ -137,5 +140,17 @@ export class CommonDataService {
 
     }); // end new promise
   } // end appWaitForServicesToBeReady
+
+  startDiagnostics() {
+    this._diagnosticModeActive$.next(true);
+  } // end startDiagnostics
+
+  endDiagnostics() {
+    this._diagnosticModeActive$.next(false);
+  } // end endDiagnostics
+
+  getDiagnosticsMode(): Observable<boolean> {
+    return this._diagnosticModeActive$.asObservable();
+  } // end getDiagnosticsMode
 
 } // end CommonDataService
