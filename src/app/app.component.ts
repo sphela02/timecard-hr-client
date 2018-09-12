@@ -200,7 +200,7 @@ export class AppComponent implements OnInit {
             $('#sidebarCollapse').sideNav();
 
             // Close-on-click for smaller screens
-            $('#sidebar a.nav-link').on('click', function() {
+            $('body #sidebar a.nav-link').on('click', function() {
                 if ( !window.matchMedia( AppViewPort.Large ).matches) {
                     $('#sidebar').velocity({
                         translateX: ['-100%', 0]
