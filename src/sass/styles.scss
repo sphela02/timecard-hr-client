@@ -369,7 +369,7 @@ table.table.timecard-list {
 
     td {
         border: 1px solid lightgrey;
-        padding: 10px;
+        padding: 5px;
         vertical-align: middle;
 
         &.status {
@@ -383,6 +383,10 @@ table.table.timecard-list {
             &.open {
                 border-right: 6px solid #F99F3C;
             }
+        }
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: 10px;
         }
     }
 }
