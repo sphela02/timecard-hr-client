@@ -198,3 +198,8 @@ export enum ActionType {
       status: ErrorStatus;
       messageText: String;
   }
+
+  export interface DiagnosticMessageGroup {
+    providerName: string;
+    diagnosticMessages: string[];
+  }

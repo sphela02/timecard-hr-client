@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injector, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -14,9 +14,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
 import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
 import { CommonDataService } from '../shared/common-data/common-data.service';
+import { HarrisDataServiceBase } from '../shared/base-classes/HarrisDataServiceBase';
 
 @Injectable()
-export class UserInfoService {
+export class UserInfoService extends HarrisDataServiceBase {
   private _userInfoUrl: string;
   private _userBenefitHoursUrl: string;
   private _isApproverUrl: string;
@@ -27,10 +28,12 @@ export class UserInfoService {
   private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private _http: HttpClient,
-    private _errorHandlerService: GlobalErrorHandlerService,
-    private _commonDataService: CommonDataService,
+    protected injector: Injector,
   ) {
+
+    // Call the base class constructor
+    super(injector);
+
     this._userInfoUrl = '|EMPLOYEE|getMyProfile';
     this._userBenefitHoursUrl = '|EMPLOYEE|getBenefitHours';
     this._isApproverUrl = '|EMPLOYEE|HasApproverRole/';

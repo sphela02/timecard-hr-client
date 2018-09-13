@@ -54,8 +54,13 @@
                     title="Start Diagnostics"></i>
             </ng-container>
             <div class="diagnostics-panel" *ngIf="diagnosticsMode">
-                <div class="py-1 border-bottom" *ngFor="let observableCountMessage of _commonDataService.observableDiagnosticMessages">
-                    <span class="text-nowrap">{{observableCountMessage}}</span>
+                <div class="py-1 border-bottom" *ngFor="let diagnosticGroup of diagnosticMessageGroups">
+                    <b>{{ diagnosticGroup.providerName }}</b>
+                    <ul>
+                        <li *ngFor="let message of diagnosticGroup.diagnosticMessages">
+                            {{ message }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
