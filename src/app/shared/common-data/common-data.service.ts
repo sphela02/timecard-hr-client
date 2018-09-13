@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { TimecardViewMode, AlertNotification, ApplicationArea, ApplicationMenuItem, ApplicationMenuType } from '../shared';
+import {
+  TimecardViewMode,
+  AlertNotification,
+  ApplicationArea,
+  ApplicationMenuItem,
+  ApplicationMenuType,
+  DiagnosticMessageGroup
+} from '../shared';
 import { ApplicationViewInfo } from '../shared.module';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +18,6 @@ export class CommonDataService {
   public impersonateUserID$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   public currentErrorMessages: string[] = [];
-  public observableDiagnosticMessages: string[] = [];
   public defaultBatchWarningTimeInMinutes = 240;
   public alertNotificationGroups: AlertNotification[][] = [];
   public alertNotificationCount: number = 0;
@@ -27,6 +33,10 @@ export class CommonDataService {
 
   currentViewMode = this.viewModeSource.asObservable();
   private _menuLists$: BehaviorSubject<ApplicationMenuItem[]>[] = [];
+
+  // Lists of diagnostic messages, organized by app area
+  private _diagnosticMessageGroups: DiagnosticMessageGroup[] = [];
+  private _diagnosticMessageGroups$: BehaviorSubject<DiagnosticMessageGroup[]> = new BehaviorSubject<DiagnosticMessageGroup[]>([]);
 
   // List of observables for services that want us to wait for them to be ready.
   // We delay app initialization until all services are ready.
@@ -64,6 +74,30 @@ export class CommonDataService {
     // Store/broadcast the new userID to impersonate with
     this.impersonateUserID$.next(userToImpersonate);
   } // end impersonateUser
+
+  setDiagnosticMessages(providerName: string, diagnosticMessages: string[]) {
+
+    const newDiagnosticGroup: DiagnosticMessageGroup = {
+      diagnosticMessages: diagnosticMessages,
+      providerName: providerName
+    };
+
+    // Add or replace the diagnostic messages for this provider
+    const providerIndex: number = lodash.findIndex(this._diagnosticMessageGroups, { 'providerName': providerName });
+    if (providerIndex === -1) {
+      this._diagnosticMessageGroups.push(newDiagnosticGroup);
+    } else {
+      this._diagnosticMessageGroups[providerIndex] = newDiagnosticGroup;
+    }
+
+    // Publish the new information
+    this._diagnosticMessageGroups$.next(this._diagnosticMessageGroups);
+
+  } // end setDiagnosticMessages
+
+  getDiagnosticMessages(): Observable<DiagnosticMessageGroup[]> {
+    return this._diagnosticMessageGroups$.asObservable();
+  } // end getDiagnosticMessages
 
   addMenuItems(menuType: ApplicationMenuType, newMenuItems: ApplicationMenuItem[]) {
     // Create the menu if it doesn't exist yet

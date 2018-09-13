@@ -13,7 +13,8 @@ import {
     AppViewPort,
     AlertMessageType,
     ApplicationMenuItem,
-    ApplicationMenuType
+    ApplicationMenuType,
+    DiagnosticMessageGroup
 } from './shared/shared';
 import * as lodash from 'lodash';
 import { VacationRequestService } from './vacation-request/vacation-request.service';
@@ -46,6 +47,8 @@ export class AppComponent implements OnInit {
     isApprover: boolean = false;
     AlertMessageType: typeof AlertMessageType = AlertMessageType;
     showApprovalsMenuItem: boolean = false;
+
+    diagnosticMessageGroups: DiagnosticMessageGroup[] = [];
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
@@ -236,6 +239,9 @@ export class AppComponent implements OnInit {
             } // end if menu length
         }); // end subscribe getMenu
 
+        this._commonDataService.getDiagnosticMessages().subscribe((messageGroups: DiagnosticMessageGroup[]) => {
+            this.diagnosticMessageGroups = messageGroups;
+        });
     } // end ngOnInit
 
     // Show error details when clicked.
