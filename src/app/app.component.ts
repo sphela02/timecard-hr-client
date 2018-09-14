@@ -158,7 +158,7 @@ export class AppComponent implements OnInit {
                 name: 'Approvals',
                 path: 'approvals',
                 icon: 'fa-calendar-check-o',
-                role: 'approver',
+                role: '',
                 applicationArea: ApplicationArea.MainApp,
                 sortOrder: 1,
             };
