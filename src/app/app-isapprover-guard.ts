@@ -8,6 +8,6 @@ export class IsApproverGuard implements CanActivate {
   constructor(private _userInfoService: UserInfoService) {}
 
   canActivate() {
-    return this._userInfoService.getIsApprover();
+    return this._userInfoService.getIsApprover(); // dbg ... this can return null/true/false
   }
 }

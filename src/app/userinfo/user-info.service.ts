@@ -25,7 +25,7 @@ export class UserInfoService extends HarrisDataServiceBase {
   private _userInfo: EmployeeProfileDTO;
   private _userInfoIsRetrieving: boolean = false;
   private _isApprover: boolean = null;
-  private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
   constructor(
     protected injector: Injector,
@@ -81,11 +81,14 @@ export class UserInfoService extends HarrisDataServiceBase {
     return this._userInfo$;
   }
 
+  // dbg ... this should move to timecard service (client/server), since it's a timecard approver check.
   getIsApprover(forceRefresh: boolean = false): Observable<boolean> {
     // Is the user an approver?
 
     // If we don't have the answer yet, or if we need to refresh, get it now.
     if ((this._isApprover === null) || forceRefresh) {
+      // Mark internal answer as false by default to prevent double lookups
+      this._isApprover = false;
       // Retrieve the answer now and store it.
       this._http.get<boolean>(this._isApproverUrl,
                                           { withCredentials: true })

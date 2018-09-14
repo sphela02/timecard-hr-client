@@ -75,11 +75,13 @@ export class AppComponent implements OnInit {
         _userInfoService.getIsApprover()
             .takeUntil(this.ngUnsubscribe$)
             .subscribe(x => {
-                this.isApprover = x;
+                if (x !== null) {
+                    this.isApprover = x;
 
-                // Set common data service variable.
-                this._commonDataService.isApprover = this.isApprover;
-            });
+                    // Set common data service variable.
+                    this._commonDataService.isApprover = this.isApprover;
+                } // end if not null
+            }); // end subscribe getIsApprover
 
         // Subscribe to router events.
         _router.events.subscribe(routerEvent => {
