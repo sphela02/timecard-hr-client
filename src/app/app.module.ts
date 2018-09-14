@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
-import { IsApproverGuard } from './app-isapprover-guard';
+// import { IsApproverGuard } from './app-isapprover-guard';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { ProgressTrackerService } from './shared/progress-tracker/progress-tracker.service';
 import { environment } from '../environments/environment';
@@ -71,7 +71,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     //   useClass: HarrisHttpInterceptorMockJSON,
     //   multi: true
     // },
-    IsApproverGuard,
+    // IsApproverGuard,
   ],
   bootstrap: [AppComponent]
 })
