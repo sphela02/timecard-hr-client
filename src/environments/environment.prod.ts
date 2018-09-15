@@ -1,4 +1,5 @@
 import { AppMode } from '../app/shared/shared';
+import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
 export const environment = {
   production: true,
@@ -9,5 +10,7 @@ export const environment = {
   },
   AppMode: AppMode.Prod,
   allowDiagnostics: false,
-  importModules: [],
+  importModules: [
+    VacationRequestModule
+  ],
 };
