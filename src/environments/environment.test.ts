@@ -1,4 +1,4 @@
-import { AppMode } from '../app/shared/shared';
+import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
 // The file contents for the current environment will overwrite these during build.
@@ -13,7 +13,7 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
-export const environment = {
+export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
     'TIMECARD': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/',

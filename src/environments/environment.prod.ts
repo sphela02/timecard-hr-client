@@ -1,7 +1,7 @@
-import { AppMode } from '../app/shared/shared';
+import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
-export const environment = {
+export const environment: ApplicationEnvironment = {
   production: true,
   apiServiceURLs: {
     'TIMECARD': 'https://mi.harris.com/timecardapi/api/v1/Timecard/',
