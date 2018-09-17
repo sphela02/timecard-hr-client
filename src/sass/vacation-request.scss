@@ -207,8 +207,12 @@
         td {
             vertical-align: middle;
 
-            .user-icon {
-                max-height: 25px;
+            .user-image {
+                display: inline-block;
+
+                img {
+                    max-height: 25px;
+                }
             }
 
             .valign {
