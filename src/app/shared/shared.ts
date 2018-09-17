@@ -1,6 +1,8 @@
 import { TimecardHeaderDTO } from './TimecardHeaderDTO';
 import { UpdateTimecardDTO } from './UpdateTimecardDTO';
 import { NoteDTO } from './NoteDTO';
+import { Subject } from 'rxjs/Subject';
+import { ErrorStatus } from './ErrorStatus';
 
 export enum ActionType {
     Right = 1,
@@ -153,6 +155,7 @@ export enum ActionType {
     VRSAuthorizations = 4,
     VRSMessages = 5,
     VRSTeamDrilldown = 6,
+    MainApp = 99,
   }
 
   export interface AlertNotification {
@@ -160,6 +163,11 @@ export enum ActionType {
     alertType: AlertMessageType;
     itemsAffectedCount: number;
     actionURL: string;
+  }
+
+  export enum ApplicationMenuType {
+    MainAppMenu = 1,
+    ApprovalMenu = 2,
   }
 
   export interface ApplicationMenuItem {
@@ -170,4 +178,28 @@ export enum ActionType {
     applicationArea: ApplicationArea;
     sortOrder: number;
     subMenu?: ApplicationMenuItem[];
+  }
+
+  export interface UserProfileDashboardItem {
+    title: string;
+    descriptionText: string;
+    actionButtonText: string;
+    openDashboardItem$: Subject<boolean>;
+    applicationArea: ApplicationArea;
+  }
+
+  export interface UserProfileDashboardWidget {
+    widgetComponent: any;
+    applicationArea: ApplicationArea;
+  }
+
+  export class ActionResponseDTO {
+      action: ActionType;
+      status: ErrorStatus;
+      messageText: String;
+  }
+
+  export interface DiagnosticMessageGroup {
+    providerName: string;
+    diagnosticMessages: string[];
   }

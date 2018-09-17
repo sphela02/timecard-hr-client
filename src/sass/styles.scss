@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://design.harris.com/dist/v1.0/css/default/default.min.css');
+@import '../css/hds/default/default.min.css';
 
 // Colors
 $harris-red: #e21d22;
@@ -38,9 +38,63 @@ body {
     display: block;
 }
 
+.input-group {
+    &.is-invalid {
+        ~ .invalid-feedback {
+            display: block;
+        }
+    }
+
+    .md-form & {
+        input[type=text] {
+            width: 100px;
+        }
+    }
+}
+
 input.disabled-input {
     border-bottom: none !important;
     color: rgba(black, .38);
+}
+
+.error-popover {
+    background: $danger;
+
+    .arrow::after {
+        border-top-color: $danger;
+    }
+
+    .popover-body {
+        color: white;
+        padding-right: 25px;
+
+        &.single-message {
+            padding-right: .75rem;
+        }
+
+        .next-error {
+            background: rgba(0,0,0,.2);
+            display: block;
+            font-size: 1.2rem;
+            height: 100%;
+            top: 0;
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            width: 25px;
+
+            &:hover {
+                color: lightgray;
+            }
+
+            i {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
 }
 
 .input-group .calendar-picker-icon {
@@ -182,6 +236,7 @@ body.loading {
     
                 .dropdown-item {
                     font-size: .9rem;
+                    line-height: 1.5;
     
                     i {
                         margin-right: 1rem;
@@ -216,7 +271,7 @@ body.loading {
                 .nav .nav-item .nav-link {
                     color: $harris-grey;
                     font-weight: 400;
-                    margin-left: 3.25rem;
+                    margin-left: 3.55rem;
                 }
             }
         }
@@ -314,7 +369,7 @@ table.table.timecard-list {
 
     td {
         border: 1px solid lightgrey;
-        padding: 10px;
+        padding: 5px;
         vertical-align: middle;
 
         &.status {
@@ -322,9 +377,16 @@ table.table.timecard-list {
             &.approved {
                 border-right: 6px solid #6db444;
             }
+            &.pending {
+                border-right: 6px solid $info;
+            }
             &.open {
                 border-right: 6px solid #F99F3C;
             }
+        }
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: 10px;
         }
     }
 }
@@ -355,9 +417,7 @@ table.table.timecard-list {
     }
 
     .tabs-wrapper .classic-tabs {
-        bottom: 0;
         margin-bottom: -.5rem;
-        position: absolute;
     }
 
     .notes-link {
@@ -485,9 +545,10 @@ table.table.timecard-list {
     #tc-settings {
         color: $harris-grey;
         position: relative;
-    
+        
         i {
-            font-size: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
         }
     }
 

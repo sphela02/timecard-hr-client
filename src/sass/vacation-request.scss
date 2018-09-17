@@ -1,7 +1,7 @@
 #vacation-request-main {
     #utility-bar {
         .tabs-wrapper {
-            min-height: 35px;
+            min-height: 37px;
 
             .classic-tabs {
                 bottom: 0;
@@ -33,6 +33,10 @@
         .btn.btn-link-secondary {
             border: 1px solid lightgray !important;
             font-size: 1rem;
+
+            i {
+                font-size: 1rem !important;
+            }
 
             &.selected {
                 background: $harris-hyperlink-blue;
@@ -384,5 +388,17 @@
         &:nth-child(odd) {
             background-color: rgba(0,0,0, .05); 
         }
+
+        &:hover {
+            background-color: rgba(0,156,222,.2);
+        }
+    }
+
+    #message-body {
+        overflow-y: auto;
+    }
+
+    #message-display-container {
+        max-height: 130px;
     }
 }

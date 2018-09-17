@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -13,14 +13,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
-import { IsApproverGuard } from './app-isapprover-guard';
+// import { IsApproverGuard } from './app-isapprover-guard';
 import { GlobalErrorHandlerService } from './shared/global-error-handler/global-error-handler.service';
 import { ProgressTrackerService } from './shared/progress-tracker/progress-tracker.service';
 import { environment } from '../environments/environment';
+import { UserProfileService } from './shared/user-profile/user-profile.service';
+import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
+
+export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
+  return () => _commonDataService.appWaitForServicesToBeReady();
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserProfileComponent,
   ],
   imports: [
     ...environment.importModules, // Specific modules to import for the current environment.
@@ -35,6 +42,7 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     UserInfoService,
+    UserProfileService,
     CommonDataService,
     ProgressTrackerService,
     GlobalErrorHandlerService,
@@ -52,12 +60,18 @@ import { environment } from '../environments/environment';
       useClass: HarrisHttpInterceptorImpersonate,
       multi: true
     },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appWaitForServicesToBeReady,
+      multi: true,
+      deps: [CommonDataService]
+    },
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: HarrisHttpInterceptorMockJSON,
     //   multi: true
     // },
-    IsApproverGuard,
+    // IsApproverGuard,
   ],
   bootstrap: [AppComponent]
 })
