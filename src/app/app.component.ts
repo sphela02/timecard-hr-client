@@ -14,7 +14,8 @@ import {
     AlertMessageType,
     ApplicationMenuItem,
     ApplicationMenuType,
-    DiagnosticMessageGroup
+    DiagnosticMessageGroup,
+    ApplicationEnvironment
 } from './shared/shared';
 import * as lodash from 'lodash';
 import { VacationRequestService } from './vacation-request/vacation-request.service';
@@ -39,7 +40,7 @@ export class AppComponent implements OnInit {
     userInfo: EmployeeProfileDTO;
     userToImpersonate: string;
     diagnosticsMode: boolean;
-    environment: any = environment;
+    environment: ApplicationEnvironment = environment;
     currentViewMode: any = null;
     tourActive: boolean = false;
     private _isApprover: boolean = false;

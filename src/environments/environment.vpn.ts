@@ -1,4 +1,4 @@
-import { AppMode } from '../app/shared/shared';
+import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -12,7 +12,7 @@ import { AppMode } from '../app/shared/shared';
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
-export const environment = {
+export const environment: ApplicationEnvironment = {
   production: true,
   apiServiceURLs: {
     'TIMECARD': 'https://mi-dev.harris.com/vpntest/timecardapi/api/v1/Timecard/',

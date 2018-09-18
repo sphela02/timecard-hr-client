@@ -203,3 +203,11 @@ export enum ActionType {
     providerName: string;
     diagnosticMessages: string[];
   }
+
+  export interface ApplicationEnvironment {
+    production: boolean;
+    apiServiceURLs: {};
+    AppMode: AppMode;
+    allowDiagnostics: boolean;
+    importModules: any[]; // dbg ... we should make this a generic module base class
+  }
