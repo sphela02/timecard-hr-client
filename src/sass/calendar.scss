@@ -148,6 +148,15 @@ $dayBase: 30px;
                     cursor: pointer;
                     pointer-events: all !important;
                 }
+
+                &.selected {
+                    background-color: $harris-hyperlink-blue;
+                    .date-text-wrapper {
+                        .date-text {
+                            color: white !important;
+                        }
+                    }
+                }
             }
 
             &.requested {
