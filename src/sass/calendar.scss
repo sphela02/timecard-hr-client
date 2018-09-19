@@ -138,6 +138,15 @@ $dayBase: 30px;
                         color: white;
                     }
                 }
+
+                &.today {
+                    background-color: $harris-hyperlink-blue;
+                    font-weight: bold;
+
+                    &:hover {
+                        background-color: rgba($info, .10);
+                    }
+                }
             }
 
             &.disabled {
@@ -190,6 +199,14 @@ $dayBase: 30px;
             &.today {
                 background: lighten($info, 50%);
                 font-weight: bold;
+
+                &.not-active {
+                    background: lighten($info, 50%);
+
+                    &:hover {
+                        background: lighten($info, 50%);
+                    }
+                }
             }
             
         }
