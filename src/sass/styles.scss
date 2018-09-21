@@ -711,6 +711,7 @@ table.table.timecard-list {
             td {
                 border: 1px solid lightgrey;
                 font-size: .7rem;
+                line-height: 1;
                 padding: 2px 0;
                 position: relative;
                 vertical-align: middle;
@@ -742,7 +743,11 @@ table.table.timecard-list {
         
                 .row-title {
                     font-weight: bold;
-                    line-height: 1;
+
+                    i {
+                        color: #74767b;
+                        cursor: default;
+                    }
                 }
         
                 .row-description {
