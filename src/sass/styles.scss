@@ -1146,10 +1146,21 @@ table.table {
         padding: .45rem 0;
     }
 
-    .dropdown-item.active {
-        color: #16181b;
-        text-decoration: none;
-        background-color: #d6d6d7;
+    .dropdown-menu {
+        max-height: 250px;
+        overflow-y: auto;
+
+        .dropdown-item {
+            line-height: 1;
+            padding: 10px;
+
+            &.active {
+                color: #16181b;
+                text-decoration: none;
+                background-color: #d6d6d7;
+            }
+        }
+
     }
 }
 
