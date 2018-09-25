@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {
-  TimecardViewMode,
   AlertNotification,
   ApplicationArea,
   ApplicationMenuItem,
@@ -11,6 +10,7 @@ import {
 import { ApplicationViewInfo } from '../shared.module';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { TimecardViewMode } from '../../timecard/_shared/shared.tc'; // dbg ... decouple from tc
 
 @Injectable()
 export class CommonDataService {

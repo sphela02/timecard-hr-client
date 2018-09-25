@@ -5,7 +5,6 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
-import { BenefitHoursDTO } from '../shared/BenefitHoursDTO';
 import { ActionType } from '../shared/shared';
 import { ErrorStatus } from '../shared/ErrorStatus';
 import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
@@ -14,6 +13,7 @@ import { GlobalErrorHandlerService } from '../shared/global-error-handler/global
 import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
 import { CommonDataService } from '../shared/common-data/common-data.service';
 import { HarrisDataServiceBase } from '../shared/base-classes/HarrisDataServiceBase';
+import { BenefitHoursDTO } from '../timecard/_shared/shared.tc'; // dbg ... decouple to TC?
 
 @Injectable()
 export class UserInfoService extends HarrisDataServiceBase {
