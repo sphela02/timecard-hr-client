@@ -1,4 +1,4 @@
-import { AppMode } from '../app/shared/shared';
+import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
 // The file contents for the current environment will overwrite these during build.
@@ -16,7 +16,7 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 export const dbgApiServiceURL = 'https://mi-dev.harris.com/dev/timecardapi/api/v1/'; // dbg
 export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/dev/timecardapi/api/v1/'; // dbg
 
-export const environment = {
+export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
     'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',

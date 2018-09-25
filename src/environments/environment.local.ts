@@ -1,4 +1,4 @@
-import { AppMode } from '../app/shared/shared';
+import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 
 // The file contents for the current environment will overwrite these during build.
@@ -13,7 +13,7 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 // ng serve -o --environment=local --live-reload=false
 // Set your browser's default download folder to be where the JSON files are stored.
 
-export const environment = {
+export const environment: ApplicationEnvironment = {
   production: false,
   // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
   apiServiceURLs: {
