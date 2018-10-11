@@ -1206,6 +1206,23 @@ table.table {
             line-height: 75px;
             min-width: 75px;
         }
+
+        .hours-label {
+            font-size: .75rem;
+            line-height: 1;
+
+            @media screen and (min-width: $breakpoint-md) {
+                font-size: 1rem;
+                line-height: 1.5rem;
+            }
+        }
+
+        .col {
+            @media screen and (max-width: $breakpoint-md) {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
     }
 }
 
