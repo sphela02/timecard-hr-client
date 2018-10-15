@@ -934,7 +934,11 @@ table.table.timecard-list {
     }
 
 }
-
+.trc-list.dropdown-menu {
+    max-height: 200px;
+    overflow: auto;
+}
+ 
 .project-list.dropdown-menu {
     max-width: 80%;
     width: 300px;
