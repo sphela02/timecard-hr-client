@@ -76,3 +76,6 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// tslint:disable:max-line-length
+// DBG ... If a 500 error happens during APP_INITIALIZER (ie, vrs getemployeeprofile returns 500), we just fail with a white screen.  Can we handle this better?
