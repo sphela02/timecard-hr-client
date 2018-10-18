@@ -136,8 +136,10 @@ export enum ActionType {
   }
 
   export enum AppViewPort {
-    Mobile = '(max-width: 768px)',
+    Mobile = '(max-width: 767px)',
+    MobileLg = '(max-width: 799px)',
     Desktop = '(min-width: 768px)',
+    DesktopLg = '(min-width: 800px)',
     ExtraSmall = '(max-width: 767px)',
     Small = '(min-width: 768px)',
     Medium = '(min-width: 992px)',
