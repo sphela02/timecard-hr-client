@@ -1,0 +1,28 @@
+.dc-summary-btns,
+.california-summary-btns {
+    .btn.btn-secondary {
+        color: $grey-dark !important;
+        font-size: .875rem;
+        margin-top: -0.1rem !important;
+    }
+}
+
+.dc-california-daily-btns {
+    .btn.btn-secondary {
+        color: $grey-dark !important;
+        width: 100%;
+        max-width: 50px;
+        
+
+        @media screen and (max-width: $breakpoint-md) {
+            margin: 2px;
+            padding: 0;
+        }
+    }
+}
+
+.mobile-dc-cal-daily-btn {
+    color: $grey-dark !important;
+    float: right;
+    margin-top: -3.3rem;
+}

@@ -5,6 +5,7 @@
 $harris-red: #e21d22;
 $harris-grey: #74767b;
 $harris-hyperlink-blue: #2C5697;
+$grey-dark: #616264;
 $danger: #D93B42;
 $warning: #F99F3C;
 $info: #009cde;
@@ -418,15 +419,6 @@ table.table.timecard-list {
 
     .tabs-wrapper .classic-tabs {
         margin-bottom: -.5rem;
-    }
-
-    .notes-link {
-        .badge {
-            color: $harris-red !important;
-            float: right;
-            margin-top: 2px;
-            padding-left: .4em;
-        }
     }
 
     .approver-search {
@@ -1207,6 +1199,17 @@ table.table {
             min-width: 75px;
         }
     }
+
+    .notes-link {
+        font-size: 1rem;
+        .badge {
+            font-size: 70%;
+        }
+
+        i {
+            line-height: .5;
+        }
+    }
 }
 
 .hide-for-mobile {
@@ -1230,4 +1233,5 @@ table.table {
 
 // Additional sass files.
 @import 'calendar';
-@import 'vacation-request'
+@import 'vacation-request';
+@import 'modules/dc-california';
