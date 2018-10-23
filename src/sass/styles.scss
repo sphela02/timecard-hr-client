@@ -108,6 +108,11 @@ input.disabled-input {
    top: 2px 
 }
 
+.clockpicker-button.btn-floating.btn-flat.active {
+    color: $grey-dark;
+    background-color: #b2dfdb !important;
+}
+
 .loading {
     position: relative;
     
