@@ -57,7 +57,7 @@ export enum ActionType {
     messageText: String;
     messageIcon: String;
     messageType: AlertMessageType;
-    columnMessages: ColumnMessage[];
+    columnMessages: ColumnMessage[][];
     overallMessages: OverallMessage[];
     rowMessages: RowMessage[];
   }
