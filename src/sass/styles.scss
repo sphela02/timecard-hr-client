@@ -1200,11 +1200,46 @@ table.table {
     #mini-dashboard {    
         .card {
             height: 160px;
+
+            .card-body {
+                padding-left: 13px;
+                padding-right: 13px;
+                padding-top: 10px;
+
+                .col {
+                    padding: 0 5px;
+                }
+            }
         }
 
         .hours {
             line-height: 75px;
             min-width: 75px;
+        }
+
+        .hours-label {
+            font-size: .75rem;
+            line-height: 1;
+
+            @media screen and (min-width: $breakpoint-md) {
+                font-size: .9rem;
+                line-height: 1.5rem;
+            }
+        }
+
+        .col,
+        div[class^="col-"] {
+            padding-left: 5px;
+            padding-right: 5px;
+
+            @media screen and (min-width: $breakpoint-lg) {
+                padding-left: 10px;
+                padding-right: 10px;
+
+                &:first-child {
+                    padding-left: 15px;
+                }
+            }
         }
     }
 }
