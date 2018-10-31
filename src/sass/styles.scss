@@ -711,6 +711,7 @@ table.table.timecard-list {
             td {
                 border: 1px solid lightgrey;
                 font-size: .7rem;
+                line-height: 1;
                 padding: 2px 0;
                 position: relative;
                 vertical-align: middle;
@@ -742,7 +743,11 @@ table.table.timecard-list {
         
                 .row-title {
                     font-weight: bold;
-                    line-height: 1;
+
+                    i {
+                        color: #74767b;
+                        cursor: default;
+                    }
                 }
         
                 .row-description {
@@ -1146,10 +1151,21 @@ table.table {
         padding: .45rem 0;
     }
 
-    .dropdown-item.active {
-        color: #16181b;
-        text-decoration: none;
-        background-color: #d6d6d7;
+    .dropdown-menu {
+        max-height: 250px;
+        overflow-y: auto;
+
+        .dropdown-item {
+            line-height: 1;
+            padding: 10px;
+
+            &.active {
+                color: #16181b;
+                text-decoration: none;
+                background-color: #d6d6d7;
+            }
+        }
+
     }
 }
 
