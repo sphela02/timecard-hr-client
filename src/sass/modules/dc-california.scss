@@ -82,8 +82,23 @@
                     font-size: .9rem;
                 }
 
-                &.editable:hover {
-                    background-color: rgba(0,0,0,.075) !important;
+                &.editable {
+                    &:hover {
+                        background-color: rgba(0,0,0,.075) !important;
+
+                        & .clear-time-btn {
+                            color: $harris-grey;
+                            cursor: pointer;
+                            display: block;
+                            position: absolute;
+                            right: 0;
+                            top: 5px;
+                        }
+                    }
+
+                    .clear-time-btn {
+                        display: none;
+                    }
                 }
 
                 .md-form {
