@@ -224,7 +224,13 @@ body.loading {
                 color: black !important;
                 display: inline-block;
                 height: auto;
-                line-height: .8;
+                line-height: 1;
+
+                &:after {
+                    position: absolute;
+                    right: 0;
+                    top: .75rem;
+                }
     
                 img {
                     max-height: 32px;
