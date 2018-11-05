@@ -67,25 +67,31 @@ input.disabled-input {
 
     .popover-body {
         color: white;
-        padding-right: 35px;
+        padding: 0 35px;
 
         .error-messages-wrapper {
             font-size: 90%;
             list-style: none;
             margin: 0;
-            max-height: 200px;
-            overflow: auto;
-            padding: 0 1.5rem;
+            min-height: 60px;
+            padding: 0;
 
             li {
+                display: none;
                 margin: 5px 0;
+
+                &.active {
+                    display: inline;
+                }
             }
         }
 
         &.single-message {
+            padding-left: .75rem;
             padding-right: .75rem;
         }
 
+        .prev-error,
         .next-error {
             background: rgba(0,0,0,.2);
             display: block;
@@ -94,11 +100,15 @@ input.disabled-input {
             top: 0;
             padding: 5px;
             position: absolute;
-            right: 0;
             width: 25px;
 
             &:hover {
                 color: lightgray;
+            }
+
+            &.disabled {
+                color: rgba(white, .8);
+                cursor: default;
             }
 
             i {
@@ -107,6 +117,14 @@ input.disabled-input {
                 top: 50%;
                 transform: translate(-50%, -50%);
             }
+        }
+
+        .prev-error {
+            left: 0;
+        }
+
+        .next-error {
+            right: 0;
         }
     }
 }
