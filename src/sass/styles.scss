@@ -139,9 +139,14 @@ input.disabled-input {
    top: 2px 
 }
 
-.clockpicker-button.btn-floating.btn-flat.active {
-    color: $grey-dark;
-    background-color: #b2dfdb !important;
+.clockpicker-button.btn-floating.btn-flat {
+    background-color: lightgray !important;
+    color: grey;
+
+    &.active {
+        color: white;
+        background-color: #2c5697 !important;
+    }
 }
 
 .loading {
