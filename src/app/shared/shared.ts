@@ -46,11 +46,13 @@ export enum ActionType {
   export interface RowMessage { // dbg ... timecard only?
     RowSequenceNumber: Number;
     messageText: String;
+    messageType: AlertMessageType;
   }
 
   export interface ColumnMessage { // dbg ... timecard only?
     ColumnSequenceNumber: Number;
     messageText: String;
+    messageType: AlertMessageType;
   }
 
   export interface AlertMessage { // dbg ... used by VRS as well? why?
