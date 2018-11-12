@@ -11,6 +11,7 @@
     .btn.btn-secondary {
         color: $grey-dark !important;
         width: 100%;
+        margin: 5px;
         max-width: 50px;
         
         pointer-events: all;
@@ -20,6 +21,13 @@
             padding: 0;
         }
     }
+
+    // DBG - Enable when we are able to determine if there are DC/California column errors.
+    // &.tc-error-danger .btn.btn-secondary {
+    //     background: $danger !important;
+    //     color: white !important;
+    // }
+    
 }
 
 .mobile-dc-cal-daily-btn {
