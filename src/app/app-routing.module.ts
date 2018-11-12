@@ -14,8 +14,13 @@ const routes: Routes = [
     component: AppLandingComponent,
     data: [{appMenuType: ApplicationMenuType.ApprovalMenu}],
   },
+  {
+    path: 'home',
+    component: AppLandingComponent,
+    data: [{appMenuType: ApplicationMenuType.MainAppMenu}],
+  },
   // { path: '', redirectTo: 'timecards', pathMatch: 'full'},
-  // { path: '**', redirectTo: 'timecards', pathMatch: 'full'},
+  { path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({
