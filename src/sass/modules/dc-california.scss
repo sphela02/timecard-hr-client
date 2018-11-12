@@ -22,11 +22,11 @@
         }
     }
 
-    &.tc-error-danger .btn.btn-secondary {
-        background: $danger !important;
-        color: white !important;
-    }
-
+    // DBG - Enable when we are able to determine if there are DC/California column errors.
+    // &.tc-error-danger .btn.btn-secondary {
+    //     background: $danger !important;
+    //     color: white !important;
+    // }
     
 }
 
