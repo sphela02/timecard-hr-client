@@ -1,6 +1,3 @@
-import { TimecardHeaderDTO } from './TimecardHeaderDTO';
-import { UpdateTimecardDTO } from './UpdateTimecardDTO';
-import { NoteDTO } from './NoteDTO';
 import { Subject } from 'rxjs/Subject';
 import { ErrorStatus } from './ErrorStatus';
 
@@ -39,47 +36,30 @@ export enum ActionType {
     InfoMin = 8
   }
 
-  export enum TimecardViewMode {
-    None = 0,
-    List = 1,
-    Display = 2,
-    Search = 3,
-    Edit = 4,
-    ApproverList = 5,
-    ApproverSearch = 6
-  }
-
-  export enum rowChangeStatus {
+  export enum rowChangeStatus { // dbg ... timecard only?
     Unchanged = 1,
     Changed = 2,
     Added = 3,
     Removed = 4
   }
-  export interface OriginalLCDailyCountArray {
-    dailyCounts: number[];
-  }
-  export interface LaborCorrectionDiffSummary {
-    columnsChanged: boolean[];
-    rowsChanged: rowChangeStatus[];
-    rowsRemoved: boolean[]; // string-indexed array of booleans
-    originalDailyCounts: OriginalLCDailyCountArray[]; // sequence-indexed array of number arrays
-  }
 
-  export interface RowMessage {
+  export interface RowMessage { // dbg ... timecard only?
     RowSequenceNumber: Number;
     messageText: String;
+    messageType: AlertMessageType;
   }
 
-  export interface ColumnMessage {
+  export interface ColumnMessage { // dbg ... timecard only?
     ColumnSequenceNumber: Number;
     messageText: String;
+    messageType: AlertMessageType;
   }
 
-  export interface AlertMessage {
+  export interface AlertMessage { // dbg ... used by VRS as well? why?
     messageText: String;
     messageIcon: String;
     messageType: AlertMessageType;
-    columnMessages: ColumnMessage[];
+    columnMessages: ColumnMessage[][];
     overallMessages: OverallMessage[];
     rowMessages: RowMessage[];
   }
@@ -88,13 +68,6 @@ export enum ActionType {
     messageText: String;
     messageIcon: String;
     messageType: AlertMessageType;
-  }
-
-  export interface TimecardAction {
-    timecardHeader: TimecardHeaderDTO;
-    timecardUpdate: UpdateTimecardDTO;
-    timecardAction: ActionType;
-    modalReturnData: FlexModalReturnData;
   }
 
   export interface FlexModalReturnData {
@@ -125,19 +98,11 @@ export enum ActionType {
     MockGenerate = 3
   }
 
-  export enum TimecardListMode {
-    Available = 1,
-    Search = 2,
-  }
-
-  export enum TimecardDisplayMode {
-    Daily = 1,
-    Weekly = 2,
-  }
-
   export enum AppViewPort {
-    Mobile = '(max-width: 768px)',
+    Mobile = '(max-width: 767px)',
+    MobileLg = '(max-width: 799px)',
     Desktop = '(min-width: 768px)',
+    DesktopLg = '(min-width: 800px)',
     ExtraSmall = '(max-width: 767px)',
     Small = '(min-width: 768px)',
     Medium = '(min-width: 992px)',

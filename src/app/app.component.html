@@ -3,13 +3,17 @@
         <div class="nav-container">
             <div *ngIf="userInfo" class="py-3 user-menu">
                 <a class="dropdown-toggle waves-effect waves-light" id="user-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="img-fluid rounded-circle z-depth-0 mr-2"> {{userInfo?.FullNamePrintable}}
+                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="float-left img-fluid rounded-circle z-depth-0 mr-2">
+                    <div class="pl-4 ml-3 mt-2 pr-3">
+                        {{userInfo?.FullNamePrintable}}
+                    </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown" aria-labelledby="user-account">
+                <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown float-right" aria-labelledby="user-account">
                     <a class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a>
                     <ul class="list-group">
                         <li class="list-group-item">Employee ID: {{userInfo?.EMPLID}}</li>
                         <li class="list-group-item">Department: {{userInfo?.CurrentDepartment}}</li>
+                        <li class="list-group-item">Business Unit: {{userInfo?.CurrentBusinessUnit}}</li>
                         <li class="list-group-item">Workgroup: {{userInfo?.CurrentWorkgroup}}</li>
                         <li class="list-group-item">Schedule: {{userInfo?.CurrentSchedule}}</li>
                     </ul>                
