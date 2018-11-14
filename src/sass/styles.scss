@@ -750,6 +750,7 @@ table.table.timecard-list {
             td {
                 border: 1px solid lightgrey;
                 font-size: .7rem;
+                line-height: 1;
                 padding: 2px 0;
                 position: relative;
                 vertical-align: middle;
@@ -781,7 +782,12 @@ table.table.timecard-list {
         
                 .row-title {
                     font-weight: bold;
-                    line-height: 1;
+
+                    i {
+                        color: #74767b;
+                        cursor: default;
+                        pointer-events: all;
+                    }
                 }
         
                 .row-description {
@@ -973,7 +979,11 @@ table.table.timecard-list {
     }
 
 }
-
+.trc-list.dropdown-menu {
+    max-height: 200px;
+    overflow: auto;
+}
+ 
 .project-list.dropdown-menu {
     max-width: 80%;
     width: 300px;
@@ -1185,10 +1195,21 @@ table.table {
         padding: .45rem 0;
     }
 
-    .dropdown-item.active {
-        color: #16181b;
-        text-decoration: none;
-        background-color: #d6d6d7;
+    .dropdown-menu {
+        max-height: 250px;
+        overflow-y: auto;
+
+        .dropdown-item {
+            line-height: 1;
+            padding: 10px;
+
+            &.active {
+                color: #16181b;
+                text-decoration: none;
+                background-color: #d6d6d7;
+            }
+        }
+
     }
 }
 
@@ -1239,11 +1260,46 @@ table.table {
     #mini-dashboard {    
         .card {
             height: 160px;
+
+            .card-body {
+                padding-left: 13px;
+                padding-right: 13px;
+                padding-top: 10px;
+
+                .col {
+                    padding: 0 5px;
+                }
+            }
         }
 
         .hours {
             line-height: 75px;
             min-width: 75px;
+        }
+
+        .hours-label {
+            font-size: .75rem;
+            line-height: 1;
+
+            @media screen and (min-width: $breakpoint-md) {
+                font-size: .9rem;
+                line-height: 1.5rem;
+            }
+        }
+
+        .col,
+        div[class^="col-"] {
+            padding-left: 5px;
+            padding-right: 5px;
+
+            @media screen and (min-width: $breakpoint-lg) {
+                padding-left: 10px;
+                padding-right: 10px;
+
+                &:first-child {
+                    padding-left: 15px;
+                }
+            }
         }
     }
 
