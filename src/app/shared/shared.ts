@@ -120,6 +120,7 @@ export enum ActionType {
     VRSAuthorizations = 4,
     VRSMessages = 5,
     VRSTeamDrilldown = 6,
+    EmployeeSelfService = 7,
     MainApp = 99,
   }
 
