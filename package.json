@@ -16,6 +16,7 @@
     "deploy-test": "ng build --prod --output-path=T:\\Test\\Timecard --base-href=/Test/Timecard/ --environment=test && move T:\\Test\\Timecard\\assets\\web.config_test T:\\Test\\Timecard\\web.config",
     "deploy-prod": "ng build --prod --output-path=T:\\Prod\\Timecard --base-href=/Timecard/ --environment=prod && move T:\\PROD\\Timecard\\assets\\web.config_prod T:\\PROD\\Timecard\\web.config",
     "deploy-vpn": "ng build --prod --output-path=T:\\VPNTest\\Timecard --base-href=/VPNTest/Timecard/ --environment=vpn && move T:\\VPNTest\\Timecard\\assets\\web.config_vpn T:\\VPNTest\\Timecard\\web.config",
+    "deploy-cs": "ng build --prod --output-path=T:\\CSTest\\Timecard --base-href=/CSTest/Timecard/ --environment=cs --output-hashing all && move T:\\csTest\\Timecard\\assets\\web.config_cs T:\\csTest\\Timecard\\web.config",
     "deploy-tc-dev": "ng build --prod --output-path=T:\\TC-Dev\\Timecard --base-href=/TC-Dev/Timecard/ --environment=dev && move T:\\TC-Dev\\Timecard\\assets\\web.config_tc_dev T:\\TC-Dev\\Timecard\\web.config",
     "deploy-vrs-dev": "ng build --prod --output-path=T:\\VRS-Dev\\Timecard --base-href=/VRS-Dev/Timecard/ --environment=dev && move T:\\VRS-Dev\\Timecard\\assets\\web.config_vrs_dev T:\\VRS-Dev\\Timecard\\web.config",
     "deploy-tc-feature1": "ng build --prod --output-path=T:\\TC-Feature1\\Timecard --base-href=/TC-Feature1/Timecard/ --environment=test && move T:\\TC-Feature1\\Timecard\\assets\\web.config_tc_feature1 T:\\TC-Feature1\\Timecard\\web.config",
