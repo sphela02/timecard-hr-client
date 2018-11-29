@@ -1,0 +1,162 @@
+.dc-summary-btns,
+.california-summary-btns {
+    .btn.btn-secondary {
+        color: $grey-dark !important;
+        font-size: .875rem;
+        margin-top: -0.1rem !important;
+    }
+}
+
+.dc-california-daily-btns {
+    .btn.btn-secondary {
+        color: $grey-dark !important;
+        width: 100%;
+        margin: 5px;
+        max-width: 50px;
+        
+        pointer-events: all;
+
+        @media screen and (max-width: $breakpoint-md) {
+            margin: 2px;
+            padding: 0;
+        }
+    }
+
+    // DBG - Enable when we are able to determine if there are DC/California column errors.
+    // &.tc-error-danger .btn.btn-secondary {
+    //     background: $danger !important;
+    //     color: white !important;
+    // }
+    
+}
+
+.mobile-dc-cal-daily-btn {
+    color: $grey-dark !important;
+    float: right;
+    margin-top: -3.3rem;
+}
+
+.start-stop-modal {
+    .card-title.h5 {
+        font-size: 1rem;
+
+        @media screen and (min-width: $breakpoint-md) {
+            font-size: 1.25rem;
+        }
+    }
+
+    .btn.btn-link-secondary i.fa {
+        color: $grey-dark !important;
+    }
+
+    .start-stop-table-wrapper {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .start-stop-table {
+        th {
+            font-size: .7rem;
+            line-height: 1;
+            padding: .25rem;
+        }
+
+        tr {
+
+            &.invalid-time-message {
+                background: $danger;
+                color: #FFF;
+
+                td {
+                    font-size: .7rem;
+                    padding: .25rem .5rem .25rem 1.75rem;
+
+                    i {
+                        margin-left: -1.25rem;
+                    }
+                }
+            }
+
+            &.ng-dirty {
+                background: rgba($info, .15);
+            }
+
+            td {
+                font-size: .7rem;            
+                padding: .25rem;
+                vertical-align: middle;
+
+                @media screen and (min-width: $breakpoint-md) {
+                    font-size: .9rem;
+                }
+
+                &.editable {
+                    &:hover {
+                        background-color: rgba(0,0,0,.075) !important;
+
+                        & .clear-time-btn {
+                            color: $harris-grey;
+                            cursor: pointer;
+                            display: block;
+                            position: absolute;
+                            right: 0;
+                            top: 5px;
+                        }
+                    }
+
+                    .clear-time-btn {
+                        display: none;
+                    }
+                }
+
+                .md-form {
+                    margin-top: 0;
+
+                    input {
+                        color: $grey-dark !important;
+                        cursor: pointer;
+                        font-size: .7rem;
+                        font-weight: 300;
+                        margin-bottom: .3rem;
+                        padding-bottom: 0;
+
+                        &.invalid {
+                            color: $danger !important;
+
+                            &::placeholder{
+                                color: $danger !important;
+                            }
+                        }
+
+                        @media screen and (min-width: $breakpoint-md) {
+                            font-size: .9rem;
+                        }
+                    }
+
+                    *:not(input) {
+                        user-select: none;
+                        -ms-user-select: none;
+                    }
+                }
+            }
+
+           
+        }
+
+        
+        th, td {
+            @media screen and (min-width: $breakpoint-md) {
+                padding: .5rem;
+            }
+        }
+    }
+
+    .verification-message {
+        background: $info;
+        color: #FFF;
+        font-size: .8rem;
+        margin: 1rem -1rem -1rem;
+        padding: .5rem 1rem;
+        text-align: center;
+    }
+}

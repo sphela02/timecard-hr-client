@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 import { Subject } from 'rxjs/Subject';
 import {
     ApplicationArea,
-    TimecardViewMode,
     AppViewPort,
     AlertMessageType,
     ApplicationMenuItem,
@@ -18,8 +17,9 @@ import {
     ApplicationEnvironment
 } from './shared/shared';
 import * as lodash from 'lodash';
-import { VacationRequestService } from './vacation-request/vacation-request.service';
-import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs';
+import { VacationRequestService } from './vacation-request/vacation-request.service'; // dbg ... decouple
+import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs'; // dbg ... decouple
+import { TimecardViewMode } from './timecard/_shared/shared.tc'; // dbg ... decouple
 
 declare var $: any;
 
@@ -189,7 +189,6 @@ export class AppComponent implements OnInit {
                     this.currentViewMode = TimecardViewMode[viewInfo.ViewMode];
                 }
             } else if (viewInfo.Application === ApplicationArea.VacationRequest) {
-                console.log(VRSApplicationViewMode[viewInfo.ViewMode]);
                 if (viewInfo.ViewMode === VRSApplicationViewMode.ShowMyRequests) {
                         this.currentViewMode = 'vrsList';
                 } else if (viewInfo.ViewMode === VRSApplicationViewMode.Search ||
