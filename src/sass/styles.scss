@@ -58,6 +58,10 @@ input.disabled-input {
     color: rgba(black, .38);
 }
 
+table.table th, table.table td {
+    padding-top: .5rem;
+}
+
 .error-popover {
     background: $danger;
 
@@ -611,6 +615,27 @@ table.table.timecard-list {
         }
         &.open {
             background-color: #F99F3C;
+        }
+    }
+
+    #timecard-summary {
+        table tr {
+            th, td {
+                @media screen and (max-width: $breakpoint-md) {
+                    font-size: .7rem;
+                    padding-top: .6rem;
+                }
+            }
+        }
+    }
+
+    table .table-totals {
+        background: $harris-grey;
+        
+        td {
+            color: white;
+            font-weight: bold;
+            padding-top: .5rem;
         }
     }
 
@@ -1311,6 +1336,21 @@ table.table {
 
         i {
             line-height: .5;
+        }
+    }
+
+    #timecard-tabs {
+        li {
+            &:first-child {
+                margin-left: 0;
+            }
+            
+            a {
+                color: $harris-grey;
+                &.active {
+                    color: $harris-red;
+                }
+            }
         }
     }
 }
