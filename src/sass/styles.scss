@@ -514,61 +514,6 @@ table.table.timecard-list {
     overflow-y: auto;
 }
 
-#mini-dashboard {
-    background: #f2f0f0;
-
-    .card {
-        min-width: 100px;
-
-        .min-chart {
-            height: 75px;
-            width: 100%;
-
-            canvas {
-                margin: auto;
-                right: 0;
-
-                @media screen and (max-width: $breakpoint-md) {
-                    display: none;       
-                }
-            }
-        }
-
-        .fy {
-            display: block;
-            position: absolute;
-            width: calc(100% - 20px);
-        }
-        
-
-        .hours {
-            display: inline-block;
-        }
-
-        .holiday-calendar {
-            background: url('images/holiday-cal.png') no-repeat center center;
-            background-size: cover;
- 
-            a {
-                display: block;
-                height: 100%;
-                left: 0;
-                position: absolute;
-                top: 0;
-                width: 100%;
-            }
-
-            h2 {
-                white-space: nowrap;
-            }
-        }
-
-        .card-body .col {
-            padding: 0 10px;
-        }
-    }
-}
-
 #timecard-body {
     background: white;
     overflow-y: auto;
@@ -1276,31 +1221,6 @@ table.table {
             line-height: 75px;
             min-width: 75px;
         }
-
-        .hours-label {
-            font-size: .75rem;
-            line-height: 1;
-
-            @media screen and (min-width: $breakpoint-md) {
-                font-size: .9rem;
-                line-height: 1.5rem;
-            }
-        }
-
-        .col,
-        div[class^="col-"] {
-            padding-left: 5px;
-            padding-right: 5px;
-
-            @media screen and (min-width: $breakpoint-lg) {
-                padding-left: 10px;
-                padding-right: 10px;
-
-                &:first-child {
-                    padding-left: 15px;
-                }
-            }
-        }
     }
 
     .notes-link {
@@ -1337,4 +1257,5 @@ table.table {
 // Additional sass files.
 @import 'calendar';
 @import 'vacation-request';
+@import 'modules/mini-dashboard';
 @import 'modules/dc-california';
