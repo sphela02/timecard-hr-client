@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MqIfDirective } from '../shared/mq-if/mq-if.directive';
-import { ObjectFilter } from '../shared/pipes/objectFilter';
+import { MqIfDirective } from './mq-if/mq-if.directive';
+import { ObjectFilter } from './pipes/objectFilter';
 import { AppLandingComponent } from './app-landing/app-landing.component';
 import { ApprovalMenuComponent } from './approval-menu/approval-menu.component';
 import { RouterModule } from '@angular/router';
