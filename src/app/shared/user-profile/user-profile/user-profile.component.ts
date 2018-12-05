@@ -12,7 +12,7 @@ import { ObjectFilter } from '../../pipes/objectFilter';
 import { EmployeeProfileDTO } from '../../EmployeeProfileDTO';
 import { UserProfileService } from '../user-profile.service';
 import { UserInfoService } from '../../../userinfo/user-info.service';
-import { UserProfileDashboardItem, UserProfileDashboardWidget, UserProfileDasboardSection } from '../../shared';
+import { UserProfileDashboardItem, UserProfileDashboardWidget, UserProfileDashboardSection } from '../../shared';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CommonDataService } from '../../common-data/common-data.service';
 
@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   // App Data
   public userInfo: EmployeeProfileDTO = null;
 
-  UserProfileDasboardSection: typeof UserProfileDasboardSection = UserProfileDasboardSection;
+  UserProfileDashboardSection: typeof UserProfileDashboardSection = UserProfileDashboardSection;
 
   dashboardPopups: UserProfileDashboardItem[];
   dashboardWidgets: UserProfileDashboardWidget[];
