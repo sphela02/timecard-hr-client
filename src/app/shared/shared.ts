@@ -146,12 +146,18 @@ export enum ActionType {
     subMenu?: ApplicationMenuItem[];
   }
 
+  export enum UserProfileDasboardSection {
+    SelfService = 1,
+    ApprovalsDelegation = 2,
+  }
+
   export interface UserProfileDashboardItem {
     title: string;
     descriptionText: string;
     actionButtonText: string;
     openDashboardItem$: Subject<boolean>;
     applicationArea: ApplicationArea;
+    profileSection: UserProfileDasboardSection;
   }
 
   export interface UserProfileDashboardWidget {
