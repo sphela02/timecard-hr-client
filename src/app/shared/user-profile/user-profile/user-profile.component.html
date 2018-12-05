@@ -73,14 +73,16 @@
                 <div class="col-12">
                     <div class="row">
                         <div *ngFor="let dashboardPopup of dashboardPopups" class="col-12 col-sm-4 mb-3">
-                                <div class="card">
+                                <div class="card h-100">
                                     <div class="card-header">
                                         <h5 class="card-title m-0">{{dashboardPopup.title}}</h5>
                                     </div>
-                                    <div class="card-body">
-                                        <p>{{dashboardPopup.descriptionText}}</p>
+                                    <div class="card-body pb-0">
+                                        <p [innerHTML]="dashboardPopup.descriptionText"></p>
+                                    </div>
+                                    <div class="card-footer bg-white border-0 p-3">
                                         <button 
-                                            class="btn btn-primary"
+                                            class="btn btn-primary m-0"
                                             (click)="dashboardPopup.openDashboardItem$.next(true)">
                                                 <i class="fa fa-edit" aria-hidden="true"></i> {{dashboardPopup.actionButtonText}}
                                         </button>
