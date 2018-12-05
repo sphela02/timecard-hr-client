@@ -354,7 +354,7 @@ body.loading {
 #profile {
     #utility-bar {
         img {
-            max-height: 50px;
+            max-height: 75px;
         }
 
         .valign {
@@ -363,9 +363,26 @@ body.loading {
             transform: translate(0, -50%);
             width: 90%;
         }
+
+        .col p {
+            margin-bottom: .25rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
     #mini-dashboard .card {
         height: 160px;
+    }
+
+    .dashboardpopup-title {
+        padding: 1rem 0;
+
+        h2 {
+            color: $harris-grey;
+            font-weight: bold;
+        }
     }
 }
 
