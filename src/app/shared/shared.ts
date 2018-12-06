@@ -87,6 +87,8 @@ export enum ActionType {
     textareaOptional: boolean;
     cancelBtnText: string;
     hideCancelButton: boolean;
+    hideConfirmButton: boolean;
+    showCloseButton: boolean;
     altBtnText: string;
     confirmBtnText: string;
   }

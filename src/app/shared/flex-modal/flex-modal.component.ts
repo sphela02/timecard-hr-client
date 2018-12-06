@@ -37,9 +37,17 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
       this.modalContent.inputMaxLength = 60;
     }
 
+    if (!this.modalContent.hideConfirmButton) {
+      this.modalContent.hideConfirmButton = false;
+    } // Default hide confirm to false
+
     if (!this.modalContent.hideCancelButton) {
       this.modalContent.hideCancelButton = false;
     } // Default hide cancel to false
+
+    if (!this.modalContent.showCloseButton) {
+      this.modalContent.showCloseButton = false;
+    } // Default hide top close button to true
 
   } // end ngOnInit
 
