@@ -36,6 +36,7 @@
         "dev": "environments/environment.ts",
         "test": "environments/environment.test.ts",
         "vpn": "environments/environment.vpn.ts",
+        "cs": "environments/environment.cs.ts",
         "prod": "environments/environment.prod.ts",
         "local": "environments/environment.local.ts"
       }

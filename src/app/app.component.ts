@@ -189,7 +189,6 @@ export class AppComponent implements OnInit {
                     this.currentViewMode = TimecardViewMode[viewInfo.ViewMode];
                 }
             } else if (viewInfo.Application === ApplicationArea.VacationRequest) {
-                console.log(VRSApplicationViewMode[viewInfo.ViewMode]);
                 if (viewInfo.ViewMode === VRSApplicationViewMode.ShowMyRequests) {
                         this.currentViewMode = 'vrsList';
                 } else if (viewInfo.ViewMode === VRSApplicationViewMode.Search ||

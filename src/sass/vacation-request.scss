@@ -15,15 +15,9 @@
         }
 
         .hours {
-            line-height: 50px;
-            min-width: 50px;
-        }
-
-        .hours-label,
-        .fy-label {
-            @media screen and (max-width: $breakpoint-lg) {
-                font-size: 80%;
-                line-height: 1.2;
+            @media screen and (min-width: $breakpoint-lg) {
+                line-height: 50px;
+                min-width: 50px;
             }
         }
     }

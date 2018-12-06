@@ -176,3 +176,11 @@ export enum ActionType {
     allowDiagnostics: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class
   }
+
+  export interface ChargeCodeTotalHours {
+    TRCCode: string;
+    ChargeCode: string;
+    ActivityCode: string;
+    Week1: number;
+    Week2: number;
+  }

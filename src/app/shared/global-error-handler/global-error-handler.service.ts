@@ -51,8 +51,15 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   reportApplicationError(applicationError: ApplicationErrorDTO, prefixMessage: string = null) {
 
     let errorMessage: string = '';
-    errorMessage += applicationError.ErrorText;
-    errorMessage += ' ( Error #' + applicationError.CorrelationID + ')';
+    if (applicationError.ErrorText) {
+      errorMessage += applicationError.ErrorText;
+    } else if ((<any>applicationError).Message) {
+      errorMessage += (<any>applicationError).Message;
+    }
+
+    if (applicationError.CorrelationID) {
+      errorMessage += ' ( Error #' + applicationError.CorrelationID + ')';
+    }
 
     // Set message display array.
     this.errorMessageDisplay = {
