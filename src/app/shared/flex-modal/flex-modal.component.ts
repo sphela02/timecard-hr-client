@@ -47,8 +47,7 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
 
     if (!this.modalContent.showCloseButton) {
       this.modalContent.showCloseButton = false;
-    } // Default hide top close button to true
-
+    } // Default show top close button to false
   } // end ngOnInit
 
   ngAfterViewInit() {

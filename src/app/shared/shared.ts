@@ -91,6 +91,7 @@ export enum ActionType {
     showCloseButton: boolean;
     altBtnText: string;
     confirmBtnText: string;
+    modalID: string;
   }
 
   export enum AppMode {
