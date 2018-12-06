@@ -1144,7 +1144,8 @@ table.table {
 }
 
 // Match MDB Select with other inputs.
-#add-charge-code {
+#add-charge-code,
+.ess-section {
     input[type=text] {
         font-size: 1rem;
     } 
@@ -1196,7 +1197,6 @@ table.table {
                 background-color: #d6d6d7;
             }
         }
-
     }
 }
 
