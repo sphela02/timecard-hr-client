@@ -3,3 +3,19 @@
     background: $danger;
     padding: .5rem 2rem;
 }
+
+#current-name {
+    @media screen and (max-width: $breakpoint-md) {
+        border: none !important;
+    }
+}
+
+.section-info {
+    display: none;
+    visibility: hidden;
+}
+
+#section-info-modal .modal-body {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
