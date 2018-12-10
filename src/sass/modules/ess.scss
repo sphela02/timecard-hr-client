@@ -24,3 +24,13 @@
     max-height: calc(100vh - 120px);
     overflow-y: auto;
 }
+
+#employee-locator-form .mdb-select {
+    width: calc(100% - 15px);
+
+    .dropdown-content {
+        li.disabled {
+            display: none;
+        }
+    }
+}
