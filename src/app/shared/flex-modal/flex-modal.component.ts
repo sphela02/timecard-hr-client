@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlexModalContent, FlexModalReturnData } from '../shared';
 import { Subject } from 'rxjs/Subject';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -19,11 +20,17 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   // For canDeactivate modals that prevent navigation.
   navigateAwaySelection$: Subject<boolean> = new Subject<boolean>();
 
+  messageText: SafeHtml;
+
   constructor(
     public activeModal: NgbActiveModal,
+    private sanitizer: DomSanitizer,
     ) {}
 
   ngOnInit() {
+    // pass safe HTML from components.
+    this.messageText = this.sanitizer.bypassSecurityTrustHtml(this.modalContent.messageText);
+
     if (!this.modalContent.cancelBtnText) {
       this.modalContent.cancelBtnText = 'Cancel';
     }
