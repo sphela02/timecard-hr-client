@@ -153,6 +153,10 @@ table.table th, table.table td {
     }
 }
 
+.second-modal-backdrop {
+    z-index: 1050 !important;
+}
+
 .loading {
     position: relative;
     
