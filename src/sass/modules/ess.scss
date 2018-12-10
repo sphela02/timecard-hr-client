@@ -40,3 +40,19 @@
         max-width: 100px;
     }
 }
+
+.compared-field {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    .diff {
+        border-bottom: 1px solid #dee2e6;
+        border-top: 1px solid #dee2e6;
+        padding: .5rem;
+        position: relative;
+
+        .staged-value {
+            color: $info;
+        }
+    }
+}
