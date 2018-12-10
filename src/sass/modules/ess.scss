@@ -25,12 +25,18 @@
     overflow-y: auto;
 }
 
-#employee-locator-form .mdb-select {
-    width: calc(100% - 15px);
+#employee-locator-form {
+    .mdb-select {
+        width: calc(100% - 15px);
 
-    .dropdown-content {
-        li.disabled {
-            display: none;
+        .dropdown-content {
+            li.disabled {
+                display: none;
+            }
         }
+    }
+
+    #Room {
+        max-width: 100px;
     }
 }
