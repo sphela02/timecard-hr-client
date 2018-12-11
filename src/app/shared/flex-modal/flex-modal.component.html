@@ -1,72 +1,64 @@
-<div class="container-fluid" [attr.id]="modalContent.modalID">
-  <div class="row">
-    <div class="col-12">
-        <div class="row card-header px-3" *ngIf="modalContent.modalTitle">
-          <h2 class="card-title h5 m-0">
-            {{modalContent.modalTitle}}
-            <div class="subhead" *ngIf="modalContent.modalSubTitle">
-                <small class="text-muted">{{modalContent.modalSubTitle}}</small>
-            </div>
-          </h2>
-          <button type="button" 
-              class="close ml-auto"
-              (click)="cancelModal()"
-              *ngIf="modalContent.showCloseButton">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="row py-3 modal-body">
-          <div class="col-12">
-            <div class="row" id="modal-message" *ngIf="modalContent.messageText">
-              <div class="col-12" [innerHTML]="messageText"></div>
-            </div>
-            <div class="row" id="modal-input" *ngIf="modalContent.inputId">
-              <div class="col-12">
-                <div class="md-form">
-                  <input type="text" class="form-control" id="{{modalContent.inputId}}" [attr.maxlength]="modalContent.inputMaxLength" />
-                  <label for="{{modalContent.inputId}}">{{modalContent.inputLabel}}</label>
-                  <div class="invalid-feedback">
-                    Required
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row" id="modal-textarea" *ngIf="modalContent.textareaId">
-              <div class="col-12">
-                <div class="md-form">
-                  <textarea type="text" class="form-control md-textarea" id="{{modalContent.textareaId}}" maxlength="254"></textarea>
-                  <label for="{{modalContent.textareaId}}">{{modalContent.textareaLabel}}</label>
-                  <div class="invalid-feedback">
-                    Required
-                  </div>
-                </div>
-              </div>
-            </div>
+<div [attr.id]="modalContent.modalID">
+  <div class="modal-header px-3" *ngIf="modalContent.modalTitle">
+    <h5 class="modal-title m-0">
+      {{modalContent.modalTitle}}
+      <div class="subhead" *ngIf="modalContent.modalSubTitle">
+          <small class="text-muted">{{modalContent.modalSubTitle}}</small>
+      </div>
+    </h5>
+    <button type="button" 
+        class="close"
+        (click)="cancelModal()"
+        *ngIf="modalContent.showCloseButton">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="py-3 modal-body">
+    <div class="row" id="modal-message" *ngIf="modalContent.messageText">
+      <div class="col-12" [innerHTML]="messageText"></div>
+    </div>
+    <div class="row" id="modal-input" *ngIf="modalContent.inputId">
+      <div class="col-12">
+        <div class="md-form">
+          <input type="text" class="form-control" id="{{modalContent.inputId}}" [attr.maxlength]="modalContent.inputMaxLength" />
+          <label for="{{modalContent.inputId}}">{{modalContent.inputLabel}}</label>
+          <div class="invalid-feedback">
+            Required
           </div>
         </div>
-        <div class="row modal-footer px-0">
-          <div class="col-12">
-            <div class="float-right">
-              <button type="button" 
-              *ngIf="!modalContent.hideCancelButton"
-              class="btn btn-link-secondary" 
-              (click)="cancelModal()"
-              >{{modalContent.cancelBtnText}}</button>
-
-              <button type="button" 
-              *ngIf="modalContent.altBtnText"
-              class="btn btn-default"
-              (click)="altModalFunction()" 
-              >{{modalContent.altBtnText}}</button>
-
-              <button type="button"
-              *ngIf="!modalContent.hideConfirmButton" 
-              class="btn btn-primary"
-              (click)="confirmModal()" 
-              >{{modalContent.confirmBtnText}}</button>
-            </div>
+      </div>
+    </div>
+    <div class="row" id="modal-textarea" *ngIf="modalContent.textareaId">
+      <div class="col-12">
+        <div class="md-form">
+          <textarea type="text" class="form-control md-textarea" id="{{modalContent.textareaId}}" maxlength="254"></textarea>
+          <label for="{{modalContent.textareaId}}">{{modalContent.textareaLabel}}</label>
+          <div class="invalid-feedback">
+            Required
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer px-0">
+    <div class="float-right">
+      <button type="button" 
+      *ngIf="!modalContent.hideCancelButton"
+      class="btn btn-link-secondary" 
+      (click)="cancelModal()"
+      >{{modalContent.cancelBtnText}}</button>
+
+      <button type="button" 
+      *ngIf="modalContent.altBtnText"
+      class="btn btn-default"
+      (click)="altModalFunction()" 
+      >{{modalContent.altBtnText}}</button>
+
+      <button type="button"
+      *ngIf="!modalContent.hideConfirmButton" 
+      class="btn btn-primary"
+      (click)="confirmModal()" 
+      >{{modalContent.confirmBtnText}}</button>
     </div>
   </div>
 </div>
