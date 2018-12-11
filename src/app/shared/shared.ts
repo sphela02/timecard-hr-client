@@ -124,6 +124,8 @@ export enum ActionType {
     VRSMessages = 5,
     VRSTeamDrilldown = 6,
     EmployeeSelfService = 7,
+    Profile = 8,
+    ESSModal = 9,
     MainApp = 99,
   }
 
