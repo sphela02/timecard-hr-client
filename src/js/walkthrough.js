@@ -56,8 +56,16 @@ var tour = {
             {
                 title:'Timecard Dashboard',
                 content:'This area shows hours submitted, current holiday balance and a link to the holiday calendar.',
-                target:'mini-dashboard',
+                target: '#mini-dashboard .row',
                 placement:'bottom',
+                showPrevButton:'true',
+            },
+            {
+                title:'Summary',
+                content:'Summary shows more information about hours worked (scheduled vs. actual).',
+                target:'summary-tab',
+                placement:'top',
+                showPrevButton:'true',
             },
             {
                 title: 'Add/Select',
