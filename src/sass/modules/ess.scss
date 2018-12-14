@@ -59,6 +59,8 @@
 #phone-number-form {
     table {
         td {
+            padding: .2rem;
+
             .md-form {
                 margin-top: 0;
 
@@ -67,6 +69,7 @@
 
                     label {
                         left: -13px;
+                        padding-left: 15px;
                         top: 0;
                     }
                 }
