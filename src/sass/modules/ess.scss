@@ -12,6 +12,12 @@
 
 .ess-section {
     margin-bottom: 2rem;
+
+    &#phone-numbers {
+        .btn .fa {
+            color: inherit !important;
+        }
+    }
 }
 
 .section-info,
@@ -25,19 +31,47 @@
     overflow-y: auto;
 }
 
-#employee-locator-form {
+#employee-locator-form,
+#phone-number-form {
     .mdb-select {
         width: calc(100% - 15px);
 
+        .caret {
+            background: transparent;
+        }        
+    }
+
+    #Room {
+        max-width: 100px;
+    }
+}
+
+#employee-locator-form {
+    .mdb-select {
         .dropdown-content {
             li.disabled {
                 display: none;
             }
         }
     }
+}
 
-    #Room {
-        max-width: 100px;
+#phone-number-form {
+    table {
+        td {
+            .md-form {
+                margin-top: 0;
+
+                &.form-check {
+                    text-align: center;
+
+                    label {
+                        left: -13px;
+                        top: 0;
+                    }
+                }
+            }
+        }
     }
 }
 
