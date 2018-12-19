@@ -32,13 +32,18 @@
 }
 
 #employee-locator-form,
-#phone-number-form {
+#phone-number-form,
+#mailing-address-form {
     .mdb-select {
         width: calc(100% - 15px);
 
         .caret {
             background: transparent;
-        }        
+        }
+        
+        .search-wrap input {
+            width: 100%;
+        }
     }
 
     #Room {
