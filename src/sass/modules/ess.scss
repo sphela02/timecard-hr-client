@@ -29,9 +29,7 @@
     overflow-y: auto;
 }
 
-#employee-locator-form,
-#phone-number-form,
-#mailing-address-form {
+.ess-section form {
     .mdb-select {
         width: calc(100% - 15px);
 
@@ -82,7 +80,8 @@
     }
 }
 
-#emergency-contacts {
+#emergency-contacts,
+#emergency-contact-detail {
     #pending-indicator {
         position: absolute;
         top: -2.5rem;
