@@ -13,10 +13,8 @@
 .ess-section {
     margin-bottom: 2rem;
 
-    &#phone-numbers {
-        .btn .fa {
-            color: inherit !important;
-        }
+    .btn .fa {
+        color: inherit !important;
     }
 }
 
@@ -61,7 +59,8 @@
     }
 }
 
-#phone-number-form {
+#phone-number-form,
+#emergency-contacts {
     table {
         td {
             padding: .2rem;
@@ -75,11 +74,19 @@
                     label {
                         left: -13px;
                         padding-left: 15px;
-                        top: 0;
+                        top: 3px;
                     }
                 }
             }
         }
+    }
+}
+
+#emergency-contacts {
+    #pending-indicator {
+        position: absolute;
+        top: -2.5rem;
+        right: 1.5rem;
     }
 }
 
