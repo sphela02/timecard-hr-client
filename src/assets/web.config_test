@@ -18,4 +18,10 @@
     <mimeMap fileExtension=".woff2" mimeType="font/woff2" />
   </staticContent>
 </system.webServer>
+<system.web>
+  <authorization>
+    <deny users="harris\Harris-SharedAccounts-All" />
+    <allow users="?" />
+  </authorization>
+</system.web>
 </configuration>
