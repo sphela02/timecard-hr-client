@@ -20,7 +20,7 @@
 </system.webServer>
 <system.web>
   <authorization>
-    <deny users="harris\Harris-SharedAccounts-All" />
+    <deny roles="harris\Harris-SharedAccounts-All" />
     <allow users="?" />
   </authorization>
 </system.web>
