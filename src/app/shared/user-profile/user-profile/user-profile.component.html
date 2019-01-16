@@ -39,7 +39,7 @@
                         <h2 class="h4">Self Service</h2>
                     </div>
                     <div class="row mb-2">
-                        <div *ngFor="let dashboardPopup of dashboardPopups | ObjectFilter : UserProfileDashboardSection.SelfService.toString() : ['profileSection']" class="col-12 col-sm-4 mb-3">
+                        <div *ngFor="let dashboardPopup of dashboardPopups | ObjectFilter : UserProfileDashboardSection.SelfService.toString() : ['profileSection']" class="col-12 col-sm-4 mb-3" id="{{ dashboardPopup.id }}">
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h5 class="card-title m-0">{{dashboardPopup.title}}</h5>
@@ -61,7 +61,7 @@
                         <h2 class="h4">Approvals and Delegation</h2>
                     </div>
                     <div class="row">
-                        <div *ngFor="let dashboardPopup of dashboardPopups | ObjectFilter : UserProfileDashboardSection.ApprovalsDelegation.toString() : ['profileSection']" class="col-12 col-sm-4 mb-3">
+                        <div *ngFor="let dashboardPopup of dashboardPopups | ObjectFilter : UserProfileDashboardSection.ApprovalsDelegation.toString() : ['profileSection']" class="col-12 col-sm-4 mb-3" id="{{ dashboardPopup.id }}">
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h5 class="card-title m-0">{{dashboardPopup.title}}</h5>

@@ -163,6 +163,7 @@ export enum ActionType {
     openDashboardItem$: Subject<boolean>;
     applicationArea: ApplicationArea;
     profileSection: UserProfileDashboardSection;
+    id: string;
   }
 
   export interface UserProfileDashboardWidget {
