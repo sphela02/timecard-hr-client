@@ -19,6 +19,7 @@ export const environment: ApplicationEnvironment = {
     'TIMECARD': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/',
     'EMPLOYEE': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/',
     'VRS':      'https://mi-dev.harris.com/TEST/VRSAPI/api/v1/Vacation/',
+    'ESS':      'https://mi-dev.harris.com/test/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: false,
