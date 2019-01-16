@@ -1,6 +1,25 @@
 // Hopscotch tour
 // Define the tour!
 var tour = {
+    'Profile': {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Welcome',
+                content: 'My Profile includes timecard approver and delegate settings and employee information including employee ID, department, and more.  Add or update emergency contacts, office location, phone, other personnel settings.',
+                target: 'page-title',
+                placement: 'bottom'
+            },
+            {
+                title: 'Employee Information and Settings',
+                content: 'Select a panel below to update employee information or change settings.',
+                target: 'profile-body',
+                placement: 'top',
+                showPrevButton:'true',
+            }
+        ]
+    },
     'List': {
         id: 'walkthrough',
         showSkip: true,
@@ -12,9 +31,9 @@ var tour = {
                 placement: 'bottom'
             },
             {
-                title: 'Employee Information',
-                content: 'Click on the dropdown to change your primary and secondary approvers and to see your employee information including employee ID, department, etc.',
-                target: 'user-account',
+                title: 'Profile Information',
+                content: 'My Profile includes timecard approver and delegate settings and employee information including employee ID, department, and more.  Add or update emergency contacts, office location, phone, other personnel settings.',
+                target: 'my-profile',
                 placement: 'right',
                 showPrevButton:'true',
                 
@@ -301,9 +320,9 @@ var tour = {
                 placement: 'bottom'
             },
             {
-                title: 'Employee Information',
-                content: 'Click on the dropdown and select View Profile to change your primary and secondary approvers and to see your employee information including employee ID, department, etc.',
-                target: 'user-account',
+                title: 'Profile Information',
+                content: 'My Profile includes timecard approver and delegate settings and employee information including employee ID, department, and more.  Add or update emergency contacts, office location, phone, other personnel settings.',
+                target: 'my-profile',
                 placement: 'right',
                 showPrevButton:'true',
                 
