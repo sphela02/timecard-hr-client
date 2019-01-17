@@ -40,6 +40,10 @@ body {
     display: block;
 }
 
+.select-wrapper input.select-dropdown.invalid {
+    margin-bottom: .5rem;
+}
+
 .input-group {
     &.is-invalid {
         ~ .invalid-feedback {

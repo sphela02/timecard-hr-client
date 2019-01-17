@@ -2,6 +2,10 @@
     color: white;
     background: $danger;
     padding: .5rem 2rem;
+
+    .modal-body & {
+        margin: -16px -16px 1rem -16px;
+    }
 }
 
 #current-name {
