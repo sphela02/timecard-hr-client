@@ -1,5 +1,4 @@
- // SideNav Initialization
+ // Glabal js
  $(document).ready(function() {
-    
+     
  });
-
