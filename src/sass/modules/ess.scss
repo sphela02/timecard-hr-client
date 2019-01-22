@@ -108,3 +108,22 @@
         }
     }
 }
+
+table tr.disabled,
+table tr.disabled td input[disabled] {
+    color: rgba(0,0,0,.46);
+}
+
+.shared-number {
+    background: rgba(0,0,0,.26);
+    color: white;
+    display: inline-block;
+    font-size: 70%;
+    padding: 2px 5px;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        display: block;
+        float: right;
+        margin-right: 15px;
+    }
+}
