@@ -15,7 +15,7 @@
 
                 // Fix IE issue of not selecting disabled option as default.
                 // Disable first child.
-                $(this).siblings('.dropdown-content.select-dropdown').find('li:first-child').addClass('disabled');
+                $(this).mdbDisableFirstOption();
             }
 
             // reset and prevent default on fixed select-dropdowns
@@ -38,4 +38,10 @@
             e.preventDefault();
         });
     });    
+}
+
+$.fn.mdbDisableFirstOption = function() {
+    // Fix IE issue of not selecting disabled option as default.
+    // Disable first child.
+    $(this).siblings('.dropdown-content.select-dropdown').find('li:first-of-type').addClass('disabled');
 }
