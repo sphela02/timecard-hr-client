@@ -1,0 +1,129 @@
+#ess-error-message-wrapper {
+    color: white;
+    background: $danger;
+    padding: .5rem 2rem;
+
+    .modal-body & {
+        margin: -16px -16px 1rem -16px;
+    }
+}
+
+#current-name {
+    @media screen and (max-width: $breakpoint-md) {
+        border: none !important;
+    }
+}
+
+.ess-section {
+    margin-bottom: 2rem;
+
+    .btn .fa {
+        color: inherit !important;
+    }
+}
+
+.section-info,
+.pending-changes {
+    display: none;
+    visibility: hidden;
+}
+
+#section-info-modal .modal-body {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.ess-section form {
+    .mdb-select {
+        width: calc(100% - 15px);
+
+        .caret {
+            background: transparent;
+        }
+        
+        .search-wrap input {
+            width: 100%;
+        }
+    }
+
+    #Room {
+        max-width: 100px;
+    }
+}
+
+#employee-locator-form {
+    .mdb-select {
+        .dropdown-content {
+            li.disabled {
+                display: none;
+            }
+        }
+    }
+}
+
+#phone-number-form,
+#emergency-contacts {
+    table {
+        td {
+            padding: .2rem;
+
+            .md-form {
+                margin-top: 0;
+
+                &.form-check {
+                    text-align: center;
+
+                    label {
+                        left: -13px;
+                        padding-left: 15px;
+                        top: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#emergency-contacts,
+#emergency-contact-detail {
+    #pending-indicator {
+        position: absolute;
+        top: -2.5rem;
+        right: 1.5rem;
+    }
+}
+
+.compared-field {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    .diff {
+        border-bottom: 1px solid #dee2e6;
+        border-top: 1px solid #dee2e6;
+        padding: .5rem;
+        position: relative;
+
+        .staged-value {
+            color: $info;
+        }
+    }
+}
+
+table tr.disabled,
+table tr.disabled td input[disabled] {
+    color: rgba(0,0,0,.46);
+}
+
+.shared-number {
+    background: rgba(0,0,0,.26);
+    color: white;
+    display: inline-block;
+    font-size: 70%;
+    padding: 2px 5px;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        display: block;
+        float: right;
+        margin-right: 15px;
+    }
+}

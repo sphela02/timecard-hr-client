@@ -6,6 +6,7 @@ $harris-red: #e21d22;
 $harris-grey: #74767b;
 $harris-hyperlink-blue: #2C5697;
 $grey-dark: #616264;
+$grey-extra-light: #f2f0f0;
 $danger: #D93B42;
 $warning: #F99F3C;
 $info: #009cde;
@@ -37,6 +38,10 @@ body {
 
 .form-control.invalid~.invalid-feedback {
     display: block;
+}
+
+.select-wrapper input.select-dropdown.invalid {
+    margin-bottom: .5rem;
 }
 
 .input-group {
@@ -153,6 +158,10 @@ table.table th, table.table td {
     }
 }
 
+.second-modal-backdrop {
+    z-index: 1050 !important;
+}
+
 .loading {
     position: relative;
     
@@ -266,7 +275,7 @@ body.loading {
         .user-menu {
             padding: 1rem 20px;
 
-            a {
+            #user-account {
                 color: black !important;
                 display: inline-block;
                 height: auto;
@@ -354,7 +363,7 @@ body.loading {
 #profile {
     #utility-bar {
         img {
-            max-height: 50px;
+            max-height: 75px;
         }
 
         .valign {
@@ -363,9 +372,26 @@ body.loading {
             transform: translate(0, -50%);
             width: 90%;
         }
+
+        .col p {
+            margin-bottom: .25rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
     #mini-dashboard .card {
         height: 160px;
+    }
+
+    .dashboardpopup-title {
+        padding: 1rem 0;
+
+        h2 {
+            color: $harris-grey;
+            font-weight: bold;
+        }
     }
 }
 
@@ -1127,7 +1153,8 @@ table.table {
 }
 
 // Match MDB Select with other inputs.
-#add-charge-code {
+#add-charge-code,
+.ess-section {
     input[type=text] {
         font-size: 1rem;
     } 
@@ -1179,7 +1206,6 @@ table.table {
                 background-color: #d6d6d7;
             }
         }
-
     }
 }
 
@@ -1299,3 +1325,4 @@ table.table {
 @import 'vacation-request';
 @import 'modules/mini-dashboard';
 @import 'modules/dc-california';
+@import 'modules/ess';

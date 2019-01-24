@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlexModalContent, FlexModalReturnData } from '../shared';
 import { Subject } from 'rxjs/Subject';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -19,11 +20,17 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   // For canDeactivate modals that prevent navigation.
   navigateAwaySelection$: Subject<boolean> = new Subject<boolean>();
 
+  messageText: SafeHtml;
+
   constructor(
     public activeModal: NgbActiveModal,
+    private sanitizer: DomSanitizer,
     ) {}
 
   ngOnInit() {
+    // pass safe HTML from components.
+    this.messageText = this.sanitizer.bypassSecurityTrustHtml(this.modalContent.messageText);
+
     if (!this.modalContent.cancelBtnText) {
       this.modalContent.cancelBtnText = 'Cancel';
     }
@@ -37,10 +44,17 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
       this.modalContent.inputMaxLength = 60;
     }
 
+    if (!this.modalContent.hideConfirmButton) {
+      this.modalContent.hideConfirmButton = false;
+    } // Default hide confirm to false
+
     if (!this.modalContent.hideCancelButton) {
       this.modalContent.hideCancelButton = false;
     } // Default hide cancel to false
 
+    if (!this.modalContent.showCloseButton) {
+      this.modalContent.showCloseButton = false;
+    } // Default show top close button to false
   } // end ngOnInit
 
   ngAfterViewInit() {

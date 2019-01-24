@@ -8,7 +8,7 @@ import { ProgressTrackerService } from '../progress-tracker/progress-tracker.ser
 import { UserProfileService } from '../user-profile/user-profile.service';
 import { CommonDataService } from '../common-data/common-data.service';
 
-export class HarrisDataServiceBase {
+export abstract class HarrisDataServiceBase {
 
     // Diagnostics Info
     private _diagnosticsInterval: any;

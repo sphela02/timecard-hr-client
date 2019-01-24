@@ -21,7 +21,7 @@
     "deploy-vrs-dev": "ng build --prod --output-path=T:\\VRS-Dev\\Timecard --base-href=/VRS-Dev/Timecard/ --environment=dev --output-hashing all && move T:\\VRS-Dev\\Timecard\\assets\\web.config_vrs_dev T:\\VRS-Dev\\Timecard\\web.config",
     "deploy-tc-feature1": "ng build --prod --output-path=T:\\TC-Feature1\\Timecard --base-href=/TC-Feature1/Timecard/ --environment=test --output-hashing all && move T:\\TC-Feature1\\Timecard\\assets\\web.config_tc_feature1 T:\\TC-Feature1\\Timecard\\web.config",
     "deploy-vrs-feature1": "ng build --prod --output-path=T:\\VRS-Feature1\\Timecard --base-href=/VRS-Feature1/Timecard/ --environment=dev --output-hashing all && move T:\\VRS-Feature1\\Timecard\\assets\\web.config_vrs_feature1 T:\\VRS-Feature1\\Timecard\\web.config",
-    "deploy-ess-dev": "ng build --prod --output-path=T:\\ess-Dev\\Timecard --base-href=/ess-Dev/Timecard/ --environment=test --output-hashing all && move T:\\ess-Dev\\Timecard\\assets\\web.config_ess_dev T:\\ess-dev\\Timecard\\web.config"
+    "deploy-ess-dev": "ng build --prod --output-path=T:\\ess-Dev\\Timecard --base-href=/ess-Dev/Timecard/ --environment=dev --output-hashing all && move T:\\ess-Dev\\Timecard\\assets\\web.config_ess_dev T:\\ess-dev\\Timecard\\web.config"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +37,7 @@
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
     "angular-file-saver": "^1.1.3",
     "angular-font-awesome": "^3.1.2",
+    "angular-pipes": "^9.0.2",
     "core-js": "^2.4.1",
     "crypto-js": "^3.1.9-1",
     "hopscotch": "^0.3.1",

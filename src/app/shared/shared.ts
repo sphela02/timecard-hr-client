@@ -87,8 +87,11 @@ export enum ActionType {
     textareaOptional: boolean;
     cancelBtnText: string;
     hideCancelButton: boolean;
+    hideConfirmButton: boolean;
+    showCloseButton: boolean;
     altBtnText: string;
     confirmBtnText: string;
+    modalID: string;
   }
 
   export enum AppMode {
@@ -120,6 +123,9 @@ export enum ActionType {
     VRSAuthorizations = 4,
     VRSMessages = 5,
     VRSTeamDrilldown = 6,
+    EmployeeSelfService = 7,
+    Profile = 8,
+    ESSModal = 9,
     MainApp = 99,
   }
 
@@ -145,12 +151,19 @@ export enum ActionType {
     subMenu?: ApplicationMenuItem[];
   }
 
+  export enum UserProfileDashboardSection {
+    SelfService = 1,
+    ApprovalsDelegation = 2,
+  }
+
   export interface UserProfileDashboardItem {
     title: string;
     descriptionText: string;
     actionButtonText: string;
     openDashboardItem$: Subject<boolean>;
     applicationArea: ApplicationArea;
+    profileSection: UserProfileDashboardSection;
+    id: string;
   }
 
   export interface UserProfileDashboardWidget {

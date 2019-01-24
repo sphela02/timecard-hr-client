@@ -197,6 +197,8 @@ export class AppComponent implements OnInit {
                 } else {
                     this.currentViewMode = VRSApplicationViewMode[viewInfo.ViewMode];
                 }
+            } else if (viewInfo.Application === ApplicationArea.Profile) {
+                this.currentViewMode = 'Profile';
             }
         });
 
