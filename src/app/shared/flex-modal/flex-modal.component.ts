@@ -20,6 +20,9 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   // For canDeactivate modals that prevent navigation.
   navigateAwaySelection$: Subject<boolean> = new Subject<boolean>();
 
+  // Observable for (re)building the select
+  setupSelect$: Subject<void> = new Subject<void>();
+
   messageText: SafeHtml;
 
   constructor(
@@ -30,6 +33,11 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // pass safe HTML from components.
     this.messageText = this.sanitizer.bypassSecurityTrustHtml(this.modalContent.messageText);
+
+    // We want a modal ID, so set a default if not passed
+    if (!this.modalContent.modalID) {
+      this.modalContent.modalID = 'flex-modal-popup';
+    }
 
     if (!this.modalContent.cancelBtnText) {
       this.modalContent.cancelBtnText = 'Cancel';
@@ -55,9 +63,32 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
     if (!this.modalContent.showCloseButton) {
       this.modalContent.showCloseButton = false;
     } // Default show top close button to false
+
+    // Set defaults for a selection if we have it
+    if (this.modalContent.selectionID) {
+
+      // Default placeholder for select if none passed in
+      if (!this.modalContent.selectionPlaceHolderText) {
+        this.modalContent.selectionPlaceHolderText = 'Please Select';
+      } // end if no placeholder text passed in for select
+
+    } // end if select defined
+    // dbg ... we gotta report when data changes for selection.
   } // end ngOnInit
 
   ngAfterViewInit() {
+
+    this.setupSelect$.subscribe(() => {
+      setTimeout(() => {
+        // Initialize the MDB selects
+        $('#' + this.modalContent.modalID + ' .mdb-select').material_select('destroy');
+        $('#' + this.modalContent.modalID + ' .mdb-select').material_select();
+        $('#' + this.modalContent.modalID + ' .mdb-select').fixMDBSelectDropdown();
+      }, 0);
+    }); // end subscribe setup select
+
+    // Execute initial setup select
+    this.setupSelect$.next();
 
     setTimeout(() => {
       // Set focus if input is available else focus on textarea.
@@ -81,11 +112,12 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
 
   confirmModal() {
     let formValues: FlexModalReturnData = null;
-    if (this.modalContent.inputId || this.modalContent.textareaId) {
+    if (this.modalContent.inputId || this.modalContent.textareaId || this.modalContent.selectionID) {
       let isFormValid: boolean = true;
       formValues = {
         inputValue: $('#' + this.modalContent.inputId ).val(),
-        textareaValue: $('#' + this.modalContent.textareaId ).val()
+        textareaValue: $('#' + this.modalContent.textareaId ).val(),
+        selectionValue: $('#' + this.modalContent.selectionID ).val(),
       };
 
       // Validate values have been added to fields if shown.
@@ -111,6 +143,22 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
         isFormValid = false;
       } else {
         $('#' + this.modalContent.textareaId ).removeClass('invalid');
+      }
+
+      if (this.modalContent.selectionID
+            &&
+            !formValues.selectionValue
+            &&
+            !this.modalContent.selectionOptional
+          ) {
+        $('#' + this.modalContent.selectionID ).addClass('invalid');
+        $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'block');
+        $('#audit-explanation-select').siblings('.select-dropdown').addClass('invalid');
+        isFormValid = false;
+      } else {
+        $('#' + this.modalContent.selectionID ).removeClass('invalid');
+        $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'none');
+        $('#' + this.modalContent.selectionID ).siblings('.select-dropdown').removeClass('invalid');
       }
 
       if (isFormValid === true) {
@@ -154,10 +202,14 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
 //   testModalContent.modalTitle = 'Test'; // Leave blank to hide header.
 //   testModalContent.modalSubTitle = ''; // Leave blank to hide. Requires Title.
 //   testModalContent.messageText = 'Testing'; // Leave blank to hide Message Text.
+//   testModalContent.selectionID = ''; // Optional select id (default is select_id)
+//   testModalContent.selectionChoices = []; // Populate with FlexModalSelectionChoice[] for select box
+//   testModalContent.selectionOptional = true; // Selection required by default, if it's visible.
 //   testModalContent.inputId = '';  // Leave blank to hide Small Input.
 //   testModalContent.inputLabel = ''; // Leave blank to hide. Requires inputId.
 //   testModalContent.textareaId = ''; // Leave blank to hide Large Textarea.
 //   testModalContent.textareaLabel = '';  // Leave blank to hide. Requires textaraId.
+//   testModalContent.textareaOptional = true; // Large textarea required by default, if it's visible
 //   testModalContent.cancelBtnText = '';  // Leave blank to use default, "Cancel"
 //   testModalContent.altBtnText = '';  // Leave blank to hide altBtn
 //   testModalContent.confirmBtnText = '';  // Leave blank to use default, "Ok"
