@@ -16,6 +16,11 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   @Output() cancelModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Output() altModalBtnClicked: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Output() confirmModalBtnClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() formDataChanged$: Subject<FlexModalReturnData> = new Subject<FlexModalReturnData>();
+
+  formData: FlexModalReturnData = {} as FlexModalReturnData;
+
+  private _internalFormDataChanged$: Subject<void> = new Subject<void>();
 
   // For canDeactivate modals that prevent navigation.
   navigateAwaySelection$: Subject<boolean> = new Subject<boolean>();
@@ -73,8 +78,65 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
       } // end if no placeholder text passed in for select
 
     } // end if select defined
-    // dbg ... we gotta report when data changes for selection.
+
+    // Set up listener for change detection
+    this._internalFormDataChanged$.debounceTime(300).subscribe(() => {
+      this.formDataChanged$.next(this.formData);
+    });
+
+    this._setupChangeListener();
   } // end ngOnInit
+
+  private _setupChangeListener() {
+
+    // Listen to changes on each field
+    setTimeout(() => {
+
+      if (this.modalContent.inputId) {
+        const inputHash = '#' + this.modalContent.inputId;
+        if (!$(inputHash).data('listenersReady')) {
+
+          $(inputHash).on('change', (e) => {
+            this.formData.inputValue = e.target.value;
+            this._internalFormDataChanged$.next();
+          });
+
+          $(inputHash).data('listenersReady', true);
+        } // end if listener not ready for input
+
+      } // end if text input defined
+
+      // Set up text area listener, if not set up yet
+      if (this.modalContent.textareaId) {
+        const textAreaHash = '#' + this.modalContent.textareaId;
+        if (!$(textAreaHash).data('listenersReady')) {
+
+          $(textAreaHash).on('change', (e) => {
+            this.formData.textareaValue = e.target.value;
+            this._internalFormDataChanged$.next();
+          });
+
+          $(textAreaHash).data('listenersReady', true);
+        } // end if listener not ready for text area
+      } // end if text area defined
+
+      // Set up selection listener, if not set up yet
+      if (this.modalContent.selectionID) {
+        const selectionHash = '#' + this.modalContent.selectionID;
+        if (!$(selectionHash).data('listenersReady')) {
+
+          $(selectionHash).on('change', (e) => {
+              this.formData.selectionValue = e.target.value;
+              this._internalFormDataChanged$.next();
+            }); // end on change
+
+            $(selectionHash).data('listenersReady', true);
+        } // end if listeners not ready
+      } // end if selection defined
+
+    }, 0);
+
+  } // end setupChangeListener
 
   ngAfterViewInit() {
 
@@ -98,7 +160,16 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
         $('textarea').first().focus();
       }
     }, 0);
-  }
+  } // end ngAfterViewInit
+
+  updateModalContent() {
+    // Called after modal content gets update, so we can react
+
+    // Execute setup select again, in case it just got turned on
+    this.setupSelect$.next();
+
+    this._setupChangeListener();
+  } // end updateModalContent
 
   cancelModal() {
     this.cancelModalBtnClicked.emit(true);
@@ -111,58 +182,59 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   }
 
   confirmModal() {
-    let formValues: FlexModalReturnData = null;
     if (this.modalContent.inputId || this.modalContent.textareaId || this.modalContent.selectionID) {
       let isFormValid: boolean = true;
-      formValues = {
-        inputValue: $('#' + this.modalContent.inputId ).val(),
-        textareaValue: $('#' + this.modalContent.textareaId ).val(),
-        selectionValue: $('#' + this.modalContent.selectionID ).val(),
-      };
 
       // Validate values have been added to fields if shown.
-      if (this.modalContent.inputId
-          &&
-          formValues.inputValue === ''
-          &&
-          (!this.modalContent.inputOptional)
-        ) {
-        $('#' + this.modalContent.inputId ).addClass('invalid');
-        isFormValid = false;
-      } else {
-        $('#' + this.modalContent.inputId ).removeClass('invalid');
-      }
 
-      if (this.modalContent.textareaId
-            &&
-            formValues.textareaValue === ''
-            &&
-            (!this.modalContent.textareaOptional)
-          ) {
-        $('#' + this.modalContent.textareaId ).addClass('invalid');
-        isFormValid = false;
-      } else {
-        $('#' + this.modalContent.textareaId ).removeClass('invalid');
-      }
+      if (this.modalContent.inputId) {
 
-      if (this.modalContent.selectionID
+        if (!this.formData.inputValue
             &&
-            !formValues.selectionValue
-            &&
-            !this.modalContent.selectionOptional
+            (!this.modalContent.inputOptional)
           ) {
-        $('#' + this.modalContent.selectionID ).addClass('invalid');
-        $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'block');
-        $('#audit-explanation-select').siblings('.select-dropdown').addClass('invalid');
-        isFormValid = false;
-      } else {
-        $('#' + this.modalContent.selectionID ).removeClass('invalid');
-        $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'none');
-        $('#' + this.modalContent.selectionID ).siblings('.select-dropdown').removeClass('invalid');
-      }
+          $('#' + this.modalContent.inputId ).addClass('invalid');
+          isFormValid = false;
+        } else {
+          $('#' + this.modalContent.inputId ).removeClass('invalid');
+        } // end input validation OK or not
+
+      } // end if input defined
+
+      if (this.modalContent.textareaId) {
+
+        if (!this.formData.textareaValue
+              &&
+              (!this.modalContent.textareaOptional)
+            ) {
+          $('#' + this.modalContent.textareaId ).addClass('invalid');
+          isFormValid = false;
+        } else {
+          $('#' + this.modalContent.textareaId ).removeClass('invalid');
+        }
+
+      } // end if text area defined
+
+      if (this.modalContent.selectionID) {
+
+        if (!this.formData.selectionValue
+              &&
+              !this.modalContent.selectionOptional
+            ) {
+          $('#' + this.modalContent.selectionID ).addClass('invalid');
+          $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'block');
+          $('#audit-explanation-select').siblings('.select-dropdown').addClass('invalid');
+          isFormValid = false;
+        } else {
+          $('#' + this.modalContent.selectionID ).removeClass('invalid');
+          $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'none');
+          $('#' + this.modalContent.selectionID ).siblings('.select-dropdown').removeClass('invalid');
+        } // end if validation ok or not for select
+
+      } // end if selection defined
 
       if (isFormValid === true) {
-        this.confirmModalBtnClicked.emit(formValues);
+        this.confirmModalBtnClicked.emit(this.formData);
         this.activeModal.close('Confirm Clicked');
       }
     } else {
@@ -232,6 +304,15 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
 //   // Subscribe to confirmModalBtnClicked, in case we need it.
 //   popupModalRef.componentInstance.confirmModalBtnClicked.subscribe(event => {
 //     // Cancel was clicked ... do anything necessary here.
+
+//   // Subscribe to any form data changes in real time, if you need them
+//   popupModalRef.componentInstance.formDataChanged$.subscribe((currentFormData: FlexModalReturnData) => {
+//     // Act on the current form data here, if needed
+//   });
+
+//   // Update modal content and notify the component that changes were made.
+//   testModalContent.textareaId = 'new_textarea_id'; // Leave blank to hide Large Textarea.
+//   popupModalRef.componentInstance.updateModalContent();
 
 //     // Get Input Values, if used.
 //     const formValues = event;
