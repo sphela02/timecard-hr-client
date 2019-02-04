@@ -17,6 +17,22 @@
     <div class="row" id="modal-message" *ngIf="modalContent.messageText">
       <div class="col-12" [innerHTML]="messageText"></div>
     </div>
+    <div class="row" id="modal-input" *ngIf="modalContent.selectionID">
+        <div class="col-12">
+          <div class="md-form">
+            <label for="{{modalContent.selectionID}}">{{modalContent.inputLabel}}</label>
+            <select class="mdb-select"
+                id="{{modalContent.selectionID}}"
+                >
+                <option value="">{{modalContent.selectionPlaceHolderText}}</option>
+                <option *ngFor="let selectionChoice of modalContent.selectionChoices" [value]="selectionChoice.choiceValue">{{selectionChoice.choiceText}}</option>
+              </select>
+            <div class="invalid-feedback">
+              Selection Required
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="row" id="modal-input" *ngIf="modalContent.inputId">
       <div class="col-12">
         <div class="md-form">
@@ -51,7 +67,7 @@
       <button type="button" 
       *ngIf="modalContent.altBtnText"
       class="btn btn-default"
-      (click)="altModalFunction()" 
+      (click)="altModalFunction()"
       >{{modalContent.altBtnText}}</button>
 
       <button type="button"
