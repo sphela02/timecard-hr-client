@@ -207,3 +207,8 @@ export enum ActionType {
     Week1: number;
     Week2: number;
   }
+
+  export interface ActionResult {
+    status: ErrorStatus;
+    message: string;
+  } // end ActionResult
