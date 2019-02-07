@@ -787,12 +787,20 @@ table.table.timecard-list {
                 }
         
                 .row-description {
-                    font-size: .5rem;
+                    font-size: .6rem;
                     line-height: 1;
         
                     @media screen and (min-width: $breakpoint-md) {
-                        font-size: .7rem !important;
+                        font-size: .9rem !important;
                     }
+                }
+
+                i.project-info {
+                    color: $harris-grey;
+                    position: absolute;
+                    top: 50%;
+                    right: .75rem;
+                    transform: translate(0, -50%);
                 }
         
                 .remove-row {
@@ -890,16 +898,14 @@ table.table.timecard-list {
     
     .timecard-list-view {
         .row-title {
+            font-size: 1rem;
+            line-height: 1;
             font-weight: bold;
         }
     
         .row-description {
             font-size: .8rem;
             line-height: 1;
-    
-            @media screen and (max-width: $breakpoint-md) {
-                font-size: .5rem !important;
-            }
         }
 
         .input-hours {
