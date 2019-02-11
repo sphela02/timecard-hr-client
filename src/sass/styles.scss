@@ -67,6 +67,11 @@ table.table th, table.table td {
     padding-top: .5rem;
 }
 
+input[type=number]::-ms-clear {
+    height: 0;
+    width: 0;
+}
+
 .error-popover {
     background: $danger;
 
