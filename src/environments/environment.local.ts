@@ -19,8 +19,8 @@ export const environment: ApplicationEnvironment = {
   // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
   apiServiceURLs: {
     'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
-    'TIMECARD': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Timecard/',
-    'EMPLOYEE': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Employee/',
+    'TIMECARD': 'http://localhost:9572/api/v1/Timecard/',
+    'EMPLOYEE': 'http://localhost:9572/api/v1/Employee/',
     'ESS':      'http://localhost:9572/ESSAPI/api/v1/EmployeeSelfService/',
   },
   AppMode: AppMode.Dev,
