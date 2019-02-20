@@ -91,6 +91,7 @@ export enum ActionType {
     textareaId: string;
     textareaLabel: string;
     textareaOptional: boolean;
+    textareaMinLength: number;
     cancelBtnText: string;
     hideCancelButton: boolean;
     hideConfirmButton: boolean;

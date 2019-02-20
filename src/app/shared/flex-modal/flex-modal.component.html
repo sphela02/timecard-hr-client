@@ -51,6 +51,10 @@
           <label for="{{modalContent.textareaId}}">{{modalContent.textareaLabel}}</label>
           <div class="invalid-feedback">
             Required
+            <span
+              *ngIf="(modalContent.textareaMinLength > 1)">
+              - Minimum {{modalContent.textareaMinLength}} characters
+            </span>
           </div>
         </div>
       </div>
