@@ -203,10 +203,26 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
 
       if (this.modalContent.textareaId) {
 
-        if (!this.formData.textareaValue
-              &&
-              (!this.modalContent.textareaOptional)
-            ) {
+        let isTextAreaValid: boolean = true;
+
+        if (!this.modalContent.textareaOptional) {
+          // Text area required
+          if (!this.formData.textareaValue) {
+            // Text area empty, invalid
+            isTextAreaValid = false;
+          } else {
+            // Text area has data, check lengths
+            if (this.modalContent.textareaMinLength) {
+              if (this.formData.textareaValue.length < this.modalContent.textareaMinLength) {
+                // text area is too short
+                isTextAreaValid = false;
+              } // end if text area is too short
+            } // end if text area has a min length
+          } // end if text area empty or not
+        } // end if text area required
+
+        if (!isTextAreaValid) {
+          // Text area invalid
           $('#' + this.modalContent.textareaId ).addClass('invalid');
           isFormValid = false;
         } else {
@@ -282,6 +298,7 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
 //   testModalContent.textareaId = ''; // Leave blank to hide Large Textarea.
 //   testModalContent.textareaLabel = '';  // Leave blank to hide. Requires textaraId.
 //   testModalContent.textareaOptional = true; // Large textarea required by default, if it's visible
+//   testModalContent.textareaMinLength = 0; // Specify a min length, or 0 for no minimum
 //   testModalContent.cancelBtnText = '';  // Leave blank to use default, "Cancel"
 //   testModalContent.altBtnText = '';  // Leave blank to hide altBtn
 //   testModalContent.confirmBtnText = '';  // Leave blank to use default, "Ok"
