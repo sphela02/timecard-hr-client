@@ -617,6 +617,10 @@ table.table.timecard-list {
 
     table.table.timecard-view {
 
+        .sort-fields-list .dropdown-item.active {
+            background-color: #bababb !important; 
+        }
+
         col {
             &.current-day {
                 border: 2px solid $info;
