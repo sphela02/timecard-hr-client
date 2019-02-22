@@ -47,6 +47,10 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     ProgressTrackerService,
     GlobalErrorHandlerService,
     {
+      provide: 'ENVIRONMENT',
+      useValue: environment
+    },
+    {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerService
     },

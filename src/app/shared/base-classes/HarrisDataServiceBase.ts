@@ -2,11 +2,13 @@ import { Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { GlobalErrorHandlerService } from '../global-error-handler/global-error-handler.service';
-import { inject } from '@angular/core/testing';
 import { ProgressTrackerService } from '../progress-tracker/progress-tracker.service';
 import { UserProfileService } from '../user-profile/user-profile.service';
 import { CommonDataService } from '../common-data/common-data.service';
+
+import { ApplicationEnvironment } from '../shared';
 
 export abstract class HarrisDataServiceBase {
 
@@ -21,6 +23,9 @@ export abstract class HarrisDataServiceBase {
     protected _progressTrackerService: ProgressTrackerService;
     protected _userProfileService: UserProfileService;
 
+    // Injected environment, public for template use as well
+    public Environment: ApplicationEnvironment;
+
     constructor(
         protected injector: Injector,
     ) {
@@ -31,6 +36,8 @@ export abstract class HarrisDataServiceBase {
         this.modal = this.injector.get(NgbModal);
         this._progressTrackerService = this.injector.get(ProgressTrackerService);
         this._userProfileService = this.injector.get(UserProfileService);
+
+        this.Environment = this.injector.get('ENVIRONMENT');
 
         // Set up diagnostics listeners
         this._initializeDiagnostics();
