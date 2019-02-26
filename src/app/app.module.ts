@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TimecardModule } from './timecard/timecard.module';
-import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
@@ -36,7 +35,6 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     FormsModule,
     SharedModule,
     TimecardModule,
-    HomeModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
