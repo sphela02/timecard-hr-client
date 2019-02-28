@@ -28,17 +28,6 @@
         .hours {
             display: inline-block;
         }
-
-        .hours-label, 
-        .fy-label {
-            font-size: .75rem;
-            line-height: 1;
-
-            @media screen and (min-width: $breakpoint-md) {
-                font-size: .9rem;
-                line-height: 1.5rem;
-            }
-        }
         
         .col,
         div[class^="col-"] {
@@ -75,6 +64,17 @@
 
         .card-body .col {
             padding: 0 10px;
+        }
+    }
+
+    .hours-label, 
+    .fy-label {
+        font-size: .75rem;
+        line-height: 1;
+
+        @media screen and (min-width: $breakpoint-md) {
+            font-size: .9rem;
+            line-height: 1.5rem;
         }
     }
 }
