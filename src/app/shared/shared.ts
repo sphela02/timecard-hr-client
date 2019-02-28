@@ -70,9 +70,15 @@ export enum ActionType {
     messageType: AlertMessageType;
   }
 
+  export interface FlexModalSelectionChoice {
+    choiceValue: string;
+    choiceText: string;
+  }
+
   export interface FlexModalReturnData {
     inputValue: string;
     textareaValue: string;
+    selectionValue: string;
   }
   export interface FlexModalContent {
     modalTitle: string;
@@ -85,6 +91,7 @@ export enum ActionType {
     textareaId: string;
     textareaLabel: string;
     textareaOptional: boolean;
+    textareaMinLength: number;
     cancelBtnText: string;
     hideCancelButton: boolean;
     hideConfirmButton: boolean;
@@ -92,6 +99,10 @@ export enum ActionType {
     altBtnText: string;
     confirmBtnText: string;
     modalID: string;
+    selectionID: string;
+    selectionChoices: FlexModalSelectionChoice[];
+    selectionPlaceHolderText: string;
+    selectionOptional: boolean;
   }
 
   export enum AppMode {
@@ -190,10 +201,15 @@ export enum ActionType {
     importModules: any[]; // dbg ... we should make this a generic module base class
   }
 
-  export interface ChargeCodeTotalHours {
+  export interface ChargeCodeTotalHours { // dbg ... move to timecard
     TRCCode: string;
     ChargeCode: string;
     ActivityCode: string;
     Week1: number;
     Week2: number;
   }
+
+  export interface ActionResult {
+    status: ErrorStatus;
+    message: string;
+  } // end ActionResult
