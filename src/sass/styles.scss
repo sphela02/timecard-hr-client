@@ -58,6 +58,11 @@ body {
     }
 }
 
+.md-form textarea.md-textarea {
+    resize: none;
+    overflow-y: scroll;
+}
+
 input.disabled-input {
     border-bottom: none !important;
     color: rgba(black, .38);
