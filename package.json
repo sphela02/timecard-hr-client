@@ -44,7 +44,7 @@
     "jquery": "^3.3.1",
     "jquery-touchswipe": "^1.6.18",
     "lodash": "^4.17.10",
-    "mdbootstrap": "^4.5.0",
+    "mdbootstrap": "4.5.0",
     "moment": "^2.22.2",
     "ngx-mask": "^2.6.3",
     "rxjs": "^5.5.2",
