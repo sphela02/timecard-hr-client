@@ -23,6 +23,9 @@ export class CommonDataService {
   public alertNotificationCount: number = 0;
   public isApprover: boolean;
 
+  private _approvalNotificationCountsByArea: number[] = [];
+  public approvalNotificationCount: number = 0;
+
   private pageTitleSource = new BehaviorSubject<string>('Timecard');
   currentPageTitle = this.pageTitleSource.asObservable();
 
@@ -58,6 +61,15 @@ export class CommonDataService {
   changeViewMode(viewMode: ApplicationViewInfo) {
     this.viewModeSource.next(viewMode);
   }
+
+  updateApprovalCount(newApprovalCount: number, applicationArea: ApplicationArea) {
+    this._approvalNotificationCountsByArea[applicationArea] = newApprovalCount;
+    // Update the number of approval notifications ... Sum up each area
+    this.approvalNotificationCount = 0;
+    this._approvalNotificationCountsByArea.forEach((approvalCount: number) => {
+      this.approvalNotificationCount += approvalCount;
+    });
+  } // end updateAlertNotifications
 
   updateAlertNotifications(newNotifications: AlertNotification[], applicationArea: ApplicationArea) {
     this.alertNotificationGroups[applicationArea] = newNotifications;
