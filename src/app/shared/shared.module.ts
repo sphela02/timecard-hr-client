@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MqIfDirective } from './mq-if/mq-if.directive';
 import { ObjectFilter } from './pipes/objectFilter';
@@ -32,5 +32,13 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
     ApprovalMenuComponent,
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+
+  static injector: Injector;
+
+  constructor(private injector: Injector) {
+    SharedModule.injector = injector;
+  }
+
+}
 

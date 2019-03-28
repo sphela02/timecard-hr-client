@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import {
   AlertNotification,
   ApplicationArea,
@@ -49,6 +50,9 @@ export class CommonDataService {
 
   // Diagnostics mode
   private _diagnosticModeActive$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  // Component Creation Registry logic
+  private _newComponentRegistered$: Subject<Object> = new Subject<Object>();
 
   deleteErrorMessageByIndex(errorIndex: number) {
     this.currentErrorMessages.splice(errorIndex, 1);
@@ -198,5 +202,13 @@ export class CommonDataService {
   getDiagnosticsMode(): Observable<boolean> {
     return this._diagnosticModeActive$.asObservable();
   } // end getDiagnosticsMode
+
+  registerComponentCreation(newComponent: Object) {
+    this._newComponentRegistered$.next(newComponent);
+  } // end registerComponentCreation
+
+  listenForCreatedComponents(): Observable<Object> {
+    return this._newComponentRegistered$.asObservable();
+  } // end listenForCreatedComponents
 
 } // end CommonDataService
