@@ -5,6 +5,7 @@ import { ObjectFilter } from './pipes/objectFilter';
 import { AppLandingComponent } from './app-landing/app-landing.component';
 import { ApprovalMenuComponent } from './approval-menu/approval-menu.component';
 import { RouterModule } from '@angular/router';
+import { NgPipesModule } from 'angular-pipes';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
@@ -30,6 +31,7 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
     MqIfDirective,
     ObjectFilter,
     ApprovalMenuComponent,
+    NgPipesModule,
   ]
 })
 export class SharedModule {
