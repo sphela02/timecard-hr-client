@@ -175,6 +175,7 @@ export enum ActionType {
     applicationArea: ApplicationArea;
     profileSection: UserProfileDashboardSection;
     id: string;
+    sortOrder: number;
   }
 
   export interface UserProfileDashboardWidget {
