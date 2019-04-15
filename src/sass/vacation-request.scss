@@ -42,6 +42,8 @@
     #vacation-list-body {
 
         #vacation-request-list {
+            height: 1px;
+
             th {
                 border: none;
                 color: $harris-grey;
@@ -53,13 +55,6 @@
     
                     @media screen and (min-width: $breakpoint-md) {
                         width: 50%;;
-                    }
-                }
-                &#status-col {
-                    width: 33%;
-    
-                    @media screen and (min-width: $breakpoint-md) {
-                        width: 15%;
                     }
                 }
             }
@@ -92,22 +87,81 @@
     
     
                 &.status {
-                    border-right: 6px solid lightgrey !important;
+                    line-height: 1.2;
+                    padding: 5px;
+                    text-align: center;
+                    width: 100px;
+        
+                    .status-wrapper {
+                        align-items: center;
+                        display: flex;
+                        height: 100%;
+                        max-height: 50px;
+                        position: relative;
+                    }
+
+                    .badge {
+                        background: lightgray !important;
+                        display: block;
+                        position: absolute;
+                        bottom: 0; left: 0; right: 0; top: 0;
+                        z-index: 0;
+                    }
+
+                    .status-label {
+                        color: $harris-grey;
+                        font-size: .75rem;
+                        padding: .5rem;
+                        position: relative;
+                        text-align: center;
+                        width: 100%;
+                        z-index: 1;
+                    }
     
                     &.approved {
-                        border-right: 6px solid #6db444 !important;
+                        .badge {
+                            background: $success !important;
+                        }
+
+                        .status-label {
+                            color: white;
+                        }
                     }
                     &.approvalinprocess {
-                        border-right: 6px solid $info !important;
+                        .badge  {
+                            background: $info !important;
+                        }
+
+                        .status-label {
+                            color: white;
+                        }
                     }
-                    &.submitted {
-                        border-right: 6px solid #F99F3C !important;
+                    &.submitted  {
+                        .badge  {
+                            background: $warning !important;
+                        }
+                        
+                        .status-label {
+                            color: white;
+                        }
                     }
                     &.cancelled {
-                        border-right: 6px solid #616264 !important;
+                        .badge {
+                            background: $grey-dark !important;
+                        }
+
+                        .status-label {
+                            color: white;
+                        }
                     }
                     &.denied {
-                        border-right: 6px solid $danger !important;
+                        .badge  {
+                            background: $danger !important;
+                        }
+
+                        .status-label {
+                            color: white;
+                        }
                     }
                 }
     
