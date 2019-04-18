@@ -662,6 +662,27 @@ table.table.timecard-list {
         }
     }
 
+    #fixed-tc-header {
+        position: fixed;
+        top: 0px;
+        display:none;
+        background-color:white;
+        z-index: 999;
+
+        th {
+            border: none;
+            color: $harris-grey;
+            line-height: 1;
+            vertical-align: middle;
+
+            @media screen and (max-width: $breakpoint-md) {
+                font-size: .58rem !important;
+                min-width: 1.55rem;
+                padding: 2px;
+            }
+        }
+    }
+
     table .table-totals {
         background: $harris-grey;
         
