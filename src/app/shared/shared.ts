@@ -70,9 +70,15 @@ export enum ActionType {
     messageType: AlertMessageType;
   }
 
+  export interface FlexModalSelectionChoice {
+    choiceValue: string;
+    choiceText: string;
+  }
+
   export interface FlexModalReturnData {
     inputValue: string;
     textareaValue: string;
+    selectionValue: string;
   }
   export interface FlexModalContent {
     modalTitle: string;
@@ -85,10 +91,18 @@ export enum ActionType {
     textareaId: string;
     textareaLabel: string;
     textareaOptional: boolean;
+    textareaMinLength: number;
     cancelBtnText: string;
     hideCancelButton: boolean;
+    hideConfirmButton: boolean;
+    showCloseButton: boolean;
     altBtnText: string;
     confirmBtnText: string;
+    modalID: string;
+    selectionID: string;
+    selectionChoices: FlexModalSelectionChoice[];
+    selectionPlaceHolderText: string;
+    selectionOptional: boolean;
   }
 
   export enum AppMode {
@@ -120,6 +134,9 @@ export enum ActionType {
     VRSAuthorizations = 4,
     VRSMessages = 5,
     VRSTeamDrilldown = 6,
+    EmployeeSelfService = 7,
+    Profile = 8,
+    ESSModal = 9,
     MainApp = 99,
   }
 
@@ -145,12 +162,19 @@ export enum ActionType {
     subMenu?: ApplicationMenuItem[];
   }
 
+  export enum UserProfileDashboardSection {
+    SelfService = 1,
+    ApprovalsDelegation = 2,
+  }
+
   export interface UserProfileDashboardItem {
     title: string;
     descriptionText: string;
     actionButtonText: string;
     openDashboardItem$: Subject<boolean>;
     applicationArea: ApplicationArea;
+    profileSection: UserProfileDashboardSection;
+    id: string;
   }
 
   export interface UserProfileDashboardWidget {
@@ -177,10 +201,15 @@ export enum ActionType {
     importModules: any[]; // dbg ... we should make this a generic module base class
   }
 
-  export interface ChargeCodeTotalHours {
+  export interface ChargeCodeTotalHours { // dbg ... move to timecard
     TRCCode: string;
     ChargeCode: string;
     ActivityCode: string;
     Week1: number;
     Week2: number;
   }
+
+  export interface ActionResult {
+    status: ErrorStatus;
+    message: string;
+  } // end ActionResult

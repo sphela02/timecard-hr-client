@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MqIfDirective } from './mq-if/mq-if.directive';
 import { ObjectFilter } from './pipes/objectFilter';
 import { AppLandingComponent } from './app-landing/app-landing.component';
 import { ApprovalMenuComponent } from './approval-menu/approval-menu.component';
 import { RouterModule } from '@angular/router';
+import { NgPipesModule } from 'angular-pipes';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
@@ -30,7 +31,16 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
     MqIfDirective,
     ObjectFilter,
     ApprovalMenuComponent,
+    NgPipesModule,
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+
+  static injector: Injector;
+
+  constructor(private injector: Injector) {
+    SharedModule.injector = injector;
+  }
+
+}
 

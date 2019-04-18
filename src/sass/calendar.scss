@@ -260,11 +260,14 @@ $dayBase: 30px;
                 }
             }
 
-            .btn {
-                font-size: 1rem;
+            #approver-calendar & {
 
-                .fa-lg {
-                    font-size: 1.3em;
+                .btn {
+                    font-size: 1rem;
+
+                    .fa-lg {
+                        font-size: 1.3em;
+                    }
                 }
             }
         }

@@ -2,28 +2,21 @@
     <div id='sidebar' class="side-nav fixed" >
         <div class="nav-container">
             <div *ngIf="userInfo" class="py-3 user-menu">
-                <a class="dropdown-toggle waves-effect waves-light" id="user-account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div id="user-account">
                     <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="float-left img-fluid rounded-circle z-depth-0 mr-2">
                     <div class="pl-4 ml-3 mt-2 pr-3">
                         {{userInfo?.FullNamePrintable}}
                     </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right p-0 user-menu-dropdown float-right" aria-labelledby="user-account">
-                    <a class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user" aria-hidden="true"></i> View Profile</a>
-                    <ul class="list-group">
-                        <li class="list-group-item">Employee ID: {{userInfo?.EMPLID}}</li>
-                        <li class="list-group-item">Department: {{userInfo?.CurrentDepartment}}</li>
-                        <li class="list-group-item">Business Unit: {{userInfo?.CurrentBusinessUnit}}</li>
-                        <li class="list-group-item">Workgroup: {{userInfo?.CurrentWorkgroup}}</li>
-                        <li class="list-group-item">Schedule: {{userInfo?.CurrentSchedule}}</li>
-                    </ul>                
                 </div>
             </div>
             
             <ul class="nav flex-column" id="timecard-menu">
+                <li class="nav-item border-top border-light">
+                    <a class="nav-link" id="my-profile" [routerLink]="['/profile']"><i class="fa fa-user left-icon mt-0" aria-hidden="true"></i>My Profile</a>
+                </li>
                 <ng-container *ngFor="let n of menuList">
                     <li *ngIf="n.role == '' || (n.role == 'approver' && isApprover)" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}
-                    <span *ngIf="n.name == 'Approvals' && (_timecardService.countTimecardPendingApprovals.getValue() > 0 || _vacationRequestService.countVacationRequestsPendingApproval.getValue() > 0)" class="badge badge-small badge-primary badge-pill">{{_timecardService.countTimecardPendingApprovals.getValue() + _vacationRequestService.countVacationRequestsPendingApproval.getValue()}}</span></a>
+                    <span *ngIf="n.name == 'Approvals' && _commonDataService.approvalNotificationCount" class="badge badge-small badge-primary badge-pill">{{_commonDataService.approvalNotificationCount}}</span></a>
                         <ul class="nav flex-column">
                             <ng-container *ngFor="let child of n.subMenu">
                                 <li class="nav-item border-top border-light" *ngIf="(child.name)">

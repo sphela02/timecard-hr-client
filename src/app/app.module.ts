@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TimecardModule } from './timecard/timecard.module';
-import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
@@ -19,6 +18,7 @@ import { ProgressTrackerService } from './shared/progress-tracker/progress-track
 import { environment } from '../environments/environment';
 import { UserProfileService } from './shared/user-profile/user-profile.service';
 import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
+import { SharedModule } from './shared/shared.module';
 
 export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
   return () => _commonDataService.appWaitForServicesToBeReady();
@@ -33,8 +33,8 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     ...environment.importModules, // Specific modules to import for the current environment.
     BrowserModule,
     FormsModule,
+    SharedModule,
     TimecardModule,
-    HomeModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
@@ -46,6 +46,10 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     CommonDataService,
     ProgressTrackerService,
     GlobalErrorHandlerService,
+    {
+      provide: 'ENVIRONMENT',
+      useValue: environment
+    },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerService

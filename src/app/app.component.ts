@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserInfoService } from './userinfo/user-info.service';
-import { TimecardService } from './timecard/timecard.service';
 import { EmployeeProfileDTO } from './shared/EmployeeProfileDTO';
 import { Router, NavigationStart, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { CommonDataService } from './shared/common-data/common-data.service';
@@ -17,7 +16,6 @@ import {
     ApplicationEnvironment
 } from './shared/shared';
 import * as lodash from 'lodash';
-import { VacationRequestService } from './vacation-request/vacation-request.service'; // dbg ... decouple
 import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs'; // dbg ... decouple
 import { TimecardViewMode } from './timecard/_shared/shared.tc'; // dbg ... decouple
 
@@ -53,8 +51,6 @@ export class AppComponent implements OnInit {
 
     constructor(private _userInfoService: UserInfoService,
                 public _commonDataService: CommonDataService,
-                private _timecardService: TimecardService,
-                private _vacationRequestService: VacationRequestService,
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
             ) {
@@ -197,6 +193,8 @@ export class AppComponent implements OnInit {
                 } else {
                     this.currentViewMode = VRSApplicationViewMode[viewInfo.ViewMode];
                 }
+            } else if (viewInfo.Application === ApplicationArea.Profile) {
+                this.currentViewMode = 'Profile';
             }
         });
 

@@ -5,7 +5,10 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
-import { ActionType } from '../shared/shared';
+import {
+  ActionType,
+  ActionResult,
+} from '../shared/shared';
 import { ErrorStatus } from '../shared/ErrorStatus';
 import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -22,6 +25,7 @@ export class UserInfoService extends HarrisDataServiceBase {
   private _isApproverUrl: string;
   private _userInfo$: BehaviorSubject<EmployeeProfileDTO> = new BehaviorSubject<EmployeeProfileDTO>(null);
   private _userInfo: EmployeeProfileDTO;
+  private _userInfoRetrieved$: BehaviorSubject<ActionResult> = new BehaviorSubject<ActionResult>(null);
   private _userInfoIsRetrieving: boolean = false;
   private _isApprover: boolean = null;
   private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
@@ -48,13 +52,11 @@ export class UserInfoService extends HarrisDataServiceBase {
 
   }
 
-  getUserInfo(): Observable<EmployeeProfileDTO> {
-
+  retrieveUserInfo(): Observable<ActionResult> {
     // Have we already retrieved the user info, or is already being retrieved?
     if ((!this._userInfo) && (!this._userInfoIsRetrieving)) {
       // We don't have the user info yet, retrieve it now, store it and send it.
       this._userInfoIsRetrieving = true;
-
       this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
                                           { withCredentials: true })
               .subscribe(response => {
@@ -64,21 +66,41 @@ export class UserInfoService extends HarrisDataServiceBase {
                 // Store the object for next time, and send it back to the caller
                 this._userInfo = response;
                 this._userInfo$.next(this._userInfo);
-
+                this._userInfoRetrieved$.next({
+                  status: ErrorStatus.OK,
+                  message: 'User Retrieved OK'
+                });
               },
               (error: HttpErrorResponse) => {
                 // Finished retrieving (error, but still done)
                 this._userInfoIsRetrieving = false;
+                // Null out user and mark that retrieve was a failure
+                this._userInfo$.next(null);
+                this._userInfoRetrieved$.next({
+                  status: ErrorStatus.ApplicationError,
+                  message: 'User retrieve failed ... ' + error.message
+                });
                 // Handle the Error response
                 this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve the current user.');
 
               }
             ); // end subscribe
+    } // end if not user info and not retrieving yet
+
+    return this._userInfoRetrieved$.asObservable();
+  } // end retrieveUserInfo
+
+  getUserInfo(): Observable<EmployeeProfileDTO> {
+
+    // Do we already have a valid user info object?
+    if ((!this._userInfo)) {
+      // Retrieve the user
+      this.retrieveUserInfo();
     }
 
-    // Return the observable to the caller ... we'll send back the object momentarily
+    // Return the observable to the caller ... the object will return after retrieval completes
     return this._userInfo$;
-  }
+  } // end getUserInfo
 
   // dbg ... this should move to timecard service (client/server), since it's a timecard approver check.
   getIsApprover(forceRefresh: boolean = false): Observable<boolean> {
