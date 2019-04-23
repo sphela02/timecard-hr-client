@@ -7,7 +7,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { TimecardModule } from './timecard/timecard.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
@@ -34,7 +33,6 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     BrowserModule,
     FormsModule,
     SharedModule,
-    TimecardModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
