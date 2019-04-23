@@ -19,7 +19,6 @@ const routes: Routes = [
     component: AppLandingComponent,
     data: [{appMenuType: ApplicationMenuType.MainAppMenu}],
   },
-  // { path: '', redirectTo: 'timecards', pathMatch: 'full'},
   { path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];
 

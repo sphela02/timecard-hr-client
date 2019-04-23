@@ -4,6 +4,7 @@ import { MqIfDirective } from './mq-if/mq-if.directive';
 import { ObjectFilter } from './pipes/objectFilter';
 import { AppLandingComponent } from './app-landing/app-landing.component';
 import { ApprovalMenuComponent } from './approval-menu/approval-menu.component';
+import { FlexModalComponent } from './flex-modal/flex-modal.component';
 import { RouterModule } from '@angular/router';
 import { NgPipesModule } from 'angular-pipes';
 
@@ -34,10 +35,14 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
     RouterModule,
   ],
   declarations: [
+    FlexModalComponent,
     MqIfDirective,
     ObjectFilter,
     AppLandingComponent,
     ApprovalMenuComponent,
+  ],
+  entryComponents: [
+    FlexModalComponent,
   ],
   exports: [
     MqIfDirective,

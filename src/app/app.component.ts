@@ -31,7 +31,7 @@ declare var tour: any;
   styleUrls: ['./app.component.css', './app.component.css.navbar.css'],
 })
 export class AppComponent implements OnInit {
-    public pageTitle = 'Timecard';
+    public pageTitle = 'Timecard'; // dbg ... more neutral name?
     menuList: ApplicationMenuItem[];
     selected: any;
     errorMessage: string;
@@ -176,7 +176,7 @@ export class AppComponent implements OnInit {
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
 
         this._commonDataService.currentViewMode.subscribe(viewInfo => {
-            if (viewInfo.Application === ApplicationArea.Timecard) {
+            if (viewInfo.Application === ApplicationArea.Timecard) { // dbg ... make naive?
                 if (viewInfo.ViewMode === TimecardViewMode.None ||
                     viewInfo.ViewMode === TimecardViewMode.Display ||
                     viewInfo.ViewMode === TimecardViewMode.Edit) {
