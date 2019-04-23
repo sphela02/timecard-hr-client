@@ -27,10 +27,10 @@ export class CommonDataService {
   private _approvalNotificationCountsByArea: number[] = [];
   public approvalNotificationCount: number = 0;
 
-  private pageTitleSource = new BehaviorSubject<string>('Timecard');
+  private pageTitleSource = new BehaviorSubject<string>('Timecard'); // dbg ... more neutral name?
   currentPageTitle = this.pageTitleSource.asObservable();
 
-  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({
+  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({ // dbg ... decouple
     Application: ApplicationArea.Timecard,
     ViewMode: TimecardViewMode.List
   });
