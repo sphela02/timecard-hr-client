@@ -146,6 +146,7 @@ export class UserInfoService extends HarrisDataServiceBase {
     // Wipe out all stored data, like going back to an app start
     this._userInfo = null;
     this._userInfo$.next(null);
+    this._userInfoRetrieved$.next(null);
     this.getIsApprover(true);
   } // end resetAllData
 }
