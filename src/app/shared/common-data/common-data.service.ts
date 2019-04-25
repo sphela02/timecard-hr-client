@@ -163,7 +163,10 @@ export class CommonDataService {
     // Subscribe to changes
     this._servicesAreReady$.push(serviceIsReady$);
     setTimeout(() => {
-      serviceIsReady$.subscribe((serviceIsReady: boolean) => {
+      serviceIsReady$
+          .skipWhile(ready => ready === false)
+          .first()
+          .subscribe((serviceIsReady: boolean) => {
         // Update the ready flag for this service
         this._servicesAreReady[serviceIndex] = serviceIsReady;
         // Update the number of ready services
