@@ -77,6 +77,11 @@ input[type=number]::-ms-clear {
     width: 0;
 }
 
+ngb-typeahead-window button.dropdown-item *,
+#add-charge-code .dropdown-content li * {
+    pointer-events: none !important;
+}
+
 .error-popover {
     background: $danger;
 

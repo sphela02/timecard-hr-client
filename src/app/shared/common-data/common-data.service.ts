@@ -27,10 +27,10 @@ export class CommonDataService {
   private _approvalNotificationCountsByArea: number[] = [];
   public approvalNotificationCount: number = 0;
 
-  private pageTitleSource = new BehaviorSubject<string>('Timecard');
+  private pageTitleSource = new BehaviorSubject<string>('Timecard'); // dbg ... more neutral name?
   currentPageTitle = this.pageTitleSource.asObservable();
 
-  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({
+  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({ // dbg ... decouple
     Application: ApplicationArea.Timecard,
     ViewMode: TimecardViewMode.List
   });
@@ -163,7 +163,10 @@ export class CommonDataService {
     // Subscribe to changes
     this._servicesAreReady$.push(serviceIsReady$);
     setTimeout(() => {
-      serviceIsReady$.subscribe((serviceIsReady: boolean) => {
+      serviceIsReady$
+          .skipWhile(ready => ready === false)
+          .first()
+          .subscribe((serviceIsReady: boolean) => {
         // Update the ready flag for this service
         this._servicesAreReady[serviceIndex] = serviceIsReady;
         // Update the number of ready services

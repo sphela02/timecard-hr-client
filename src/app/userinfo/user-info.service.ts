@@ -1,9 +1,6 @@
 import { Injector, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
 import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
 import {
   ActionType,
@@ -149,6 +146,7 @@ export class UserInfoService extends HarrisDataServiceBase {
     // Wipe out all stored data, like going back to an app start
     this._userInfo = null;
     this._userInfo$.next(null);
+    this._userInfoRetrieved$.next(null);
     this.getIsApprover(true);
   } // end resetAllData
 }

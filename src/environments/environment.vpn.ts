@@ -1,4 +1,7 @@
 import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
+import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
+import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
+import { TimecardModule } from '../app/timecard/timecard.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -20,5 +23,9 @@ export const environment: ApplicationEnvironment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: false,
-  importModules: [],
+  importModules: [
+    VacationRequestModule,
+    EmployeeSelfServiceModule,
+    TimecardModule,
+  ],
 };

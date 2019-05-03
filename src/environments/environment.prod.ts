@@ -1,6 +1,7 @@
 import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
+import { TimecardModule } from '../app/timecard/timecard.module';
 
 export const environment: ApplicationEnvironment = {
   production: true,
@@ -15,5 +16,6 @@ export const environment: ApplicationEnvironment = {
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
+    TimecardModule,
   ],
 };

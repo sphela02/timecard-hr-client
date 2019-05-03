@@ -1,6 +1,7 @@
 import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
+import { TimecardModule } from '../app/timecard/timecard.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -18,7 +19,7 @@ export const environment: ApplicationEnvironment = {
   production: false,
   // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
   apiServiceURLs: {
-    'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
+    'VRS':      'http://localhost/VRS.API/api/v1/Vacation/',
     'TIMECARD': 'http://localhost:9572/api/v1/Timecard/',
     'EMPLOYEE': 'http://localhost:9572/api/v1/Employee/',
     'ESS':      'http://localhost:9572/ESSAPI/api/v1/EmployeeSelfService/',
@@ -28,5 +29,6 @@ export const environment: ApplicationEnvironment = {
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
+    TimecardModule,
   ],
 };
