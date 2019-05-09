@@ -32,6 +32,8 @@
 npm-debug.log
 testem.log
 /typings
+/src/font
+/src/img
 
 # e2e
 /e2e/*.js
