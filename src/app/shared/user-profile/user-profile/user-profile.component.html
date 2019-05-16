@@ -41,13 +41,19 @@
                         <h2 class="h4">Self Service</h2>
                     </div>
                     <div class="row mb-2">
-                        <div *ngFor="let dashboardPopup of dashboardPopups | ObjectFilter : UserProfileDashboardSection.SelfService.toString() : ['profileSection']" class="col-12 col-sm-4 mb-3" id="{{ dashboardPopup.id }}">
+                        <div *ngFor="let dashboardPopup of dashboardPopups | ObjectFilter : UserProfileDashboardSection.SelfService.toString() : ['profileSection']"
+                        class="col-12 col-sm-6 col-lg-4 mb-3"
+                        id="{{ dashboardPopup.id }}"
+                        >
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h5 class="card-title m-0">{{dashboardPopup.title}}</h5>
                                 </div>
                                 <div class="card-body pb-0">
-                                    <p [innerHTML]="dashboardPopup.descriptionText"></p>
+                                    <p *ngIf="dashboardPopup.descriptionText" 
+                                    [innerHTML]="dashboardPopup.descriptionText"></p>
+                                    <!-- dbg ... what if no component? -->
+                                    <ng-container *ngComponentOutlet="dashboardPopup.descriptionComponent"></ng-container>
                                 </div>
                                 <div class="card-footer bg-white border-0 p-3">
                                     <button 

@@ -170,6 +170,7 @@ export enum ActionType {
   export interface UserProfileDashboardItem {
     title: string;
     descriptionText: string;
+    descriptionComponent?: any;
     actionButtonText: string;
     openDashboardItem$: Subject<boolean>;
     applicationArea: ApplicationArea;
