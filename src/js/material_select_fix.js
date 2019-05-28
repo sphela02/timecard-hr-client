@@ -32,6 +32,13 @@
                 $(this).parent().siblings('.select-dropdown').blur();
             })
         }
+
+        // Force click when touch start occurs.
+        $(this).find('.dropdown-content.select-dropdown li').on('touchend', function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            $(this).click();
+        });
     
         // reset and prevent default on fixed select-dropdowns
         $('.mdb-select-fixed').off('mousedown').on('mousedown', function(e) {

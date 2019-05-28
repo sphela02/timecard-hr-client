@@ -78,7 +78,7 @@ input[type=number]::-ms-clear {
 }
 
 ngb-typeahead-window button.dropdown-item *,
-#add-charge-code .dropdown-content li * {
+.dropdown-content li * {
     pointer-events: none !important;
 }
 
