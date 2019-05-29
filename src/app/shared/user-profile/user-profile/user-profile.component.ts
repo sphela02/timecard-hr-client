@@ -17,6 +17,7 @@ import { ProgressTrackerService } from '../../../shared/progress-tracker/progres
 import { UserProfileDashboardItem, UserProfileDashboardWidget, UserProfileDashboardSection } from '../../shared';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CommonDataService } from '../../common-data/common-data.service';
+import * as lodash from 'lodash';
 
 declare var $: any;
 
@@ -40,7 +41,6 @@ export class UserProfileComponent implements OnInit {
     private _userProfileService: UserProfileService,
     private _commonDataService: CommonDataService,
     private _progressTrackerService: ProgressTrackerService,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private modal: NgbModal,
   ) {
     // Set page title.
@@ -75,6 +75,11 @@ export class UserProfileComponent implements OnInit {
       this.userInfo = userInfo;
     }
   ); // end subscribe
+
+  setTimeout(() => {
+    // Sort dashboardPopups based on sortOrder.
+    this.dashboardPopups = lodash.sortBy(this._userProfileService.getDashBoardPopups(), 'sortOrder');
+  }, 0);
 
   } // end ngOnInit
 
