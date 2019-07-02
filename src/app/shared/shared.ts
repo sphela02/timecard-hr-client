@@ -213,3 +213,17 @@ export enum ActionType {
     status: ErrorStatus;
     message: string;
   } // end ActionResult
+
+  export interface HopScotchTourStep {
+    title: string;
+    content: string;
+    target: string;
+    placement: string;
+    showPrevButton: boolean;
+  } // end HopScotchTourStep
+
+  export interface HopScotchTour {
+      id: string;
+      showSkip: boolean;
+      steps: HopScotchTourStep[];
+  } // end HopScotchTour
