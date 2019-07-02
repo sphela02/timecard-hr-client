@@ -17,6 +17,7 @@ import { ProgressTrackerService } from '../../../shared/progress-tracker/progres
 import { UserProfileDashboardItem, UserProfileDashboardWidget, UserProfileDashboardSection } from '../../shared';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CommonDataService } from '../../common-data/common-data.service';
+import { GuidedTourService } from '../../guided-tour/guided-tour.service';
 
 declare var $: any;
 
@@ -42,12 +43,38 @@ export class UserProfileComponent implements OnInit {
     private _progressTrackerService: ProgressTrackerService,
     private componentFactoryResolver: ComponentFactoryResolver,
     private modal: NgbModal,
+    private _guidedTourService: GuidedTourService,
   ) {
     // Set page title.
     this._commonDataService.changePageTitle('Profile');
    }
 
   ngOnInit() {
+
+    this._guidedTourService.setGuidedTour(
+      {
+        id: 'walkthrough',
+        showSkip: true,
+        steps: [
+            {
+                title: 'Welcome',
+                // tslint:disable-next-line:max-line-length
+                content: 'My Profile includes timecard approver and delegate settings and employee information including employee ID, department, and more.  Add or update emergency contacts, office location, phone, other personnel settings.',
+                target: 'page-title',
+                placement: 'bottom',
+                showPrevButton: false
+            },
+            {
+                title: 'Employee Information and Settings',
+                content: 'Select a panel below to update employee information or change settings.',
+                target: 'profile-body',
+                placement: 'top',
+                showPrevButton: true,
+            }
+        ]
+    },
+
+    );
 
     // Set current view mode in commonDataService.
     this._commonDataService.changeViewMode({
