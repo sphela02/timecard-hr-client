@@ -51,6 +51,10 @@ export class GuidedTourService {
   } // end setGuidedTour
 
   startTour() {
+    if (!this._currentGuidedTour) {
+        return;
+    }
+
     this._tourActive = true;
     // Hopscotch tour. Start the tour.
     hopscotch.startTour(this._currentGuidedTour);
