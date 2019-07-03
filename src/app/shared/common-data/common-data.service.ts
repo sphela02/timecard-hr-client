@@ -11,7 +11,6 @@ import {
 import { ApplicationViewInfo } from '../shared.module';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
-import { TimecardViewMode } from '../../timecard/_shared/shared.tc'; // dbg ... decouple from tc
 
 @Injectable()
 export class CommonDataService {
@@ -30,12 +29,6 @@ export class CommonDataService {
   private pageTitleSource = new BehaviorSubject<string>('Timecard'); // dbg ... more neutral name?
   currentPageTitle = this.pageTitleSource.asObservable();
 
-  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({ // dbg ... decouple
-    Application: ApplicationArea.Timecard,
-    ViewMode: TimecardViewMode.List
-  });
-
-  currentViewMode = this.viewModeSource.asObservable();
   private _menuLists$: BehaviorSubject<ApplicationMenuItem[]>[] = [];
 
   // Lists of diagnostic messages, organized by app area
@@ -60,10 +53,6 @@ export class CommonDataService {
 
   changePageTitle(title: string) {
     this.pageTitleSource.next(title);
-  }
-
-  changeViewMode(viewMode: ApplicationViewInfo) {
-    this.viewModeSource.next(viewMode);
   }
 
   updateApprovalCount(newApprovalCount: number, applicationArea: ApplicationArea) {

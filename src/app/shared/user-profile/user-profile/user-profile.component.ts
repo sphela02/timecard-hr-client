@@ -76,12 +76,6 @@ export class UserProfileComponent implements OnInit {
 
     );
 
-    // Set current view mode in commonDataService.
-    this._commonDataService.changeViewMode({
-      Application: ApplicationArea.Profile,
-      ViewMode: 0,
-    });
-
     // Subscribe to isLoading from ess service to display loading spinner as needed.
     this._progressTrackerService.getAppLoadingStatus(ApplicationArea.Profile).subscribe((isLoadingTimecard: boolean) => {
       // Timecard loading or not
