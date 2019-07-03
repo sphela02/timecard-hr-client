@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { UserProfileService } from './shared/user-profile/user-profile.service';
 import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
 import { SharedModule } from './shared/shared.module';
+import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
 
 export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
   return () => _commonDataService.appWaitForServicesToBeReady();
@@ -42,6 +43,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     UserInfoService,
     UserProfileService,
     CommonDataService,
+    GuidedTourService,
     ProgressTrackerService,
     GlobalErrorHandlerService,
     {

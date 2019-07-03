@@ -29,8 +29,7 @@
         "../node_modules/mdbootstrap/js/bootstrap.min.js",
         "js/mdb.min.js",
         "js/material_select_fix.js",        
-        "../node_modules/hopscotch/dist/js/hopscotch.min.js",
-        "js/walkthrough.js"        
+        "../node_modules/hopscotch/dist/js/hopscotch.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

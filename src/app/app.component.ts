@@ -18,12 +18,9 @@ import {
 import * as lodash from 'lodash';
 import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs'; // dbg ... decouple
 import { TimecardViewMode } from './timecard/_shared/shared.tc'; // dbg ... decouple
+import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
 
 declare var $: any;
-
-// Variables for Hopscotch tour arrays.
-declare var hopscotch: any;
-declare var tour: any;
 
 @Component({
   selector: 'tc-root',
@@ -40,7 +37,6 @@ export class AppComponent implements OnInit {
     diagnosticsMode: boolean;
     environment: ApplicationEnvironment = environment;
     currentViewMode: any = null;
-    tourActive: boolean = false;
     private _isApprover: boolean = false;
     private ngUnsubscribe$: Subject<void> = new Subject<void>();
     isApprover: boolean = false;
@@ -53,6 +49,7 @@ export class AppComponent implements OnInit {
                 public _commonDataService: CommonDataService,
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
+                private _guidedTourService: GuidedTourService,
             ) {
 
         this._commonDataService.getMenu(ApplicationMenuType.ApprovalMenu).subscribe(approvalsMenu => {
@@ -81,31 +78,6 @@ export class AppComponent implements OnInit {
             }); // end subscribe getIsApprover
 
         // Subscribe to router events.
-        _router.events.subscribe(routerEvent => {
-            if (routerEvent instanceof NavigationStart) {
-                if (hopscotch.getCurrTour()) {
-                    hopscotch.endTour();
-                    this.tourActive = true;
-                }
-            }
-            if (routerEvent instanceof NavigationEnd) {
-                if (this.tourActive) {
-                    setTimeout(wait => {
-                        hopscotch.startTour(tour[this.currentViewMode]);
-
-                        hopscotch.listen('end', () => {
-                            this.tourActive = false;
-                            hopscotch.removeCallbacks();
-                        });
-
-                        hopscotch.listen('close', () => {
-                            this.tourActive = false;
-                            hopscotch.removeCallbacks();
-                        });
-                    }, 500);
-                }
-            }
-        });
     }
 
     onDestroy() {
@@ -175,6 +147,7 @@ export class AppComponent implements OnInit {
         // watch for page title changes.
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
 
+        // dbg ... any of this still needed now that guided tour has been extracted?
         this._commonDataService.currentViewMode.subscribe(viewInfo => {
             if (viewInfo.Application === ApplicationArea.Timecard) { // dbg ... make naive?
                 if (viewInfo.ViewMode === TimecardViewMode.None ||
@@ -264,21 +237,10 @@ export class AppComponent implements OnInit {
         this.diagnosticsMode = false;
     } // end endDiagnostics
 
-    startTour() {
-        this.tourActive = true;
-        // Hopscotch tour. Start the tour.
-        hopscotch.startTour(tour[this.currentViewMode]);
+    startGuidedTour() {
+        this._guidedTourService.startTour();
+    } // end startGuidedTour
 
-        hopscotch.listen('end', () => {
-            this.tourActive = false;
-            hopscotch.removeCallbacks();
-        });
-
-        hopscotch.listen('close', () => {
-            this.tourActive = false;
-            hopscotch.removeCallbacks();
-        });
-    }
 } // end AppComponent
 
 // DBG ... Tasks/Considerations/Issues:
