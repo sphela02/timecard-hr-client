@@ -13,7 +13,6 @@ import { GlobalErrorHandlerService } from '../shared/global-error-handler/global
 import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
 import { CommonDataService } from '../shared/common-data/common-data.service';
 import { HarrisDataServiceBase } from '../shared/base-classes/HarrisDataServiceBase';
-import { BenefitHoursDTO } from '../timecard/_shared/shared.tc'; // dbg ... decouple to TC?
 
 @Injectable()
 export class UserInfoService extends HarrisDataServiceBase {
@@ -122,19 +121,6 @@ export class UserInfoService extends HarrisDataServiceBase {
 
     // Return the observable to the caller ... we'll send back the object momentarily
     return this._isApprover$;
-  }
-
-  getUserBenefitHours(emplID: string): Observable<BenefitHoursDTO[]> {
-    return this._http.get<BenefitHoursDTO[]>(this._userBenefitHoursUrl + '/' + emplID,
-                                  { withCredentials: true })
-                                  .catch((error: HttpErrorResponse) =>
-                                  Observable.throw(
-                                    this._errorHandlerService.handleHttpErrorResponse(
-                                      error,
-                                      'retrieve benefit hours for user (' + emplID + ').'
-                                    )
-                                  ) // end throw
-                                ); // end catch
   }
 
   private handleError(err: HttpErrorResponse) {
