@@ -16,8 +16,6 @@ import {
     ApplicationEnvironment
 } from './shared/shared';
 import * as lodash from 'lodash';
-import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs'; // dbg ... decouple
-import { TimecardViewMode } from './timecard/_shared/shared.tc'; // dbg ... decouple
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
 
 declare var $: any;
@@ -36,7 +34,6 @@ export class AppComponent implements OnInit {
     userToImpersonate: string;
     diagnosticsMode: boolean;
     environment: ApplicationEnvironment = environment;
-    currentViewMode: any = null;
     private _isApprover: boolean = false;
     private ngUnsubscribe$: Subject<void> = new Subject<void>();
     isApprover: boolean = false;
@@ -146,30 +143,6 @@ export class AppComponent implements OnInit {
 
         // watch for page title changes.
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
-
-        // dbg ... any of this still needed now that guided tour has been extracted?
-        this._commonDataService.currentViewMode.subscribe(viewInfo => {
-            if (viewInfo.Application === ApplicationArea.Timecard) { // dbg ... make naive?
-                if (viewInfo.ViewMode === TimecardViewMode.None ||
-                    viewInfo.ViewMode === TimecardViewMode.Display ||
-                    viewInfo.ViewMode === TimecardViewMode.Edit) {
-                        this.currentViewMode = 'tcDisplay';
-                } else {
-                    this.currentViewMode = TimecardViewMode[viewInfo.ViewMode];
-                }
-            } else if (viewInfo.Application === ApplicationArea.VacationRequest) {
-                if (viewInfo.ViewMode === VRSApplicationViewMode.ShowMyRequests) {
-                        this.currentViewMode = 'vrsList';
-                } else if (viewInfo.ViewMode === VRSApplicationViewMode.Search ||
-                    viewInfo.ViewMode === VRSApplicationViewMode.ApproverSearch) {
-                        this.currentViewMode = 'vrsSearch';
-                } else {
-                    this.currentViewMode = VRSApplicationViewMode[viewInfo.ViewMode];
-                }
-            } else if (viewInfo.Application === ApplicationArea.Profile) {
-                this.currentViewMode = 'Profile';
-            }
-        });
 
         setTimeout(() => {
             // Sidebar initialization
