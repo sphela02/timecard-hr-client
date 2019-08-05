@@ -9,17 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico",
-        {
-          "glob": "**/*",
-          "input": "../node_modules/@harris/design-system/dist/img",
-          "output": "./img"
-        },
-        {
-          "glob": "**/*",
-          "input": "../node_modules/@harris/design-system/dist/font",
-          "output": "./font"
-        }
+        "favicon.ico"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -29,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "tc",
       "styles": [
+        "css/fontawesome-pro-5.7.2/css/all.min.css",
         "sass/styles.scss",
         "../node_modules/hopscotch/dist/css/hopscotch.min.css"            
       ],
