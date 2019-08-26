@@ -705,8 +705,7 @@ table.table.timecard-list {
             }
             &[class*="tc-error"] {
                 border: 2px solid;
-                position: relative;
-                z-index: 9999;
+                z-index: 999;
             }
 
             &.tc-error {
