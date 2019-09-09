@@ -125,7 +125,7 @@ export class AppComponent implements OnInit {
             const approvalsMenuItem: ApplicationMenuItem = {
                 name: 'Approvals',
                 path: 'approvals',
-                icon: 'fa-calendar-check-o',
+                icon: 'far fa-calendar-check',
                 role: '',
                 applicationArea: ApplicationArea.MainApp,
                 sortOrder: 1,

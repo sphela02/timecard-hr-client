@@ -12,10 +12,10 @@
 
             <ul class="nav flex-column" id="timecard-menu">
                 <li class="nav-item border-top border-light">
-                    <a class="nav-link" id="my-profile" [routerLink]="['/profile']"><i class="fa fa-user left-icon mt-0" aria-hidden="true"></i>My Profile</a>
+                    <a class="nav-link" id="my-profile" [routerLink]="['/profile']"><i class="fas fa-user left-icon mt-0" aria-hidden="true"></i>My Profile</a>
                 </li>
                 <ng-container *ngFor="let n of menuList">
-                    <li *ngIf="n.role == '' || (n.role == 'approver' && isApprover)" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" id="{{n.domID}}" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}
+                    <li *ngIf="n.role == '' || (n.role == 'approver' && isApprover)" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" id="{{n.domID}}" [routerLink]="[n.path]"><i class="{{n.icon}} left-icon mt-0"></i>{{n.name}}
                     <span *ngIf="n.name == 'Approvals' && _commonDataService.approvalNotificationCount" class="badge badge-small badge-primary badge-pill">{{_commonDataService.approvalNotificationCount}}</span></a>
                         <ul class="nav flex-column">
                             <ng-container *ngFor="let child of n.subMenu">
@@ -31,22 +31,22 @@
             </ul>
         </div>
         <div class="harris-logo-wrapper">
-            <img src="assets/harris-logo.png" class="img-fluid flex-center">
+            <img src="assets/l3harris-logo-tm-rgb.png" class="img-fluid flex-center">
         </div>
     </div>
     <nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
     <!-- Sidebar Collapse -->
         <div class="float-left">
-            <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
+            <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fal fa-bars"></i></a>
         </div>
         <span class="h5 m-0 pl-3" id="page-title">{{pageTitle}}</span>
         <div class="ml-auto mr-3 diagnostics-column" *ngIf="environment.allowDiagnostics">
-            <i class="fa fa-sliders fa-4 click-element" aria-hidden="true"
+            <i class="far fa-sliders-h fa-4 click-element" aria-hidden="true"
                 *ngIf="!diagnosticsMode"
                 (click)="startDiagnostics()"
                 title="Start Diagnostics"></i>
             <ng-container *ngIf="diagnosticsMode">
-                <i class="fa fa-sliders fa-4 click-element text-success" aria-hidden="true"
+                <i class="far fa-sliders-h fa-4 click-element text-success" aria-hidden="true"
                     (click)="endDiagnostics()"
                     title="Start Diagnostics"></i>
             </ng-container>
@@ -80,7 +80,6 @@
         </div>
         <div class="navbar-nav mt-0" [class.ml-auto]="!environment.allowDiagnostics">
             <a (click)="startGuidedTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</a>
-            <!-- <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>             -->
         </div>
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item dropdown" id="alert-notifications">
@@ -90,7 +89,7 @@
                         aria-haspopup="true"
                         [class.disabled]="(_commonDataService.alertNotificationCount == 0)"
                         aria-expanded="false">
-                    <i class="fa fa-lg fa-bell-o mx-0"></i>
+                    <i class="fal fa-lg fa-bell mx-0"></i>
                     <span class="badge badge-primary badge-pill red"
                             *ngIf="_commonDataService.alertNotificationCount">
                         {{_commonDataService.alertNotificationCount}}
@@ -102,8 +101,8 @@
                             <a class="dropdown-item waves-effect waves-light p-3"
                                 [routerLink]="notification.actionURL"
                                 >
-                                <i class="fa fa-clock-o text-info fa-5 mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Info"></i>
-                                <i class="fa fa-exclamation-circle fa-5 text-danger mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Warning"></i>
+                                <i class="fal fa-clock text-info mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Info"></i>
+                                <i class="fal fa-exclamation-circle text-danger mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Warning"></i>
                                 <strong *ngIf="notification.alertType === AlertMessageType.Warning">{{notification.alertMessage}}</strong>
                                 <ng-container *ngIf="notification.alertType !== AlertMessageType.Warning">{{notification.alertMessage}}</ng-container>
                             </a>
@@ -123,7 +122,7 @@
                         (click)="_commonDataService.deleteErrorMessageByIndex(errorIndex)"
                     >×</button>
                     <div class="col-auto">
-                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
                     </div>
                     <div class="col">
                         <span *ngIf="errorMessage.prefix">{{errorMessage.prefix}}</span>
