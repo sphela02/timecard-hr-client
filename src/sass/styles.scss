@@ -1390,6 +1390,12 @@ table.table {
     }
 }
 
+.tabs-wrapper .classic-tabs {
+    li a {
+        padding: 12px 24px;
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
