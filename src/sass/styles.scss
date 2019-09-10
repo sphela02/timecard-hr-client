@@ -1298,7 +1298,7 @@ table.table {
     }
 }
 
-.toast-center {
+#toast-container.toast-center {
     top: 40%;
     right: 0;
     width: 100%;
@@ -1311,7 +1311,7 @@ table.table {
 
             &:before {
                 content: '\f058';
-                font-family: fontAwesome;
+                font-family: 'Font Awesome 5 Pro';
                 font-size: 1.5rem;
                 left: 1rem;
                 position: absolute;

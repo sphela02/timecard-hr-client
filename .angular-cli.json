@@ -20,6 +20,7 @@
       "prefix": "tc",
       "styles": [
         "css/fontawesome-pro-5.7.2/css/all.min.css",
+        "../node_modules/toastr/build/toastr.min.css",
         "sass/styles.scss",
         "../node_modules/hopscotch/dist/css/hopscotch.min.css"            
       ],
