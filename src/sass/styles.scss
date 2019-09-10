@@ -49,9 +49,13 @@ body {
     }
 }
 
-.md-form textarea.md-textarea {
-    resize: none;
-    overflow-y: scroll;
+.md-form {
+    margin-bottom: 0;
+
+    textarea.md-textarea {
+        resize: none;
+        overflow-y: scroll;
+    }
 }
 
 input.disabled-input {

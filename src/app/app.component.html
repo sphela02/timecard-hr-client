@@ -3,7 +3,7 @@
         <div class="nav-container">
             <div *ngIf="userInfo" class="py-3 user-menu">
                 <div id="user-account">
-                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="float-left img-fluid rounded-circle z-depth-0 mr-2">
+                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" width="32" height="32" class="float-left img-fluid rounded-circle z-depth-0 mr-2">
                     <div class="pl-4 ml-3 mt-2 pr-3">
                         {{userInfo?.FullNamePrintable}}
                     </div>
@@ -62,21 +62,25 @@
             </div>
         </div>
         <div class="navbar-nav mt-0 mx-2" [class.ml-auto]="!environment.allowDiagnostics" *ngIf="!environment.production">
-            <div class="input-group">
-                <input type="text" 
-                class="form-control py-0 px-2 mt-1" 
-                [(ngModel)]="userToImpersonate" 
-                placeholder="Enter Username" 
-                style="color: #6db444 !important;font-size: 1rem;width:140px;"
-                novalidate>
-                <div class="input-group-ammend">
-                    <button
-                        class="btn btn-success btn-small"
-                        (click)="impersonateUser()">
-                        Impersonate
-                    </button>
+            <form (submit)="impersonateUser()">
+                <div class="input-group">
+                    <input type="text" 
+                    class="form-control py-0 px-2 mt-1" 
+                    [(ngModel)]="userToImpersonate"
+                    [ngModelOptions]="{standalone: true}" 
+                    placeholder="Enter Username" 
+                    style="color: #6db444 !important;font-size: 1rem;width:140px;"
+                    novalidate>
+                    <div class="input-group-ammend">
+                        <button
+                            type="submit"
+                            class="btn btn-success btn-small"
+                            >
+                            Impersonate
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="navbar-nav mt-0" [class.ml-auto]="!environment.allowDiagnostics">
             <button (click)="startGuidedTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</button>
