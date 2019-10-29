@@ -13,6 +13,7 @@
     "pr": "ng lint && ng build && ng test",
     "lintwatch": "chokidar \"**/*\" -c \"ng lint\"",
     "deploy-dev": "ng build --prod --output-path=T:\\Dev\\Timecard --base-href=/Dev/Timecard/ --environment=dev --output-hashing all && move T:\\Dev\\Timecard\\assets\\web.config_dev T:\\Dev\\Timecard\\web.config",
+    "deploy-nexgen": "ng build --prod --output-path=T:\\NexGen\\Timecard --base-href=/NexGen/Timecard/ --environment=nexgen --output-hashing all && move T:\\NexGen\\Timecard\\assets\\web.config_nexgen T:\\NexGen\\Timecard\\web.config",
     "deploy-test": "ng build --prod --output-path=T:\\Test\\Timecard --base-href=/Test/Timecard/ --environment=test --output-hashing all && move T:\\Test\\Timecard\\assets\\web.config_test T:\\Test\\Timecard\\web.config",
     "deploy-prod": "ng build --prod --output-path=T:\\Prod\\Timecard --base-href=/Timecard/ --environment=prod --output-hashing all && move T:\\PROD\\Timecard\\assets\\web.config_prod T:\\PROD\\Timecard\\web.config",
     "deploy-vpn": "ng build --prod --output-path=T:\\VPNTest\\Timecard --base-href=/VPNTest/Timecard/ --environment=vpn --output-hashing all && move T:\\VPNTest\\Timecard\\assets\\web.config_vpn T:\\VPNTest\\Timecard\\web.config",
