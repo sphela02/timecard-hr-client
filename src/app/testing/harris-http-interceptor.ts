@@ -1,14 +1,45 @@
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
-import { AppMode } from '../shared/shared';
+import { AppMode, ApplicationEnvironment } from '../shared/shared';
 import { saveAs } from 'file-saver/FileSaver';
 import * as CryptoJS from 'crypto-js';
 import { CommonDataService } from '../shared/common-data/common-data.service';
+import { AuthService } from '../authentication/auth.service';
 
 // HARRIS HTTP INTERCEPTORS
 // Used to intercept all http requests and make manipulations.
+
+// - Include the user id token from authentication process
+@Injectable()
+export class HarrisHttpInterceptorAuthentication implements HttpInterceptor {
+
+    Environment: ApplicationEnvironment;
+
+  constructor(
+            private _authService: AuthService,
+            protected injector: Injector,
+            ) {
+    this.Environment = this.injector.get('ENVIRONMENT');
+  }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    // If we're not using OIDC, don't do any auth here.
+    if (!this.Environment.useOIDC) { return next.handle(request); }
+
+    return this._authService.isLoggedIn().mergeMap((isLoggedIn: boolean) => {
+        // If we're authenticated, inject Authorization header here
+        if (isLoggedIn) {
+            const headers = request.headers.set('Authorization', this._authService.getAuthorizationHeaderValue());
+            request = request.clone({ headers });
+        }
+        return next.handle(request);
+    }); // end mergeMap
+
+  } // end intercept
+} // end HarrisHttpInterceptorAuthentication
 
 // - Allow user impersonations for testing
 @Injectable()
