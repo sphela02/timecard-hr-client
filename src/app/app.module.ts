@@ -19,6 +19,7 @@ import { UserProfileService } from './shared/user-profile/user-profile.service';
 import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
 import { SharedModule } from './shared/shared.module';
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
+import { AuthService } from './authentication/auth.service';
 
 export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
   return () => _commonDataService.appWaitForServicesToBeReady();
@@ -40,6 +41,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     NgbModule.forRoot(),
   ],
   providers: [
+    AuthService,
     UserInfoService,
     UserProfileService,
     CommonDataService,
