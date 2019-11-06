@@ -29,7 +29,7 @@ export class HarrisHttpInterceptorAuthentication implements HttpInterceptor {
     // If we're not using OIDC, don't do any auth here.
     if (!this.Environment.useOIDC) { return next.handle(request); }
 
-    return this._authService.isLoggedIn().mergeMap((isLoggedIn: boolean) => {
+    return this._authService.isLoggedIn().take(1).mergeMap((isLoggedIn: boolean) => {
         // If we're authenticated, inject Authorization header here
         if (isLoggedIn) {
             const headers = request.headers.set('Authorization', this._authService.getAuthorizationHeaderValue());
