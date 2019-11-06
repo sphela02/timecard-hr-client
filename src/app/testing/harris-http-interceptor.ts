@@ -21,9 +21,7 @@ export class HarrisHttpInterceptorImpersonate implements HttpInterceptor {
 
         // If we're impersonating, inject the header here
         if (this._commonDataService.impersonateUserID$.value) {
-            const headers: HttpHeaders = new HttpHeaders({
-                'HarrisImpersonateUser': this._commonDataService.impersonateUserID$.value
-            });
+            const headers = request.headers.set('HarrisImpersonateUser', this._commonDataService.impersonateUserID$.value);
             request = request.clone({
                 headers,
             });
