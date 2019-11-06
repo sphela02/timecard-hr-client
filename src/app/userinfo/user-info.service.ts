@@ -34,7 +34,7 @@ export class UserInfoService extends HarrisDataServiceBase {
     this.getUserInfo();
 
     // Set up impersonation listeners, so we know when to reset data for a new user
-    this._commonDataService.impersonateUserID$.distinctUntilChanged().subscribe((newUserID: string) => {
+    this._commonDataService.impersonateUserID$.skip(1).distinctUntilChanged().subscribe((newUserID: string) => {
       // Reset all stored data when the user changes.
       this.resetAllData();
     }); // end subscribe
