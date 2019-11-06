@@ -30,4 +30,6 @@ export const environment: ApplicationEnvironment = {
     EmployeeSelfServiceModule,
     TimecardModule,
   ],
+  useOIDC: false,
+  authClientSettings: null,
 };

@@ -34,4 +34,18 @@ export const environment: ApplicationEnvironment = {
     EmployeeSelfServiceModule,
     TimecardModule,
   ],
+  useOIDC: true,
+  authClientSettings: {
+    authority: 'https://sso.l3harris.com/ofisid/api/discovery',
+    client_id: 'urn:LOCALHOST-Timecard2.0_2',
+    redirect_uri: 'http://localhost:4200/auth-callback',
+    post_logout_redirect_uri: 'http://localhost:4200/',
+    response_type: 'code',
+    scope: 'openid',
+    filterProtocolClaims: true,
+    loadUserInfo: false,
+    client_secret: 'fneKC73t556VbJR',
+    automaticSilentRenew: true,
+    silent_redirect_uri: 'http://localhost:4200/auth-callback?silent=true'
+  }
 };
