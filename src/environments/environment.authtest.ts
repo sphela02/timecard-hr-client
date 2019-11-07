@@ -22,10 +22,10 @@ export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/dev
 export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
-    'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
-    'TIMECARD': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Timecard/',
-    'EMPLOYEE': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Employee/',
-    'ESS':      'https://mi-dev.harris.com/dev/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
+    'VRS':      'https://mi-dev.harris.com/AuthTest/VRSAPI/api/v1/Vacation/',
+    'TIMECARD': 'https://mi-dev.harris.com/AuthTest/timecardapi/api/v1/Timecard/',
+    'EMPLOYEE': 'https://mi-dev.harris.com/AuthTest/timecardapi/api/v1/Employee/',
+    'ESS':      'https://mi-dev.harris.com/AuthTest/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
@@ -34,18 +34,18 @@ export const environment: ApplicationEnvironment = {
     EmployeeSelfServiceModule,
     TimecardModule,
   ],
-  useOIDC: false,
+  useOIDC: true,
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
     client_id: 'urn:LOCALHOST-Timecard2.0_2',
-    redirect_uri: 'http://localhost:4200/auth-callback',
-    post_logout_redirect_uri: 'http://localhost:4200/',
+    redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/auth-callback',
+    post_logout_redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/',
     response_type: 'code',
     scope: 'openid',
     filterProtocolClaims: true,
     loadUserInfo: false,
     client_secret: 'fneKC73t556VbJR',
     automaticSilentRenew: true,
-    silent_redirect_uri: 'http://localhost:4200/auth-callback?silent=true'
+    silent_redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/auth-callback?silent=true'
   }
 };
