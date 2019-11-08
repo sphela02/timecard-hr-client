@@ -21,19 +21,25 @@ export class AuthService {
     // Get our environment
     const environment: ApplicationEnvironment = this.injector.get('ENVIRONMENT');
 
-    // Setup login status monitor
-    this._monitorLoginStatus();
+    if (environment.useOIDC) {
+      // Setup login status monitor
+      this._monitorLoginStatus();
 
-    // Init user manager and get the user
-    this.manager = new UserManager(environment.authClientSettings);
+      // Init user manager and get the user
+      this.manager = new UserManager(environment.authClientSettings);
 
-    // Get the initial user session
-    this.manager.getUser().then(userSession => {
-      // Null here means we're still in the login process.  Subsequent visits will have a valid user token
-      this._userSession$.next(userSession);
-      // Launch the auth process
-      this._initializeAuthProcess();
-    }); // end getUser.then
+      // Get the initial user session
+      this.manager.getUser().then(userSession => {
+        // Null here means we're still in the login process.  Subsequent visits will have a valid user token
+        this._userSession$.next(userSession);
+        // Launch the auth process
+        this._initializeAuthProcess();
+      }); // end getUser.then
+    } else {
+      // We're not using OIDC, logged in is always true
+      this._isLoggedIn$.next(true);
+    } // end if useOIDC or not
+
   } // end constructor
 
   private _getRedirectURI(): string {
