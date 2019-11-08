@@ -37,14 +37,14 @@ export const environment: ApplicationEnvironment = {
   useOIDC: true,
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
-    client_id: 'urn:LOCALHOST-Timecard2.0_2',
+    client_id: 'urn:mi-dev-authtest-Timecard2.0',
     redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/auth-callback',
     post_logout_redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/',
     response_type: 'code',
     scope: 'openid',
     filterProtocolClaims: true,
     loadUserInfo: false,
-    client_secret: 'fneKC73t556VbJR',
+    client_secret: '44S7kG6BFrE5sda',
     automaticSilentRenew: true,
     silent_redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/auth-callback?silent=true'
   }
