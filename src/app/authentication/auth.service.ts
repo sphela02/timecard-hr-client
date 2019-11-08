@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { OidcUserSession } from './_shared.auth';
+import { CommonDataService } from '../shared/common-data/common-data.service';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(
     private injector: Injector,
-    private router: Router
+    private router: Router,
+    private _commonDataService: CommonDataService,
   ) {
     // Get our environment
     const environment: ApplicationEnvironment = this.injector.get('ENVIRONMENT');
@@ -130,7 +132,12 @@ export class AuthService {
     return this.manager.signinRedirectCallback()
       .then(userSession => {
         this._userSession$.next(userSession);
-        this.router.navigateByUrl(url);
+        if (url !== '/') {
+          // Restore the original requested URL, once the app is ready
+          this._commonDataService.appWaitForServicesToBeReady().then(() => {
+            this.router.navigateByUrl(url);
+          });
+        }
       });
   }
 
