@@ -1,17 +1,12 @@
 import { Injector, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { EmployeeProfileDTO } from '../shared/EmployeeProfileDTO';
 import {
-  ActionType,
   ActionResult,
 } from '../shared/shared';
 import { ErrorStatus } from '../shared/ErrorStatus';
-import { Subject } from 'rxjs/Subject'; // dbg - replace with behavior subjects
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
-import { ApplicationErrorDTO } from '../shared/ApplicationErrorDTO';
-import { CommonDataService } from '../shared/common-data/common-data.service';
 import { HarrisDataServiceBase } from '../shared/base-classes/HarrisDataServiceBase';
 
 @Injectable()
