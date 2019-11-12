@@ -159,6 +159,7 @@ export enum ActionType {
     role: string;
     applicationArea: ApplicationArea;
     sortOrder: number;
+    domID?: string;
     subMenu?: ApplicationMenuItem[];
   }
 
