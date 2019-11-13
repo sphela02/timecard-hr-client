@@ -29,6 +29,8 @@ export const environment: ApplicationEnvironment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  useOIDC: false,
+  authClientSettings: null,
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,

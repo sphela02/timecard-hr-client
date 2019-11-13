@@ -9,27 +9,43 @@ import { TimecardModule } from '../app/timecard/timecard.module';
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 // PRODUCTION BUILD STEPS FOR DEV:
 // Map T:\ to \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
+// net use /persistent:yes /savecred t: \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
 // Run the following ...
 // ng build --prod --output-path=T:\TimecardClient --base-href=/TimecardClient/
 // BUILD COMMAND FOR GENERATING THE TEST CLIENT (for the .net API service project)
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
+export const dbgApiServiceURL = 'https://mi-dev.harris.com/dev/timecardapi/api/v1/'; // dbg
+export const dbgApiServiceURLGetEmployeeProfile = 'https://mi-dev.harris.com/dev/timecardapi/api/v1/'; // dbg
+
 export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
-    'TIMECARD': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/',
-    'EMPLOYEE': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/',
-    'VRS':      'https://mi-dev.harris.com/TEST/VRSAPI/api/v1/Vacation/',
-    'ESS':      'https://mi-dev.harris.com/test/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
+    'VRS':      'https://mi-dev.harris.com/AuthTest/VRSAPI/api/v1/Vacation/',
+    'TIMECARD': 'https://mi-dev.harris.com/AuthTest/timecardapi/api/v1/Timecard/',
+    'EMPLOYEE': 'https://mi-dev.harris.com/AuthTest/timecardapi/api/v1/Employee/',
+    'ESS':      'https://mi-dev.harris.com/AuthTest/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
   },
   AppMode: AppMode.Dev,
-  allowDiagnostics: false,
+  allowDiagnostics: true,
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
     TimecardModule,
   ],
-  useOIDC: false,
-  authClientSettings: null,
+  useOIDC: true,
+  authClientSettings: {
+    authority: 'https://sso.l3harris.com/ofisid/api/discovery',
+    client_id: 'urn:mi-dev-authtest-Timecard2.0',
+    redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/auth-callback',
+    post_logout_redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/',
+    response_type: 'code',
+    scope: 'openid',
+    filterProtocolClaims: true,
+    loadUserInfo: false,
+    client_secret: '44S7kG6BFrE5sda',
+    automaticSilentRenew: true,
+    silent_redirect_uri: 'https://mi-dev.harris.com/AuthTest/Timecard/auth-callback?silent=true'
+  }
 };

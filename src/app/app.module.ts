@@ -8,7 +8,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HarrisHttpInterceptor, HarrisHttpInterceptorImpersonate, HarrisHttpInterceptorMockJSON } from './testing/harris-http-interceptor';
+import {
+  HarrisHttpInterceptor,
+  HarrisHttpInterceptorImpersonate,
+  HarrisHttpInterceptorAuthentication
+} from './testing/harris-http-interceptor';
 import { UserInfoService } from './userinfo/user-info.service';
 import { CommonDataService } from './shared/common-data/common-data.service';
 // import { IsApproverGuard } from './app-isapprover-guard';
@@ -19,6 +23,7 @@ import { UserProfileService } from './shared/user-profile/user-profile.service';
 import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
 import { SharedModule } from './shared/shared.module';
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
+import { AuthService } from './authentication/auth.service';
 
 export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
   return () => _commonDataService.appWaitForServicesToBeReady();
@@ -40,6 +45,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     NgbModule.forRoot(),
   ],
   providers: [
+    AuthService,
     UserInfoService,
     UserProfileService,
     CommonDataService,
@@ -53,6 +59,11 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerService
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HarrisHttpInterceptorAuthentication,
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,

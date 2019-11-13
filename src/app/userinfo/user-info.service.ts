@@ -8,6 +8,7 @@ import {
 import { ErrorStatus } from '../shared/ErrorStatus';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HarrisDataServiceBase } from '../shared/base-classes/HarrisDataServiceBase';
+import { AuthService } from '../authentication/auth.service';
 
 @Injectable()
 export class UserInfoService extends HarrisDataServiceBase {
@@ -22,6 +23,7 @@ export class UserInfoService extends HarrisDataServiceBase {
 
   constructor(
     protected injector: Injector,
+    private _authService: AuthService,
   ) {
 
     // Call the base class constructor
@@ -34,18 +36,35 @@ export class UserInfoService extends HarrisDataServiceBase {
     this.getUserInfo();
 
     // Set up impersonation listeners, so we know when to reset data for a new user
-    this._commonDataService.impersonateUserID$.distinctUntilChanged().subscribe((newUserID: string) => {
+    this._commonDataService.impersonateUserID$.skip(1).distinctUntilChanged().subscribe((newUserID: string) => {
       // Reset all stored data when the user changes.
       this.resetAllData();
     }); // end subscribe
 
-  }
+  } // end constructor
 
   retrieveUserInfo(): Observable<ActionResult> {
-    // Have we already retrieved the user info, or is already being retrieved?
-    if ((!this._userInfo) && (!this._userInfoIsRetrieving)) {
-      // We don't have the user info yet, retrieve it now, store it and send it.
+
+    // Once we're authenticated, start the user retrieval
+    if (!this._userInfoIsRetrieving) {
+      // Mark that we're waiting on retrieval
       this._userInfoIsRetrieving = true;
+
+      // Wait for user to be logged in, then retrieve user
+      this._authService.isLoggedIn().filter(x => (x === true)).subscribe((isLoggedIn: boolean) => {
+        // Retrieve the user info
+        this._retrieveUserInfo();
+      });
+
+    } // end if we're not retrieving yet
+
+    return this._userInfoRetrieved$.asObservable();
+  } // end retrieveUserInfo
+
+  private _retrieveUserInfo() {
+    // Have we already retrieved the user info, or is already being retrieved?
+    if (!this._userInfo) {
+      // We don't have the user info yet, retrieve it now, store it and send it.
       this._http.get<EmployeeProfileDTO>(this._userInfoUrl,
                                           { withCredentials: true })
               .subscribe(response => {
@@ -76,8 +95,7 @@ export class UserInfoService extends HarrisDataServiceBase {
             ); // end subscribe
     } // end if not user info and not retrieving yet
 
-    return this._userInfoRetrieved$.asObservable();
-  } // end retrieveUserInfo
+  } // end _retrieveUserInfo
 
   getUserInfo(): Observable<EmployeeProfileDTO> {
 
@@ -91,8 +109,17 @@ export class UserInfoService extends HarrisDataServiceBase {
     return this._userInfo$;
   } // end getUserInfo
 
+  public getIsApprover(forceRefresh: boolean = false): Observable<boolean> {
+    this._authService.isLoggedIn().filter(x => (x === true)).subscribe((isLoggedIn: boolean) => {
+      this._getIsApprover(forceRefresh);
+    }); // end subscribe isLoggedIn
+
+    // Return the observable to the caller ... we'll send back the object momentarily
+    return this._isApprover$.asObservable();
+  } // end getIsApprover
+
   // dbg ... this should move to timecard service (client/server), since it's a timecard approver check.
-  getIsApprover(forceRefresh: boolean = false): Observable<boolean> {
+  private _getIsApprover(forceRefresh: boolean = false) {
     // Is the user an approver?
 
     // If we don't have the answer yet, or if we need to refresh, get it now.
@@ -112,9 +139,7 @@ export class UserInfoService extends HarrisDataServiceBase {
             );
     } // end if
 
-    // Return the observable to the caller ... we'll send back the object momentarily
-    return this._isApprover$;
-  }
+  } // _getIsApprover
 
   private handleError(err: HttpErrorResponse) {
     console.error(err.message);  // dbg
