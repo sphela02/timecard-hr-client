@@ -23,6 +23,7 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
   private _internalFormDataChanged$: Subject<void> = new Subject<void>();
 
   // For canDeactivate modals that prevent navigation.
+  // dbg ... Why is this here?  The guards could just keep their own observables, right?
   navigateAwaySelection$: Subject<boolean> = new Subject<boolean>();
 
   // Observable for (re)building the select
