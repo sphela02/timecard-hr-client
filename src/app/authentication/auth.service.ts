@@ -10,9 +10,13 @@ import { CommonDataService } from '../shared/common-data/common-data.service';
 @Injectable()
 export class AuthService {
 
+  // Diagnostics Info
+  private _diagnosticsInterval: any;
+
   private manager: UserManager;
   private _userSession$: BehaviorSubject<OidcUserSession> = new BehaviorSubject<OidcUserSession>(null);
   private _isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _environment: ApplicationEnvironment;
 
   constructor(
     private injector: Injector,
@@ -20,14 +24,14 @@ export class AuthService {
     private _commonDataService: CommonDataService,
   ) {
     // Get our environment
-    const environment: ApplicationEnvironment = this.injector.get('ENVIRONMENT');
+    this._environment = this.injector.get('ENVIRONMENT');
 
-    if (environment.useOIDC) {
+    if (this._environment.useOIDC) {
       // Setup login status monitor
       this._monitorLoginStatus();
 
       // Init user manager and get the user
-      this.manager = new UserManager(environment.authClientSettings);
+      this.manager = new UserManager(this._environment.authClientSettings);
 
       // Get the initial user session
       this.manager.getUser().then(userSession => {
@@ -43,7 +47,54 @@ export class AuthService {
       this._isLoggedIn$.next(true);
     } // end if useOIDC or not
 
+    // Enable diagnostics on demand
+    this._initializeDiagnostics();
+
   } // end constructor
+
+  private _initializeDiagnostics() {
+    this._commonDataService.getDiagnosticsMode().subscribe((diagnosticsMode: boolean) => {
+      if (diagnosticsMode) {
+        this._startAuthDiagnostics();
+      } else {
+        this._endAuthDiagnostics();
+      } // end if diagnosticsMode
+    }); // end subscribe
+  } // end _initializeDiagnostics
+
+  private _startAuthDiagnostics() {
+
+    this._diagnosticsInterval = setInterval(() => {
+
+      const authDiagnosticsMessages: string[] = [];
+
+      // How much time left on the id token?
+      if (this._userSession$.value) {
+        const currentIdToken = this.parseJwt(this._userSession$.value.id_token);
+        const secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
+        const timeLeftMessage = Math.round(secondsRemaining) + ' seconds remaining on ID token';
+        authDiagnosticsMessages.push(timeLeftMessage);
+      }
+
+      // Client ID
+      authDiagnosticsMessages.push('Client: ' + this._environment.authClientSettings.client_id);
+
+      // Sort the messages and store them on common data for consumption
+      authDiagnosticsMessages.sort();
+      this._commonDataService.setDiagnosticMessages(this.constructor.name, authDiagnosticsMessages);
+
+    }, 1000);
+
+  } // end _startAuthDiagnostics
+
+  private _endAuthDiagnostics() {
+
+    if (this._diagnosticsInterval) {
+      clearInterval(this._diagnosticsInterval);
+      this._commonDataService.setDiagnosticMessages(this.constructor.name, []);
+    }
+
+  } // end _endAuthDiagnostics
 
   private _monitorAuthRenewal() {
     let authCheckTimeout;
@@ -196,6 +247,6 @@ export class AuthService {
     );
 
     return JSON.parse(jsonPayload);
-  }
+  } // end parseJwt
 
-}
+} // end AuthService
