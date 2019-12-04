@@ -1,11 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
 import { UserManager } from 'oidc-client';
-import { ApplicationEnvironment } from '../shared/shared';
+import { ApplicationEnvironment, AlertMessageType } from '../shared/shared';
 import { Router, NavigationCancel, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { OidcUserSession } from './_shared.auth';
 import { CommonDataService } from '../shared/common-data/common-data.service';
+import { GlobalErrorHandlerService } from '../shared/global-error-handler/global-error-handler.service';
 
 @Injectable()
 export class AuthService {
@@ -17,12 +18,15 @@ export class AuthService {
   private _userSession$: BehaviorSubject<OidcUserSession> = new BehaviorSubject<OidcUserSession>(null);
   private _isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _environment: ApplicationEnvironment;
+  private _checkAgainInterval: number = 60; // default check interval is 60 seconds
 
   constructor(
     private injector: Injector,
     private router: Router,
     private _commonDataService: CommonDataService,
+    private _errorHandlerService: GlobalErrorHandlerService,
   ) {
+
     // Get our environment
     this._environment = this.injector.get('ENVIRONMENT');
 
@@ -41,7 +45,9 @@ export class AuthService {
         this._initializeAuthProcess();
       }); // end getUser.then
 
-      this._monitorAuthRenewal();
+      setInterval(() => {
+        this._monitorAuthRenewal();
+      }, this._checkAgainInterval * 1000);
     } else {
       // We're not using OIDC, logged in is always true
       this._isLoggedIn$.next(true);
@@ -76,6 +82,9 @@ export class AuthService {
         authDiagnosticsMessages.push(timeLeftMessage);
       }
 
+      // Check renewal
+      authDiagnosticsMessages.push('Check Again In: ' + this._checkAgainInterval);
+
       // Client ID
       authDiagnosticsMessages.push('Client: ' + this._environment.authClientSettings.client_id);
 
@@ -97,21 +106,16 @@ export class AuthService {
   } // end _endAuthDiagnostics
 
   private _monitorAuthRenewal() {
-    let authCheckTimeout;
+    // Get the current user session and evaluate if we need to renew
+    const userSession = (this._userSession$) ? this._userSession$.value : null;
 
-    this._userSession$.subscribe(userSession => {
-      if (userSession) {
+    if (userSession) {
         // User session valid, see how long before our id token expires
         const currentIdToken = this.parseJwt(userSession.id_token);
-        let secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
+        const secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
 
-        // Check if we already have a timeout running for checking auth
-        if (authCheckTimeout) {
-          return;
-        }
-        authCheckTimeout = setTimeout(() => {
-          secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
-
+        if (secondsRemaining <= this._environment.oidcRenewalWindow) {
+          // Within the renewal window, let's try to renew
           // Store the current URI for post-login redirect
           this._storeOriginalURI();
 
@@ -134,6 +138,21 @@ export class AuthService {
                 // We were allowed to leave the page, do the signin and restore to the previous page
                 // Start the signin process (redirect to the ID server)
                 this.manager.signinRedirect();
+              } else if (e instanceof NavigationCancel) {
+                // Something blocked the auth renewal, we can try again later
+
+                // Make sure we have enough time left, or raise some flags for the user
+                // Our renewal time is now less than 10% of our target window.
+                const secondsLeftForWarning = this._environment.oidcRenewalWindow * 0.10;
+
+                if (secondsRemaining < (secondsLeftForWarning)) {
+                  // Start warning the user.
+                  this._errorHandlerService.popupAlertMessage(
+                    'WARNING ... Your login session will expire in '
+                    + Math.floor(secondsRemaining)
+                    + ' seconds. You may lose your unsaved changes unless you save before that happens.',
+                    AlertMessageType.Warning);
+                } // end if less than 10% of renewal window left
               } // end if NavigationEnd
             } // end if NavigationCancel or NavigationEnd
           }); // end router subscribe
@@ -141,9 +160,10 @@ export class AuthService {
           // Fire off the test nav, see if we can leave.
           this.router.navigate(['/']);
 
-        }, (secondsRemaining / 2) * 1000);
-      }
-    }); // end subscribe user session
+        }
+
+    } // end if userSession
+
   } // end _monitorAuthRenewal
 
   private _getRedirectURI(): string {
@@ -228,7 +248,7 @@ export class AuthService {
     return this.manager.signinRedirectCallback()
       .then(userSession => {
         this._userSession$.next(userSession);
-        if (url !== '/') {
+        if ((url) && (url !== '/')) {
           // Restore the original requested URL, once the app is ready
           this._commonDataService.appWaitForServicesToBeReady().then(() => {
             this.router.navigateByUrl(url);
