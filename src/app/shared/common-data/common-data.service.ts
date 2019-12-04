@@ -47,6 +47,9 @@ export class CommonDataService {
   // Component Creation Registry logic
   private _newComponentRegistered$: Subject<Object> = new Subject<Object>();
 
+  // Silent Navigation Mode ... used by guards to decide whether to prompt user or just reject silently.
+  private _silentNavigationMode: boolean = false;
+
   deleteErrorMessageByIndex(errorIndex: number) {
     this.currentErrorMessages.splice(errorIndex, 1);
   }
@@ -202,5 +205,13 @@ export class CommonDataService {
   listenForCreatedComponents(): Observable<Object> {
     return this._newComponentRegistered$.asObservable();
   } // end listenForCreatedComponents
+
+  setSilentNavigationMode(silentMode: boolean) {
+    this._silentNavigationMode = silentMode;
+  } // end setSilentNavigationMode
+
+  getSilentNavigationMode(): boolean {
+    return this._silentNavigationMode;
+  } // end setSilentNavigationMode
 
 } // end CommonDataService

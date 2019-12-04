@@ -1,9 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
-import { UserManager, User } from 'oidc-client';
+import { UserManager } from 'oidc-client';
 import { ApplicationEnvironment } from '../shared/shared';
-import { Router } from '@angular/router';
+import { Router, NavigationCancel, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { OidcUserSession } from './_shared.auth';
 import { CommonDataService } from '../shared/common-data/common-data.service';
@@ -11,9 +10,13 @@ import { CommonDataService } from '../shared/common-data/common-data.service';
 @Injectable()
 export class AuthService {
 
+  // Diagnostics Info
+  private _diagnosticsInterval: any;
+
   private manager: UserManager;
   private _userSession$: BehaviorSubject<OidcUserSession> = new BehaviorSubject<OidcUserSession>(null);
   private _isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _environment: ApplicationEnvironment;
 
   constructor(
     private injector: Injector,
@@ -21,14 +24,14 @@ export class AuthService {
     private _commonDataService: CommonDataService,
   ) {
     // Get our environment
-    const environment: ApplicationEnvironment = this.injector.get('ENVIRONMENT');
+    this._environment = this.injector.get('ENVIRONMENT');
 
-    if (environment.useOIDC) {
+    if (this._environment.useOIDC) {
       // Setup login status monitor
       this._monitorLoginStatus();
 
       // Init user manager and get the user
-      this.manager = new UserManager(environment.authClientSettings);
+      this.manager = new UserManager(this._environment.authClientSettings);
 
       // Get the initial user session
       this.manager.getUser().then(userSession => {
@@ -37,12 +40,111 @@ export class AuthService {
         // Launch the auth process
         this._initializeAuthProcess();
       }); // end getUser.then
+
+      this._monitorAuthRenewal();
     } else {
       // We're not using OIDC, logged in is always true
       this._isLoggedIn$.next(true);
     } // end if useOIDC or not
 
+    // Enable diagnostics on demand
+    this._initializeDiagnostics();
+
   } // end constructor
+
+  private _initializeDiagnostics() {
+    this._commonDataService.getDiagnosticsMode().subscribe((diagnosticsMode: boolean) => {
+      if (diagnosticsMode) {
+        this._startAuthDiagnostics();
+      } else {
+        this._endAuthDiagnostics();
+      } // end if diagnosticsMode
+    }); // end subscribe
+  } // end _initializeDiagnostics
+
+  private _startAuthDiagnostics() {
+
+    this._diagnosticsInterval = setInterval(() => {
+
+      const authDiagnosticsMessages: string[] = [];
+
+      // How much time left on the id token?
+      if (this._userSession$.value) {
+        const currentIdToken = this.parseJwt(this._userSession$.value.id_token);
+        const secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
+        const timeLeftMessage = Math.round(secondsRemaining) + ' seconds remaining on ID token';
+        authDiagnosticsMessages.push(timeLeftMessage);
+      }
+
+      // Client ID
+      authDiagnosticsMessages.push('Client: ' + this._environment.authClientSettings.client_id);
+
+      // Sort the messages and store them on common data for consumption
+      authDiagnosticsMessages.sort();
+      this._commonDataService.setDiagnosticMessages(this.constructor.name, authDiagnosticsMessages);
+
+    }, 1000);
+
+  } // end _startAuthDiagnostics
+
+  private _endAuthDiagnostics() {
+
+    if (this._diagnosticsInterval) {
+      clearInterval(this._diagnosticsInterval);
+      this._commonDataService.setDiagnosticMessages(this.constructor.name, []);
+    }
+
+  } // end _endAuthDiagnostics
+
+  private _monitorAuthRenewal() {
+    let authCheckTimeout;
+
+    this._userSession$.subscribe(userSession => {
+      if (userSession) {
+        // User session valid, see how long before our id token expires
+        const currentIdToken = this.parseJwt(userSession.id_token);
+        let secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
+
+        // Check if we already have a timeout running for checking auth
+        if (authCheckTimeout) {
+          return;
+        }
+        authCheckTimeout = setTimeout(() => {
+          secondsRemaining = currentIdToken['exp'] - (Date.now() / 1000);
+
+          // Store the current URI for post-login redirect
+          this._storeOriginalURI();
+
+          // Turn on silent nav mode for this check
+          this._commonDataService.setSilentNavigationMode(true);
+
+          const routerSubscription = this.router.events.subscribe(e => {
+            if ((e instanceof NavigationCancel) || (e instanceof NavigationEnd)) {
+
+              // Nav is either blocked or complete, we know if the test nav worked.
+
+              // We're done listening to these router events
+              routerSubscription.unsubscribe();
+
+              // Turn off silent nav
+              this._commonDataService.setSilentNavigationMode(false);
+
+              // Did the nav succeed?
+              if (e instanceof NavigationEnd) {
+                // We were allowed to leave the page, do the signin and restore to the previous page
+                // Start the signin process (redirect to the ID server)
+                this.manager.signinRedirect();
+              } // end if NavigationEnd
+            } // end if NavigationCancel or NavigationEnd
+          }); // end router subscribe
+
+          // Fire off the test nav, see if we can leave.
+          this.router.navigate(['/']);
+
+        }, (secondsRemaining / 2) * 1000);
+      }
+    }); // end subscribe user session
+  } // end _monitorAuthRenewal
 
   private _getRedirectURI(): string {
     const item = JSON.parse(localStorage.getItem('AuthRedirectURI'));
@@ -55,7 +157,7 @@ export class AuthService {
     return null;
   }
 
-  private _setRedirectURI() {
+  private _storeOriginalURI() {
     const item = {
       RedirectURI: window.location.href.replace (/^[a-z]{4}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '/$1'),
       Expires: Date.now() + 150000
@@ -65,7 +167,7 @@ export class AuthService {
 
   private _initializeAuthProcess() {
     let isLoggedIn: boolean;
-    this._userSession$.subscribe(currentUserSession => {
+    this._userSession$.take(1).subscribe(currentUserSession => {
       if (!currentUserSession) {
         // null user
         isLoggedIn = false;
@@ -73,14 +175,13 @@ export class AuthService {
         isLoggedIn = this._userLoginIsValid(currentUserSession);
       } // end if current session null/valid
 
-      if (!isLoggedIn) {
-        if (window.document.URL.toLowerCase().indexOf('auth-callback') > 0) {
-            this._completeAuthentication().then(() => {
-            });
-        } else {
-          this._startAuthentication().then(() => {
-          });
-        }
+      if (window.document.URL.toLowerCase().indexOf('auth-callback') > 0) {
+        this._completeAuthentication().then(() => {});
+      } else if (!isLoggedIn) {
+          // Store the original URI for post-login redirect
+          this._storeOriginalURI();
+          // Start the signin process (redirect to the ID server)
+          this.manager.signinRedirect();
       } // end if not logged in
 
     }); // end subscribe user session
@@ -122,11 +223,6 @@ export class AuthService {
     return `${this._userSession$.value.token_type} ${this._userSession$.value.id_token}`;
   }
 
-  private _startAuthentication(): Promise<void> {
-    this._setRedirectURI();
-    return this.manager.signinRedirect();
-  }
-
   private _completeAuthentication(): Promise<void> {
     const url = this._getRedirectURI();
     return this.manager.signinRedirectCallback()
@@ -151,6 +247,6 @@ export class AuthService {
     );
 
     return JSON.parse(jsonPayload);
-  }
+  } // end parseJwt
 
-}
+} // end AuthService
