@@ -202,6 +202,7 @@ export enum ActionType {
     allowDiagnostics: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class
     useOIDC: boolean;
+    oidcRenewalWindow: number;
     authClientSettings: oidcUserManagerSettings;
   }
 

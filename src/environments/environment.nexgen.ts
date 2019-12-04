@@ -30,6 +30,7 @@ export const environment: ApplicationEnvironment = {
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
   useOIDC: false,
+  oidcRenewalWindow: (6 * 60 * 60),
   authClientSettings: null,
   importModules: [
     VacationRequestModule,

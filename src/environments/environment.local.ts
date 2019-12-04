@@ -32,6 +32,7 @@ export const environment: ApplicationEnvironment = {
     TimecardModule,
   ],
   useOIDC: false,
+  oidcRenewalWindow: 0,
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
     client_id: 'urn:LOCALHOST-Timecard2.0_2',
