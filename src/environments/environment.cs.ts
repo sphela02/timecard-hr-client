@@ -30,5 +30,6 @@ export const environment: ApplicationEnvironment = {
     TimecardModule,
   ],
   useOIDC: false,
+  oidcRenewalWindow: 0,
   authClientSettings: null,
 };
