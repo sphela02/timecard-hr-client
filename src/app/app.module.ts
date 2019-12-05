@@ -3,7 +3,6 @@ import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -41,7 +40,6 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     SharedModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFontAwesomeModule,
     NgbModule.forRoot(),
   ],
   providers: [

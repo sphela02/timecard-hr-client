@@ -1,16 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../css/hds/default/default.min.css';
+$sidenav-breakpoint: 1200px;
 
-// Colors
-$harris-red: #e21d22;
-$harris-grey: #74767b;
-$harris-hyperlink-blue: #2C5697;
-$grey-dark: #616264;
-$grey-extra-light: #f2f0f0;
-$danger: #D93B42;
-$warning: #F99F3C;
-$info: #009cde;
-$success: #6db444;
+@import '@harris/design-system/scss/hds.default.scss';
 
 $breakpoint-xs: '575px';
 $breakpoint-md: '768px';
@@ -58,9 +49,13 @@ body {
     }
 }
 
-.md-form textarea.md-textarea {
-    resize: none;
-    overflow-y: scroll;
+.md-form {
+    margin-bottom: 0;
+
+    textarea.md-textarea {
+        resize: none;
+        overflow-y: scroll;
+    }
 }
 
 input.disabled-input {
@@ -1307,7 +1302,7 @@ table.table {
     }
 }
 
-.toast-center {
+#toast-container.toast-center {
     top: 40%;
     right: 0;
     width: 100%;
@@ -1320,7 +1315,7 @@ table.table {
 
             &:before {
                 content: '\f058';
-                font-family: fontAwesome;
+                font-family: 'Font Awesome 5 Pro';
                 font-size: 1.5rem;
                 left: 1rem;
                 position: absolute;
@@ -1396,6 +1391,12 @@ table.table {
                 }
             }
         }
+    }
+}
+
+.tabs-wrapper .classic-tabs {
+    li a {
+        padding: 12px 24px;
     }
 }
 

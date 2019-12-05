@@ -19,14 +19,21 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "tc",
       "styles": [
+        "css/fontawesome-pro-5.7.2/css/all.min.css",
+        "../node_modules/toastr/build/toastr.min.css",
         "sass/styles.scss",
         "../node_modules/hopscotch/dist/css/hopscotch.min.css"            
       ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "../node_modules/"
+        ]
+      },
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/@harris/design-system/dist/js/jquery-3.3.1.min.js",
         "../node_modules/jquery-touchswipe/jquery.touchSwipe.min.js",
-        "../node_modules/mdbootstrap/js/popper.min.js",
-        "../node_modules/mdbootstrap/js/bootstrap.min.js",
+        "../node_modules/@harris/design-system/dist/js/popper.min.js",
+        "../node_modules/@harris/design-system/dist/js/bootstrap.min.js",
         "js/mdb.min.js",
         "js/material_select_fix.js",        
         "../node_modules/hopscotch/dist/js/hopscotch.min.js"
