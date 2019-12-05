@@ -195,7 +195,8 @@ ngb-typeahead-window button.dropdown-item *,
     z-index: 1050 !important;
 }
 
-.loading {
+.loading,
+.loading-fixed  {
     position: relative;
     
     &:before {
@@ -227,7 +228,15 @@ ngb-typeahead-window button.dropdown-item *,
     }
 }
 
-body.loading {
+.loading-fixed {
+    &::before,
+    &::after {
+        position: fixed;
+    }
+}
+
+body.loading,
+body.loading-fixed {
     height: 100vh;
 }
 
