@@ -30,7 +30,19 @@ export const environment: ApplicationEnvironment = {
     EmployeeSelfServiceModule,
     TimecardModule,
   ],
-  useOIDC: false,
-  oidcRenewalWindow: 0,
-  authClientSettings: null,
+  useOIDC: true,
+  oidcRenewalWindow: (6 * 60 * 60),
+  authClientSettings: {
+    authority: 'https://sso.l3harris.com/ofisid/api/discovery',
+    client_id: 'urn:mi-dev-test-Timecard2.0',
+    redirect_uri: 'https://mi-dev.harris.com/test/timecard/auth-callback',
+    post_logout_redirect_uri: 'https://mi-dev.harris.com/test/timecard/',
+    response_type: 'code',
+    scope: 'openid',
+    filterProtocolClaims: true,
+    loadUserInfo: false,
+    client_secret: 'StpCuJpFGu32278',
+    automaticSilentRenew: true,
+    silent_redirect_uri: 'https://mi-dev.harris.com/test/timecard/auth-callback?silent=true'
+  }
 };
