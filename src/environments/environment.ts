@@ -30,7 +30,7 @@ if (bases.length > 0) {
     }
     const urlPath = bases[0].attributes[0].nodeValue;
     switch (urlPath) {
-      case '/ESS-Dev/Timecard/':
+      case '/ess-Dev/Timecard/':
         oidcSecret = '8Chb5H32AK2Kdgr';
         oidcClientID = 'urn:mi-dev-ess-dev-Timecard2.0';
         break;
