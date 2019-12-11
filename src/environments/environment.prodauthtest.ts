@@ -35,6 +35,7 @@ export const environment: ApplicationEnvironment = {
     TimecardModule,
   ],
   useOIDC: true,
+  oidcRenewalWindow: (6 * 60 * 60),
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
     client_id: 'urn:mi-authtest-Timecard2.0',
