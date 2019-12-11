@@ -44,6 +44,7 @@
         "nexgen": "environments/environment.nexgen.ts",
         "test": "environments/environment.test.ts",
         "authtest": "environments/environment.authtest.ts",
+        "prodauthtest": "environments/environment.prodauthtest.ts",
         "vpn": "environments/environment.vpn.ts",
         "cs": "environments/environment.cs.ts",
         "prod": "environments/environment.prod.ts",
