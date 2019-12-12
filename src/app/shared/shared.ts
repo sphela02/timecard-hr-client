@@ -199,6 +199,7 @@ export enum ActionType {
   export interface ApplicationEnvironment {
     production: boolean;
     apiServiceURLs: {};
+    baseHref?: string;
     AppMode: AppMode;
     allowDiagnostics: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class

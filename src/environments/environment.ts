@@ -21,11 +21,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 //// GET BASE HREF TO KNOW WHICH ENVIRONMENT, AND SET OIDC settings
 ////
 const bases = document.getElementsByTagName('base');
-export let baseHref: string = null;
+export let baseHref = bases[0].href;
 export let oidcSecret = null;
 export let oidcClientID = null;
 if (bases.length > 0) {
-    baseHref = bases[0].href;
     if (baseHref.substring(baseHref.length - 1) === '/') {
       baseHref = baseHref.substring(0, baseHref.length - 1);
     }
@@ -79,6 +78,7 @@ export const environment: ApplicationEnvironment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  baseHref: null,
   environmentIsReady$: null,
   importModules: [
     VacationRequestModule,
