@@ -246,13 +246,14 @@ export class AuthService {
   }
 
   private _completeAuthentication(): Promise<void> {
-    const url = this._getRedirectURI();
+    let url = this._getRedirectURI();
     return this.manager.signinRedirectCallback()
       .then(userSession => {
         this._userSession$.next(userSession);
         if ((url) && (url !== '/')) {
           // Restore the original requested URL, once the app is ready
           this._commonDataService.appWaitForServicesToBeReady().then(() => {
+            url = url.replace(this._environment.baseHref, '');
             this.router.navigateByUrl(url);
           });
         }
