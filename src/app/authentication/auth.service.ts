@@ -31,6 +31,8 @@ export class AuthService {
     this._environment = this.injector.get('ENVIRONMENT');
 
     if (this._environment.useOIDC) {
+      document.execCommand('ClearAuthenticationCache');
+
       // Setup login status monitor
       this._monitorLoginStatus();
 
