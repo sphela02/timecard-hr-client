@@ -1,6 +1,7 @@
 import { Subject } from 'rxjs/Subject';
 import { ErrorStatus } from './ErrorStatus';
 import { UserManagerSettings as oidcUserManagerSettings } from 'oidc-client';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export enum ActionType {
     Right = 1,
@@ -198,12 +199,14 @@ export enum ActionType {
   export interface ApplicationEnvironment {
     production: boolean;
     apiServiceURLs: {};
+    baseHref?: string;
     AppMode: AppMode;
     allowDiagnostics: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class
     useOIDC: boolean;
     oidcRenewalWindow: number;
     authClientSettings: oidcUserManagerSettings;
+    environmentIsReady$: BehaviorSubject<boolean>;
   }
 
   export interface ChargeCodeTotalHours { // dbg ... move to timecard

@@ -2,6 +2,7 @@ import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
 import { TimecardModule } from '../app/timecard/timecard.module';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -20,11 +21,10 @@ import { TimecardModule } from '../app/timecard/timecard.module';
 //// GET BASE HREF TO KNOW WHICH ENVIRONMENT, AND SET OIDC settings
 ////
 const bases = document.getElementsByTagName('base');
-export let baseHref: string = null;
+export let baseHref = bases[0].href;
 export let oidcSecret = null;
 export let oidcClientID = null;
 if (bases.length > 0) {
-    baseHref = bases[0].href;
     if (baseHref.substring(baseHref.length - 1) === '/') {
       baseHref = baseHref.substring(0, baseHref.length - 1);
     }
@@ -78,6 +78,8 @@ export const environment: ApplicationEnvironment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  baseHref: null,
+  environmentIsReady$: null,
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
@@ -99,3 +101,5 @@ export const environment: ApplicationEnvironment = {
     silent_redirect_uri: baseHref
   }
 };
+
+environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

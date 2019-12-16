@@ -30,6 +30,19 @@ export class AuthService {
     // Get our environment
     this._environment = this.injector.get('ENVIRONMENT');
 
+    this._environment.environmentIsReady$
+          .filter(isReady => (isReady === true))
+          .take(1).subscribe(x => {
+      this._setupOIDC();
+    });
+
+    // Enable diagnostics on demand
+    this._initializeDiagnostics();
+
+  } // end constructor
+
+  private _setupOIDC() {
+
     if (this._environment.useOIDC) {
       document.execCommand('ClearAuthenticationCache');
 
@@ -55,10 +68,7 @@ export class AuthService {
       this._isLoggedIn$.next(true);
     } // end if useOIDC or not
 
-    // Enable diagnostics on demand
-    this._initializeDiagnostics();
-
-  } // end constructor
+  } // end _setupOIDC
 
   private _initializeDiagnostics() {
     this._commonDataService.getDiagnosticsMode().subscribe((diagnosticsMode: boolean) => {
@@ -246,13 +256,14 @@ export class AuthService {
   }
 
   private _completeAuthentication(): Promise<void> {
-    const url = this._getRedirectURI();
+    let url = this._getRedirectURI();
     return this.manager.signinRedirectCallback()
       .then(userSession => {
         this._userSession$.next(userSession);
         if ((url) && (url !== '/')) {
           // Restore the original requested URL, once the app is ready
           this._commonDataService.appWaitForServicesToBeReady().then(() => {
+            url = url.replace(this._environment.baseHref, '');
             this.router.navigateByUrl(url);
           });
         }
