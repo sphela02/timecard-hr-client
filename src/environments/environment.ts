@@ -2,6 +2,7 @@ import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
 import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
 import { TimecardModule } from '../app/timecard/timecard.module';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -78,6 +79,7 @@ export const environment: ApplicationEnvironment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  environmentIsReady$: null,
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
@@ -99,3 +101,5 @@ export const environment: ApplicationEnvironment = {
     silent_redirect_uri: baseHref
   }
 };
+
+environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);
