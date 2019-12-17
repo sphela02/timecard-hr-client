@@ -1,6 +1,7 @@
 export interface OidcUserProfile {
     sub: string;
     email: string;
+    msExchExtensionAttribute18: string;
 }
 
 export interface OidcUserSession {
