@@ -244,12 +244,14 @@ export class AuthService {
           if (isLoggedIn) {
             if (currentUserSession.profile.msExchExtensionAttribute18 === 'SHR') {
               this._errorHandlerService.popupAlertMessage(
-                '<a target="_blank" href="https://portal.l3t.com/">'
-                + 'You are on a shared account, click here to connect to the portal, using your <B>@l3harris.com</B> email address.</a>',
+                // tslint:disable-next-line: max-line-length
+                '<a target="_blank" href="https://portal.l3t.com/">To access Timecard, VRS or ESS from a shared account, <B>click here</B> to use the L3Harris Portal.<P><BR>Be sure to use your <B>@l3harris.com</B> email address as your username.</a>',
                 AlertMessageType.Error,
                 {
                   'timeOut': '0',
+                  'extendedTimeOut': '0',
                   'positionClass': 'toast-center',
+                  'tapToDismiss': false,
                   // 'showDuration': '0',
                 });
               // Keep logged in as false, so system doesn't boot up.
