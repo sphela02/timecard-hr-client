@@ -240,7 +240,22 @@ export class AuthService {
         if (currentUserSession === null) {
           this._isLoggedIn$.next(false);
         } else {
-          const isLoggedIn = this._userLoginIsValid(currentUserSession);
+          let isLoggedIn = this._userLoginIsValid(currentUserSession);
+          if (isLoggedIn) {
+            if (currentUserSession.profile.msExchExtensionAttribute18 === 'SHR') {
+              this._errorHandlerService.popupAlertMessage(
+                '<a target="_blank" href="https://portal.l3t.com/">'
+                + 'You are on a shared account, click here to connect to the portal, using your <B>@l3harris.com</B> email address.</a>',
+                AlertMessageType.Error,
+                {
+                  'timeOut': '0',
+                  'positionClass': 'toast-center',
+                  // 'showDuration': '0',
+                });
+              // Keep logged in as false, so system doesn't boot up.
+              isLoggedIn = false;
+            } // end if user is shared
+          } // end if isLoggedIn
           this._isLoggedIn$.next(isLoggedIn);
         } // end if session is null or populated
       }); // end subscribe current user session
