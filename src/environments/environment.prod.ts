@@ -32,7 +32,7 @@ export const environment: ApplicationEnvironment = {
     filterProtocolClaims: true,
     loadUserInfo: false,
     client_secret: 'r66T266jpKjkAXR',
-    automaticSilentRenew: true
+    automaticSilentRenew: false
   }
 };
 
