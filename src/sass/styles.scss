@@ -1275,13 +1275,20 @@ table.table {
     }
 
     .browser-default {
+        background-color: transparent !important;
         border: none;
         border-bottom: 1px solid #ced4da;
+        border-radius: 0;
+        box-shadow: none;
         display: inline-block;
         margin-top: .1rem;
         min-width: 40px;
         max-width: 100%;
         padding: .45rem 0;
+    }
+
+    table .browser-default {
+        height: 30px;
     }
 
     .dropdown-menu {
