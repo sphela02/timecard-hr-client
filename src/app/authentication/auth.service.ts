@@ -179,9 +179,9 @@ export class AuthService {
   } // end _monitorAuthRenewal
 
   private _getRedirectURI(): string {
-    const item = JSON.parse(localStorage.getItem('AuthRedirectURI'));
+    const item = JSON.parse(sessionStorage.getItem('AuthRedirectURI'));
     if (item) {
-      localStorage.removeItem('AuthRedirectURI');
+      sessionStorage.removeItem('AuthRedirectURI');
       if (item.Expires >= Date.now()) {
         return item.RedirectURI;
       }
@@ -194,7 +194,7 @@ export class AuthService {
       RedirectURI: window.location.href.replace (/^[a-z]{4}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '/$1'),
       Expires: Date.now() + 150000
     };
-    localStorage.setItem('AuthRedirectURI', JSON.stringify(item));
+    sessionStorage.setItem('AuthRedirectURI', JSON.stringify(item));
   }
 
   private _initializeAuthProcess() {
