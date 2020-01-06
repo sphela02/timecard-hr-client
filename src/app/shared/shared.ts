@@ -223,11 +223,14 @@ export enum ActionType {
   } // end ActionResult
 
   export interface HopScotchTourStep {
-    title: string;
+    title?: string;
     content: string;
-    target: string;
+    target: any;
     placement: string;
     showPrevButton: boolean;
+    arrowOffset?: any;
+    xOffset?: number;
+    yOffset?: number;
   } // end HopScotchTourStep
 
   export interface HopScotchTour {
