@@ -139,6 +139,7 @@ export enum ActionType {
     EmployeeSelfService = 7,
     Profile = 8,
     ESSModal = 9,
+    ManagerSelfService = 10,
     MainApp = 99,
   }
 
