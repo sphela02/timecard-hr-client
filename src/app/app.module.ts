@@ -22,6 +22,7 @@ import { UserProfileService } from './shared/user-profile/user-profile.service';
 import { UserProfileComponent } from './shared/user-profile/user-profile/user-profile.component';
 import { SharedModule } from './shared/shared.module';
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
+import { ChatBotService } from './shared/chatbot/chatbot.service';
 import { AuthService } from './authentication/auth.service';
 import { ApplicationEnvironment } from './shared/shared';
 
@@ -48,6 +49,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     UserInfoService,
     UserProfileService,
     CommonDataService,
+    ChatBotService,
     GuidedTourService,
     ProgressTrackerService,
     GlobalErrorHandlerService,

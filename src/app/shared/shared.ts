@@ -192,6 +192,35 @@ export enum ActionType {
       messageText: String;
   }
 
+  export interface ChatBotInfo {
+    name: string;
+    _id: string;
+    customData?: any;
+  }
+
+  export interface ChatBotOptions {
+    koreAPIUrl: string;
+    JWTUrl: string;
+    userIdentity?: string;
+    clientId: string;
+    clientSecret: string;
+    botInfo: ChatBotInfo;
+  }
+
+  export interface ChatBotSettings {
+    botOptions: ChatBotOptions;
+    allowIframe: boolean;
+    isSendButton: boolean;
+    isTTSEnabled: boolean;
+    isSpeechEnabled: boolean;
+    allowGoogleSpeech: boolean;
+    allowLocation: boolean;
+    loadHistory: boolean;
+    messageHistoryLimit: number;
+    autoEnableSpeechAndTTS: boolean;
+    minimizeMode: boolean;
+  }
+
   export interface DiagnosticMessageGroup {
     providerName: string;
     diagnosticMessages: string[];
