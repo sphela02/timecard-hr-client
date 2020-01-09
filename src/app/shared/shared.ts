@@ -208,6 +208,8 @@ export enum ActionType {
     oidcRenewalWindow: number;
     authClientSettings: oidcUserManagerSettings;
     environmentIsReady$: BehaviorSubject<boolean>;
+    useChatBot: boolean;
+    chatBotSettings: ChatBotSettings;
   }
 
   export interface ChargeCodeTotalHours { // dbg ... move to timecard
