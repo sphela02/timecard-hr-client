@@ -99,7 +99,9 @@ export const environment: ApplicationEnvironment = {
     client_secret: oidcSecret,
     automaticSilentRenew: true,
     silent_redirect_uri: baseHref
-  }
+  },
+  chatBotSettings: null,
+  useChatBot: false,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

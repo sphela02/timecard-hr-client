@@ -46,7 +46,9 @@ export const environment: ApplicationEnvironment = {
     client_secret: 'StpCuJpFGu32278',
     automaticSilentRenew: true,
     silent_redirect_uri: 'https://mi-dev.harris.com/test/timecard/auth-callback?silent=true'
-  }
+  },
+  chatBotSettings: null,
+  useChatBot: false,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

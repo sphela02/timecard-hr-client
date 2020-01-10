@@ -34,6 +34,8 @@ export const environment: ApplicationEnvironment = {
   useOIDC: false,
   oidcRenewalWindow: 0,
   authClientSettings: null,
+  chatBotSettings: null,
+  useChatBot: false,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

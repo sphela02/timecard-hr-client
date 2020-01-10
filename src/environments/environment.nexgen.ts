@@ -39,6 +39,8 @@ export const environment: ApplicationEnvironment = {
     EmployeeSelfServiceModule,
     TimecardModule,
   ],
+  chatBotSettings: null,
+  useChatBot: false,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

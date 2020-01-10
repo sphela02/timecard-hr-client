@@ -47,7 +47,9 @@ export const environment: ApplicationEnvironment = {
     client_secret: 'fneKC73t556VbJR',
     automaticSilentRenew: true,
     silent_redirect_uri: 'http://localhost:4200/auth-callback?silent=true'
-  }
+  },
+  chatBotSettings: null,
+  useChatBot: false,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

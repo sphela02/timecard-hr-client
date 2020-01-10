@@ -33,7 +33,9 @@ export const environment: ApplicationEnvironment = {
     loadUserInfo: false,
     client_secret: 'r66T266jpKjkAXR',
     automaticSilentRenew: false
-  }
+  },
+  chatBotSettings: null,
+  useChatBot: false,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);
