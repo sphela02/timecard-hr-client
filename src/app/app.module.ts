@@ -94,6 +94,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
 export class AppModule {
   constructor(
     private injector: Injector,
+    private _userInfoService: UserInfoService,
   ) {
     // Get our environment
     const appEnvironment: ApplicationEnvironment = this.injector.get('ENVIRONMENT');
