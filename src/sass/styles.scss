@@ -1219,6 +1219,7 @@ table.table {
 }
 
 #timecard-footer,
+#mss-footer,
 #vacation-footer {
     bottom: 0;
     left: 0;
@@ -1463,3 +1464,4 @@ table.table {
 @import 'modules/mini-dashboard';
 @import 'modules/dc-california';
 @import 'modules/ess';
+@import 'modules/mss';
