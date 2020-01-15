@@ -5,10 +5,12 @@ import { CommonDataService } from '../common-data/common-data.service';
 import { ApplicationErrorDTO } from '../ApplicationErrorDTO';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { AlertMessageType } from '../shared';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
   errorMessageDisplay: any;
+  public _toastrCalled$: Subject<void> = new Subject<void>();
 
   constructor(
     private _progressTrackerService: ProgressTrackerService,
@@ -80,7 +82,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       'showDuration': '10000',
       'timeOut': '10000',
       'positionClass': 'toast-center',
-      'preventDuplicates': true
+      'preventDuplicates': true,
     };
 
     if (!options) {
@@ -88,16 +90,19 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     }
 
     toastr.options = options;
+    let toastrContainer;
 
     if (messageType === AlertMessageType.Ok || messageType === AlertMessageType.OkMin) {
-      toastr.success(messageString);
+      toastrContainer = toastr.success(messageString);
     } else if (messageType === AlertMessageType.Error || messageType === AlertMessageType.ErrorMin) {
-      toastr.error(messageString);
+      toastrContainer = toastr.error(messageString);
     } else if (messageType === AlertMessageType.WarningMin || messageType === AlertMessageType.Warning) {
-      toastr.warning(messageString);
+      toastrContainer = toastr.warning(messageString);
     } else if (messageType === AlertMessageType.Info || messageType === AlertMessageType.InfoMin)  {
-      toastr.info(messageString);
+      toastrContainer = toastr.info(messageString);
     } // end if messageType
+
+      this._toastrCalled$.next(toastrContainer);
 
   } // end popupAlertMessage
 

@@ -16,6 +16,7 @@ import {
     ApplicationEnvironment
 } from './shared/shared';
 import * as lodash from 'lodash';
+import * as toastr from 'toastr';
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
 
 declare var $: any;
@@ -188,6 +189,19 @@ export class AppComponent implements OnInit {
         this._commonDataService.getDiagnosticMessages().subscribe((messageGroups: DiagnosticMessageGroup[]) => {
             this.diagnosticMessageGroups = messageGroups;
         });
+
+        // Listen for toastrs being called.
+        this.errorHandlerService._toastrCalled$.subscribe((toastrContainer: any) => {
+            // Set listener for any router links in toastr message.
+            $('.toast-message').find('.router-link').each((i, obj) => {
+                $(obj).click((e: any) => {
+                    e.preventDefault();
+                    toastr.clear(toastrContainer, {'force': true});
+                    this._router.navigateByUrl($(obj).attr('data-route'));
+                });
+            });
+        });
+
     } // end ngOnInit
 
     // Show error details when clicked.
