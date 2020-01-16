@@ -37,8 +37,7 @@
         "../node_modules/@harris/design-system/dist/js/bootstrap.min.js",
         "js/mdb.min.js",
         "js/material_select_fix.js",
-        "../node_modules/hopscotch/dist/js/hopscotch.min.js",
-        "libraries/chatbot/kore-ai-sdk.min.js"
+        "../node_modules/hopscotch/dist/js/hopscotch.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
