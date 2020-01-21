@@ -32,6 +32,7 @@
       },
       "scripts": [
         "../node_modules/@harris/design-system/dist/js/jquery-3.3.1.min.js",
+        "libraries/chatbot/kore-ai-sdk.min.js",
         "../node_modules/jquery-touchswipe/jquery.touchSwipe.min.js",
         "../node_modules/@harris/design-system/dist/js/popper.min.js",
         "../node_modules/@harris/design-system/dist/js/bootstrap.min.js",
