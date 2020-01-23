@@ -3,6 +3,7 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
 import { TimecardModule } from '../app/timecard/timecard.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MssModule } from '../app/manager-self-service/mss.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -75,6 +76,7 @@ export const environment: ApplicationEnvironment = {
     'TIMECARD': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Timecard/',
     'EMPLOYEE': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Employee/',
     'ESS':      'https://mi-dev.harris.com/dev/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
+    'MSS':      'https://mi-dev.harris.com/dev/ManagerSelfServiceAPI/api/v1/ManagerSelfService/',
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
@@ -84,6 +86,7 @@ export const environment: ApplicationEnvironment = {
     VacationRequestModule,
     EmployeeSelfServiceModule,
     TimecardModule,
+    MssModule,
   ],
   useOIDC: true,
   oidcRenewalWindow: (1 * 60 * 60),
@@ -100,7 +103,28 @@ export const environment: ApplicationEnvironment = {
     automaticSilentRenew: true,
     silent_redirect_uri: baseHref
   },
-  chatBotSettings: null,
+  chatBotSettings: {
+    botOptions: {
+      koreAPIUrl: 'https://chatbot-dev.l3harris.com//api/',
+      JWTUrl: 'https://chatbot-dev.l3harris.com/jwtservice/api/users/sts',
+      clientId: 'cs-e5d15a97-d72f-52e7-9cb5-b72b462ac3f1',
+      clientSecret: 'drW6JJF/HlHzJ0eqZ9wu39bMSOcTwbg4psVosrE+Q6g=',
+      botInfo: {
+        name: 'HAL_Integrated_Dev',
+        _id: 'st-bf635b27-35e5-5c14-9165-07763a1c028d'
+      }
+    },
+    allowIframe: false,
+    isSendButton: false,
+    isTTSEnabled: false,
+    isSpeechEnabled: false,
+    allowGoogleSpeech: false,
+    allowLocation: false,
+    loadHistory: true,
+    messageHistoryLimit: 10,
+    autoEnableSpeechAndTTS: false,
+    minimizeMode: true
+  },
   useChatBot: false,
 };
 
