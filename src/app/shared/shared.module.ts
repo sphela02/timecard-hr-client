@@ -2,6 +2,7 @@ import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MqIfDirective } from './mq-if/mq-if.directive';
 import { ObjectFilter } from './pipes/objectFilter';
+import { ObjectSum } from './pipes/objectSum';
 import { AppLandingComponent } from './app-landing/app-landing.component';
 import { ApprovalMenuComponent } from './approval-menu/approval-menu.component';
 import { FlexModalComponent } from './flex-modal/flex-modal.component';
@@ -18,7 +19,10 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/skipWhile';
+import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/takeUntil';
 
 // export { ErrorStatus }    from './ErrorStatus';
@@ -39,6 +43,7 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
     FlexModalComponent,
     MqIfDirective,
     ObjectFilter,
+    ObjectSum,
     AppLandingComponent,
     ApprovalMenuComponent,
   ],
@@ -48,6 +53,7 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
   exports: [
     MqIfDirective,
     ObjectFilter,
+    ObjectSum,
     ApprovalMenuComponent,
     NgPipesModule,
   ]

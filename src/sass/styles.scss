@@ -1,16 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../css/hds/default/default.min.css';
+$sidenav-breakpoint: 1200px;
 
-// Colors
-$harris-red: #e21d22;
-$harris-grey: #74767b;
-$harris-hyperlink-blue: #2C5697;
-$grey-dark: #616264;
-$grey-extra-light: #f2f0f0;
-$danger: #D93B42;
-$warning: #F99F3C;
-$info: #009cde;
-$success: #6db444;
+@import '@harris/design-system/scss/hds.default.scss';
 
 $breakpoint-xs: '575px';
 $breakpoint-md: '768px';
@@ -31,6 +22,29 @@ body {
     cursor: pointer;
 }
 
+@media(min-width: $breakpoint-xxl) {
+  .col-xxl {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+  .col-xxl-auto {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+  .col-xxl-3 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
 
 .reset-line-height {
     line-height: 1 !important;
@@ -58,9 +72,13 @@ body {
     }
 }
 
-.md-form textarea.md-textarea {
-    resize: none;
-    overflow-y: scroll;
+.md-form {
+    margin-bottom: 0;
+
+    textarea.md-textarea {
+        resize: none;
+        overflow-y: scroll;
+    }
 }
 
 input.disabled-input {
@@ -177,7 +195,8 @@ ngb-typeahead-window button.dropdown-item *,
     z-index: 1050 !important;
 }
 
-.loading {
+.loading,
+.loading-fixed  {
     position: relative;
     
     &:before {
@@ -209,7 +228,15 @@ ngb-typeahead-window button.dropdown-item *,
     }
 }
 
-body.loading {
+.loading-fixed {
+    &::before,
+    &::after {
+        position: fixed;
+    }
+}
+
+body.loading,
+body.loading-fixed {
     height: 100vh;
 }
 
@@ -710,8 +737,7 @@ table.table.timecard-list {
             }
             &[class*="tc-error"] {
                 border: 2px solid;
-                position: relative;
-                z-index: 9999;
+                z-index: 999;
             }
 
             &.tc-error {
@@ -1193,6 +1219,7 @@ table.table {
 }
 
 #timecard-footer,
+#mss-footer,
 #vacation-footer {
     bottom: 0;
     left: 0;
@@ -1281,13 +1308,20 @@ table.table {
     }
 
     .browser-default {
+        background-color: transparent !important;
         border: none;
         border-bottom: 1px solid #ced4da;
+        border-radius: 0;
+        box-shadow: none;
         display: inline-block;
         margin-top: .1rem;
         min-width: 40px;
         max-width: 100%;
         padding: .45rem 0;
+    }
+
+    table .browser-default {
+        height: 30px;
     }
 
     .dropdown-menu {
@@ -1307,7 +1341,7 @@ table.table {
     }
 }
 
-.toast-center {
+#toast-container.toast-center {
     top: 40%;
     right: 0;
     width: 100%;
@@ -1320,7 +1354,7 @@ table.table {
 
             &:before {
                 content: '\f058';
-                font-family: fontAwesome;
+                font-family: 'Font Awesome 5 Pro';
                 font-size: 1.5rem;
                 left: 1rem;
                 position: absolute;
@@ -1399,6 +1433,12 @@ table.table {
     }
 }
 
+.tabs-wrapper .classic-tabs {
+    li a {
+        padding: 12px 24px;
+    }
+}
+
 .hide-for-mobile {
     @media screen and (max-width: $breakpoint-md) {
         display: none !important;
@@ -1424,3 +1464,4 @@ table.table {
 @import 'modules/mini-dashboard';
 @import 'modules/dc-california';
 @import 'modules/ess';
+@import 'modules/mss';

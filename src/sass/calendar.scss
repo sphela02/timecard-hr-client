@@ -241,7 +241,8 @@ $dayBase: 30px;
             &.drilldown-shown {
                 @media screen and (min-width: $breakpoint-md) and (max-width: 1540px) {
                     .approval-view-mode {
-                        width: 100%;
+                        flex: 0 0 100%;
+                        max-width: 101%;
                     }
                 }
 

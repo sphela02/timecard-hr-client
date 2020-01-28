@@ -1,5 +1,7 @@
 import { Subject } from 'rxjs/Subject';
 import { ErrorStatus } from './ErrorStatus';
+import { UserManagerSettings as oidcUserManagerSettings } from 'oidc-client';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export enum ActionType {
     Right = 1,
@@ -137,6 +139,7 @@ export enum ActionType {
     EmployeeSelfService = 7,
     Profile = 8,
     ESSModal = 9,
+    ManagerSelfService = 10,
     MainApp = 99,
   }
 
@@ -159,6 +162,7 @@ export enum ActionType {
     role: string;
     applicationArea: ApplicationArea;
     sortOrder: number;
+    domID?: string;
     subMenu?: ApplicationMenuItem[];
   }
 
@@ -188,6 +192,35 @@ export enum ActionType {
       messageText: String;
   }
 
+  export interface ChatBotInfo {
+    name: string;
+    _id: string;
+    customData?: any;
+  }
+
+  export interface ChatBotOptions {
+    koreAPIUrl: string;
+    JWTUrl: string;
+    userIdentity?: string;
+    clientId: string;
+    clientSecret: string;
+    botInfo: ChatBotInfo;
+  }
+
+  export interface ChatBotSettings {
+    botOptions: ChatBotOptions;
+    allowIframe: boolean;
+    isSendButton: boolean;
+    isTTSEnabled: boolean;
+    isSpeechEnabled: boolean;
+    allowGoogleSpeech: boolean;
+    allowLocation: boolean;
+    loadHistory: boolean;
+    messageHistoryLimit: number;
+    autoEnableSpeechAndTTS: boolean;
+    minimizeMode: boolean;
+  }
+
   export interface DiagnosticMessageGroup {
     providerName: string;
     diagnosticMessages: string[];
@@ -196,9 +229,16 @@ export enum ActionType {
   export interface ApplicationEnvironment {
     production: boolean;
     apiServiceURLs: {};
+    baseHref?: string;
     AppMode: AppMode;
     allowDiagnostics: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class
+    useOIDC: boolean;
+    oidcRenewalWindow: number;
+    authClientSettings: oidcUserManagerSettings;
+    environmentIsReady$: BehaviorSubject<boolean>;
+    useChatBot: boolean;
+    chatBotSettings: ChatBotSettings;
   }
 
   export interface ChargeCodeTotalHours { // dbg ... move to timecard
@@ -213,3 +253,20 @@ export enum ActionType {
     status: ErrorStatus;
     message: string;
   } // end ActionResult
+
+  export interface HopScotchTourStep {
+    title?: string;
+    content: string;
+    target: any;
+    placement: string;
+    showPrevButton: boolean;
+    arrowOffset?: any;
+    xOffset?: number;
+    yOffset?: number;
+  } // end HopScotchTourStep
+
+  export interface HopScotchTour {
+      id: string;
+      showSkip: boolean;
+      steps: HopScotchTourStep[];
+  } // end HopScotchTour

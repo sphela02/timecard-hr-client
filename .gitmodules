@@ -1,0 +1,3 @@
+[submodule "src/app/manager-self-service"]
+	path = src/app/manager-self-service
+	url = git@github.com:joshlott81/mss-feature.git

@@ -11,7 +11,6 @@ import {
 import { ApplicationViewInfo } from '../shared.module';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
-import { TimecardViewMode } from '../../timecard/_shared/shared.tc'; // dbg ... decouple from tc
 
 @Injectable()
 export class CommonDataService {
@@ -30,12 +29,6 @@ export class CommonDataService {
   private pageTitleSource = new BehaviorSubject<string>('Timecard'); // dbg ... more neutral name?
   currentPageTitle = this.pageTitleSource.asObservable();
 
-  private viewModeSource = new BehaviorSubject<ApplicationViewInfo>({ // dbg ... decouple
-    Application: ApplicationArea.Timecard,
-    ViewMode: TimecardViewMode.List
-  });
-
-  currentViewMode = this.viewModeSource.asObservable();
   private _menuLists$: BehaviorSubject<ApplicationMenuItem[]>[] = [];
 
   // Lists of diagnostic messages, organized by app area
@@ -54,16 +47,15 @@ export class CommonDataService {
   // Component Creation Registry logic
   private _newComponentRegistered$: Subject<Object> = new Subject<Object>();
 
+  // Silent Navigation Mode ... used by guards to decide whether to prompt user or just reject silently.
+  private _silentNavigationMode: boolean = false;
+
   deleteErrorMessageByIndex(errorIndex: number) {
     this.currentErrorMessages.splice(errorIndex, 1);
   }
 
   changePageTitle(title: string) {
     this.pageTitleSource.next(title);
-  }
-
-  changeViewMode(viewMode: ApplicationViewInfo) {
-    this.viewModeSource.next(viewMode);
   }
 
   updateApprovalCount(newApprovalCount: number, applicationArea: ApplicationArea) {
@@ -213,5 +205,13 @@ export class CommonDataService {
   listenForCreatedComponents(): Observable<Object> {
     return this._newComponentRegistered$.asObservable();
   } // end listenForCreatedComponents
+
+  setSilentNavigationMode(silentMode: boolean) {
+    this._silentNavigationMode = silentMode;
+  } // end setSilentNavigationMode
+
+  getSilentNavigationMode(): boolean {
+    return this._silentNavigationMode;
+  } // end setSilentNavigationMode
 
 } // end CommonDataService

@@ -3,19 +3,19 @@
         <div class="nav-container">
             <div *ngIf="userInfo" class="py-3 user-menu">
                 <div id="user-account">
-                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" class="float-left img-fluid rounded-circle z-depth-0 mr-2">
+                    <img src="//m-my.harris.com/peoplefinder/piclookup.aspx?EMPLID={{userInfo?.EMPLID}}" width="32" height="32" class="float-left img-fluid rounded-circle z-depth-0 mr-2">
                     <div class="pl-4 ml-3 mt-2 pr-3">
                         {{userInfo?.FullNamePrintable}}
                     </div>
                 </div>
             </div>
-            
+
             <ul class="nav flex-column" id="timecard-menu">
                 <li class="nav-item border-top border-light">
-                    <a class="nav-link" id="my-profile" [routerLink]="['/profile']"><i class="fa fa-user left-icon mt-0" aria-hidden="true"></i>My Profile</a>
+                    <a class="nav-link" id="my-profile" [routerLink]="['/profile']"><i class="fas fa-user left-icon mt-0" aria-hidden="true"></i>My Profile</a>
                 </li>
                 <ng-container *ngFor="let n of menuList">
-                    <li *ngIf="n.role == '' || (n.role == 'approver' && isApprover)" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" [routerLink]="[n.path]"><i class="fa {{n.icon}} left-icon mt-0"></i>{{n.name}}
+                    <li *ngIf="n.role == '' || (n.role == 'approver' && isApprover)" class="nav-item border-top border-light" aria-expanded="true"><a class="nav-link" id="{{n.domID}}" [routerLink]="[n.path]"><i class="{{n.icon}} left-icon mt-0"></i>{{n.name}}
                     <span *ngIf="n.name == 'Approvals' && _commonDataService.approvalNotificationCount" class="badge badge-small badge-primary badge-pill">{{_commonDataService.approvalNotificationCount}}</span></a>
                         <ul class="nav flex-column">
                             <ng-container *ngFor="let child of n.subMenu">
@@ -31,22 +31,22 @@
             </ul>
         </div>
         <div class="harris-logo-wrapper">
-            <img src="assets/harris-logo.png" class="img-fluid flex-center">
+            <img src="assets/l3harris-logo-tm-rgb.png" class="img-fluid flex-center">
         </div>
     </div>
     <nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
     <!-- Sidebar Collapse -->
         <div class="float-left">
-            <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fa fa-bars"></i></a>
+            <a href="#" id="sidebarCollapse" data-activates="sidebar" class="button-collapse"><i class="fal fa-bars"></i></a>
         </div>
         <span class="h5 m-0 pl-3" id="page-title">{{pageTitle}}</span>
         <div class="ml-auto mr-3 diagnostics-column" *ngIf="environment.allowDiagnostics">
-            <i class="fa fa-sliders fa-4 click-element" aria-hidden="true"
+            <i class="far fa-sliders-h fa-4 click-element" aria-hidden="true"
                 *ngIf="!diagnosticsMode"
                 (click)="startDiagnostics()"
                 title="Start Diagnostics"></i>
             <ng-container *ngIf="diagnosticsMode">
-                <i class="fa fa-sliders fa-4 click-element text-success" aria-hidden="true"
+                <i class="far fa-sliders-h fa-4 click-element text-success" aria-hidden="true"
                     (click)="endDiagnostics()"
                     title="Start Diagnostics"></i>
             </ng-container>
@@ -62,25 +62,28 @@
             </div>
         </div>
         <div class="navbar-nav mt-0 mx-2" [class.ml-auto]="!environment.allowDiagnostics" *ngIf="!environment.production">
-            <div class="input-group py-2">
-                <input type="text" 
-                class="form-control py-0 px-2" 
-                [(ngModel)]="userToImpersonate" 
-                placeholder="Enter Username" 
-                style="color: #6db444 !important;font-size: 1rem;width:140px;"
-                novalidate>
-                <div class="input-group-ammend">
-                    <button
-                        class="btn btn-success btn-small my-0"
-                        (click)="impersonateUser()">
-                        Impersonate
-                    </button>
+            <form (submit)="impersonateUser()">
+                <div class="input-group">
+                    <input type="text" 
+                    class="form-control py-0 px-2 mt-1" 
+                    [(ngModel)]="userToImpersonate"
+                    [ngModelOptions]="{standalone: true}" 
+                    placeholder="Enter Username" 
+                    style="color: #6db444 !important;font-size: 1rem;width:140px;"
+                    novalidate>
+                    <div class="input-group-ammend">
+                        <button
+                            type="submit"
+                            class="btn btn-success btn-small"
+                            >
+                            Impersonate
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="navbar-nav mt-0" [class.ml-auto]="!environment.allowDiagnostics">
-            <a (click)="startTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</a>
-            <!-- <a (click)="startTour()" class="mobile-only"><i class="fa fa-compass" aria-hidden="true"></i></a>             -->
+            <button (click)="startGuidedTour()" class="btn btn-small btn-secondary hide-for-mobile">Start Tour</button>
         </div>
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item dropdown" id="alert-notifications">
@@ -90,7 +93,7 @@
                         aria-haspopup="true"
                         [class.disabled]="(_commonDataService.alertNotificationCount == 0)"
                         aria-expanded="false">
-                    <i class="fa fa-lg fa-bell-o mx-0"></i>
+                    <i class="fal fa-lg fa-bell mx-0"></i>
                     <span class="badge badge-primary badge-pill red"
                             *ngIf="_commonDataService.alertNotificationCount">
                         {{_commonDataService.alertNotificationCount}}
@@ -99,11 +102,11 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alerts">
                     <ng-container *ngFor="let alertNotificationGroup of _commonDataService.alertNotificationGroups">
                         <ng-container *ngFor="let notification of alertNotificationGroup">
-                            <a class="dropdown-item waves-effect waves-light p-3"
+                            <a class="dropdown-item waves-effect waves-light p-3" href
                                 [routerLink]="notification.actionURL"
                                 >
-                                <i class="fa fa-clock-o text-info fa-5 mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Info"></i>
-                                <i class="fa fa-exclamation-circle fa-5 text-danger mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Warning"></i>
+                                <i class="fal fa-clock text-info mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Info"></i>
+                                <i class="fal fa-exclamation-circle text-danger mr-1" aria-hidden="true" *ngIf="notification.alertType === AlertMessageType.Warning"></i>
                                 <strong *ngIf="notification.alertType === AlertMessageType.Warning">{{notification.alertMessage}}</strong>
                                 <ng-container *ngIf="notification.alertType !== AlertMessageType.Warning">{{notification.alertMessage}}</ng-container>
                             </a>
@@ -123,7 +126,7 @@
                         (click)="_commonDataService.deleteErrorMessageByIndex(errorIndex)"
                     >×</button>
                     <div class="col-auto">
-                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
                     </div>
                     <div class="col">
                         <span *ngIf="errorMessage.prefix">{{errorMessage.prefix}}</span>
@@ -139,7 +142,7 @@
                         </a>
                         <div class="border-top p-2 mt-2 error-details" style="display: none;">{{errorMessage.message}}</div>
                     </div>
-                </div>                
+                </div>
             </div>
     </div>
 </header>

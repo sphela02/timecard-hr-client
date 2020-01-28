@@ -21,7 +21,7 @@
         <div class="col-12">
           <div class="md-form">
             <label for="{{modalContent.selectionID}}">{{modalContent.inputLabel}}</label>
-            <select class="mdb-select apply-select-fix"
+            <select class="browser-default custom-select"
                 id="{{modalContent.selectionID}}"
                 >
                 <option value="">{{modalContent.selectionPlaceHolderText}}</option>
@@ -64,18 +64,21 @@
     <div class="float-right">
       <button type="button" 
       *ngIf="!modalContent.hideCancelButton"
+      id="modal-cancel-button"
       class="btn btn-link-secondary" 
       (click)="cancelModal()"
       >{{modalContent.cancelBtnText}}</button>
 
       <button type="button" 
       *ngIf="modalContent.altBtnText"
+      id="modal-alternate-button"
       class="btn btn-default"
       (click)="altModalFunction()"
       >{{modalContent.altBtnText}}</button>
 
       <button type="button"
       *ngIf="!modalContent.hideConfirmButton" 
+      id="modal-confirm-button"
       class="btn btn-primary"
       (click)="confirmModal()" 
       >{{modalContent.confirmBtnText}}</button>

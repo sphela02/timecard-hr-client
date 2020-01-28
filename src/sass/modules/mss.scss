@@ -1,0 +1,44 @@
+
+#mss-search-results-wrapper {
+  min-height: 255px;
+  overflow-y: auto;
+
+  #mss-search-results {
+    width: 100%;
+
+    tbody {
+        display: block;
+        height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    thead, tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+    thead {
+        width: calc( 100% - 1em )
+    }
+    tbody tr {
+      cursor: pointer;
+
+      &.active {
+        background-color: lighten($success, 30%);
+      }
+    }
+    tfoot {
+      #mss-search-results-pagination {
+        ul.pagination li.page-item a.page-link {
+          background-color: transparent;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.kore-chat-window button.close-btn {
+  display: none!important;
+}

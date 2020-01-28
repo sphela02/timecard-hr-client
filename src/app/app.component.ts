@@ -16,14 +16,10 @@ import {
     ApplicationEnvironment
 } from './shared/shared';
 import * as lodash from 'lodash';
-import { VRSApplicationViewMode } from './vacation-request/_shared/shared.vrs'; // dbg ... decouple
-import { TimecardViewMode } from './timecard/_shared/shared.tc'; // dbg ... decouple
+import * as toastr from 'toastr';
+import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
 
 declare var $: any;
-
-// Variables for Hopscotch tour arrays.
-declare var hopscotch: any;
-declare var tour: any;
 
 @Component({
   selector: 'tc-root',
@@ -39,8 +35,6 @@ export class AppComponent implements OnInit {
     userToImpersonate: string;
     diagnosticsMode: boolean;
     environment: ApplicationEnvironment = environment;
-    currentViewMode: any = null;
-    tourActive: boolean = false;
     private _isApprover: boolean = false;
     private ngUnsubscribe$: Subject<void> = new Subject<void>();
     isApprover: boolean = false;
@@ -53,6 +47,7 @@ export class AppComponent implements OnInit {
                 public _commonDataService: CommonDataService,
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
+                private _guidedTourService: GuidedTourService,
             ) {
 
         this._commonDataService.getMenu(ApplicationMenuType.ApprovalMenu).subscribe(approvalsMenu => {
@@ -81,31 +76,6 @@ export class AppComponent implements OnInit {
             }); // end subscribe getIsApprover
 
         // Subscribe to router events.
-        _router.events.subscribe(routerEvent => {
-            if (routerEvent instanceof NavigationStart) {
-                if (hopscotch.getCurrTour()) {
-                    hopscotch.endTour();
-                    this.tourActive = true;
-                }
-            }
-            if (routerEvent instanceof NavigationEnd) {
-                if (this.tourActive) {
-                    setTimeout(wait => {
-                        hopscotch.startTour(tour[this.currentViewMode]);
-
-                        hopscotch.listen('end', () => {
-                            this.tourActive = false;
-                            hopscotch.removeCallbacks();
-                        });
-
-                        hopscotch.listen('close', () => {
-                            this.tourActive = false;
-                            hopscotch.removeCallbacks();
-                        });
-                    }, 500);
-                }
-            }
-        });
     }
 
     onDestroy() {
@@ -156,7 +126,7 @@ export class AppComponent implements OnInit {
             const approvalsMenuItem: ApplicationMenuItem = {
                 name: 'Approvals',
                 path: 'approvals',
-                icon: 'fa-calendar-check-o',
+                icon: 'far fa-calendar-check',
                 role: '',
                 applicationArea: ApplicationArea.MainApp,
                 sortOrder: 1,
@@ -174,29 +144,6 @@ export class AppComponent implements OnInit {
 
         // watch for page title changes.
         this._commonDataService.currentPageTitle.subscribe(message => this.pageTitle = message);
-
-        this._commonDataService.currentViewMode.subscribe(viewInfo => {
-            if (viewInfo.Application === ApplicationArea.Timecard) { // dbg ... make naive?
-                if (viewInfo.ViewMode === TimecardViewMode.None ||
-                    viewInfo.ViewMode === TimecardViewMode.Display ||
-                    viewInfo.ViewMode === TimecardViewMode.Edit) {
-                        this.currentViewMode = 'tcDisplay';
-                } else {
-                    this.currentViewMode = TimecardViewMode[viewInfo.ViewMode];
-                }
-            } else if (viewInfo.Application === ApplicationArea.VacationRequest) {
-                if (viewInfo.ViewMode === VRSApplicationViewMode.ShowMyRequests) {
-                        this.currentViewMode = 'vrsList';
-                } else if (viewInfo.ViewMode === VRSApplicationViewMode.Search ||
-                    viewInfo.ViewMode === VRSApplicationViewMode.ApproverSearch) {
-                        this.currentViewMode = 'vrsSearch';
-                } else {
-                    this.currentViewMode = VRSApplicationViewMode[viewInfo.ViewMode];
-                }
-            } else if (viewInfo.Application === ApplicationArea.Profile) {
-                this.currentViewMode = 'Profile';
-            }
-        });
 
         setTimeout(() => {
             // Sidebar initialization
@@ -242,6 +189,19 @@ export class AppComponent implements OnInit {
         this._commonDataService.getDiagnosticMessages().subscribe((messageGroups: DiagnosticMessageGroup[]) => {
             this.diagnosticMessageGroups = messageGroups;
         });
+
+        // Listen for toastrs being called.
+        this.errorHandlerService._toastrCalled$.subscribe((toastrContainer: any) => {
+            // Set listener for any router links in toastr message.
+            $('.toast-message').find('.router-link').each((i, obj) => {
+                $(obj).click((e: any) => {
+                    e.preventDefault();
+                    toastr.clear(toastrContainer, {'force': true});
+                    this._router.navigateByUrl($(obj).attr('data-route'));
+                });
+            });
+        });
+
     } // end ngOnInit
 
     // Show error details when clicked.
@@ -264,21 +224,10 @@ export class AppComponent implements OnInit {
         this.diagnosticsMode = false;
     } // end endDiagnostics
 
-    startTour() {
-        this.tourActive = true;
-        // Hopscotch tour. Start the tour.
-        hopscotch.startTour(tour[this.currentViewMode]);
+    startGuidedTour() {
+        this._guidedTourService.startTour();
+    } // end startGuidedTour
 
-        hopscotch.listen('end', () => {
-            this.tourActive = false;
-            hopscotch.removeCallbacks();
-        });
-
-        hopscotch.listen('close', () => {
-            this.tourActive = false;
-            hopscotch.removeCallbacks();
-        });
-    }
 } // end AppComponent
 
 // DBG ... Tasks/Considerations/Issues:
