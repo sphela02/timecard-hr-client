@@ -72,7 +72,7 @@ export const environment: ApplicationEnvironment = {
     autoEnableSpeechAndTTS: false,
     minimizeMode: true
   },
-  useChatBot: false,
+  useChatBot: true,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);
