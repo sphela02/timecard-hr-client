@@ -1,7 +1,4 @@
 import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
-import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
-import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
-import { TimecardModule } from '../app/timecard/timecard.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 // The file contents for the current environment will overwrite these during build.
@@ -29,9 +26,6 @@ export const environment: ApplicationEnvironment = {
   allowDiagnostics: true,
   environmentIsReady$: null,
   importModules: [
-    VacationRequestModule,
-    EmployeeSelfServiceModule,
-    TimecardModule,
   ],
   useOIDC: false,
   oidcRenewalWindow: 0,
