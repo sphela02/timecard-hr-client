@@ -28,6 +28,10 @@
         background-color: lighten($success, 30%);
       }
     }
+    tbody tr td {
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+    }
     tfoot {
       #mss-search-results-pagination {
         ul.pagination li.page-item a.page-link {
@@ -39,6 +43,36 @@
   }
 }
 
+#mss-request-type-select > .dropdown-menu,
+#mss-selected-employees > .dropdown-menu {
+  min-width: 100%;
+}
+
 .kore-chat-window button.close-btn {
   display: none!important;
+}
+
+.employee-card .card-body {
+  min-height: 136px;
+}
+
+.mss-responsive-table {
+  @extend .l3h-responsive-table;
+
+  tr:not(:last-child) {
+    @extend .border-bottom;
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    td.row-header {
+      width: 100%;
+    }
+    td.col-header {
+      width: 40%;
+    }
+    td {
+      width: 55%;
+      text-align: left!important;
+    }
+  }
 }
