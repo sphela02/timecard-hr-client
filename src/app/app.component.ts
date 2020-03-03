@@ -177,7 +177,11 @@ export class AppComponent implements OnInit {
 
                         // If we're still at root, take them to the first menu item
                         if (routerEvent.url === '/') {
-                            this._router.navigate([this.menuList[0].path]);
+                            if (this.menuList[0]) {
+                                // tslint:disable-next-line: max-line-length
+                                // DBG 2020/03/03 ... We should make sure this event listener isn't replicating itself (also, can we watch CommonDataService subscriber counts on diagnostics mode?)
+                                this._router.navigate([this.menuList[0].path]);
+                            }
                         }
 
                     } // end if navigation end
