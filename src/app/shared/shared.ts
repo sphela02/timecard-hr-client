@@ -25,6 +25,7 @@ export enum ActionType {
     UndoApproval = 19,
     UpdateApprovers = 20,
     Deny = 21,
+    RequestRework = 22,
   }
 
   export enum AlertMessageType {
