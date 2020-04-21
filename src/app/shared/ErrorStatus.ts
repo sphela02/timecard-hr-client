@@ -9,5 +9,6 @@ export enum ErrorStatus {
     ApplicationError = 3,
     ActionDenied = 4,
     ActionDenied_NoteRequired = 5,
+    Information = 6,
 }
 
