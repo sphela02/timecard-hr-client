@@ -33,6 +33,12 @@ if (bases.length > 0) {
     const urlPath = bases[0].attributes[0].nodeValue;
 
     switch (urlPath) {
+      case '/Test/ManagerSelfService/':
+        oidcSecret = '7Erth648pFu3PBD';
+        oidcClientID = 'urn:mi-dev-test-MSS2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/';
+        break;
       case '/Test/Timecard/':
         oidcSecret = 'StpCuJpFGu32278';
         oidcClientID = 'urn:mi-dev-test-Timecard2.0';
