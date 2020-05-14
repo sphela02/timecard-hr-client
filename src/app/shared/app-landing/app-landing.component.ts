@@ -33,12 +33,12 @@ export class AppLandingComponent implements OnInit, OnDestroy {
             if (appMenu.length) {
               this._router.navigate([appMenu[0].path]);
             } else {
-              // No items for this menu, go back to root.
-              this._router.navigate(['/']);
+              // No items for this menu, go back to the profile page, which always exists.
+              this._router.navigate(['/profile']);
             } // end if menu length
           } else {
-              // Menu doesn't exist, go back to root.
-              this._router.navigate(['/']);
+              // Menu doesn't exist, go back to profile page.
+              this._router.navigate(['/profile']);
           } // end if menu exists
         }); // end subscribe getmenu
       } // end if app menu type

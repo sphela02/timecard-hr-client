@@ -3,6 +3,7 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
 import { TimecardModule } from '../app/timecard/timecard.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MssModule } from '../app/manager-self-service/mss.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -21,20 +22,23 @@ export const environment: ApplicationEnvironment = {
   // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
   apiServiceURLs: {
     'VRS':      'http://localhost/VRS.API/api/v1/Vacation/',
-    'TIMECARD': 'http://localhost:9572/api/v1/Timecard/',
-    'EMPLOYEE': 'http://localhost:9572/api/v1/Employee/',
-    'ESS':      'http://localhost:9572/ESSAPI/api/v1/EmployeeSelfService/',
+    'TIMECARD': 'http://localhost/TC.API/api/v1/Timecard/',
+    'EMPLOYEE': 'http://localhost/TC.API/api/v1/Employee/',
+    'ESS':      'http://localhost/ESS.API/api/v1/EmployeeSelfService/',
+    'MSS':      'http://localhost/MSS.API/api/v1/ManagerSelfService/',
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  baseHref: null,
   environmentIsReady$: null,
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
     TimecardModule,
+    MssModule,
   ],
-  useOIDC: false,
-  oidcRenewalWindow: 0,
+  useOIDC: true,
+  oidcRenewalWindow: (1 * 60 * 60),
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
     client_id: 'urn:LOCALHOST-Timecard2.0_2',

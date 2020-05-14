@@ -16,12 +16,64 @@ import { MssModule } from '../app/manager-self-service/mss.module';
 // BUILD COMMAND FOR GENERATING THE TEST CLIENT (for the .net API service project)
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
+////
+//// GET BASE HREF TO KNOW WHICH ENVIRONMENT, AND SET OIDC settings
+////
+export let $timecardApiURL = null;
+export let $employeeApiURL = null;
+
+const bases = document.getElementsByTagName('base');
+export let baseHref = bases[0].href;
+export let oidcSecret = null;
+export let oidcClientID = null;
+if (bases.length > 0) {
+    if (baseHref.substring(baseHref.length - 1) === '/') {
+      baseHref = baseHref.substring(0, baseHref.length - 1);
+    }
+    const urlPath = bases[0].attributes[0].nodeValue;
+
+    switch (urlPath) {
+      case '/Test/ManagerSelfService/':
+        oidcSecret = '7Erth648pFu3PBD';
+        oidcClientID = 'urn:mi-dev-test-MSS2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/';
+        break;
+      case '/Test/Timecard/':
+        oidcSecret = 'StpCuJpFGu32278';
+        oidcClientID = 'urn:mi-dev-test-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/';
+        break;
+      case '/Test1/Timecard/':
+        oidcSecret = 'WFK7qSJ4674sadv';
+        oidcClientID = 'urn:mi-dev-test1-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test1/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test1/timecardapi/api/v1/Employee/';
+        break;
+      case '/Test2/Timecard/':
+        oidcSecret = '6CkWCV4h743sXdr';
+        oidcClientID = 'urn:mi-dev-test2-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test2/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test2/timecardapi/api/v1/Employee/';
+        break;
+      case '/Test3/Timecard/':
+        oidcSecret = 'G2RLjsATr726tq6';
+        oidcClientID = 'urn:mi-dev-test3-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test3/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test3/timecardapi/api/v1/Employee/';
+        break;
+      default:
+        console.log('ENVIRONMENT ... Unknown base locale', urlPath, baseHref);
+        break;
+      } // end switch urlPath
+} // end if bases length
 
 export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
-    'TIMECARD': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/',
-    'EMPLOYEE': 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/',
+    'TIMECARD': $timecardApiURL,
+    'EMPLOYEE': $employeeApiURL,
     'VRS':      'https://mi-dev.harris.com/TEST/VRSAPI/api/v1/Vacation/',
     'ESS':      'https://mi-dev.harris.com/test/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
     'MSS':      'https://mi-dev.harris.com/test/ManagerSelfServiceAPI/api/v1/ManagerSelfService/',
@@ -39,16 +91,16 @@ export const environment: ApplicationEnvironment = {
   oidcRenewalWindow: (6 * 60 * 60),
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
-    client_id: 'urn:mi-dev-test-Timecard2.0',
-    redirect_uri: 'https://mi-dev.harris.com/test/timecard/auth-callback',
-    post_logout_redirect_uri: 'https://mi-dev.harris.com/test/timecard/',
+    client_id: oidcClientID,
+    redirect_uri: baseHref + '/auth-callback',
+    post_logout_redirect_uri: baseHref,
     response_type: 'code',
     scope: 'openid',
     filterProtocolClaims: true,
     loadUserInfo: false,
-    client_secret: 'StpCuJpFGu32278',
+    client_secret: '',
     automaticSilentRenew: true,
-    silent_redirect_uri: 'https://mi-dev.harris.com/test/timecard/auth-callback?silent=true'
+    silent_redirect_uri: baseHref
   },
   chatBotSettings: {
     botOptions: {
@@ -72,7 +124,7 @@ export const environment: ApplicationEnvironment = {
     autoEnableSpeechAndTTS: false,
     minimizeMode: true
   },
-  useChatBot: false,
+  useChatBot: true,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);

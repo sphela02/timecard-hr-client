@@ -52,7 +52,9 @@ import 'core-js/es7/reflect';
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
-
+/** Reduce Rewrite
+ * Used to correct the Chrome v80 issue **/
+import 'js/reduce.polyfill.js';
 
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.

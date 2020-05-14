@@ -51,6 +51,10 @@ if (bases.length > 0) {
         oidcSecret = '6crRG3eqx728STE';
         oidcClientID = 'urn:mi-dev-vrs-dev-Timecard2.0';
         break;
+      case '/Dev/ManagerSelfService/':
+        oidcSecret = '4A6545AJXcMpwtb';
+        oidcClientID = 'urn:mi-dev-MSS2.0';
+        break;
       case '/Dev/Timecard/':
         oidcSecret = 'p52SmAM7nv5SjX7';
         oidcClientID = 'urn:mi-dev-Timecard2.0';
@@ -125,7 +129,7 @@ export const environment: ApplicationEnvironment = {
     autoEnableSpeechAndTTS: false,
     minimizeMode: true
   },
-  useChatBot: false,
+  useChatBot: true,
 };
 
 environment.environmentIsReady$ = new BehaviorSubject<boolean>(false);
