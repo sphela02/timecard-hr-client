@@ -21,6 +21,8 @@ export class UserInfoService extends HarrisDataServiceBase {
   private _isApprover: boolean = null;
   private _isApprover$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
+  private _employeeProfilesByOPRID$: BehaviorSubject<EmployeeProfileDTO>[] = [];
+
   constructor(
     protected injector: Injector,
     private _authService: AuthService,
@@ -145,6 +147,32 @@ export class UserInfoService extends HarrisDataServiceBase {
     console.error(err.message);  // dbg
     return Observable.throw(err.message);
   }
+
+  getEmployeeProfileByOPRID(employeeOPRID: string): Observable<EmployeeProfileDTO> {
+
+    // API endpoint format ... api/v1/Employee/getEmployeeProfileByOPRID/######
+    // Where #### is the OPRID
+    let _serviceURL: string;
+    _serviceURL = '|EMPLOYEE|getEmployeeProfileByOPRID/';
+    _serviceURL += employeeOPRID;
+
+    if (!this._employeeProfilesByOPRID$[employeeOPRID]) {
+      this._employeeProfilesByOPRID$[employeeOPRID] = new BehaviorSubject<EmployeeProfileDTO>(null);
+    } // end if profile subject not defined yet
+
+    if (this._employeeProfilesByOPRID$[employeeOPRID].value === null) {
+      this._http.get<EmployeeProfileDTO>(_serviceURL, { withCredentials: true })
+      .subscribe((response: EmployeeProfileDTO) => {
+        this._employeeProfilesByOPRID$[employeeOPRID].next(response);
+      },
+      (error: HttpErrorResponse) => {
+        // Handle the Error response
+        this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve an employee profile (OPRID=' + employeeOPRID + ')');
+      }); // end subscribe
+    } // end if profile not retrieved yet
+
+    return this._employeeProfilesByOPRID$[employeeOPRID].asObservable();
+  } // end getEmployeeProfileByOPRID
 
   resetAllData() {
     // Wipe out all stored data, like going back to an app start
