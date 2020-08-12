@@ -92,9 +92,17 @@ export class UserProfileComponent implements OnInit {
     this.dashboardWidgets = this._userProfileService.getDashBoardWidgets();
 
     this._userInfoService.getUserInfo()
+    .skipWhile(u => u === null)
     .subscribe(userInfo => {
       this.userInfo = userInfo;
-    }
+      if (!this.userInfo.HRBP_EmployeeName) {
+        this._userInfoService.getEmployeeProfileByEMPLID(this.userInfo.HRBP_EMPLID)
+          .skipWhile(u => u === null)
+          .subscribe((response: EmployeeProfileDTO) => {
+            this.userInfo.HRBP_EmployeeName = response.FullNamePrintable;
+          });
+      } // end if no hrbp employee name
+    } // end subscribe getUserInfo
   ); // end subscribe
 
   } // end ngOnInit
