@@ -11,6 +11,7 @@ import {
 import { ApplicationViewInfo } from '../shared.module';
 import * as lodash from 'lodash';
 import { Observable } from 'rxjs/Observable';
+import { FormGroup, FormArray } from '@angular/forms';
 
 @Injectable()
 export class CommonDataService {
@@ -213,5 +214,28 @@ export class CommonDataService {
   getSilentNavigationMode(): boolean {
     return this._silentNavigationMode;
   } // end setSilentNavigationMode
+
+  preventInternationalCharacters(currentForm: FormGroup) {
+
+    Object.keys(currentForm.controls).forEach(fieldName => {
+
+      // Prevent First Name field from allowing numeric digits, by removing them whenever entered.
+      currentForm.get(fieldName).valueChanges.subscribe((newValue: string) => {
+
+        if (newValue) {
+
+          const cleanValue = newValue.replace(/[^0-9A-Za-z ./\-',()#&@]/g, '');
+          // If changes were made, set them in
+          if (cleanValue !== newValue) {
+            currentForm.get(fieldName).setValue(cleanValue);
+          } // end if cleanValue different
+
+        } // end if new value is not empty
+
+      }); // end subscribe valueChanges
+
+    }); // end for each field
+
+  } // end preventInternationalCharacters
 
 } // end CommonDataService
