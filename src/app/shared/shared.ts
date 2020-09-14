@@ -271,3 +271,6 @@ export enum ActionType {
       showSkip: boolean;
       steps: HopScotchTourStep[];
   } // end HopScotchTour
+
+  export interface LanguageTranslationTree {
+  }

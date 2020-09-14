@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, APP_INITIALIZER, Injector } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,16 @@ import { ChatBotService } from './shared/chatbot/chatbot.service';
 import { AuthService } from './authentication/auth.service';
 import { ApplicationEnvironment } from './shared/shared';
 
+// import ngx-translate and the http loader
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
+import { LanguageTranslationService } from './shared/language-translation/language-translation.service';
+
+// Language Translation Service ... required for AOT compilation
+export function translateLanguageFactory(_languageTranslationService: LanguageTranslationService) {
+  return _languageTranslationService;
+}
+
 export function appWaitForServicesToBeReady(_commonDataService: CommonDataService) {
   return () => _commonDataService.appWaitForServicesToBeReady();
 }
@@ -43,6 +53,13 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     AppRoutingModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: translateLanguageFactory,
+          deps: [LanguageTranslationService]
+      }
+    })
   ],
   providers: [
     AuthService,
@@ -51,6 +68,7 @@ export function appWaitForServicesToBeReady(_commonDataService: CommonDataServic
     CommonDataService,
     ChatBotService,
     GuidedTourService,
+    LanguageTranslationService,
     ProgressTrackerService,
     GlobalErrorHandlerService,
     {

@@ -18,6 +18,7 @@ import {
 import * as lodash from 'lodash';
 import * as toastr from 'toastr';
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
+import {TranslateService} from '@ngx-translate/core';
 
 declare var $: any;
 
@@ -48,6 +49,7 @@ export class AppComponent implements OnInit {
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
                 private _guidedTourService: GuidedTourService,
+                private translate: TranslateService
             ) {
 
         this._commonDataService.getMenu(ApplicationMenuType.ApprovalMenu).subscribe(approvalsMenu => {
@@ -89,6 +91,16 @@ export class AppComponent implements OnInit {
         this._userInfoService.getUserInfo()
           .subscribe(userInfo => {
             this.userInfo = userInfo;
+            if (userInfo) {
+                // Get Preferred Language for current user
+                this._userInfoService.getMyPreferredLanguage()
+                        .filter(lang => lang !== null).take(1)
+                        .subscribe((preferredLanguage: string) => {
+                    if (preferredLanguage) {
+                        this.translate.use(preferredLanguage);
+                    } // end if preferred language
+                }); // end get my preferred language
+            } // end if user info is valid
           },
           error => this.errorMessage = <any>error
         );
@@ -140,6 +152,7 @@ export class AppComponent implements OnInit {
     } // end _initializeMenuItems.
 
     ngOnInit() {
+        this.translate.setDefaultLang('ENG');
         this.retrieveCurrentUser();
 
         // watch for page title changes.
