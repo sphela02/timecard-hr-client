@@ -1,4 +1,0 @@
-[submodule "src/app/manager-self-service"]
-	path = src/app/manager-self-service
-	url = git@github.com:harris-corp-it/manager-self-service.git
-	branch = develop

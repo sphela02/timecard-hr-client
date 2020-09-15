@@ -1,27 +1,15 @@
 import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
-import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
-import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
-import { TimecardModule } from '../app/timecard/timecard.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { MssModule } from '../app/manager-self-service/mss.module';
 
 export const environment: ApplicationEnvironment = {
   production: true,
   apiServiceURLs: {
-    'TIMECARD': 'https://mi.harris.com/timecardapi/api/v1/Timecard/',
     'EMPLOYEE': 'https://mi.harris.com/timecardapi/api/v1/Employee/',
-    'VRS':      'https://mi.harris.com/VRSAPI/api/v1/Vacation/',
-    'ESS':      'https://mi.harris.com/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
-    'MSS':      'https://mi.harris.com/ManagerSelfServiceAPI/api/v1/ManagerSelfService/'
   },
   AppMode: AppMode.Prod,
   allowDiagnostics: false,
   environmentIsReady$: null,
   importModules: [
-    VacationRequestModule,
-    EmployeeSelfServiceModule,
-    TimecardModule,
-    MssModule
   ],
   useOIDC: true,
   oidcRenewalWindow: (6 * 60 * 60),
