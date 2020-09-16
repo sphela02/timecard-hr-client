@@ -13,12 +13,14 @@ import {
     ApplicationMenuItem,
     ApplicationMenuType,
     DiagnosticMessageGroup,
-    ApplicationEnvironment
+    ApplicationEnvironment,
+    LanguageTranslationTree
 } from './shared/shared';
 import * as lodash from 'lodash';
 import * as toastr from 'toastr';
 import { GuidedTourService } from './shared/guided-tour/guided-tour.service';
 import {TranslateService} from '@ngx-translate/core';
+import { LanguageTranslationService } from './shared/language-translation/language-translation.service';
 
 declare var $: any;
 
@@ -49,7 +51,8 @@ export class AppComponent implements OnInit {
                 private _router: Router,
                 public errorHandlerService: GlobalErrorHandlerService,
                 private _guidedTourService: GuidedTourService,
-                private translate: TranslateService
+                private translate: TranslateService,
+                private _languageTranslationService: LanguageTranslationService,
             ) {
 
         this._commonDataService.getMenu(ApplicationMenuType.ApprovalMenu).subscribe(approvalsMenu => {
@@ -151,7 +154,20 @@ export class AppComponent implements OnInit {
         this._commonDataService.addMenuItems(ApplicationMenuType.MainAppMenu, appMenuItems);
     } // end _initializeMenuItems.
 
+    setupLanguageTranslations() {
+        const translationDataEnglish: LanguageTranslationTree = {
+            'Common': {
+                'Approvals': 'Approvals'
+            }
+        };
+
+        this._languageTranslationService.registerTranslation('app', 'ENG', translationDataEnglish);
+
+    } // end setupLanguageTranslations
+
     ngOnInit() {
+        this.setupLanguageTranslations();
+
         this.translate.setDefaultLang('ENG');
         this.retrieveCurrentUser();
 

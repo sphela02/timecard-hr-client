@@ -233,6 +233,7 @@ export enum ActionType {
     baseHref?: string;
     AppMode: AppMode;
     allowDiagnostics: boolean;
+    translationDebugMode?: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class
     useOIDC: boolean;
     oidcRenewalWindow: number;
