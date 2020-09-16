@@ -24,6 +24,7 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/skipWhile';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/takeUntil';
+import { TranslateModule } from '@ngx-translate/core';
 
 // export { ErrorStatus }    from './ErrorStatus';
 
@@ -38,6 +39,7 @@ export { ValidationResponseGenericDTO } from './ValidationResponseGenericDTO'; /
   imports: [
     CommonModule,
     RouterModule,
+    TranslateModule,
   ],
   declarations: [
     FlexModalComponent,

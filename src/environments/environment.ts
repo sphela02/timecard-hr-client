@@ -84,6 +84,7 @@ export const environment: ApplicationEnvironment = {
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
+  translationDebugMode: true,
   baseHref: null,
   environmentIsReady$: null,
   importModules: [
