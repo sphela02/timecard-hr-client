@@ -2,6 +2,7 @@ import { Subject } from 'rxjs/Subject';
 import { ErrorStatus } from './ErrorStatus';
 import { UserManagerSettings as oidcUserManagerSettings } from 'oidc-client';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { SafeHtml } from '@angular/platform-browser';
 
 export enum ActionType {
     Right = 1,
@@ -76,6 +77,7 @@ export enum ActionType {
   export interface FlexModalSelectionChoice {
     choiceValue: string;
     choiceText: string;
+    choiceTextHtml?: SafeHtml;
   }
 
   export interface FlexModalReturnData {
