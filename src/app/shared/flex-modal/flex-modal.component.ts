@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FlexModalContent, FlexModalReturnData } from '../shared';
+import { FlexModalContent, FlexModalReturnData, FlexModalSelectionChoice } from '../shared';
 import { Subject } from 'rxjs/Subject';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -78,6 +78,11 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
         this.modalContent.selectionPlaceHolderText = 'Please Select';
       } // end if no placeholder text passed in for select
 
+      // If we have select values, make them Safe HTML
+      this.modalContent.selectionChoices.forEach((selectionChoice: FlexModalSelectionChoice) => {
+        selectionChoice.choiceTextHtml = this.sanitizer.bypassSecurityTrustHtml(selectionChoice.choiceText);
+      });
+
     } // end if select defined
 
     // Set up listener for change detection
@@ -126,12 +131,17 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
         const selectionHash = '#' + this.modalContent.selectionID;
         if (!$(selectionHash).data('listenersReady')) {
 
-          $(selectionHash).on('change', (e) => {
-              this.formData.selectionValue = e.target.value;
-              this._internalFormDataChanged$.next();
-            }); // end on change
+          const selectOption = selectionHash + ' .dropdown-item';
+          $(selectOption).click((event) => {
 
-            $(selectionHash).data('listenersReady', true);
+            this.formData.selectionValue = $(event.currentTarget).data('choice-value');
+            this._internalFormDataChanged$.next();
+
+            $('#dropdownMenu1').text($(event.currentTarget).text());
+
+          });
+
+          $(selectionHash).data('listenersReady', true);
         } // end if listeners not ready
       } // end if selection defined
 
@@ -233,13 +243,12 @@ export class FlexModalComponent implements OnInit, AfterViewInit {
       } // end if text area defined
 
       if (this.modalContent.selectionID) {
-
         if (!this.formData.selectionValue
               &&
               !this.modalContent.selectionOptional
             ) {
           $('#' + this.modalContent.selectionID ).addClass('invalid');
-          $('#' + this.modalContent.selectionID ).parent().siblings('.invalid-feedback').css('display', 'block');
+          $('#' + this.modalContent.selectionID ).siblings('.invalid-feedback').css('display', 'block');
           $('#audit-explanation-select').siblings('.select-dropdown').addClass('invalid');
           isFormValid = false;
         } else {
