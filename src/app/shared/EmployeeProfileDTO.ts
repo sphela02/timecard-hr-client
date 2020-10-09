@@ -10,6 +10,8 @@ export interface EmployeeProfileDTO {
         CurrentDepartment: string;
         CurrentWorkgroup: string;
         CurrentSchedule: string;
+        HRBP_EMPLID: string;
+        HRBP_EmployeeName: string;
 }
 
 

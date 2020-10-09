@@ -184,6 +184,32 @@ export class UserInfoService extends HarrisDataServiceBase {
     return Observable.throw(err.message);
   }
 
+  getEmployeeProfileByEMPLID(employeeEMPLID: string): Observable<EmployeeProfileDTO> {
+
+    // API endpoint format ... api/v1/Employee/getEmployeeProfileByEMPLID/######
+    // Where #### is the EMPLID
+    let _serviceURL: string;
+    _serviceURL = '|EMPLOYEE|getEmployeeProfileByEMPLID/';
+    _serviceURL += employeeEMPLID;
+
+    if (!this._employeeProfilesByOPRID$[employeeEMPLID]) {
+      this._employeeProfilesByOPRID$[employeeEMPLID] = new BehaviorSubject<EmployeeProfileDTO>(null);
+    } // end if profile subject not defined yet
+
+    if (this._employeeProfilesByOPRID$[employeeEMPLID].value === null) {
+      this._http.get<EmployeeProfileDTO>(_serviceURL, { withCredentials: true })
+      .subscribe((response: EmployeeProfileDTO) => {
+        this._employeeProfilesByOPRID$[employeeEMPLID].next(response);
+      },
+      (error: HttpErrorResponse) => {
+        // Handle the Error response
+        this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve an employee profile (EMPLID=' + employeeEMPLID + ')');
+      }); // end subscribe
+    } // end if profile not retrieved yet
+
+    return this._employeeProfilesByOPRID$[employeeEMPLID].asObservable();
+  } // end getEmployeeProfileByEMPLID
+
   getEmployeeProfileByOPRID(employeeOPRID: string): Observable<EmployeeProfileDTO> {
 
     // API endpoint format ... api/v1/Employee/getEmployeeProfileByOPRID/######
