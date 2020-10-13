@@ -17,16 +17,23 @@
     <div class="row" id="modal-message" *ngIf="modalContent.messageText">
       <div class="col-12" [innerHTML]="messageText"></div>
     </div>
+
     <div class="row" id="modal-input" *ngIf="modalContent.selectionID">
         <div class="col-12">
           <div class="md-form">
             <label for="{{modalContent.selectionID}}">{{modalContent.inputLabel}}</label>
-            <select class="browser-default custom-select"
-                id="{{modalContent.selectionID}}"
-                >
-                <option value="">{{modalContent.selectionPlaceHolderText}}</option>
-                <option *ngFor="let selectionChoice of modalContent.selectionChoices" [value]="selectionChoice.choiceValue">{{selectionChoice.choiceText}}</option>
-              </select>
+
+            <!-- Split button -->
+            <div class="btn-group" id="{{modalContent.selectionID}}">
+              <button type="button" id="dropdownMenu1" class="btn btn-primary  text-left">{{modalContent.selectionPlaceHolderText}}</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu">
+                  <div *ngFor="let selectionChoice of modalContent.selectionChoices" class="dropdown-item" attr.data-choice-value="{{selectionChoice.choiceValue}}" [innerHTML]="selectionChoice.choiceTextHtml"></div>
+                  <div class="dropdown-divider"></div>
+              </div>
+            </div>
             <div class="invalid-feedback">
               Selection Required
             </div>
