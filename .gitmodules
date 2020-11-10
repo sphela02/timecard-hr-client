@@ -2,3 +2,7 @@
 	path = src/app/manager-self-service
 	url = git@github.com:harris-corp-it/manager-self-service.git
 	branch = develop
+[submodule "src/app/employee-self-service"]
+	path = src/app/employee-self-service
+	url = git@github.com:harris-corp-it/employee-self-service.git
+	branch = develop
