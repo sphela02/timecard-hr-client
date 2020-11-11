@@ -6,3 +6,7 @@
 	path = src/app/employee-self-service
 	url = git@github.com:harris-corp-it/employee-self-service.git
 	branch = develop
+[submodule "src/app/vacation-request"]
+	path = src/app/vacation-request
+	url = git@github.com:harris-corp-it/vacation-request.git
+	branch = develop
