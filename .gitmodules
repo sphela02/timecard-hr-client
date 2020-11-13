@@ -10,3 +10,7 @@
 	path = src/app/vacation-request
 	url = git@github.com:harris-corp-it/vacation-request.git
 	branch = develop
+[submodule "timecard-20-module"]
+	path = src/app/timecard
+	url = git@github.com:harris-corp-it/timecard-20-module.git
+	branch = develop
