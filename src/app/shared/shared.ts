@@ -2,6 +2,7 @@ import { Subject } from 'rxjs/Subject';
 import { ErrorStatus } from './ErrorStatus';
 import { UserManagerSettings as oidcUserManagerSettings } from 'oidc-client';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { SafeHtml } from '@angular/platform-browser';
 
 export enum ActionType {
     Right = 1,
@@ -76,6 +77,7 @@ export enum ActionType {
   export interface FlexModalSelectionChoice {
     choiceValue: string;
     choiceText: string;
+    choiceTextHtml?: SafeHtml;
   }
 
   export interface FlexModalReturnData {
@@ -233,6 +235,7 @@ export enum ActionType {
     baseHref?: string;
     AppMode: AppMode;
     allowDiagnostics: boolean;
+    translationDebugMode?: boolean;
     importModules: any[]; // dbg ... we should make this a generic module base class
     useOIDC: boolean;
     oidcRenewalWindow: number;
@@ -271,3 +274,6 @@ export enum ActionType {
       showSkip: boolean;
       steps: HopScotchTourStep[];
   } // end HopScotchTour
+
+  export interface LanguageTranslationTree {
+  }

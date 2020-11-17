@@ -12,6 +12,7 @@ import { AuthService } from '../authentication/auth.service';
 
 @Injectable()
 export class UserInfoService extends HarrisDataServiceBase {
+  private _userBaseURL: string;
   private _userInfoUrl: string;
   private _isApproverUrl: string;
   private _userInfo$: BehaviorSubject<EmployeeProfileDTO> = new BehaviorSubject<EmployeeProfileDTO>(null);
@@ -23,6 +24,8 @@ export class UserInfoService extends HarrisDataServiceBase {
 
   private _employeeProfilesByOPRID$: BehaviorSubject<EmployeeProfileDTO>[] = [];
 
+  private _userPreferredLanguage$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
   constructor(
     protected injector: Injector,
     private _authService: AuthService,
@@ -31,6 +34,7 @@ export class UserInfoService extends HarrisDataServiceBase {
     // Call the base class constructor
     super(injector);
 
+    this._userBaseURL = '|EMPLOYEE|';
     this._userInfoUrl = '|EMPLOYEE|getMyProfile';
     this._isApproverUrl = '|EMPLOYEE|HasApproverRole/';
 
@@ -143,10 +147,68 @@ export class UserInfoService extends HarrisDataServiceBase {
 
   } // _getIsApprover
 
+  public getMyPreferredLanguage(forceRefresh: boolean = false): Observable<string> {
+
+    this._getMyPreferredLanguage(forceRefresh);
+
+    // Return the observable to the caller ... we'll send back the value momentarily
+    return this._userPreferredLanguage$.asObservable();
+  } // end getPreferredLanguage
+
+  private _getMyPreferredLanguage(forceRefresh: boolean = false) {
+    // What is the user's preferred language?
+
+    let _serviceURL: string;
+    _serviceURL = this._userBaseURL + 'GetEmployeePreferredLanguage/';
+    _serviceURL += this._userInfo.EMPLID;
+
+    // If we don't have the answer yet, or if we need to refresh, get it now.
+    if ((this._userPreferredLanguage$.value === null) || forceRefresh) {
+
+      // Retrieve the answer now and store it.
+      this._http.get<string>(_serviceURL,
+                                          { withCredentials: true })
+              .subscribe((response) => {
+                // Store the object for next time, and send it back to the caller
+                this._userPreferredLanguage$.next(response);
+              },
+              (error: HttpErrorResponse) =>
+                this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve preferred language for user.')
+            );
+    } // end if
+
+  } // _getMyPreferredLanguage
+
   private handleError(err: HttpErrorResponse) {
     console.error(err.message);  // dbg
     return Observable.throw(err.message);
   }
+
+  getEmployeeProfileByEMPLID(employeeEMPLID: string): Observable<EmployeeProfileDTO> {
+
+    // API endpoint format ... api/v1/Employee/getEmployeeProfileByEMPLID/######
+    // Where #### is the EMPLID
+    let _serviceURL: string;
+    _serviceURL = '|EMPLOYEE|getEmployeeProfileByEMPLID/';
+    _serviceURL += employeeEMPLID;
+
+    if (!this._employeeProfilesByOPRID$[employeeEMPLID]) {
+      this._employeeProfilesByOPRID$[employeeEMPLID] = new BehaviorSubject<EmployeeProfileDTO>(null);
+    } // end if profile subject not defined yet
+
+    if (this._employeeProfilesByOPRID$[employeeEMPLID].value === null) {
+      this._http.get<EmployeeProfileDTO>(_serviceURL, { withCredentials: true })
+      .subscribe((response: EmployeeProfileDTO) => {
+        this._employeeProfilesByOPRID$[employeeEMPLID].next(response);
+      },
+      (error: HttpErrorResponse) => {
+        // Handle the Error response
+        this._errorHandlerService.handleHttpErrorResponse(error, 'retrieve an employee profile (EMPLID=' + employeeEMPLID + ')');
+      }); // end subscribe
+    } // end if profile not retrieved yet
+
+    return this._employeeProfilesByOPRID$[employeeEMPLID].asObservable();
+  } // end getEmployeeProfileByEMPLID
 
   getEmployeeProfileByOPRID(employeeOPRID: string): Observable<EmployeeProfileDTO> {
 
@@ -180,5 +242,6 @@ export class UserInfoService extends HarrisDataServiceBase {
     this._userInfo$.next(null);
     this._userInfoRetrieved$.next(null);
     this.getIsApprover(true);
+    this._userPreferredLanguage$.next(null);
   } // end resetAllData
 }
