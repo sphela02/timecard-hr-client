@@ -6,6 +6,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 After cloning in the Git repo, you will need to put a few pieces in place to get to work.
 
+### Git Submodules
+
+You will most likely have some Git Submodules with this framework, you'll need to initialize and update them.
+`git submodule init`
+`git submodule update --remote`
+
 ### Install Node.js and NPM
 
 Navigate to https://nodejs.org/en/download/ and install Node.js and npm if you do not already have them installed.
