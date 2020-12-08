@@ -42,6 +42,13 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     } else if (error.status === 500) {
       const applicationError: ApplicationErrorDTO = error.error;
       this.reportApplicationError(applicationError, 'Unable to ' + ActionDescription);
+    } else if (error.status === 404) {
+      const applicationError: ApplicationErrorDTO = error.error;
+      let errorMessage: string = 'Information not available while trying to ' + ActionDescription;
+      if (typeof error.error === 'string') {
+        errorMessage += ' ... ' + error.error;
+      }
+      this.reportApplicationError(applicationError, errorMessage);
     } else {
       // Other error besides 403/500
       console.log(error);
