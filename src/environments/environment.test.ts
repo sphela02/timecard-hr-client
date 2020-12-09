@@ -11,16 +11,17 @@ import { MssModule } from '../app/manager-self-service/mss.module';
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 // PRODUCTION BUILD STEPS FOR DEV:
 // Map T:\ to \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
-// net use /persistent:yes /savecred t: \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
 // Run the following ...
 // ng build --prod --output-path=T:\TimecardClient --base-href=/TimecardClient/
 // BUILD COMMAND FOR GENERATING THE TEST CLIENT (for the .net API service project)
 // (Assuming that the service root is ..\TimecardService\)
 // ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
-
 ////
 //// GET BASE HREF TO KNOW WHICH ENVIRONMENT, AND SET OIDC settings
 ////
+export let $timecardApiURL = null;
+export let $employeeApiURL = null;
+
 const bases = document.getElementsByTagName('base');
 export let baseHref = bases[0].href;
 export let oidcSecret = null;
@@ -30,42 +31,37 @@ if (bases.length > 0) {
       baseHref = baseHref.substring(0, baseHref.length - 1);
     }
     const urlPath = bases[0].attributes[0].nodeValue;
+
     switch (urlPath) {
-      case '/ess-Dev/Timecard/':
-        oidcSecret = '8Chb5H32AK2Kdgr';
-        oidcClientID = 'urn:mi-dev-ess-dev-Timecard2.0';
+      case '/Test/ManagerSelfService/':
+        oidcSecret = '7Erth648pFu3PBD';
+        oidcClientID = 'urn:mi-dev-test-MSS2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/';
         break;
-      case '/TC-Dev/Timecard/':
-        oidcSecret = '2vLaj34Udh6EM5Y';
-        oidcClientID = 'urn:mi-dev-tc-dev-Timecard2.0';
+      case '/Test/Timecard/':
+        oidcSecret = 'StpCuJpFGu32278';
+        oidcClientID = 'urn:mi-dev-test-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test/timecardapi/api/v1/Employee/';
         break;
-      case '/TC-Feature1/Timecard/':
-        oidcSecret = 'uRCMxPUes885j52';
-        oidcClientID = 'urn:mi-dev-tc-feature1-Timecard2.0';
+      case '/Test1/Timecard/':
+        oidcSecret = 'WFK7qSJ4674sadv';
+        oidcClientID = 'urn:mi-dev-test1-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test1/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test1/timecardapi/api/v1/Employee/';
         break;
-      case '/VRS-Feature1/Timecard/':
-        oidcSecret = 'k4p76dwQ46gALHY';
-        oidcClientID = 'urn:mi-dev-vrs-feature1-Timecard2.0';
+      case '/Test2/Timecard/':
+        oidcSecret = '6CkWCV4h743sXdr';
+        oidcClientID = 'urn:mi-dev-test2-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test2/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test2/timecardapi/api/v1/Employee/';
         break;
-      case '/VRS-Dev/Timecard/':
-        oidcSecret = '6crRG3eqx728STE';
-        oidcClientID = 'urn:mi-dev-vrs-dev-Timecard2.0';
-        break;
-      case '/Dev/ManagerSelfService/':
-        oidcSecret = '4A6545AJXcMpwtb';
-        oidcClientID = 'urn:mi-dev-MSS2.0';
-        break;
-      case '/Dev/Timecard/':
-        oidcSecret = 'p52SmAM7nv5SjX7';
-        oidcClientID = 'urn:mi-dev-Timecard2.0';
-        break;
-      case '/':
-        if (baseHref.indexOf('localhost') > 0) {
-          oidcSecret = 'fneKC73t556VbJR';
-          oidcClientID = 'urn:LOCALHOST-Timecard2.0_2';
-        } else {
-          console.log('ENVIRONMENT ... Unknown base locale', urlPath, baseHref);
-        }
+      case '/Test3/Timecard/':
+        oidcSecret = 'G2RLjsATr726tq6';
+        oidcClientID = 'urn:mi-dev-test3-Timecard2.0';
+        $timecardApiURL = 'https://mi-dev.harris.com/test3/timecardapi/api/v1/Timecard/';
+        $employeeApiURL = 'https://mi-dev.harris.com/test3/timecardapi/api/v1/Employee/';
         break;
       default:
         console.log('ENVIRONMENT ... Unknown base locale', urlPath, baseHref);
@@ -76,16 +72,14 @@ if (bases.length > 0) {
 export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
-    'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
-    'TIMECARD': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Timecard/',
-    'EMPLOYEE': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Employee/',
-    'ESS':      'https://mi-dev.harris.com/dev/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
-    'MSS':      'https://mi-dev.harris.com/dev/ManagerSelfServiceAPI/api/v1/ManagerSelfService/',
+    'TIMECARD': $timecardApiURL,
+    'EMPLOYEE': $employeeApiURL,
+    'VRS':      'https://mi-dev.harris.com/TEST/VRSAPI/api/v1/Vacation/',
+    'ESS':      'https://mi-dev.harris.com/test/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
+    'MSS':      'https://mi-dev.harris.com/test/ManagerSelfServiceAPI/api/v1/ManagerSelfService/',
   },
   AppMode: AppMode.Dev,
-  allowDiagnostics: true,
-  translationDebugMode: true,
-  baseHref: null,
+  allowDiagnostics: false,
   environmentIsReady$: null,
   importModules: [
     VacationRequestModule,
@@ -94,7 +88,7 @@ export const environment: ApplicationEnvironment = {
     MssModule,
   ],
   useOIDC: true,
-  oidcRenewalWindow: (1 * 60 * 60),
+  oidcRenewalWindow: (6 * 60 * 60),
   authClientSettings: {
     authority: 'https://sso.l3harris.com/ofisid/api/discovery',
     client_id: oidcClientID,
@@ -104,19 +98,19 @@ export const environment: ApplicationEnvironment = {
     scope: 'openid',
     filterProtocolClaims: true,
     loadUserInfo: false,
-    client_secret: oidcSecret,
+    client_secret: '',
     automaticSilentRenew: true,
     silent_redirect_uri: baseHref
   },
   chatBotSettings: {
     botOptions: {
-      koreAPIUrl: 'https://chatbot-dev.l3harris.com//api/',
-      JWTUrl: 'https://chatbot-dev.l3harris.com/jwtservice/api/users/sts',
-      clientId: 'cs-e5d15a97-d72f-52e7-9cb5-b72b462ac3f1',
-      clientSecret: 'drW6JJF/HlHzJ0eqZ9wu39bMSOcTwbg4psVosrE+Q6g=',
+      koreAPIUrl: 'https://chatbot-tst.l3harris.com//api/',
+      JWTUrl: 'https://chatbot-tst.l3harris.com/jwtservice/api/users/sts',
+      clientId: 'cs-8434abc2-049e-5cfa-9931-40087a4272fe',
+      clientSecret: 'Kc80o/QkpkvOCQiS+62lC1Hi4eK0U+r2G1Af1vibuFg=',
       botInfo: {
-        name: 'HAL_Integrated_Dev',
-        _id: 'st-bf635b27-35e5-5c14-9165-07763a1c028d'
+        name: 'HAL_Integrated_Test',
+        _id: 'st-9fd6abd4-4119-55c4-9912-f0bd1bf8c1d9'
       }
     },
     allowIframe: false,

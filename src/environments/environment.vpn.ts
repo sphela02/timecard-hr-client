@@ -3,7 +3,6 @@ import { VacationRequestModule } from '../app/vacation-request/vacation-request.
 import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
 import { TimecardModule } from '../app/timecard/timecard.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { MssModule } from '../app/manager-self-service/mss.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -13,45 +12,27 @@ import { MssModule } from '../app/manager-self-service/mss.module';
 // Map T:\ to \\mlbmblwebd1.cs.myharris.net\e$\netroot\mi-dev\wwwroot
 // Run the following ...
 // ng build --prod --output-path=T:\TimecardClient --base-href=/TimecardClient/
-// STEPS FOR MOCKGEN:
-// ng serve -o --environment=local --live-reload=false
-// Set your browser's default download folder to be where the JSON files are stored.
+// BUILD COMMAND FOR GENERATING THE TEST CLIENT (for the .net API service project)
+// (Assuming that the service root is ..\TimecardService\)
+// ng build --environment=local --output-path=..\TimecardService\Timecard.TestClient --base-href=/
 
 export const environment: ApplicationEnvironment = {
-  production: false,
-  // apiServiceURL: 'https://mi-dev.harris.com/timecard/api/v1/',
+  production: true,
   apiServiceURLs: {
-    'VRS':      'http://localhost/VRS.API/api/v1/Vacation/',
-    'TIMECARD': 'http://localhost/TC.API/api/v1/Timecard/',
-    'EMPLOYEE': 'http://localhost/TC.API/api/v1/Employee/',
-    'ESS':      'http://localhost/ESS.API/api/v1/EmployeeSelfService/',
-    'MSS':      'http://localhost/MSS.API/api/v1/ManagerSelfService/',
+    'TIMECARD': 'https://mi-dev.harris.com/vpntest/timecardapi/api/v1/Timecard/',
+    'EMPLOYEE': 'https://mi-dev.harris.com/vpntest/timecardapi/api/v1/Employee/',
   },
   AppMode: AppMode.Dev,
-  allowDiagnostics: true,
-  baseHref: null,
+  allowDiagnostics: false,
   environmentIsReady$: null,
   importModules: [
     VacationRequestModule,
     EmployeeSelfServiceModule,
     TimecardModule,
-    MssModule,
   ],
-  useOIDC: true,
-  oidcRenewalWindow: (1 * 60 * 60),
-  authClientSettings: {
-    authority: 'https://sso.l3harris.com/ofisid/api/discovery',
-    client_id: 'urn:LOCALHOST-Timecard2.0_2',
-    redirect_uri: 'http://localhost:4200/auth-callback',
-    post_logout_redirect_uri: 'http://localhost:4200/',
-    response_type: 'code',
-    scope: 'openid',
-    filterProtocolClaims: true,
-    loadUserInfo: false,
-    client_secret: 'fneKC73t556VbJR',
-    automaticSilentRenew: true,
-    silent_redirect_uri: 'http://localhost:4200/auth-callback?silent=true'
-  },
+  useOIDC: false,
+  oidcRenewalWindow: (6 * 60 * 60),
+  authClientSettings: null,
   chatBotSettings: null,
   useChatBot: false,
 };
