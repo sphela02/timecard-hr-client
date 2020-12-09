@@ -1,0 +1,16 @@
+[submodule "src/app/manager-self-service"]
+	path = src/app/manager-self-service
+	url = git@github.com:harris-corp-it/manager-self-service.git
+	branch = develop
+[submodule "src/app/employee-self-service"]
+	path = src/app/employee-self-service
+	url = git@github.com:harris-corp-it/employee-self-service.git
+	branch = develop
+[submodule "src/app/vacation-request"]
+	path = src/app/vacation-request
+	url = git@github.com:harris-corp-it/vacation-request.git
+	branch = develop
+[submodule "timecard-20-module"]
+	path = src/app/timecard
+	url = git@github.com:harris-corp-it/timecard-20-module.git
+	branch = develop
