@@ -1,9 +1,5 @@
 import { AppMode, ApplicationEnvironment } from '../app/shared/shared';
-import { VacationRequestModule } from '../app/vacation-request/vacation-request.module';
-import { EmployeeSelfServiceModule } from '../app/employee-self-service/employee-self-service.module';
-import { TimecardModule } from '../app/timecard/timecard.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { MssModule } from '../app/manager-self-service/mss.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -31,34 +27,6 @@ if (bases.length > 0) {
     }
     const urlPath = bases[0].attributes[0].nodeValue;
     switch (urlPath) {
-      case '/ess-Dev/Timecard/':
-        oidcSecret = '8Chb5H32AK2Kdgr';
-        oidcClientID = 'urn:mi-dev-ess-dev-Timecard2.0';
-        break;
-      case '/TC-Dev/Timecard/':
-        oidcSecret = '2vLaj34Udh6EM5Y';
-        oidcClientID = 'urn:mi-dev-tc-dev-Timecard2.0';
-        break;
-      case '/TC-Feature1/Timecard/':
-        oidcSecret = 'uRCMxPUes885j52';
-        oidcClientID = 'urn:mi-dev-tc-feature1-Timecard2.0';
-        break;
-      case '/VRS-Feature1/Timecard/':
-        oidcSecret = 'k4p76dwQ46gALHY';
-        oidcClientID = 'urn:mi-dev-vrs-feature1-Timecard2.0';
-        break;
-      case '/VRS-Dev/Timecard/':
-        oidcSecret = '6crRG3eqx728STE';
-        oidcClientID = 'urn:mi-dev-vrs-dev-Timecard2.0';
-        break;
-      case '/Dev/ManagerSelfService/':
-        oidcSecret = '4A6545AJXcMpwtb';
-        oidcClientID = 'urn:mi-dev-MSS2.0';
-        break;
-      case '/Dev/Timecard/':
-        oidcSecret = 'p52SmAM7nv5SjX7';
-        oidcClientID = 'urn:mi-dev-Timecard2.0';
-        break;
       case '/':
         if (baseHref.indexOf('localhost') > 0) {
           oidcSecret = 'fneKC73t556VbJR';
@@ -76,11 +44,7 @@ if (bases.length > 0) {
 export const environment: ApplicationEnvironment = {
   production: false,
   apiServiceURLs: {
-    'VRS':      'https://mi-dev.harris.com/DEV/VRSAPI/api/v1/Vacation/',
-    'TIMECARD': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Timecard/',
     'EMPLOYEE': 'https://mi-dev.harris.com/dev/timecardapi/api/v1/Employee/',
-    'ESS':      'https://mi-dev.harris.com/dev/EmpSelfServiceAPI/api/v1/EmployeeSelfService/',
-    'MSS':      'https://mi-dev.harris.com/dev/ManagerSelfServiceAPI/api/v1/ManagerSelfService/',
   },
   AppMode: AppMode.Dev,
   allowDiagnostics: true,
@@ -88,10 +52,6 @@ export const environment: ApplicationEnvironment = {
   baseHref: null,
   environmentIsReady$: null,
   importModules: [
-    VacationRequestModule,
-    EmployeeSelfServiceModule,
-    TimecardModule,
-    MssModule,
   ],
   useOIDC: true,
   oidcRenewalWindow: (1 * 60 * 60),
